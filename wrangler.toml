@@ -1,0 +1,15 @@
+name = "tools"
+compatibility_date = "2025-01-09"
+main = "./.output/server/index.mjs"
+assets = { directory = "./.output/public/", binding = "ASSETS" }
+
+# Workers Logs
+# Docs: https://developers.cloudflare.com/workers/observability/logs/workers-logs/
+# Configuration: https://developers.cloudflare.com/workers/observability/logs/workers-logs/#enable-workers-logs
+[observability]
+enabled = true
+
+[[d1_databases]]
+binding = "D1Database"
+database_name = "tools"
+database_id = "405fe41f-8f36-4910-b2e2-ed4f97e77ec7"  # 替换为实际 ID
