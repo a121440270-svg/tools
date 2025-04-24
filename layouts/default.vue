@@ -144,6 +144,18 @@ import { useTheme } from '~/composables/useTheme'
 // 主题管理
 const { theme, toggleTheme, isDark, isLight } = useTheme()
 
+// 确保主题状态响应式
+const themeClass = computed(() => isDark.value ? 'dark' : 'light')
+
+// 在根元素上动态添加主题类
+onMounted(() => {
+  document.documentElement.classList.add(themeClass.value)
+})
+
+watch(themeClass, (newClass, oldClass) => {
+  document.documentElement.classList.remove(oldClass)
+  document.documentElement.classList.add(newClass)
+})
 // 侧边栏状态
 const isSidebarCollapsed = ref(false)
 const isSidebarOpen = ref(false)
