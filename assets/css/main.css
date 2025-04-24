@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 249 255;
+    --foreground: 15 23 42;
+
+    --sidebar-gradient-start: 54 135 108;
+    --sidebar-gradient-end: 1 104 33;
+
+    --card: 255 255 255;
+    --card-foreground: 15 23 42;
+
+    --primary: 54 135 108;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 241 245 249;
+    --secondary-foreground: 15 23 42;
+
+    --accent: 54 135 108;
+    --accent-foreground: 255 255 255;
+
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 54 135 108;
+  }
+
+  .dark {
+    --background: 15 23 42;
+    --foreground: 226 232 240;
+
+    --sidebar-gradient-start: 44 115 88;
+    --sidebar-gradient-end: 1 68 23;
+
+    --card: 30 41 59;
+    --card-foreground: 226 232 240;
+
+    --primary: 54 135 108;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 30 41 59;
+    --secondary-foreground: 226 232 240;
+
+    --accent: 54 135 108;
+    --accent-foreground: 255 255 255;
+
+    --border: 51 65 85;
+    --input: 51 65 85;
+    --ring: 54 135 108;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.sidebar-gradient {
+  background: linear-gradient(135deg, rgb(var(--sidebar-gradient-start)) 0%, rgb(var(--sidebar-gradient-end)) 100%);
+  position: relative;
+}
+
+/* 添加波浪图形底部装饰 */
+.sidebar-gradient::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' style='fill: rgba(255, 255, 255, 0.08);'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  pointer-events: none;
+  z-index: -1;
+}

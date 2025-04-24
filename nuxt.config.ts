@@ -17,6 +17,6 @@ export default defineNuxtConfig({
       }
     }
   },
-
-  modules: ["nitro-cloudflare-dev"]
+  modules: ['@nuxtjs/tailwindcss',"nitro-cloudflare-dev"],
+  css: ['~/assets/css/main.css']
 })
