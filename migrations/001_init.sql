@@ -12,3 +12,54 @@ INSERT INTO tools (name, description, route)
 VALUES 
   ('QR Generator', 'Generate QR codes from text', '/qr-generator'),
   ('URL Shortener', 'Shorten long URLs', '/url-shortener');
+
+CREATE TABLE article (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  content TEXT NOT NULL,
+  title TEXT NOT NULL,
+  hits INTEGER DEFAULT 0,
+  type TEXT,
+  chapter INTEGER,
+  posted_time TEXT NOT NULL,
+  last_mod_time TEXT NOT NULL,
+  author_id INTEGER NOT NULL,
+  toc_id INTEGER,
+  status TEXT,
+  fee INTEGER,
+  keywords TEXT,
+  description TEXT
+);
+
+CREATE TABLE article_l (
+    id INTEGER NOT NULL,
+    lang_code TEXT NOT NULL, -- 存储语言代码，如 'en' for English, 'zh' for Chinese
+    title TEXT NOT NULL,
+    content TEXT NOT NULL,
+    keywords TEXT,
+    description TEXT,
+    PRIMARY KEY (id, lang_code), -- 联合主键，确保每篇文章的每种语言都是唯一的
+    FOREIGN KEY(id) REFERENCES article(id)
+);
+
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT DEFAULT '佚名',
+  email TEXT,
+  avatar TEXT DEFAULT 'noavatar.gif',
+  psw TEXT,
+  type INTEGER,
+  create_time TEXT,
+  position TEXT,
+  signature TEXT,
+  ip TEXT,
+  last_active_time TEXT,
+  is_active INTEGER DEFAULT 0,
+  paymentcode TEXT DEFAULT 'nopaymentcode.png',
+  active_code TEXT,
+  points INTEGER DEFAULT 0,
+  is_consult BLOB,
+  sid TEXT,
+  wechatAccount TEXT,
+  aliAccount TEXT,
+  amount REAL DEFAULT 0.00
+);

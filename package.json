@@ -16,11 +16,14 @@
     "crypto-js": "^4.2.0",
     "drizzle-orm": "^0.30.10",
     "nuxt": "^3.16.2",
+    "sonner": "^2.0.3",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250109.0",
+    "@intlify/unplugin-vue-i18n": "^6.0.8",
+    "@nuxtjs/i18n": "^9.5.4",
     "nitro-cloudflare-dev": "^0.2.1",
     "nitropack": "^2.10.4",
     "wrangler": "^3.101.0"

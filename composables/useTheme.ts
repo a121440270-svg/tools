@@ -3,7 +3,7 @@ import { ref, watch, onMounted } from 'vue'
 type Theme = 'light' | 'dark'
 
 export const useTheme = () => {
-  const theme = ref<Theme>('light')
+  const theme = ref<'light' | 'dark'>('dark') // 修改默认值为dark
 
   // 初始化主题
   onMounted(() => {

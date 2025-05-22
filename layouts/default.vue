@@ -1,4 +1,5 @@
 <template>
+  <!-- 确保根div闭合 -->
   <div class="min-h-screen flex">
     <!-- 移动端顶部导航栏 -->
     <header class="lg:hidden border-b bg-white dark:bg-gray-800 dark:border-gray-700">
@@ -10,8 +11,10 @@
           >
             <MenuIcon class="w-5 h-5 text-gray-700 dark:text-gray-200" />
           </button>
-          <span class="ml-3 font-bold text-gray-800 dark:text-white">IT - TOOLS</span>
+          <span class="ml-3 font-bold text-gray-800 dark:text-white">OnliTool</span>
         </div>
+       
+        
 
         <button
           class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -33,8 +36,8 @@
       ]"
     >
       <div class="py-8 px-6">
-        <h1 class="text-2xl font-bold text-white">IT - TOOLS</h1>
-        <p class="text-sm text-white/80">Handy tools for developers</p>
+        <h1 class="text-2xl font-bold text-white">OnliTool</h1>
+        <p class="text-sm text-white/80">Handy tools and atricles for developers</p>
       </div>
 
       <!-- 工具分类 -->
@@ -44,14 +47,24 @@
             class="flex items-center px-6 py-2 text-white cursor-pointer"
             @click="toggleCategory(index)"
           >
-            <ChevronIcon
+            <ChevronIcon v-if="null==category.path"
               class="w-4 h-4 mr-2 transition-transform"
               :class="category.expanded ? 'rotate-90' : ''"
             />
-            <span>{{ category.name }}</span>
+            <span v-if="null==category.path" >{{ category.name }}</span>
+            <NuxtLink v-if="null!=category.path"
+              :key="category.path"
+              :to="category.path"
+              class="block py-2 px-6 hover:bg-white/10 rounded transition-colors flex items-center text-white"
+              :class="{ 'bg-white/10': $route.path === category.path }"
+              @click="isDesktop ? null : closeSidebar()"
+            >
+              <component :is="category.icon" class="w-5 h-5 mr-3 text-white/90" />
+              {{ category.name }}
+            </NuxtLink>
           </div>
 
-          <div v-if="category.expanded" class="pl-4 mt-1">
+          <div v-if="category.expanded && null==category.path" class="pl-4 mt-1">
             <NuxtLink
               v-for="tool in category.tools"
               :key="tool.path"
@@ -88,7 +101,12 @@
         >
           <MenuIcon class="w-5 h-5 text-gray-700 dark:text-gray-200" />
         </button>
-
+        <button
+          class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+          @click="navigateTo('/')"
+        >
+          <HomeIcon class="w-5 h-5 text-gray-700 dark:text-gray-200" />
+        </button>
         <div class="flex items-center ml-4 relative">
           <SearchIcon class="w-5 h-5 absolute left-3 text-gray-400" />
           <input
@@ -100,17 +118,39 @@
         </div>
 
         <div class="ml-auto flex items-center gap-4">
-          <select class="bg-transparent py-1 px-2 rounded border text-sm dark:bg-gray-700 dark:text-white dark:border-gray-600">
-            <option>English</option>
+        <NuxtLink 
+        v-if="!user?.id"  
+        to="/auth/login" 
+        class="px-4 py-2 text-primary hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+        >
+        登录
+        </NuxtLink>
+        <NuxtLink 
+        v-else
+        to="/profile"
+        class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+        >
+        <img :src="user.avatar" class="w-6 h-6 rounded-full mr-2">
+        <span class="text-primary">{{ user.name }}</span>
+        </NuxtLink>
+        <button
+        @click="handleLogout"
+        class="ml-2 px-3 py-1 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors"
+        >
+        退出
+        </button>
+          <select 
+            v-model="$i18n.locale"
+            class="bg-transparent py-1 px-2 rounded border text-sm dark:bg-gray-700 dark:text-white dark:border-gray-600">
+            <option 
+              v-for="locale in $i18n.availableLocales" 
+              :key="locale" 
+              :value="locale"
+            >
+              {{ $t(`${locale}`) }}
+            </option>
           </select>
 
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-gray-700 dark:text-gray-200">
-            <GithubIcon class="w-5 h-5" />
-          </a>
-
-          <a href="#" target="_blank" rel="noopener noreferrer" class="text-gray-700 dark:text-gray-200">
-            <XIcon class="w-5 h-5" />
-          </a>
 
           <button
             class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -121,10 +161,6 @@
               class="w-5 h-5"
             />
           </button>
-
-          <a href="#" class="bg-primary text-primary-foreground rounded-full px-4 py-2 text-sm hover:bg-primary/90 transition-colors">
-            Buy me a coffee ❤️
-          </a>
         </div>
       </header>
 
@@ -133,10 +169,15 @@
         <slot />
       </main>
     </div>
+ 
   </div>
 </template>
 
 <script setup>
+// Add user state initialization
+import { useUser } from '~/composables/useAuth'
+const user = useUser()
+
 import { h, defineComponent } from 'vue'
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useTheme } from '~/composables/useTheme'
@@ -389,8 +430,40 @@ const DateIcon = defineComponent({
     ])
   }
 })
+const HomeIcon = defineComponent({
+  name: 'HomeIcon',
+  render() {
+    return h('svg', {
+      xmlns: 'http://www.w3.org/2000/svg',
+      viewBox: '0 0 24 24',
+      fill: 'none',
+      stroke: 'currentColor',
+      strokeWidth: '2',
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
+      class: this.$attrs.class
+    }, [
+      // 房子屋顶
+      h('path', { d: 'M3 9L12 2L21 9' }),
+      // 房子边框
+      h('path', { d: 'M5 10V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10' }),
+      // 窗户竖线
+      h('line', { x1: '12', y1: '14', x2: '12', y2: '18' }),
+      // 窗户横线
+      h('line', { x1: '10', y1: '16', x2: '14', y2: '16' })
+    ])
+  }
+})
+
 // 菜单分类
 const categories = ref([
+  {
+    name: 'Blog',
+    expanded: true,
+    name: 'Blog', 
+    path: '/blog', 
+    icon: TokenIcon
+  },
   {
     name: 'Crypto',
     expanded: true,
@@ -410,5 +483,9 @@ const categories = ref([
 
 const toggleCategory = (index) => {
   categories.value[index].expanded = !categories.value[index].expanded
+}
+const handleLogout = () => {
+  user.value = { id: null, name: '', email: '', avatar: '' }
+  navigateTo('/auth/login')
 }
 </script>
