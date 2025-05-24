@@ -1,5 +1,8 @@
 <template>
-  <div v-if="article"> <!-- 添加条件渲染 -->
+  <div v-if="pending" class="text-center py-8">
+    <span class="animate-spin">🔄</span> 加载中...
+  </div>
+  <div v-else-if="article">
     <div class="flex items-center justify-between mb-6">
       <NuxtLink 
         to="/blog" 
@@ -32,7 +35,5 @@
 
 <script setup>
 const route = useRoute()
-const { data: article } = useFetch(`/api/articles/${route.params.id}`, {
-  default: () => ({ title: '', content: '' }) // 添加默认值
-})
+const { data: article, pending } = useFetch(`/api/articles/${route.params.id}`)
 </script>

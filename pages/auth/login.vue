@@ -60,6 +60,10 @@ const form = reactive({
   password: ''
 })
 
+const route = useRoute()
+const router = useRouter()
+
+
 // 在现有代码中添加状态更新
 import { useUser } from '~/composables/useAuth'
 const userState = useUser()
@@ -74,6 +78,7 @@ const handleLogin = async () => {
   // 更新全局用户状态
   userState.value = user
   
-  await navigateTo('/profile')
+  const redirectPath = route.query.redirect || '/profile'
+  await router.push(redirectPath)
 }
 </script>

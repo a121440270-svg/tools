@@ -5,6 +5,6 @@ export default defineNuxtRouteMiddleware((to) => {
   const protectedRoutes = ['/blog/post', '/profile']
   
   if (!user?.id && protectedRoutes.includes(to.path)) {
-    return navigateTo('/auth/login')
+    return navigateTo(`/auth/login?redirect=${encodeURIComponent(to.path)}`)
   }
 })

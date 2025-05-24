@@ -133,12 +133,14 @@
         <img :src="user.avatar" class="w-6 h-6 rounded-full mr-2">
         <span class="text-primary">{{ user.name }}</span>
         </NuxtLink>
-        <button
-        @click="handleLogout"
-        class="ml-2 px-3 py-1 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors"
+        <NuxtLink 
+          v-if="user?.id"
+          @click.prevent="handleLogout"
+          to="#"
+          class="ml-2 px-4 py-2 text-primary hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
         >
-        退出
-        </button>
+          退出
+        </NuxtLink>
           <select 
             v-model="$i18n.locale"
             class="bg-transparent py-1 px-2 rounded border text-sm dark:bg-gray-700 dark:text-white dark:border-gray-600">
@@ -147,7 +149,7 @@
               :key="locale" 
               :value="locale"
             >
-              {{ $t(`${locale}`) }}
+              {{ $t(`locale.${locale}`) }}  <!-- 修改此处为嵌套键名结构 -->
             </option>
           </select>
 
@@ -486,6 +488,6 @@ const toggleCategory = (index) => {
 }
 const handleLogout = () => {
   user.value = { id: null, name: '', email: '', avatar: '' }
-  navigateTo('/auth/login')
+  navigateTo('/') // 修改这里从 '/auth/login' 改为 '/'
 }
 </script>

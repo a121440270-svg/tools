@@ -1,5 +1,7 @@
+import { defineEventHandler } from 'h3'
+
 export default defineEventHandler(async (event) => {
-  const { id } = event.context.params
+  const { id } = getRouterParams(event)
   
   // 添加模拟数据
   const mockArticles = [
@@ -21,5 +23,14 @@ export default defineEventHandler(async (event) => {
     }
   ]
 
-  return mockArticles.find(a => a.id === Number(id))
+  const article = mockArticles.find(a => a.id === Number(id))
+  
+  if (!article) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: 'Article Not Found'
+    })
+  }
+
+  return article
 })
