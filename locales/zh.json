@@ -13,5 +13,14 @@
     "password": "密码",
     "submit": "登录",
     "github": "使用 GitHub 登录"
+  },
+  "auth": {
+    "register": "用户注册",
+    "create_account": "创建您的账户",
+    "username": "用户名",
+    "confirm_password": "确认密码",
+    "register_btn": "立即注册",
+    "no_account": "没有账号？",
+    "register_now": "立即注册"
   }
 }

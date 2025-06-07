@@ -1,0 +1,153 @@
+
+#!/bin/sh -x
+# THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES
+#
+# It is highly advisable to create own systemd services or uopt rules
+# to run scripts during boot instead of using this file.
+#
+# In contrast to previous versions due to parallel execution during boot
+# this script will NOT be run after all other services.
+#
+# Please note that you must run 'chmod +x /etc/rc.d/rc.local' to ensure
+# that this script will be executed during boot.
+#sleep 30
+#cd /opt/code/payment
+#java -jar qpay.jar>/opt/rc.local.log  2>&1 
+#sleep 30
+E:&cd E:\procedure\python\shopSpider\venv\Scripts & activate & cd ../.. & python productPublish_fa.py & pause
+E:&cd E:\procedure\python\shopSpider\venv\Scripts & activate & cd ../.. & python stackoverflowSpider.py & pause
+E:&cd E:\procedure\python\shopSpider\venv\Scripts & activate & cd ../.. & python csdnSpider.py & pause
+E:&cd E:\procedure\python\shopSpider\venv\Scripts & activate & cd ../.. & python productPublish_mo.py & pause
+E:&cd E:\procedure\python\shopSpider\venv\Scripts & activate & cd ../.. & python productPublish_fa.py & pause
+E:&cd E:\procedure\python\shopSpider\venv\Scripts & activate & cd ../.. & python productPublish_wi.py & pause
+E:&cd E:\procedure\python\shopSpider\venv\Scripts & activate & cd ../.. & python productPublish.py & pause
+pstree -ap|grep gunicorn
+
+nohup java -jar /opt/code/mall-admin.jar &
+sh /opt/tomcat8/bin/startup.sh
+cd /opt/code
+source env/bin/activate
+cd ./blog2
+gunicorn  --worker-class eventlet -w 1 --threads 100 -b 0.0.0.0:5000 app:app >/opt/blog2.log  2>&1 &
+cd /opt/code/ddns
+python DDNS.py
+
+gunicorn -w 4 --threads 100 -b 0.0.0.0:5000 app:app >/opt/blog2.log  2>&1 &
+
+cd /opt/code
+source env/bin/activate
+cd ./wedding
+gunicorn --worker-class eventlet -w 1 --threads 100 -b 0.0.0.0:5002 app:app >/opt/wedding.log  2>&1 &
+cd /opt/code/ddns
+python DDNS.py >/opt/rc.local.log  2>&1 &
+sh /opt/tomcat8/bin/startup.sh
+
+
+nohup /opt/minio server /opt/upload >/opt/minio.log  2>&1 &
+cd /opt/code
+source env/bin/activate
+cd /opt/code/ddns
+python DDNS.py >/opt/rc.local.log  2>&1 &
+nohup sh /opt/james-server-app-3.5.0/bin/run.sh >/opt/james.log  2>&1 &
+cd /opt/code 
+source env/bin/activate 
+cd spider  
+python bootstrapmbSpider-pulgin.py
+
+cd /opt/code
+source env/bin/activate
+cd ./spider
+kill -9 $(lsof -i:9528 -t)
+python bootstrapmbSpider-moban.py
+ 
+cd /opt/code
+source env/bin/activate
+cd ./spider
+python bootstrapmbSpider-pulgin.py
+sh /opt/tomcat8/bin/startup.sh
+
+netstat -nlp|grep 5002
+#cd /opt/code
+#nohup java -jar ruoyi-admin.jar --spring.profiles.active=prod >/opt/ry.log  2>&1 &
+#python proxyPool.py >/opt/rc.local.log  2>&1 &
+
+
+#/usr/bin/node  /opt/code/ssr/chrome.js  >/opt/rc.local.log  2>&1 &
+#/usr/bin/node  /opt/code/ssr/app.js  >/opt/rc.local.log  2>&1 &
+
+#python app.py>/opt/rc.local.log  2>&1 &
+#sleep 30
+#cd ../note
+#python manage.py runserver -h 0.0.0.0 -p 8055 >/opt/rc.local.log  2>&1 &
+#sleep 30
+#ngrok tcp -region jp 22 >/opt/rc.local.log  2>&1 &
+#sleep 30
+#cd /opt/code/iface
+#java -jar iface.jar>/opt/rc.local.log  2>&1 &
+#sleep 10
+#cd /opt/code/imcore
+#java -jar imcore.jar>/opt/rc.local.log  2>&1 &
+#sleep 10
+#cd /opt/code/mall
+#java -jar mall.jar>/opt/rc.local.log  2>&1 &
+
+启动博客后台：
+cd /opt/code/blog2
+nohup python3 run.py >/opt/blog2.log  2>&1 &
+nohup java -jar /opt/code/mall-admin.jar &
+sh /opt/tomcat8/bin/startup.sh
+
+
+ssh -oPort=6000 root@localhost
+
+
+firewall-cmd --permanent --zone=public --add-port=6000/tcp
+systemctl reload firewalld
+
+ systemctl restart frpc
+
+ ssh -oPort=6000 127.0.0.1
+
+
+ export PATH=$PATH:/usr/local/python3/bin
+
+  pyinstaller --onefile --windowed 
+  --icon=your_icon.ico
+  --add-data "D:\code\shopSpider\my-wx-qrcode.jpg;data" 
+  --add-data "D:\code\shopSpider\5102825.png;data" 
+  --add-binary="D:\code\shopSpider\.venv\Lib\site-packages\pyzbar\libiconv.dll;."  
+  --add-binary="D:\code\shopSpider\.venv\Lib\site-packages\pyzbar\libzbar-64.dll;." FontSubsetApp.py
+
+
+pip install pyinstaller -i https://mirrors.aliyun.com/pypi/simple/
+  
+  pyinstaller  --windowed  --noconfirm 
+  --icon=.\app.ico"
+  --add-data "D:\code\shopSpider\icons8-resize-64.png;data" 
+  --add-binary="D:\code\shopSpider\.venv\Lib\site-packages\pyzbar\libiconv.dll;."  
+  --add-binary="D:\code\shopSpider\.venv\Lib\site-packages\pyzbar\libzbar-64.dll;." ImageResizerApp.py
+
+
+cloudflared.exe access ssh --hostname ssh.yy123.ink -url localhost:222
+
+cloudflared access tcp --hostname mysql.yy123.ink --url localhost:5555
+
+部署cloudflare worker
+You can preview this build using npx wrangler dev .output/server/index.mjs --assets .output/public/                     nitro 12:27:25
+You can deploy this build using npx wrangler deploy    
+wrangler d1 migrations apply tools --remote
+wrangler d1 migrations apply tools --local
+
+
+
+更新cloudflared:
+sudo rpm -Uvh cloudflared-linux-x86_64.rpm
+sudo rpm -Uvh cloudflared-linux-x86_64\ \(1\).rpm 
+sudo systemctl restart cloudflared
+systemctl status cloudflared.service
+cloudflared --version
+sudo systemctl stop cloudflared
+cloudflared --version
+systemctl status cloudflared.service
+sudo systemctl start cloudflared
+systemctl status cloudflared.service
