@@ -1,5 +1,5 @@
 // server/api/tools.post.ts
-import { createTool } from '~/server/db/tools';
+import { createTool } from '~/server/dao/tools';
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);

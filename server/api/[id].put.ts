@@ -1,5 +1,5 @@
 // server/api/tools/[id].put.ts
-import { updateTool } from '~/server/db/tools';
+import { updateTool } from '~/server/dao/tools';
 
 export default defineEventHandler(async (event) => {
   const id = Number(getRouterParam(event, 'id'));
