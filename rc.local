@@ -1,4 +1,6 @@
 
+
+
 #!/bin/sh -x
 # THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES
 #
@@ -151,3 +153,6 @@ cloudflared --version
 systemctl status cloudflared.service
 sudo systemctl start cloudflared
 systemctl status cloudflared.service
+
+
+ // https://v8.i18n.nuxtjs.org/docs/getting-started

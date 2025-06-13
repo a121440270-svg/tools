@@ -17,8 +17,6 @@ export function findToolsCon(query?: Partial<ToolQo>) {
     const builder = selectCon('tools');
     if (query.name) builder.where('name', 'LIKE', `%${query.name}%`);
     if (query.description) builder.orWhere('description', 'LIKE', `%${query.description}%`);
-    if (query.route) builder.where('route', '=', query.route);
-    if (query.id) builder.where('id', query.ids);
 
     if (query.limit) builder.limit(query.limit);
     if (query.offset) builder.offset(query.offset);

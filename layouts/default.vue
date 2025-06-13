@@ -123,8 +123,9 @@
         to="/auth/login" 
         class="px-4 py-2 text-primary hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
         >
-        登录
+        {{ $t('login.submit') }}
         </NuxtLink>
+        
         <NuxtLink 
         v-else
         to="/profile"
@@ -142,18 +143,16 @@
           退出
         </NuxtLink>
           <select 
-            v-model="$i18n.locale"
+            @change="changeLanguage"
             class="bg-transparent py-1 px-2 rounded border text-sm dark:bg-gray-700 dark:text-white dark:border-gray-600">
             <option 
-              v-for="locale in $i18n.availableLocales" 
-              :key="locale" 
-              :value="locale"
+              v-for="locale in locales" 
+              :key="locale.code" 
+              :value="locale.code"
             >
-              {{ $t(`locale.${locale}`) }}  <!-- 修改此处为嵌套键名结构 -->
+              {{ $t(`locale.${locale.code}`) }}  <!-- 修改此处为嵌套键名结构 -->
             </option>
           </select>
-
-
           <button
             class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
             @click="toggleTheme"
@@ -179,7 +178,7 @@
 // Add user state initialization
 import { useUser } from '~/composables/useAuth'
 const user = useUser()
-
+const { locales, setLocale } = useI18n()
 import { h, defineComponent } from 'vue'
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useTheme } from '~/composables/useTheme'
@@ -221,6 +220,10 @@ const toggleSidebar = () => {
 // 关闭侧边栏（移动视图）
 const closeSidebar = () => {
   isSidebarOpen.value = false
+}
+const changeLanguage=($event)=> {
+  console.log($event.target.value)
+  setLocale($event.target.value);
 }
 
 onMounted(() => {

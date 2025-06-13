@@ -20,19 +20,14 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/i18n','@nuxtjs/tailwindcss',"nitro-cloudflare-dev"],
   css: ['~/assets/css/main.css'],
   i18n: {
-    strategy: 'no_prefix',
     defaultLocale: 'en',
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected'
-    },
+    lazy: true,
     locales: [
-      { code: 'en', name: 'English' },
-      { code: 'zh', name: '中文' },
-      { code: 'ja', name: '日本語' },
-      { code: 'ko', name: '한국어' },
-      { code: 'ru', name: 'Русский' }
-    ],
-    vueI18n: './i18n.config.ts'
+      { code: 'en', name: 'English', file: 'en.json' },
+      { code: 'ja', name: '日语', file: 'ja.json' },
+      { code: 'ko', name: '韩语', file: 'ko.json' },
+      { code: 'ru', name: '俄语', file: 'ru.json' },
+      { code: 'zh', name: '中文', file: 'zh.json' }
+    ]
   }
 })

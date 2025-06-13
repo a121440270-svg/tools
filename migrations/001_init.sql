@@ -1,3 +1,23 @@
+CREATE TABLE IF NOT EXISTS page_lang (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  route TEXT NOT NULL,
+  key TEXT NOT NULL,
+  value TEXT NOT NULL,
+  lang TEXT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE UNIQUE INDEX idx_unique_lang_entry ON page_lang(route, key, lang);
+
+CREATE TRIGGER IF NOT EXISTS trg_page_lang_updated_at
+AFTER UPDATE ON page_lang
+FOR EACH ROW
+BEGIN
+  UPDATE page_lang SET updated_at = CURRENT_TIMESTAMP WHERE id = OLD.id;
+END;
+
+
 -- 工具信息表
 CREATE TABLE IF NOT EXISTS tools (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -13,7 +33,7 @@ VALUES
   ('QR Generator', 'Generate QR codes from text', '/qr-generator'),
   ('URL Shortener', 'Shorten long URLs', '/url-shortener');
 
-CREATE TABLE article (
+CREATE TABLE IF NOT EXISTS  article (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   content TEXT NOT NULL,
   title TEXT NOT NULL,
@@ -30,7 +50,7 @@ CREATE TABLE article (
   description TEXT
 );
 
-CREATE TABLE article_l (
+CREATE TABLE IF NOT EXISTS  article_l (
     id INTEGER NOT NULL,
     lang_code TEXT NOT NULL, -- 存储语言代码，如 'en' for English, 'zh' for Chinese
     title TEXT NOT NULL,
@@ -41,7 +61,7 @@ CREATE TABLE article_l (
     FOREIGN KEY(id) REFERENCES article(id)
 );
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS  users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT DEFAULT '佚名',
   email TEXT,
