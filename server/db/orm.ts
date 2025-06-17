@@ -27,6 +27,7 @@ export async function insert<T>(table: string, data: Partial<T>) {
   const db = getDb();
   const keys = Object.keys(data);
   const placeholders = keys.map(() => '?').join(', ');
+  console.log(`INSERT INTO ${table} (${keys.join(', ')}) VALUES (${placeholders})`);
   const stmt = db.prepare(`INSERT INTO ${table} (${keys.join(', ')}) VALUES (${placeholders})`);
   await stmt.bind(...Object.values(data) as (string | number | boolean | null)[]).run();
 }

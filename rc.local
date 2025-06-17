@@ -156,3 +156,13 @@ systemctl status cloudflared.service
 
 
  // https://v8.i18n.nuxtjs.org/docs/getting-started
+
+  这是因为：你用的是 Cloudflare Pages Functions（或 Wrangler Dev）支持的 D1 本地模拟器
+🔍 useDatabase() 是一个 Nitro API，在 Cloudflare 环境中生效：
+当你在 Cloudflare Pages Functions 或使用 npx wrangler pages dev 启动本地服务时：
+
+Cloudflare 提供了一个 本地模拟 D1 实例，供 useDatabase() 使用。
+
+它使用的是你 .dev.vars 或 wrangler.toml 中配置的 D1 实例。
+
+本地模拟使用 SQLite 实现，因此你看起来是“本地连接成功了”。

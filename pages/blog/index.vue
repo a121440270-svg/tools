@@ -64,6 +64,10 @@
 </template>
 
 <script setup>
+
+const { data: article } = useFetch(`/api/article`)
+console.log("查询到的文章");
+console.log(article);
 const articles = ref([
   {
     id: 1,
