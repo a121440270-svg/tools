@@ -23,11 +23,11 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     lazy: true,
     locales: [
-      { code: 'en', name: 'English', file: 'en.json' },
-      { code: 'ja', name: '日语', file: 'ja.json' },
-      { code: 'ko', name: '韩语', file: 'ko.json' },
-      { code: 'ru', name: '俄语', file: 'ru.json' },
-      { code: 'zh', name: '中文', file: 'zh.json' }
+      { code: 'en', name: 'English', file: 'en.ts' },
+      { code: 'ja', name: '日语', file: 'en.ts' },
+      { code: 'ko', name: '韩语', file: 'en.ts' },
+      { code: 'ru', name: '俄语', file: 'en.ts' },
+      { code: 'zh', name: '中文', file: 'zh.ts' }
     ]
   }
 })

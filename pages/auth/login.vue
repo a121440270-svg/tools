@@ -69,34 +69,32 @@ const form = reactive({
 
 const route = useRoute()
 const router = useRouter()
-
-
-// 在现有代码中添加状态更新
-import { useUser } from '~/composables/useAuth'
+const { t } = useI18n()
 const userState = useUser()
 
 const handleLogin = async () => {
   try {
     const redirectPath = route.query.redirect || '/profile'
-    
-    const { data: user } = await useFetch('/api/auth/login', {
+    const { data } = await useFetch('/api/auth/login', {
       method: 'POST',
       body: {
         email: form.email,
-        password: form.password  // 修正字段名从psw改为password
+        psw: form.password // 修正为后端要求的 psw 字段
       }
     })
-    
-    // 确保正确更新用户状态
-    if (user.value) {
-      userState.value = { 
-        ...user.value,
-        id: user.value.id || Date.now() // 添加默认ID生成
+    if (data.value && !data.value.error) {
+      userState.value = {
+        ...data.value,
+        id: data.value.id || Date.now()
       }
+      ElMessage.success(t('auth.login_success') || '登录成功')
       await router.push(redirectPath)
+    } else {
+      ElMessage.error(data.value?.error || t('auth.login_failed') || '账号或密码错误')
     }
   } catch (e) {
     console.error('Login failed:', e)
+    ElMessage.error(t('auth.login_failed') || '登录失败')
   }
 }
 </script>

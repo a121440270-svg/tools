@@ -1,18 +1,18 @@
-import * as schema from '@/server/db/schema';
+import { defineEventHandler, readBody } from 'h3'
+import { select } from '../../db/orm'
+import type { User } from '../../db/schema'
 
-// import { useDrizzle } from '~/server/db/drizzle'
-
-// export default defineEventHandler(async (event) => {
-//   const db = useDrizzle()
-//   const { email, psw } = await readBody(event)
-  
-//   const user = await db.query.users.findFirst({
-//     where: (users, { eq }) => eq(users.email, email)
-//   })
-
-//   if (!user || !await bcrypt.compare(psw, user.psw)) {
-//     throw createError({ statusCode: 401, message: 'Invalid credentials' })
-//   }
-
-//   return user
-// })
+export default defineEventHandler(async (event) => {
+  const body = await readBody(event)
+  const { email, psw } = body
+  if (!email || !psw) {
+    return { error: '邮箱和密码必填' }
+  }
+  const users = await select<User>('users', { email, psw })
+  if (users.length === 0) {
+    return { error: '账号或密码错误' }
+  }
+  // 更新最后活跃时间
+  // 可选：await update('users', { last_active_time: new Date().toISOString().slice(0, 19).replace('T', ' ') }, { id: users[0].id })
+  return users[0]
+})

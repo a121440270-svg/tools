@@ -37,12 +37,17 @@ export async function update<T>(table: string, data: Partial<T>, where: { [key: 
   const setClause = Object.keys(data).map(k => `${k} = ?`).join(', ');
   const whereClause = Object.keys(where).map(k => `${k} = ?`).join(' AND ');
   const stmt = db.prepare(`UPDATE ${table} SET ${setClause} WHERE ${whereClause}`);
-  await stmt.bind(...Object.values(data) as (string | number | boolean | null)[]).run();
+  console.log(`UPDATE ${table} SET ${setClause} WHERE ${whereClause}`);
+  await stmt.bind(
+    ...Object.values(data) as (string | number | boolean | null)[],
+    ...Object.values(where)
+  ).run();
 }
 
 export async function remove(table: string, where: { [key: string]: any }) {
   const db = getDb();
   const whereClause = Object.keys(where).map(k => `${k} = ?`).join(' AND ');
+  console.log(`DELETE FROM ${table} WHERE ${whereClause}`);
   const stmt = db.prepare(`DELETE FROM ${table} WHERE ${whereClause}`);
   await stmt.bind(...Object.values(where)).run();
 }

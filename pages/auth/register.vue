@@ -91,25 +91,24 @@ const handleRegister = async () => {
       alert(t('auth.password_mismatch'))
       return
     }
-
     const redirectPath = route.query.redirect || '/profile'
-    
     const { data } = await useFetch('/api/auth/register', {
       method: 'POST',
       body: {
         email: form.email,
         name: form.name,
-        password: form.password
+        psw: form.password // 修正为后端要求的 psw 字段
       }
     })
-    console.error("data=="+data)
-    if (data.value) {
-      userState.value = data.value
-      await router.push(redirectPath)
+    if (data.value && data.value.success) {
+      ElMessage.success('注册成功，请登录')
+      await router.push('/auth/login')
+    } else {
+      ElMessage.error(data.value?.error || t('auth.register_failed'))
     }
   } catch (e) {
     console.error('Registration failed:', e)
-    alert(t('auth.register_failed'))
+    ElMessage.error(t('auth.register_failed'))
   }
 }
 </script>
