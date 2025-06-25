@@ -59,6 +59,8 @@
 </template>
 
 <script setup>
+import { ElMessage } from 'element-plus'
+
 definePageMeta({
   layout: false
 })
@@ -88,7 +90,7 @@ const handleLogin = async () => {
         id: data.value.id || Date.now()
       }
       ElMessage.success(t('auth.login_success') || '登录成功')
-      await router.push(redirectPath)
+      await router.push(redirectPath) // 确保跳转
     } else {
       ElMessage.error(data.value?.error || t('auth.login_failed') || '账号或密码错误')
     }

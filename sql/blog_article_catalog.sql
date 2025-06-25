@@ -1,0 +1,10 @@
+-- 文章目录表
+CREATE TABLE blog_article_catalog (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  article_id INT NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  sort_order INT DEFAULT 0,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (article_id) REFERENCES blog_article(id)
+);

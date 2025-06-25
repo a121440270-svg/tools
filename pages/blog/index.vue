@@ -17,12 +17,12 @@
             {{ sort.label }}
           </button>
         </div>
-        <NuxtLink 
-          to="/blog/post" 
+        <button
+          @click="handleWriteArticle"
           class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
         >
           写文章
-        </NuxtLink>
+        </button>
       </div>
     </div>
 
@@ -64,6 +64,11 @@
 </template>
 
 <script setup>
+import { ElMessage } from 'element-plus'
+import { useUser } from '~/composables/useAuth'
+
+const user = useUser()
+const router = useRouter()
 
 const { data: article } = useFetch(`/api/article`)
 console.log("查询到的文章");
@@ -111,4 +116,17 @@ const sortedArticles = computed(() => {
     }
   })
 })
+
+const handleWriteArticle = () => {
+  if (!user.value?.id) {
+    ElMessage.error('请先登录后再发布文章')
+    router.push('/auth/login')
+    return
+  }
+  router.push('/blog/post')
+}
+
+// 你可以在需要弹窗提示的地方使用 ElMessage，例如：
+// ElMessage.success('操作成功')
+// ElMessage.error('操作失败')
 </script>
