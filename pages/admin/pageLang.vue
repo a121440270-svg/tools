@@ -1,8 +1,9 @@
 <template>
     <div>
         <div class="flex items-center gap-2 mb-4">
+          <el-input v-model="searchRoute" placeholder="输入路由" clearable style="width: 180px" />
             <el-input v-model="searchKey" placeholder="输入key" clearable style="width: 180px" />
-            <el-input v-model="searchRoute" placeholder="输入路由" clearable style="width: 180px" />
+            <el-input v-model="searchValue" placeholder="输入内容" clearable style="width: 180px" />
             <el-select v-model="searchLang" placeholder="选择语言" clearable style="width: 120px">
               <el-option v-for="(label, code) in langOptions" :key="code" :label="label" :value="code" />
             </el-select>
@@ -137,6 +138,7 @@ const pageSize = ref(20)
 
 const searchKey = ref('')
 const searchRoute = ref('')
+const searchValue = ref('')
 const searchLang = ref('')
 
 const dialogVisible = ref(false)
@@ -205,7 +207,7 @@ async function addPageLangBatch(data) {
 
 function fetchData() {
   loading.value = true
-  getPageLangList({ page: page.value, pageSize: pageSize.value, key: searchKey.value, route: searchRoute.value, lang: searchLang.value }).then(res => {
+  getPageLangList({ page: page.value, pageSize: pageSize.value, key: searchKey.value, route: searchRoute.value, lang: searchLang.value, value: searchValue.value }).then(res => {
     tableData.value = res.list
     total.value = res.total
     loading.value = false
@@ -218,6 +220,9 @@ function handleSearch() {
 }
 
 watch(searchLang, () => {
+  handleSearch()
+})
+watch(searchValue, () => {
   handleSearch()
 })
 

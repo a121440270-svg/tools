@@ -22,12 +22,13 @@ export default defineNuxtConfig({
   i18n: {
     defaultLocale: 'en',
     lazy: true,
+    strategy: 'prefix_except_default',
     locales: [
       { code: 'en', name: 'English', file: 'en.ts' },
       { code: 'ja', name: '日语', file: 'en.ts' },
       { code: 'ko', name: '韩语', file: 'en.ts' },
       { code: 'ru', name: '俄语', file: 'en.ts' },
-      { code: 'zh', name: '中文', file: 'zh.ts' }
+      { code: 'zh', name: '中文', file: 'en.ts' }
     ]
   }
 })

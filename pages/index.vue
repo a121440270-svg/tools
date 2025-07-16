@@ -1,26 +1,21 @@
 <template>
-  <div>
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-md shadow-sm border dark:border-gray-700 mb-8">
-      <div class="flex items-center mb-4">
-        <div class="p-2 rounded-full bg-primary/10 text-primary dark:bg-primary/20">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-          </svg>
-        </div>
-        <h2 class="text-lg font-medium ml-3 dark:text-white">You like it-tools?</h2>
-      </div>
-      <p class="mb-2 dark:text-gray-300">
-        Give us a star on
-        <a href="https://github.com" class="text-primary hover:underline">GitHub</a>
-        or follow us on
-        <a href="#" class="text-primary hover:underline">X</a>.
-        Thank...
-      </p>
-    </div>
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
 
-    <h2 class="text-2xl font-medium mb-6 dark:text-white">All the tools</h2>
+    <h2 class="text-2xl font-medium mb-6 text-gray-900 dark:text-white">All the tools</h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+       <!-- Font Compress Tool -->
+      <NuxtLink to="/font-compress" class="bg-white dark:bg-gray-800 p-6 rounded-lg border dark:border-gray-700 hover:shadow-md transition-shadow">
+        <div class="flex items-center justify-between mb-3">
+          <div class="text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a4 4 0 014-4h4m0 0V7a4 4 0 00-4-4H7a4 4 0 00-4 4v10a4 4 0 004 4h6a4 4 0 004-4v-4z" />
+            </svg>
+          </div>
+        </div>
+        <h3 class="text-lg font-medium mb-1 dark:text-white">{{$t('menu.ttf')}}</h3>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">{{$t('ttf.desc')}}</p>
+      </NuxtLink>
       <!-- Token Generator -->
       <NuxtLink to="/token-generator" class="bg-white dark:bg-gray-800 p-6 rounded-lg border dark:border-gray-700 hover:shadow-md transition-shadow">
         <div class="flex items-center justify-between mb-3">
@@ -63,6 +58,14 @@
           Hash a text string using the function you need: MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3 or RIPEMD160
         </p>
       </NuxtLink>
+
     </div>
   </div>
 </template>
+
+<script setup>
+const { t } = useI18n()
+useHead({
+  title: t("home.title")
+})
+</script>

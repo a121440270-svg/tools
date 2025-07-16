@@ -1,14 +1,24 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+  <div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 relative">
+    <!-- 多语言切换组件 -->
+    <div class="absolute top-6 right-8 z-10">
+      <select 
+        v-model="locale"
+        class="bg-white dark:bg-gray-800 border dark:border-gray-600 rounded px-2 py-1 text-sm text-gray-700 dark:text-white"
+      >
+        <option v-for="localeItem in locales" :key="localeItem.code" :value="localeItem.code">
+          {{ $t(`locale.${localeItem.code}`) }}
+        </option>
+      </select>
+    </div>
     <div class="w-full max-w-md p-8 space-y-8 bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700">
       <div class="text-center">
         <h1 class="text-3xl font-bold dark:text-white">{{ $t('auth.register') }}</h1>
-        <p class="mt-2 text-gray-600 dark:text-gray-400">{{ $t('auth.create_account') }}</p>
       </div>
       
       <form class="space-y-6" @submit.prevent="handleRegister">
         <div>
-          <label class="block text-sm font-medium mb-2 dark:text-gray-300">{{ $t('auth.email') }}</label>
+          <label class="block text-sm font-medium mb-2 dark:text-gray-300">{{ $t('login.email') }}</label>
           <input 
             v-model="form.email"
             type="email"
@@ -28,7 +38,7 @@
         </div>
         
         <div>
-          <label class="block text-sm font-medium mb-2 dark:text-gray-300">{{ $t('auth.password') }}</label>
+          <label class="block text-sm font-medium mb-2 dark:text-gray-300">{{ $t('login.password') }}</label>
           <input
             v-model="form.password"
             type="password"
@@ -57,7 +67,7 @@
         <div class="text-center text-sm text-gray-600 dark:text-gray-400">
           {{ $t('auth.have_account') }}
           <NuxtLink 
-            to="/auth/login" 
+            :to="localePath('/auth/login')" 
             class="text-primary underline hover:text-primary/80"
           >
             {{ $t('auth.login_here') }}
@@ -69,6 +79,12 @@
 </template>
 
 <script setup>
+import { useLocalePath } from '#i18n'
+import { useI18n } from 'vue-i18n'
+
+const localePath = useLocalePath()
+const { t, locales, locale, setLocale } = useI18n()
+
 definePageMeta({
   layout: false
 })
@@ -82,8 +98,10 @@ const form = reactive({
 
 const route = useRoute()
 const router = useRouter()
-const { t } = useI18n()
-const userState = useUser()
+
+const changeLanguage = (e) => {
+  setLocale(e.target.value)
+}
 
 const handleRegister = async () => {
   try {

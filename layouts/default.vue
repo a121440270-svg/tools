@@ -13,8 +13,6 @@
           </button>
           <span class="ml-3 font-bold text-gray-800 dark:text-white">OnliTool</span>
         </div>
-       
-        
 
         <button
           class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -35,9 +33,9 @@
         isDesktop ? (isSidebarCollapsed ? 'w-0 overflow-hidden' : 'w-64') : (isSidebarOpen ? 'w-64' : 'w-64 -left-64')
       ]"
     >
-      <div class="py-8 px-6">
+      <div class="py-8 px-6 cursor-pointer" @click="navigateTo(localePath('/'))">
         <h1 class="text-2xl font-bold text-white">OnliTool</h1>
-        <p class="text-sm text-white/80">Handy tools and atricles for developers</p>
+        <p class="text-sm text-white/80">{{ $t('menu.desc') }}</p>
       </div>
 
       <!-- 工具分类 -->
@@ -51,16 +49,20 @@
               class="w-4 h-4 mr-2 transition-transform"
               :class="category.expanded ? 'rotate-90' : ''"
             />
-            <span v-if="null==category.path" >{{ category.name }}</span>
+            <span
+              v-if="null==category.path"
+              class="truncate max-w-[140px]"
+              :title="$t(category.name)"
+            >{{ $t(category.name) }}</span>
             <NuxtLink v-if="null!=category.path"
               :key="category.path"
-              :to="category.path"
+              :to="localePath(category.path)"
               class="block py-2 px-6 hover:bg-white/10 rounded transition-colors flex items-center text-white"
               :class="{ 'bg-white/10': $route.path === category.path }"
               @click="isDesktop ? null : closeSidebar()"
             >
               <component :is="category.icon" class="w-5 h-5 mr-3 text-white/90" />
-              {{ category.name }}
+              <span class="truncate max-w-[140px]" :title="category.name">{{ $t(category.name) }}</span>
             </NuxtLink>
           </div>
 
@@ -68,13 +70,13 @@
             <NuxtLink
               v-for="tool in category.tools"
               :key="tool.path"
-              :to="tool.path"
+              :to="localePath(tool.path)"
               class="block py-2 px-6 hover:bg-white/10 rounded transition-colors flex items-center text-white"
               :class="{ 'bg-white/10': $route.path === tool.path }"
               @click="isDesktop ? null : closeSidebar()"
             >
               <component :is="tool.icon" class="w-5 h-5 mr-3 text-white/90" />
-              {{ tool.name }}
+              <span class="truncate max-w-[140px]" :title="$t(tool.name)">{{ $t(tool.name)}}</span>
             </NuxtLink>
           </div>
         </div>
@@ -111,7 +113,7 @@
           <SearchIcon class="w-5 h-5 absolute left-3 text-gray-400" />
           <input
             type="text"
-            placeholder="Search"
+            :placeholder="$t('search.placeholder')"
             class="bg-gray-100 py-2 pl-10 pr-4 rounded-md w-64 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
           />
           <span class="ml-2 text-xs text-gray-500 dark:text-gray-400">Cmd + K</span>
@@ -120,7 +122,7 @@
         <div class="ml-auto flex items-center gap-4">
         <NuxtLink 
         v-if="!user?.id"  
-        to="/auth/login" 
+        :to="localePath('/auth/login')" 
         class="px-4 py-2 text-primary hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
         >
         {{ $t('login.submit') }}
@@ -128,7 +130,7 @@
         
         <NuxtLink 
         v-else
-        to="/profile"
+        to="localePath('/profile')"
         class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
         >
         <img :src="user.avatar" class="w-6 h-6 rounded-full mr-2">
@@ -140,19 +142,20 @@
           to="#"
           class="ml-2 px-4 py-2 text-primary hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
         >
-          退出
+          {{ $t('login.out') }}
         </NuxtLink>
-          <select 
+            <select 
             @change="changeLanguage"
+            :value="$i18n.locale"
             class="bg-transparent py-1 px-2 rounded border text-sm dark:bg-gray-700 dark:text-white dark:border-gray-600">
             <option 
               v-for="locale in locales" 
               :key="locale.code" 
               :value="locale.code"
             >
-              {{ $t(`locale.${locale.code}`) }}  <!-- 修改此处为嵌套键名结构 -->
+              {{ $t(`locale.${locale.code}`) }}
             </option>
-          </select>
+            </select>
           <button
             class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
             @click="toggleTheme"
@@ -178,15 +181,15 @@
 // Add user state initialization
 import { useUser } from '~/composables/useAuth'
 const user = useUser()
-const { locales, setLocale } = useI18n()
-import { h, defineComponent } from 'vue'
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+const { t,locales, setLocale } = useI18n()
+import { h, defineComponent, ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useTheme } from '~/composables/useTheme'
+import { useLocalePath } from '#i18n'
 
+const localePath = useLocalePath()
 // 主题管理
 const { theme, toggleTheme, isDark, isLight } = useTheme()
 
-// 确保主题状态响应式
 const themeClass = computed(() => isDark.value ? 'dark' : 'light')
 
 // 在根元素上动态添加主题类
@@ -221,20 +224,21 @@ const toggleSidebar = () => {
 const closeSidebar = () => {
   isSidebarOpen.value = false
 }
-const changeLanguage=($event)=> {
-  console.log($event.target.value)
-  setLocale($event.target.value);
+const changeLanguage = ($event) => {
+  setLocale($event.target.value)
 }
 
+
+// 初始化时也调用一次
 onMounted(() => {
   checkViewport()
   window.addEventListener('resize', checkViewport)
 })
 
+
 onUnmounted(() => {
   window.removeEventListener('resize', checkViewport)
 })
-
 
 // 图标组件
 const ChevronIcon = defineComponent({
@@ -415,6 +419,7 @@ const HashIcon = defineComponent({
   }
 })
 
+
 const DateIcon = defineComponent({
   name: 'DateIcon',
   render() {
@@ -460,31 +465,78 @@ const HomeIcon = defineComponent({
   }
 })
 
-// 菜单分类
-const categories = ref([
-  {
-    name: 'Blog',
-    expanded: true,
-    name: 'Blog', 
-    path: '/blog', 
-    icon: TokenIcon
-  },
-  {
-    name: 'Crypto',
-    expanded: true,
-    tools: [
-      { name: 'Token generator', path: '/token-generator', icon: TokenIcon },
-      { name: 'Hash text', path: '/hash-text', icon: HashIcon }
-    ]
-  },
-  {
-    name: 'Converter',
-    expanded: false,
-    tools: [
-      { name: 'Date-time converter', path: '/date-time-converter', icon: DateIcon }
-    ]
+// 新增 FontIcon 组件
+const FontIcon = defineComponent({
+  name: 'FontIcon',
+  render() {
+    return h('svg', {
+      xmlns: 'http://www.w3.org/2000/svg',
+      viewBox: '0 0 24 24',
+      fill: 'none',
+      stroke: 'currentColor',
+      strokeWidth: '2',
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
+      class: this.$attrs.class
+    }, [
+      h('path', {
+        strokeLinecap: 'round',
+        strokeLinejoin: 'round',
+        strokeWidth: '2',
+        d: 'M9 17v-2a4 4 0 014-4h4m0 0V7a4 4 0 00-4-4H7a4 4 0 00-4 4v10a4 4 0 004 4h6a4 4 0 004-4v-4z'
+      })
+    ])
   }
-])
+})
+
+// 新增 BlogIcon 组件
+const BlogIcon = defineComponent({
+  name: 'BlogIcon',
+  render() {
+    return h('svg', {
+      xmlns: 'http://www.w3.org/2000/svg',
+      viewBox: '0 0 24 24',
+      fill: 'none',
+      stroke: 'currentColor',
+      strokeWidth: '2',
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
+      class: this.$attrs.class
+    }, [
+      // 书本/文章样式
+      h('path', { d: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20' }),
+      h('path', { d: 'M4 4.5A2.5 2.5 0 0 1 6.5 7H20' }),
+      h('rect', { x: '4', y: '2', width: '16', height: '20', rx: '2' }),
+      h('line', { x1: '8', y1: '6', x2: '16', y2: '6' }),
+      h('line', { x1: '8', y1: '10', x2: '16', y2: '10' }),
+      h('line', { x1: '8', y1: '14', x2: '16', y2: '14' })
+    ])
+  }
+})
+
+const categories = ref([
+    {
+      name: 'blog.name',
+      expanded: true,
+      path: '/blog',
+      icon: BlogIcon
+    },
+    {
+      name: 'menu.filetype',
+      expanded: true,
+      tools: [
+        { name: 'menu.ttf', path: '/font-compress', icon: FontIcon }
+      ]
+    },
+    {
+      name: 'menu.crypto',
+      expanded: true,
+      tools: [
+        { name: 'menu.token', path: '/token-generator', icon: TokenIcon },
+        { name: 'menu.hash', path: '/hash-text', icon: HashIcon }
+      ]
+    }
+  ])
 
 const toggleCategory = (index) => {
   categories.value[index].expanded = !categories.value[index].expanded
