@@ -1,29 +1,29 @@
 <template>
   <div class="max-w-2xl mx-auto py-10">
-    <h1 class="text-2xl font-bold mb-4">TTF字体抽取压缩工具</h1>
+    <h1 class="text-2xl font-bold mb-4">{{ t('font.title') }}</h1>
     <p class="mb-4 text-gray-600">
-      通过输入需要的字符或上传包含字符的文本，提取并压缩TTF字体文件，仅保留所需字形，极大减小字体体积。
+      {{ t('font.desc') }}
     </p>
-    <el-form label-width="100px" class="mb-6">
-      <el-form-item label="上传TTF字体">
+    <el-form :label-width="'100px'" class="mb-6">
+      <el-form-item :label="t('font.upload')">
         <input type="file" accept=".ttf" @change="onFontFileChange" ref="fontInputRef" />
-        <span v-if="fontName" class="ml-2 text-green-600">已选择: {{ fontName }}</span>
-        <span v-if="originSize" class="ml-4 text-xs text-gray-500">原始大小: {{ prettySize(originSize) }}</span>
+        <span v-if="fontName" class="ml-2 text-green-600">{{ t('font.selected', { name: fontName }) }}</span>
+        <span v-if="originSize" class="ml-4 text-xs text-gray-500">{{ t('font.origin_size', { size: prettySize(originSize) }) }}</span>
       </el-form-item>
-      <el-form-item label="输入字符">
+      <el-form-item :label="t('font.input_chars')">
         <el-input
           v-model="charInput"
           type="textarea"
           :rows="3"
-          placeholder="请输入需要保留的字符"
+          :placeholder="t('font.input_placeholder')"
         />
-        <span class="ml-2 text-xs text-gray-500">去重后共 {{ charSet.length }} 个</span>
+        <span class="ml-2 text-xs text-gray-500">{{ t('font.char_count', { count: charSet.length }) }}</span>
       </el-form-item>
-      <el-form-item label="或上传文本">
+      <el-form-item :label="t('font.upload_text')">
         <input type="file" accept=".txt" @change="onTextFileChange" ref="textInputRef" />
-        <span v-if="textName" class="ml-2 text-green-600">已选择: {{ textName }}</span>
+        <span v-if="textName" class="ml-2 text-green-600">{{ t('font.text_selected', { name: textName }) }}</span>
       </el-form-item>
-      <el-form-item label="输出格式">
+      <el-form-item :label="t('font.output_type')">
         <el-radio-group v-model="outputType">
           <el-radio label="ttf">TTF</el-radio>
           <el-radio label="woff">WOFF</el-radio>
@@ -31,31 +31,22 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" :disabled="!fontBuffer || !charSet.length || loading" @click="extractFont">
-          开始压缩
+          {{ t('font.start') }}
         </el-button>
-        <el-button size="default" class="ml-2" @click="clearAll">全部清空</el-button>
+        <el-button size="default" class="ml-2" @click="clearAll">{{ t('font.clear') }}</el-button>
       </el-form-item>
     </el-form>
     <el-progress v-if="loading" :percentage="progress" status="active" class="mb-4" />
-    <!-- <div v-if="fontBuffer && charSet.length" class="mb-6">
-      <div class="font-bold mb-2">压缩后字符预览：</div>
-      <div v-if="fontPreviewUrl" :style="{ fontFamily: previewFontFamily }">
-        <div style="font-size:2rem;word-break:break-all;line-height:2.5rem;">
-          {{ charSet.join('') }}
-        </div>
-      </div>
-      <div v-else class="text-xs text-gray-400">字体预览生成中...</div>
-    </div> -->
     <div v-if="downloadUrl" class="mt-6">
-      <el-alert type="success" show-icon title="压缩完成">
+      <el-alert type="success" show-icon :title="t('font.success')">
         <template #default>
-          <a :href="downloadUrl" :download="downloadName" class="text-primary underline">点击下载压缩后的字体文件</a>
-          <span class="ml-2 text-xs text-gray-400">(仅包含所需字形)</span>
-          <span v-if="compressedSize" class="ml-4 text-xs text-gray-500">压缩后: {{ prettySize(compressedSize) }}</span>
+          <a :href="downloadUrl" :download="downloadName" class="text-primary underline">{{ t('font.download') }}</a>
+          <span class="ml-2 text-xs text-gray-400">{{ t('font.only_glyphs') }}</span>
+          <span v-if="compressedSize" class="ml-4 text-xs text-gray-500">{{ t('font.compressed_size', { size: prettySize(compressedSize) }) }}</span>
         </template>
       </el-alert>
     </div>
-    <div v-if="errorMsg" class="mt-4 text-red-600">{{ errorMsg }}</div>
+    <div v-if="errorMsg" class="mt-4 text-red-600">{{ t('font.error', { msg: errorMsg }) }}</div>
   </div>
 </template>
 
@@ -81,7 +72,11 @@ const fontInputRef = ref(null)
 const textInputRef = ref(null)
 
 useHead({
-  title: t('menu.ttf') || 'TTF extraction/compression'
+  title: t('menu.ttf') || 'TTF extraction/compression',
+  meta: [
+    { name: 'description', content: t('font.seo_desc') },
+    { name: 'keywords', content: t('font.seo_keywords') }
+  ]
 })
 
 

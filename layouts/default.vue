@@ -161,7 +161,7 @@
             @click="toggleTheme"
           >
             <component
-              :is="isDark ? SunIcon : MoonIcon"
+              :is="isDark()? SunIcon : MoonIcon"
               class="w-5 h-5"
             />
           </button>
@@ -323,7 +323,6 @@ const SunIcon = defineComponent({
     ])
   }
 })
-
 const MoonIcon = defineComponent({
   name: 'MoonIcon',
   render() {
@@ -337,7 +336,8 @@ const MoonIcon = defineComponent({
       strokeLinejoin: 'round',
       class: this.$attrs.class
     }, [
-      h('path', { d: 'M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z' })
+      // 更清晰的半月形状
+      h('path', { d: 'M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z' })
     ])
   }
 })
