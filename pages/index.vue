@@ -66,6 +66,10 @@
 <script setup>
 const { t } = useI18n()
 useHead({
-  title: t("home.title")
+  title: t("home.title"),
+  meta: [
+    { name: 'description', content: t('home.seo_desc') },
+    { name: 'keywords', content: t('home.seo_keywords') }
+  ]
 })
 </script>

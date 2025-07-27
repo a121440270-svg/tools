@@ -17,5 +17,9 @@
   "font.only_glyphs": "(Only contains required glyphs)",
   "font.compressed_size": "Compressed: {size}",
   "font.error": "Font compression failed: {msg}",
-  "font.preview_generating": "Generating font preview..."
+  "font.preview_generating": "Generating font preview...",
+  "font.seo_desc": "TTF font compression tool, supports custom character sets, greatly reduces font size, ideal for frontend performance optimization.",
+  "font.seo_keywords": "TTF, font compression, font subset, frontend optimization, font tool, font extraction, font slimming",
+  "home.seo_desc": "Online tool collection including font compression, token generation, hash encryption and more to boost development efficiency.",
+  "home.seo_keywords": "online tools, font compression, token generator, hash encryption, developer tools, frontend tools"
 }

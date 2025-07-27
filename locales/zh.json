@@ -19,5 +19,7 @@
   "font.error": "字体压缩失败: {msg}",
   "font.preview_generating": "字体预览生成中...",
   "font.seo_desc": "TTF字体压缩工具，支持自定义字符集，极大减小字体体积，适合前端性能优化。",
-  "font.seo_keywords": "TTF, 字体压缩, 字体子集, 前端优化, 字体工具, 字体提取, 字体瘦身"
+  "font.seo_keywords": "TTF, 字体压缩, 字体子集, 前端优化, 字体工具, 字体提取, 字体瘦身",
+  "home.seo_desc": "在线工具集合，涵盖字体压缩、Token生成、哈希加密等实用工具，提升开发效率。",
+  "home.seo_keywords": "在线工具, 字体压缩, Token生成, 哈希加密, 开发工具, 前端工具"
 }
