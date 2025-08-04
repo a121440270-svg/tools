@@ -1,0 +1,95 @@
+{
+  "locale": {
+    "en": "Englisch",
+    "ja": "Japanisch",
+    "ko": "Koreanisch",
+    "ru": "Russisch",
+    "zh": "Chinesisch"
+  },
+  "login": {
+    "title": "Benutzeranmeldung",
+    "welcome": "Willkommen zurück, bitte geben Sie Ihre Zugangsdaten ein",
+    "email": "E-Mail-Adresse",
+    "password": "Passwort",
+    "submit": "Anmelden",
+    "github": "Mit GitHub anmelden",
+    "out": "Abmelden"
+  },
+  "auth": {
+    "register": "Benutzerregistrierung",
+    "create_account": "Erstellen Sie Ihr Konto",
+    "username": "Benutzername",
+    "confirm_password": "Passwort bestätigen",
+    "register_btn": "Jetzt registrieren",
+    "no_account": "Kein Konto?",
+    "register_now": "Jetzt registrieren",
+    "have_account": "Bereits ein Konto?",
+    "login_here": "Hier anmelden"
+  },
+  "menu": {
+    "desc": "Nützliche Tools und Artikel für Entwickler",
+    "ttf": "TTF Extraktion/Komprimierung",
+    "filetype": "Dateiverarbeitung",
+    "crypto": "Verschlüsselung",
+    "token": "Token-Generierung",
+    "hash": "Hash-Generierung"
+  },
+  "home": {
+    "title": "Startseite",
+    "seo_desc": "Online-Tool-Sammlung, einschließlich Schriftkomprimierung, Token-Generierung, Hash-Verschlüsselung und mehr, um die Entwicklungseffizienz zu steigern.",
+    "seo_keywords": "Online-Tools, Schriftkomprimierung, Token-Generierung, Hash-Verschlüsselung, Entwickler-Tools, Frontend-Tools"
+  },
+  "search": {
+    "placeholder": "Suche"
+  },
+  "ttf": {
+    "desc": "Extrahieren und komprimieren Sie TTF-Schriften basierend auf eingegebenen oder hochgeladenen Zeichen, behalten Sie nur benötigte Glyphen bei und reduzieren Sie die Dateigröße erheblich (Ausgabe: ttf, woff)."
+  },
+  "font": {
+    "title": "TTF-Schrift Extraktions- und Komprimierungstool",
+    "desc": "Extrahieren und komprimieren Sie TTF-Schriftdateien, indem Sie die benötigten Zeichen eingeben oder einen Text hochladen, der diese enthält. Nur benötigte Glyphen werden beibehalten, was die Dateigröße erheblich reduziert.",
+    "upload": "TTF-Schrift hochladen",
+    "selected": "Ausgewählt: {name}",
+    "origin_size": "Originalgröße: {size}",
+    "input_chars": "Zeichen eingeben",
+    "input_placeholder": "Bitte geben Sie die zu behaltenden Zeichen ein",
+    "char_count": "{count} Zeichen nach Duplikatentfernung",
+    "upload_text": "Oder Text hochladen",
+    "text_selected": "Ausgewählt: {name}",
+    "output_type": "Ausgabeformat",
+    "start": "Komprimierung starten",
+    "clear": "Alles löschen",
+    "success": "Komprimierung abgeschlossen",
+    "download": "Klicken Sie hier, um die komprimierte Schriftdatei herunterzuladen",
+    "only_glyphs": "(Nur benötigte Glyphen enthalten)",
+    "compressed_size": "Nach Komprimierung: {size}",
+    "error": "Schriftkomprimierung fehlgeschlagen: {msg}",
+    "preview_generating": "Schriftvorschau wird generiert...",
+    "seo_desc": "TTF-Schriftkomprimierungstool, unterstützt benutzerdefinierte Zeichensätze, reduziert die Dateigröße erheblich, ideal für Frontend-Optimierung.",
+    "seo_keywords": "TTF, Schriftkomprimierung, Schriftsubset, Frontend-Optimierung, Schrift-Tools, Schrift-Extraktion, Schrift-Reduzierung"
+  },
+  "privacy": {
+    "title": "Wir kümmern uns um Ihre Privatsphäre",
+    "desc": "Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. Sie können Ihre Cookie-Einstellungen unten anpassen.",
+    "necessary": "Notwendige Cookies (immer aktiviert)",
+    "analytics": "Analyse-Cookies",
+    "ads": "Werbe-Cookies",
+    "acceptAll": "Alle akzeptieren",
+    "save": "Einstellungen speichern"
+  },
+  "blog": {
+    "title": "Blogartikel",
+    "write": "Artikel schreiben",
+    "author": "Autor",
+    "posted": "Veröffentlichungsdatum",
+    "sort": {
+      "hits": "Nach Beliebtheit",
+      "time": "Nach Zeit"
+    },
+    "fetchError": "Artikel konnten nicht geladen werden",
+    "needLogin": "Bitte melden Sie sich an, um einen Artikel zu veröffentlichen",
+    "name": "Blog",
+    "seoDesc": "Java, JS-Technikartikel, praktische Tutorials usw.",
+    "seoKeywords": "JavaScript, TypeScript, Vue, React, Node.js, Python, Go, Rust, Webentwicklung, Frontend, Backend, Full Stack, Cloud Native, Docker, Kubernetes, Microservices, Datenbank, DevOps, KI, Maschinelles Lernen"
+  }
+}

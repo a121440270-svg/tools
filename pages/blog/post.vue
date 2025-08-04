@@ -48,6 +48,7 @@
             <input
             v-model="newCategory"
             @keyup.enter="addCategory"
+            @blur="addCategory"
             type="text"
             class="w-full px-4 py-2 border dark:border-gray-700 bg-white dark:bg-gray-900 dark:text-white"
             placeholder="输入逗號分隔的分类"
@@ -98,6 +99,7 @@ const form = reactive({
 })
 
 function addCategory() {
+  debugger
   const val = newCategory.value.trim()
   if (val && !userCategories.value.includes(val)) {
     userCategories.value.push(val)
@@ -187,6 +189,8 @@ const submitArticle = async () => {
     ElMessage.error('标题不能为空')
     return
   }
+  debugger
+  form.category = form.categories.join(',')
   if (!form.category.trim()) {
     ElMessage.error('分类不能为空')
     return

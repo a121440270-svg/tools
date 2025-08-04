@@ -1,0 +1,95 @@
+{
+  "locale": {
+    "en": "Anglais",
+    "ja": "Japonais",
+    "ko": "Coréen",
+    "ru": "Russe",
+    "zh": "Chinois"
+  },
+  "login": {
+    "title": "Connexion utilisateur",
+    "welcome": "Bon retour, veuillez saisir vos identifiants",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "submit": "Connexion",
+    "github": "Se connecter avec GitHub",
+    "out": "Déconnexion"
+  },
+  "auth": {
+    "register": "Inscription utilisateur",
+    "create_account": "Créez votre compte",
+    "username": "Nom d'utilisateur",
+    "confirm_password": "Confirmer le mot de passe",
+    "register_btn": "S'inscrire maintenant",
+    "no_account": "Pas de compte ?",
+    "register_now": "S'inscrire maintenant",
+    "have_account": "Déjà un compte ?",
+    "login_here": "Se connecter ici"
+  },
+  "menu": {
+    "desc": "Outils et articles pratiques pour les développeurs",
+    "ttf": "Extraction/Compression TTF",
+    "filetype": "Traitement de fichiers",
+    "crypto": "Traitement cryptographique",
+    "token": "Génération de jeton",
+    "hash": "Génération de hash"
+  },
+  "home": {
+    "title": "Accueil",
+    "seo_desc": "Collection d'outils en ligne, comprenant la compression de polices, la génération de jetons, le hachage, etc., pour améliorer l'efficacité du développement.",
+    "seo_keywords": "Outils en ligne, compression de polices, génération de jetons, hachage, outils de développement, outils frontend"
+  },
+  "search": {
+    "placeholder": "Recherche"
+  },
+  "ttf": {
+    "desc": "Extrayez et compressez les polices TTF en fonction des caractères saisis ou téléchargés, ne conservez que les glyphes nécessaires et réduisez considérablement la taille du fichier (sortie ttf, woff)."
+  },
+  "font": {
+    "title": "Outil d'extraction et de compression de polices TTF",
+    "desc": "Extrayez et compressez les fichiers de polices TTF en saisissant les caractères nécessaires ou en téléchargeant un texte les contenant. Seuls les glyphes nécessaires sont conservés, ce qui réduit considérablement la taille du fichier.",
+    "upload": "Télécharger une police TTF",
+    "selected": "Sélectionné : {name}",
+    "origin_size": "Taille d'origine : {size}",
+    "input_chars": "Saisir les caractères",
+    "input_placeholder": "Veuillez saisir les caractères à conserver",
+    "char_count": "{count} caractères après suppression des doublons",
+    "upload_text": "Ou télécharger un texte",
+    "text_selected": "Sélectionné : {name}",
+    "output_type": "Format de sortie",
+    "start": "Démarrer la compression",
+    "clear": "Tout effacer",
+    "success": "Compression terminée",
+    "download": "Cliquez pour télécharger le fichier de police compressé",
+    "only_glyphs": "(Contient uniquement les glyphes nécessaires)",
+    "compressed_size": "Après compression : {size}",
+    "error": "Échec de la compression de la police : {msg}",
+    "preview_generating": "Génération de l'aperçu de la police...",
+    "seo_desc": "Outil de compression de polices TTF, prend en charge les jeux de caractères personnalisés, réduit considérablement la taille du fichier, idéal pour l'optimisation frontend.",
+    "seo_keywords": "TTF, compression de polices, sous-ensemble de polices, optimisation frontend, outils de polices, extraction de polices, réduction de polices"
+  },
+  "privacy": {
+    "title": "Nous nous soucions de votre vie privée",
+    "desc": "Nous utilisons des cookies pour améliorer votre expérience. Vous pouvez personnaliser vos préférences de cookies ci-dessous.",
+    "necessary": "Cookies nécessaires (toujours activés)",
+    "analytics": "Cookies analytiques",
+    "ads": "Cookies publicitaires",
+    "acceptAll": "Tout accepter",
+    "save": "Enregistrer les paramètres"
+  },
+  "blog": {
+    "title": "Articles de blog",
+    "write": "Écrire un article",
+    "author": "Auteur",
+    "posted": "Date de publication",
+    "sort": {
+      "hits": "Par popularité",
+      "time": "Par date"
+    },
+    "fetchError": "Échec de la récupération des articles",
+    "needLogin": "Veuillez vous connecter avant de publier un article",
+    "name": "Blog",
+    "seoDesc": "Articles techniques Java, JS, tutoriels pratiques, etc.",
+    "seoKeywords": "JavaScript, TypeScript, Vue, React, Node.js, Python, Go, Rust, Développement web, Frontend, Backend, Full Stack, Cloud Native, Docker, Kubernetes, Microservices, Base de données, DevOps, IA, Apprentissage automatique"
+  }
+}

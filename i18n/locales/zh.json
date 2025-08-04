@@ -1,0 +1,95 @@
+{
+  "locale": {
+    "en": "英文",
+    "ja": "日文",
+    "ko": "韩文",
+    "ru": "俄文",
+    "zh": "中文"
+  },
+  "login": {
+    "title": "用户登录",
+    "welcome": "欢迎回来，请输入您的凭证",
+    "email": "邮箱地址",
+    "password": "密码",
+    "submit": "登录",
+    "github": "使用 GitHub 登录",
+    "out": "退出"
+  },
+  "auth": {
+    "register": "用户注册",
+    "create_account": "创建您的账户",
+    "username": "用户名",
+    "confirm_password": "确认密码",
+    "register_btn": "立即注册",
+    "no_account": "没有账号？",
+    "register_now": "立即注册",
+    "have_account": "已有账号？",
+    "login_here": "去登录"
+  },
+  "menu": {
+    "desc": "面向开发者的实用工具与文章",
+    "ttf": "TTF抽取/压缩",
+    "filetype": "文件处理",
+    "crypto": "加密处理",
+    "token": "Token生成",
+    "hash": "哈希生成"
+  },
+  "home": {
+    "title": "首页",
+    "seo_desc": "在线工具集合，涵盖字体压缩、Token生成、哈希加密等实用工具，提升开发效率。",
+    "seo_keywords": "在线工具, 字体压缩, Token生成, 哈希加密, 开发工具, 前端工具"
+  },
+  "search": {
+    "placeholder": "搜索"
+  },
+  "ttf": {
+    "desc": "根据输入或上传字符，提取并压缩TTF字体，仅保留所需字形，极大减小字体体积（输出ttf、woff）。"
+  },
+  "font": {
+    "title": "TTF字体抽取压缩工具",
+    "desc": "通过输入需要的字符或上传包含字符的文本，提取并压缩TTF字体文件，仅保留所需字形，极大减小字体体积。",
+    "upload": "上传TTF字体",
+    "selected": "已选择: {name}",
+    "origin_size": "原始大小: {size}",
+    "input_chars": "输入字符",
+    "input_placeholder": "请输入需要保留的字符",
+    "char_count": "去重后共 {count} 个",
+    "upload_text": "或上传文本",
+    "text_selected": "已选择: {name}",
+    "output_type": "输出格式",
+    "start": "开始压缩",
+    "clear": "全部清空",
+    "success": "压缩完成",
+    "download": "点击下载压缩后的字体文件",
+    "only_glyphs": "(仅包含所需字形)",
+    "compressed_size": "压缩后: {size}",
+    "error": "字体压缩失败: {msg}",
+    "preview_generating": "字体预览生成中...",
+    "seo_desc": "TTF字体压缩工具，支持自定义字符集，极大减小字体体积，适合前端性能优化。",
+    "seo_keywords": "TTF, 字体压缩, 字体子集, 前端优化, 字体工具, 字体提取, 字体瘦身"
+  },
+  "privacy": {
+    "title": "我们关心您的隐私",
+    "desc": "我们使用 Cookie 改善您的体验。您可以在下方自定义 Cookie 偏好设置。",
+    "necessary": "必要 Cookie（始终启用）",
+    "analytics": "分析 Cookie",
+    "ads": "广告 Cookie",
+    "acceptAll": "允许所有",
+    "save": "保存设置"
+  },
+  "blog": {
+    "title": "博客文章",
+    "write": "写文章",
+    "author": "作者",
+    "posted": "发布日期",
+    "sort": {
+      "hits": "按热度",
+      "time": "按时间"
+    },
+    "fetchError": "获取文章失败",
+    "needLogin": "请先登录后再发布文章",
+    "name": "博客",
+    "seoDesc": "java，js技文章、实战教程等",
+    "seoKeywords": "JavaScript, TypeScript, Vue, React, Node.js, Python, Go, Rust, Web开发, 前端, 后端, 全栈, 云原生, Docker, Kubernetes, 微服务, 数据库, DevOps, AI, 机器学习"
+  }
+}

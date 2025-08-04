@@ -1,0 +1,95 @@
+{
+  "locale": {
+    "en": "Inglés",
+    "ja": "Japonés",
+    "ko": "Coreano",
+    "ru": "Ruso",
+    "zh": "Chino"
+  },
+  "login": {
+    "title": "Inicio de sesión",
+    "welcome": "Bienvenido de nuevo, por favor ingrese sus credenciales",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Iniciar sesión",
+    "github": "Iniciar sesión con GitHub",
+    "out": "Cerrar sesión"
+  },
+  "auth": {
+    "register": "Registro de usuario",
+    "create_account": "Cree su cuenta",
+    "username": "Nombre de usuario",
+    "confirm_password": "Confirmar contraseña",
+    "register_btn": "Registrarse ahora",
+    "no_account": "¿No tienes cuenta?",
+    "register_now": "Regístrate ahora",
+    "have_account": "¿Ya tienes cuenta?",
+    "login_here": "Iniciar sesión aquí"
+  },
+  "menu": {
+    "desc": "Herramientas y artículos útiles para desarrolladores",
+    "ttf": "Extracción/Compresión TTF",
+    "filetype": "Procesamiento de archivos",
+    "crypto": "Procesamiento criptográfico",
+    "token": "Generación de token",
+    "hash": "Generación de hash"
+  },
+  "home": {
+    "title": "Inicio",
+    "seo_desc": "Colección de herramientas en línea, que incluye compresión de fuentes, generación de tokens, cifrado hash y más para mejorar la eficiencia del desarrollo.",
+    "seo_keywords": "Herramientas en línea, compresión de fuentes, generación de tokens, cifrado hash, herramientas de desarrollo, herramientas frontend"
+  },
+  "search": {
+    "placeholder": "Buscar"
+  },
+  "ttf": {
+    "desc": "Extraiga y comprima fuentes TTF según los caracteres ingresados o cargados, conserve solo los glifos necesarios y reduzca significativamente el tamaño del archivo (salida ttf, woff)."
+  },
+  "font": {
+    "title": "Herramienta de extracción y compresión de fuentes TTF",
+    "desc": "Extraiga y comprima archivos de fuentes TTF ingresando los caracteres necesarios o cargando un texto que los contenga. Solo se conservan los glifos necesarios, lo que reduce significativamente el tamaño del archivo.",
+    "upload": "Subir fuente TTF",
+    "selected": "Seleccionado: {name}",
+    "origin_size": "Tamaño original: {size}",
+    "input_chars": "Ingresar caracteres",
+    "input_placeholder": "Por favor ingrese los caracteres a conservar",
+    "char_count": "{count} caracteres después de eliminar duplicados",
+    "upload_text": "O subir texto",
+    "text_selected": "Seleccionado: {name}",
+    "output_type": "Formato de salida",
+    "start": "Comenzar compresión",
+    "clear": "Limpiar todo",
+    "success": "Compresión completada",
+    "download": "Haga clic para descargar el archivo de fuente comprimido",
+    "only_glyphs": "(Solo incluye los glifos necesarios)",
+    "compressed_size": "Después de comprimir: {size}",
+    "error": "Error al comprimir la fuente: {msg}",
+    "preview_generating": "Generando vista previa de la fuente...",
+    "seo_desc": "Herramienta de compresión de fuentes TTF, admite conjuntos de caracteres personalizados, reduce significativamente el tamaño del archivo, ideal para la optimización frontend.",
+    "seo_keywords": "TTF, compresión de fuentes, subconjunto de fuentes, optimización frontend, herramientas de fuentes, extracción de fuentes, reducción de fuentes"
+  },
+  "privacy": {
+    "title": "Nos preocupamos por su privacidad",
+    "desc": "Utilizamos cookies para mejorar su experiencia. Puede personalizar sus preferencias de cookies a continuación.",
+    "necessary": "Cookies necesarias (siempre activadas)",
+    "analytics": "Cookies analíticas",
+    "ads": "Cookies publicitarias",
+    "acceptAll": "Aceptar todo",
+    "save": "Guardar configuración"
+  },
+  "blog": {
+    "title": "Artículos del blog",
+    "write": "Escribir artículo",
+    "author": "Autor",
+    "posted": "Fecha de publicación",
+    "sort": {
+      "hits": "Por popularidad",
+      "time": "Por fecha"
+    },
+    "fetchError": "Error al obtener los artículos",
+    "needLogin": "Por favor inicie sesión antes de publicar un artículo",
+    "name": "Blog",
+    "seoDesc": "Artículos técnicos de Java, JS, tutoriales prácticos, etc.",
+    "seoKeywords": "JavaScript, TypeScript, Vue, React, Node.js, Python, Go, Rust, Desarrollo web, Frontend, Backend, Full Stack, Nativo en la nube, Docker, Kubernetes, Microservicios, Base de datos, DevOps, IA, Aprendizaje automático"
+  }
+}

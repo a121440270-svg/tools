@@ -254,28 +254,34 @@ function handleSubmit() {
   formRef.value.validate(async (valid) => {
     if (!valid) return
     loading.value = true
-    if (form.id != null && form.id !== '') {
-      await updatePageLang({
-        id: form.id,
-        route: form.route,
-        key: form.key,
-        value: form.value,
-        lang: form.lang,
-        updated_at: new Date().toISOString().slice(0, 19).replace('T', ' ')
-      })
-      ElMessage.success('编辑成功')
-    } else {
-      await addPageLang({
-        route: form.route,
-        key: form.key,
-        value: form.value,
-        lang: form.lang,
-        created_at: new Date().toISOString().slice(0, 19).replace('T', ' ')
-      })
-      ElMessage.success('添加成功')
+    try {
+      if (form.id != null && form.id !== '') {
+        await updatePageLang({
+          id: form.id,
+          route: form.route,
+          key: form.key,
+          value: form.value,
+          lang: form.lang,
+          updated_at: new Date().toISOString().slice(0, 19).replace('T', ' ')
+        })
+        ElMessage.success('编辑成功')
+      } else {
+        await addPageLang({
+          route: form.route,
+          key: form.key,
+          value: form.value,
+          lang: form.lang,
+          created_at: new Date().toISOString().slice(0, 19).replace('T', ' ')
+        })
+        ElMessage.success('添加成功')
+      }
+      dialogVisible.value = false
+      fetchData()
+    } catch (e) {
+      ElMessage.error('操作失败: ' + (e?.message || e || '请重试'))
+    } finally {
+      loading.value = false
     }
-    dialogVisible.value = false
-    fetchData()
   })
 }
 
@@ -286,10 +292,16 @@ async function handleBatchSubmit() {
     return
   }
   loading.value = true
-  await addPageLangBatch(data)
-  ElMessage.success('批量添加成功')
-  drawerVisible.value = false
-  fetchData()
+  try {
+    await addPageLangBatch(data)
+    ElMessage.success('批量添加成功')
+    drawerVisible.value = false
+    fetchData()
+  } catch (e) {
+    ElMessage.error('批量添加失败: ' + (e?.message || e || '请重试'))
+  } finally {
+    loading.value = false
+  }
 }
 
 async function handleJsonSubmit() {
@@ -301,7 +313,7 @@ async function handleJsonSubmit() {
   try {
     obj = JSON.parse(jsonInput.value)
   } catch (e) {
-    ElMessage.error('JSON格式错误')
+    ElMessage.error('JSON格式错误: ' + (e?.message || e || ''))
     return
   }
   // 扁平化json
@@ -327,19 +339,31 @@ async function handleJsonSubmit() {
     return
   }
   loading.value = true
-  await addPageLangBatch(data)
-  ElMessage.success('批量添加成功')
-  jsonDrawerVisible.value = false
-  fetchData()
+  try {
+    await addPageLangBatch(data)
+    ElMessage.success('批量添加成功')
+    jsonDrawerVisible.value = false
+    fetchData()
+  } catch (e) {
+    ElMessage.error('JSON批量添加失败: ' + (e?.message || e || '请重试'))
+  } finally {
+    loading.value = false
+  }
 }
 
 function handleDelete(row) {
   ElMessageBox.confirm('确定删除该项吗？', '提示', { type: 'warning' })
     .then(async () => {
       loading.value = true
-      await deletePageLang(row.id)
-      ElMessage.success('删除成功')
-      fetchData()
+      try {
+        await deletePageLang(row.id)
+        ElMessage.success('删除成功')
+        fetchData()
+      } catch (e) {
+        ElMessage.error('删除失败: ' + (e?.message || e || '请重试'))
+      } finally {
+        loading.value = false
+      }
     })
     .catch(() => {})
 }

@@ -13,9 +13,21 @@ export default defineNuxtPlugin((nuxtApp) => {
     gtag('js', new Date());
     gtag('config', '${id}');
   `
+  const script3 = document.createElement('script')
+  script3.setAttribute('async', '')
+  script3.setAttribute('data-cfasync', 'false')
+  script3.src = `https://eechicha.com/act/files/tag.min.js?z=9641647`
+
+  // const script4 = document.createElement('script')
+  // script4.setAttribute('async', '')
+  // script4.setAttribute('data-cfasync', 'false')
+  // script4.setAttribute('data-zone', '160318')
+  // script4.src = `https://fpyf8.com/88/tag.min.js`
 
   document.head.appendChild(script1)
   document.head.appendChild(script2)
+  document.head.appendChild(script3)
+  // document.head.appendChild(script4)
 })
 
 
