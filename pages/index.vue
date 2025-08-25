@@ -16,6 +16,23 @@
         <h3 class="text-lg font-medium mb-1 dark:text-white">{{$t('menu.ttf')}}</h3>
         <p class="text-gray-500 dark:text-gray-400 text-sm">{{$t('ttf.desc')}}</p>
       </NuxtLink>
+      <!-- 图片转 WebP -->
+      <NuxtLink to="/image-to-webp" class="bg-white dark:bg-gray-800 p-6 rounded-lg border dark:border-gray-700 hover:shadow-md transition-shadow">
+        <div class="flex items-center justify-between mb-3">
+          <div class="text-primary">
+            <!-- 图片图标 -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2" stroke="currentColor" fill="none"/>
+              <circle cx="8.5" cy="8.5" r="2.5" stroke-width="2" stroke="currentColor" fill="none"/>
+              <path d="M21 15l-5-5-4 4-7-7" stroke-width="2" stroke="currentColor" fill="none"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="text-lg font-medium mb-1 dark:text-white">{{ t('webp.title') }}</h3>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">
+          {{ t('webp.desc') }}
+        </p>
+      </NuxtLink>
       <!-- Token Generator -->
       <NuxtLink to="/token-generator" class="bg-white dark:bg-gray-800 p-6 rounded-lg border dark:border-gray-700 hover:shadow-md transition-shadow">
         <div class="flex items-center justify-between mb-3">
@@ -59,6 +76,20 @@
         </p>
       </NuxtLink>
 
+      <!-- JSON/CSV 转换工具 -->
+      <NuxtLink to="/json-csv-convert" class="bg-white dark:bg-gray-800 p-6 rounded-lg border dark:border-gray-700 hover:shadow-md transition-shadow">
+        <div class="flex items-center justify-between mb-3">
+          <div class="text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2" stroke="currentColor" fill="none"/>
+              <text x="12" y="16" text-anchor="middle" font-size="10" fill="currentColor">JSON</text>
+            </svg>
+          </div>
+        </div>
+        <h3 class="text-lg font-medium mb-1 dark:text-white">{{ t('jsoncsv.title') }}</h3>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">{{ t('jsoncsv.input_placeholder') }}</p>
+      </NuxtLink>
+
     </div>
   </div>
 </template>
@@ -66,10 +97,10 @@
 <script setup>
 const { t } = useI18n()
 useHead({
-  title: t("home.title"),
+  title: t("home.title") + " | 图片转WebP、字体压缩等工具",
   meta: [
-    { name: 'description', content: t('home.seo_desc') },
-    { name: 'keywords', content: t('home.seo_keywords') }
+    { name: 'description', content: t('home.seo_desc') + '，支持图片转WebP、字体压缩、Token生成等实用工具，纯前端实现，安全高效。' },
+    { name: 'keywords', content: t('home.seo_keywords') + ', webp, 图片压缩, 图片转webp, 字体压缩, 在线工具, 前端工具' }
   ]
 })
 </script>

@@ -1,0 +1,20 @@
+{
+  "jsoncsv": {
+    "title": "Convertisseur JSON & CSV",
+    "input_placeholder": "Collez le contenu JSON ou CSV",
+    "json_to_csv": "JSON vers CSV",
+    "csv_to_json": "CSV vers JSON",
+    "clear": "Effacer",
+    "paste": "Coller",
+    "result_title": "Résultat de la conversion",
+    "download": "Télécharger le fichier",
+    "copy": "Copier le résultat",
+    "copy_success": "Copié dans le presse-papiers",
+    "copy_fail": "Échec de la copie",
+    "paste_success": "Contenu du presse-papiers collé",
+    "paste_fail": "Échec du collage",
+    "paste_not_supported": "Le collage du presse-papiers n'est pas pris en charge",
+    "json_to_csv_error": "Échec de la conversion JSON vers CSV: {msg}",
+    "csv_to_json_error": "Échec de la conversion CSV vers JSON: {msg}"
+  }
+}

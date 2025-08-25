@@ -228,6 +228,7 @@ import {
 } from "vue";
 import { useTheme } from "~/composables/useTheme";
 import { useLocalePath } from "#i18n";
+import { markRaw } from "vue";
 
 const localePath = useLocalePath();
 // 主题管理
@@ -641,24 +642,51 @@ const BlogIcon = defineComponent({
   },
 });
 
+// 新增 WebpIcon 组件（与首页一致）
+const WebpIcon = defineComponent({
+  name: "WebpIcon",
+  render() {
+    return h(
+      "svg",
+      {
+        xmlns: "http://www.w3.org/2000/svg",
+        class: this.$attrs.class,
+        fill: "none",
+        viewBox: "0 0 24 24",
+        stroke: "currentColor",
+        strokeWidth: "2"
+      },
+      [
+        h("rect", { x: "3", y: "3", width: "18", height: "18", rx: "2", stroke: "currentColor", fill: "none" }),
+        h("circle", { cx: "8.5", cy: "8.5", r: "2.5", stroke: "currentColor", fill: "none" }),
+        h("path", { d: "M21 15l-5-5-4 4-7-7", stroke: "currentColor", fill: "none" })
+      ]
+    );
+  }
+});
+
 const categories = ref([
   {
     name: "blog.name",
     expanded: true,
     path: "/blog",
-    icon: BlogIcon,
+    icon: markRaw(BlogIcon),
   },
   {
     name: "menu.filetype",
     expanded: true,
-    tools: [{ name: "menu.ttf", path: "/font-compress", icon: FontIcon }],
+    tools: [
+      { name: "menu.ttf", path: "/font-compress", icon: markRaw(FontIcon) },
+      { name: "menu.webp", path: "/image-to-webp", icon: markRaw(WebpIcon) },
+      { name: "menu.jsoncsv", path: "/json-csv-convert", icon: markRaw(FontIcon) },
+    ],
   },
   {
     name: "menu.crypto",
     expanded: true,
     tools: [
-      { name: "menu.token", path: "/token-generator", icon: TokenIcon },
-      { name: "menu.hash", path: "/hash-text", icon: HashIcon },
+      { name: "menu.token", path: "/token-generator", icon: markRaw(TokenIcon) },
+      { name: "menu.hash", path: "/hash-text", icon: markRaw(HashIcon) },
     ],
   },
 ]);

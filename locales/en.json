@@ -1,0 +1,23 @@
+{
+  "webp": {
+    "title": "Image to WebP",
+    "desc": "Batch convert jpg/png images to webp. Download single image directly, or multiple images as a zip file.",
+    "upload": "Upload images",
+    "selected": "{count} images selected",
+    "start": "Start conversion",
+    "clear": "Clear",
+    "success": "Conversion successful",
+    "download_img": "Download image",
+    "download_zip": "Download zip",
+    "intro": "is a modern image format developed by Google, featuring high compression and excellent quality. It supports lossy and lossless compression, transparency, and animation. Compared to JPG/PNG, WebP can significantly reduce image size, speed up website loading, and improve site performance and SEO. All major browsers support WebP. It is recommended for website use.",
+    "no_file": "Please select images first",
+    "error": "Conversion failed: {msg}"
+  },
+  "menu": {
+    "ttf": "Font Compress",
+    "webp": "Image to WebP",
+    "token": "Token Generator",
+    "hash": "Hash Text",
+    "jsoncsv": "JSON/CSV Converter"
+  }
+}

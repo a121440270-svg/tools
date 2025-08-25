@@ -1,0 +1,20 @@
+{
+  "jsoncsv": {
+    "title": "JSON & CSV Konverter",
+    "input_placeholder": "Fügen Sie JSON- oder CSV-Inhalt ein",
+    "json_to_csv": "JSON zu CSV",
+    "csv_to_json": "CSV zu JSON",
+    "clear": "Leeren",
+    "paste": "Einfügen",
+    "result_title": "Konvertierungsergebnis",
+    "download": "Datei herunterladen",
+    "copy": "Ergebnis kopieren",
+    "copy_success": "In die Zwischenablage kopiert",
+    "copy_fail": "Kopieren fehlgeschlagen",
+    "paste_success": "Zwischenablage-Inhalt eingefügt",
+    "paste_fail": "Einfügen fehlgeschlagen",
+    "paste_not_supported": "Zwischenablage-Einfügen nicht unterstützt",
+    "json_to_csv_error": "JSON zu CSV fehlgeschlagen: {msg}",
+    "csv_to_json_error": "CSV zu JSON fehlgeschlagen: {msg}"
+  }
+}

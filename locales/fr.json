@@ -1,0 +1,19 @@
+{
+  "webp": {
+    "title": "Image vers WebP",
+    "desc": "Convertissez en lot des images jpg/png en webp. Téléchargez une image directement ou plusieurs images dans un fichier zip.",
+    "upload": "Télécharger des images",
+    "selected": "{count} images sélectionnées",
+    "start": "Démarrer la conversion",
+    "clear": "Effacer",
+    "success": "Conversion réussie",
+    "download_img": "Télécharger l'image",
+    "download_zip": "Télécharger le zip",
+    "intro": "est un format d'image moderne développé par Google, offrant une haute compression et une excellente qualité. Il prend en charge la compression avec ou sans perte, la transparence et l'animation. Par rapport à JPG/PNG, WebP réduit considérablement la taille des images, accélère le chargement des pages et améliore les performances et le SEO du site. Les principaux navigateurs prennent en charge WebP. Il est recommandé pour les sites web.",
+    "no_file": "Veuillez d'abord sélectionner des images",
+    "error": "Échec de la conversion : {msg}"
+  },
+  "menu": {
+    "jsoncsv": "Convertisseur JSON/CSV"
+  }
+}

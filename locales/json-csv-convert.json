@@ -1,0 +1,98 @@
+{
+  "title": {
+    "zh": "JSON与CSV转换工具",
+    "en": "JSON & CSV Converter",
+    "fr": "Convertisseur JSON & CSV",
+    "de": "JSON & CSV Konverter"
+  },
+  "input_placeholder": {
+    "zh": "粘贴 JSON 或 CSV 内容",
+    "en": "Paste JSON or CSV content",
+    "fr": "Collez le contenu JSON ou CSV",
+    "de": "Fügen Sie JSON- oder CSV-Inhalt ein"
+  },
+  "json_to_csv": {
+    "zh": "JSON 转 CSV",
+    "en": "JSON to CSV",
+    "fr": "JSON vers CSV",
+    "de": "JSON zu CSV"
+  },
+  "csv_to_json": {
+    "zh": "CSV 转 JSON",
+    "en": "CSV to JSON",
+    "fr": "CSV vers JSON",
+    "de": "CSV zu JSON"
+  },
+  "clear": {
+    "zh": "清空",
+    "en": "Clear",
+    "fr": "Effacer",
+    "de": "Leeren"
+  },
+  "paste": {
+    "zh": "粘贴",
+    "en": "Paste",
+    "fr": "Coller",
+    "de": "Einfügen"
+  },
+  "result_title": {
+    "zh": "转换结果",
+    "en": "Conversion Result",
+    "fr": "Résultat de la conversion",
+    "de": "Konvertierungsergebnis"
+  },
+  "download": {
+    "zh": "下载文件",
+    "en": "Download File",
+    "fr": "Télécharger le fichier",
+    "de": "Datei herunterladen"
+  },
+  "copy": {
+    "zh": "复制结果",
+    "en": "Copy Result",
+    "fr": "Copier le résultat",
+    "de": "Ergebnis kopieren"
+  },
+  "copy_success": {
+    "zh": "已复制到剪贴板",
+    "en": "Copied to clipboard",
+    "fr": "Copié dans le presse-papiers",
+    "de": "In die Zwischenablage kopiert"
+  },
+  "copy_fail": {
+    "zh": "复制失败",
+    "en": "Copy failed",
+    "fr": "Échec de la copie",
+    "de": "Kopieren fehlgeschlagen"
+  },
+  "paste_success": {
+    "zh": "已粘贴剪贴板内容",
+    "en": "Pasted clipboard content",
+    "fr": "Contenu du presse-papiers collé",
+    "de": "Zwischenablage-Inhalt eingefügt"
+  },
+  "paste_fail": {
+    "zh": "粘贴失败",
+    "en": "Paste failed",
+    "fr": "Échec du collage",
+    "de": "Einfügen fehlgeschlagen"
+  },
+  "paste_not_supported": {
+    "zh": "当前浏览器不支持自动粘贴",
+    "en": "Clipboard paste not supported",
+    "fr": "Le collage du presse-papiers n'est pas pris en charge",
+    "de": "Zwischenablage-Einfügen nicht unterstützt"
+  },
+  "json_to_csv_error": {
+    "zh": "JSON 转 CSV 失败: ",
+    "en": "JSON to CSV failed: ",
+    "fr": "Échec de la conversion JSON vers CSV: ",
+    "de": "JSON zu CSV fehlgeschlagen: "
+  },
+  "csv_to_json_error": {
+    "zh": "CSV 转 JSON 失败: ",
+    "en": "CSV to JSON failed: ",
+    "fr": "Échec de la conversion CSV vers JSON: ",
+    "de": "CSV zu JSON fehlgeschlagen: "
+  }
+}

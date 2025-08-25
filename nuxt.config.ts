@@ -5,6 +5,9 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: "cloudflare_module",
+    renderer: process.env.NITRO_PRESET === 'cloudflare_module'
+      ? 'node' // 让它走 Node SSR 渲染模式（非流式）
+      : undefined,
     experimental: {
       database: true
     },
@@ -21,7 +24,8 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   i18n: {
     defaultLocale: 'en',
-    lazy: true,
+    lazy: false,
+    langDir: 'locales/',
     strategy: 'prefix_except_default',
     locales: [
       { code: 'en', name: 'English', file: 'en.ts' },

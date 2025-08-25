@@ -143,6 +143,12 @@ const searchLang = ref('')
 
 const dialogVisible = ref(false)
 const dialogTitle = ref('添加')
+
+useHead({
+  title: 'Multilingual ​Language Management​'
+})
+
+
 const form = reactive({
   id: null,
   route: '',
@@ -175,7 +181,18 @@ const langOptions = {
   ja: '日文',
   ko: '韩文',
   ru: '俄文',
-  zh: '中文'
+  de: '德文',
+  fr: '法文',
+  it: '意大利',
+  es: '西班牙文',
+  pt: '葡萄牙文',
+  nl: '荷兰文',
+  ch:'瑞士',
+   zh: '中文',
+   ca: '加拿大',
+   br: '巴西',
+   ar:'阿根廷',
+   mx: '墨西哥',
 }
 const batchTableData = ref([
   { route: '', key: '', value: '', lang: '' }
@@ -342,7 +359,7 @@ async function handleJsonSubmit() {
   try {
     await addPageLangBatch(data)
     ElMessage.success('批量添加成功')
-    jsonDrawerVisible.value = false
+    // 不自动关闭抽屉
     fetchData()
   } catch (e) {
     ElMessage.error('JSON批量添加失败: ' + (e?.message || e || '请重试'))

@@ -18,6 +18,7 @@
     "crypto-js": "^4.2.0",
     "element-plus": "^2.10.2",
     "fonteditor-core": "^2.5.0",
+    "jszip": "^3.10.1",
     "nodemailer": "^7.0.3",
     "nuxt": "^3.16.2",
     "sonner": "^2.0.3",
@@ -29,6 +30,6 @@
     "nitro-cloudflare-dev": "^0.2.1",
     "nitropack": "^2.10.4",
     "vue-i18n": "^11.1.5",
-    "wrangler": "^3.101.0"
+    "wrangler": "^4.28.1"
   }
 }

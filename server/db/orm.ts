@@ -1,3 +1,31 @@
+/**
+ * replaceInto: 如果指定属性组合存在则更新，否则插入
+ * @param table 表名
+ * @param data 数据对象，必须包含所有唯一属性字段
+ * @param keys 唯一属性字段名数组，如 ['route', 'key', 'lang']
+ */
+export async function replaceInto<T>(table: string, data: Partial<T>, keys: string | string[] = 'id') {
+  const record = data as Record<string, any>;
+  const keyArr = Array.isArray(keys) ? keys : [keys];
+  // 检查所有唯一属性是否存在
+  for (const k of keyArr) {
+    if (record[k] === undefined || record[k] === null) {
+      throw new Error(`replaceInto 需要 data 包含判断重复的字段 ${k}`);
+    }
+  }
+  // 生成 where 条件对象
+  const where: Record<string, any> = {};
+  keyArr.forEach(k => { where[k] = record[k]; });
+  // 查询是否存在
+  const exist = await select<T>(table, where);
+  if (exist && exist.length > 0) {
+    // 存在则更新（用所有唯一属性做 where 条件）
+    await update<T>(table, data, where);
+  } else {
+    // 不存在则插入
+    await insert<T>(table, data);
+  }
+}
 // server/database/orm.ts
 function runAll<T>(stmt: any): Promise<T[]> {
   return stmt.all().then((res: unknown) => (res as T[]));

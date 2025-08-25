@@ -1,0 +1,20 @@
+{
+  "jsoncsv": {
+    "title": "JSON & CSV Converter",
+    "input_placeholder": "Paste JSON or CSV content",
+    "json_to_csv": "JSON to CSV",
+    "csv_to_json": "CSV to JSON",
+    "clear": "Clear",
+    "paste": "Paste",
+    "result_title": "Conversion Result",
+    "download": "Download File",
+    "copy": "Copy Result",
+    "copy_success": "Copied to clipboard",
+    "copy_fail": "Copy failed",
+    "paste_success": "Pasted clipboard content",
+    "paste_fail": "Paste failed",
+    "paste_not_supported": "Clipboard paste not supported",
+    "json_to_csv_error": "JSON to CSV failed: {msg}",
+    "csv_to_json_error": "CSV to JSON failed: {msg}"
+  }
+}

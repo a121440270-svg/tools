@@ -1,0 +1,20 @@
+{
+  "jsoncsv": {
+    "title": "JSON与CSV转换工具",
+    "input_placeholder": "粘贴 JSON 或 CSV 内容",
+    "json_to_csv": "JSON 转 CSV",
+    "csv_to_json": "CSV 转 JSON",
+    "clear": "清空",
+    "paste": "粘贴",
+    "result_title": "转换结果",
+    "download": "下载文件",
+    "copy": "复制结果",
+    "copy_success": "已复制到剪贴板",
+    "copy_fail": "复制失败",
+    "paste_success": "已粘贴剪贴板内容",
+    "paste_fail": "粘贴失败",
+    "paste_not_supported": "当前浏览器不支持自动粘贴",
+    "json_to_csv_error": "JSON 转 CSV 失败: {msg}",
+    "csv_to_json_error": "CSV 转 JSON 失败: {msg}"
+  }
+}
