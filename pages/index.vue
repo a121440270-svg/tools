@@ -97,10 +97,10 @@
 <script setup>
 const { t } = useI18n()
 useHead({
-  title: t("home.title") + " | 图片转WebP、字体压缩等工具",
+  title: t("home.title") ,
   meta: [
-    { name: 'description', content: t('home.seo_desc') + '，支持图片转WebP、字体压缩、Token生成等实用工具，纯前端实现，安全高效。' },
-    { name: 'keywords', content: t('home.seo_keywords') + ', webp, 图片压缩, 图片转webp, 字体压缩, 在线工具, 前端工具' }
+    { name: 'description', content: t('home.seo_desc') },
+    { name: 'keywords', content: t('home.seo_keywords') }
   ]
 })
 </script>

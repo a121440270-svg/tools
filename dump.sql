@@ -219,10 +219,10 @@ INSERT INTO page_lang VALUES(142,'all','font.seo_desc','TTF font compression too
 INSERT INTO page_lang VALUES(143,'all','font.seo_keywords','TTF, font compression, font subset, frontend optimization, font tool, font extraction, font slimming','en','2025-07-17 11:00:27','2025-07-17 11:00:27');
 INSERT INTO page_lang VALUES(144,'all','font.seo_desc','TTF字体压缩工具，支持自定义字符集，极大减小字体体积，适合前端性能优化。','zh','2025-07-17 11:00:54','2025-07-17 11:00:54');
 INSERT INTO page_lang VALUES(145,'all','font.seo_keywords','TTF, 字体压缩, 字体子集, 前端优化, 字体工具, 字体提取, 字体瘦身','zh','2025-07-17 11:00:54','2025-07-17 11:00:54');
-INSERT INTO page_lang VALUES(146,'all','home.seo_desc','Online tool collection including font compression, token generation, hash encryption and more to boost development efficiency.','en','2025-07-17 11:04:07','2025-07-17 11:04:07');
-INSERT INTO page_lang VALUES(147,'all','home.seo_keywords','online tools, font compression, token generator, hash encryption, developer tools, frontend tools','en','2025-07-17 11:04:07','2025-07-17 11:04:07');
-INSERT INTO page_lang VALUES(148,'all','home.seo_desc','在线工具集合，涵盖字体压缩、Token生成、哈希加密等实用工具，提升开发效率。','zh','2025-07-17 11:04:36','2025-07-17 11:04:36');
-INSERT INTO page_lang VALUES(149,'all','home.seo_keywords','在线工具, 字体压缩, Token生成, 哈希加密, 开发工具, 前端工具','zh','2025-07-17 11:04:36','2025-07-17 11:04:36');
+INSERT INTO page_lang VALUES(146,'all','home.seo_desc','Online tool collection: TTF font compression, JSON & CSV conversion, image to WebP, token generation, hash encryption, and other practical tools to boost development efficiency.','en','2025-07-17 11:04:07','2025-08-26 04:19:33');
+INSERT INTO page_lang VALUES(147,'all','home.seo_keywords','Online tools, TTF font compression, TTF to WOFF, JSON & CSV conversion, token generation, hash encryption, development tools, frontend tools.','en','2025-07-17 11:04:07','2025-08-26 04:20:09');
+INSERT INTO page_lang VALUES(148,'all','home.seo_desc','在线工具集合，TTF字体压缩、JSON&CSV互转、图片转webp、Token生成、哈希加密等实用工具，提升开发效率。','zh','2025-07-17 11:04:36','2025-08-26 04:16:41');
+INSERT INTO page_lang VALUES(149,'all','home.seo_keywords','在线工具, TTF字体压缩,TTF转woff, json&csv互转，Token生成 哈希加密, 开发工具, 前端工具','zh','2025-07-17 11:04:36','2025-08-26 04:17:50');
 INSERT INTO page_lang VALUES(150,'all','privacy.title','We Care About Your Privacy','en','2025-07-30 13:48:27','2025-07-30 13:48:27');
 INSERT INTO page_lang VALUES(151,'all','privacy.desc','We use cookies to enhance your experience. You can customize your cookie preferences below.','en','2025-07-30 13:48:27','2025-07-30 13:48:27');
 INSERT INTO page_lang VALUES(152,'all','privacy.necessary','Necessary Cookies (Always enabled)','en','2025-07-30 13:48:27','2025-07-30 13:48:27');
@@ -367,7 +367,7 @@ CREATE TABLE _cf_METADATA (
         key INTEGER PRIMARY KEY,
         value BLOB
       );
-INSERT INTO _cf_METADATA VALUES(2,452);
+INSERT INTO _cf_METADATA VALUES(2,655);
 DELETE FROM sqlite_sequence;
 INSERT INTO sqlite_sequence VALUES('tools',6);
 INSERT INTO sqlite_sequence VALUES('d1_migrations',1);

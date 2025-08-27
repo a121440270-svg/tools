@@ -1,5 +1,6 @@
 name = "tools"
 compatibility_date = "2025-01-09"
+compatibility_flags = ["nodejs_compat"]
 main = "./.output/server/index.mjs"
 assets = { directory = "./.output/public/", binding = "ASSETS" }
 
