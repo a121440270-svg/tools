@@ -87,7 +87,7 @@
           </div>
         </div>
         <h3 class="text-lg font-medium mb-1 dark:text-white">{{ t('jsoncsv.title') }}</h3>
-        <p class="text-gray-500 dark:text-gray-400 text-sm">{{ t('jsoncsv.input_placeholder') }}</p>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">{{ t('jsoncsv.index') }}</p>
       </NuxtLink>
 
     </div>

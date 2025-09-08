@@ -24,35 +24,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
     "nitro-cloudflare-dev",
-    ['nuxt-simple-sitemap', {
-      siteUrl: 'https://onlitools.com', // 你的网站域名
-      autoLastmod: true,
-      xsl: false,
-      exclude: [
-        '/admin/**', // 排除 admin 目录下所有页面
-        '/login',    // 排除登录页
-        '/dashboard',// 也可以单独排除页面
-      ],
-      // ✅ 自动读取 nuxt 路由 (pages 目录)
-      autoI18n: true,
-      defaultLocale: 'en',
-      locales: ['en', 'zh'],
-      // ✅ 动态路由走数据库
-      urls: async () => {
-        const urls: { loc: string, lastmod?: string }[] = []
-
-        // 示例：从数据库取文章
-        // const articles = await $fetch('/api/articles') // 假设接口返回 [{ slug: "hello-world" }]
-        // for (const article of articles) {
-        //   urls.push({
-        //     loc: `/article/${article.slug}`,
-        //     lastmod: article.updated_at
-        //   })
-        // }
-
-        return urls
-      }
-    }]
+    '@nuxtjs/sitemap',
   ],
   css: ['~/assets/css/main.css'],
   i18n: {
@@ -67,5 +39,15 @@ export default defineNuxtConfig({
       // { code: 'ru', name: '俄语', file: 'en.ts' },
       { code: 'zh', name: '中文', file: 'en.ts' }
     ]
-  },
+  }, site: {
+    url: 'https://onlitools.com',
+    name: 'ONLITOOLS-developer tools'  
+  }, sitemap: {
+    // exclude all URLs that start with /secret
+    exclude: ['/admin/**','/auth/**','/blog/post','/profile','/pay/success'],
+    defaults: {
+      changefreq: 'daily',
+      priority: 0.7
+    }
+  }
 })

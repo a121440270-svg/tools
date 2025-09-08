@@ -8,6 +8,9 @@ export default defineEventHandler(async (event) => {
   if (!email || !code) {
     return { error: '参数缺失' }
   }
+    console.log("===================")
+  console.log(JSON.stringify(email))
+  console.log(JSON.stringify(code))
   const users = await select<User>('users', { email })
   console.log("===================")
   console.log(JSON.stringify(email))

@@ -55,13 +55,13 @@ function pasteInput() {
     navigator.clipboard.readText()
       .then(text => {
         inputText.value = text
-        ElMessage.success('已粘贴剪贴板内容')
+        ElMessage.success(t('jsoncsv.paste_success'))
       })
       .catch(() => {
-        ElMessage.error('粘贴失败')
+        ElMessage.error(t('jsoncsv.paste_fail'))
       })
   } else {
-    ElMessage.error('当前浏览器不支持自动粘贴')
+    ElMessage.error(t('jsoncsv.paste_not_supported'))
   }
 }
 const inputText = ref('')
@@ -105,7 +105,7 @@ function jsonToCsv() {
     }
     outputText.value = csvRows.join('\n')
   } catch (e) {
-    errorMsg.value = 'JSON 转 CSV 失败: ' + (e.message || e)
+    errorMsg.value = t('jsoncsv.json_to_csv_error') + (e.message || e)
   }
 }
 
@@ -115,7 +115,7 @@ function csvToJson() {
   lastType.value = 'json'
   try {
     const lines = inputText.value.split(/\r?\n/).filter(l => l.trim())
-    if (lines.length < 2) throw new Error('CSV 至少需要表头和一行数据')
+    if (lines.length < 2) throw new Error(t('jsoncsv.csv_to_json_error') + '表头和数据至少各一行')
     const headers = parseCsvLine(lines[0])
     const result = []
     for (let i = 1; i < lines.length; i++) {
@@ -128,7 +128,7 @@ function csvToJson() {
     }
     outputText.value = JSON.stringify(result, null, 2)
   } catch (e) {
-    errorMsg.value = 'CSV 转 JSON 失败: ' + (e.message || e)
+    errorMsg.value = t('jsoncsv.csv_to_json_error') + (e.message || e)
   }
 }
 
@@ -171,10 +171,10 @@ function downloadResult() {
   if (lastType.value === 'csv') {
     // 添加 BOM 解决中文乱码
     blob = new Blob(['\uFEFF' + outputText.value], { type: 'text/csv;charset=utf-8' })
-    filename = 'result.csv'
+    filename = t('jsoncsv.download') + '.csv'
   } else {
     blob = new Blob([outputText.value], { type: 'application/json;charset=utf-8' })
-    filename = 'result.json'
+    filename = t('jsoncsv.download') + '.json'
   }
   const link = document.createElement('a')
   link.href = URL.createObjectURL(blob)
@@ -191,10 +191,10 @@ function copyResult() {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(outputText.value)
       .then(() => {
-        ElMessage.success('已复制到剪贴板')
+        ElMessage.success(t('jsoncsv.copy_success'))
       })
       .catch(() => {
-        ElMessage.error('复制失败')
+        ElMessage.error(t('jsoncsv.copy_fail'))
       })
   } else {
     // 兼容旧浏览器
@@ -204,18 +204,18 @@ function copyResult() {
     textarea.select()
     try {
       document.execCommand('copy')
-      ElMessage.success('已复制到剪贴板')
+      ElMessage.success(t('jsoncsv.copy_success'))
     } catch {
-      ElMessage.error('复制失败')
+      ElMessage.error(t('jsoncsv.copy_fail'))
     }
     document.body.removeChild(textarea)
   }
 }
 useHead({
-  title: 'JSON与CSV互转工具 - 在线转换、复制、下载',
+  title: t('jsoncsv.seo_title'),
   meta: [
-    { name: 'description', content: '在线JSON与CSV互转工具，支持粘贴、复制、下载，轻松实现JSON转CSV、CSV转JSON，支持中文，适合数据处理、表格转换、开发者使用。' },
-    { name: 'keywords', content: 'JSON转CSV, CSV转JSON, 在线转换, 数据格式转换, 表格转化, 粘贴复制, 下载, 中文支持, 数据处理, 前端工具' }
+    { name: 'description', content: t('jsoncsv.seo_description') },
+    { name: 'keywords', content: t('jsoncsv.seo_keywords') }
   ]
 })
 </script>

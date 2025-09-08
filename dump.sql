@@ -1,84 +1,13 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
-CREATE TABLE d1_migrations(
-		id         INTEGER PRIMARY KEY AUTOINCREMENT,
-		name       TEXT UNIQUE,
-		applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
-);
-INSERT INTO d1_migrations VALUES(1,'001_init.sql','2025-04-13 14:49:49');
-CREATE TABLE tools (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT NOT NULL,
-  description TEXT,
-  route TEXT NOT NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-INSERT INTO tools VALUES(1,'QR Generator','Generate QR codes from text','/qr-generator','2025-04-13 14:49:49');
-INSERT INTO tools VALUES(2,'URL Shortener','Shorten long URLs','/url-shortener','2025-04-13 14:49:49');
-INSERT INTO tools VALUES(3,'QR Generator','Generate QR codes from text','/qr-generator','2025-05-19 14:12:22');
-INSERT INTO tools VALUES(4,'URL Shortener','Shorten long URLs','/url-shortener','2025-05-19 14:12:22');
-INSERT INTO tools VALUES(5,'QR Generator','Generate QR codes from text','/qr-generator','2025-06-13 04:27:46');
-INSERT INTO tools VALUES(6,'URL Shortener','Shorten long URLs','/url-shortener','2025-06-13 04:27:46');
-CREATE TABLE article (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  content TEXT NOT NULL,
-  title TEXT NOT NULL,
-  hits INTEGER DEFAULT 0,
-  type TEXT,
-  chapter INTEGER,
-  posted_time TEXT NOT NULL,
-  last_mod_time TEXT NOT NULL,
-  author_id INTEGER NOT NULL,
-  toc_id INTEGER,
-  status TEXT,
-  fee INTEGER,
-  keywords TEXT,
-  description TEXT
-);
-INSERT INTO article VALUES(1,'13231','www',0,NULL,NULL,'2025-06-16T15:21:32.446Z','2025-06-16T15:21:32.446Z',1,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO article VALUES(2,'测试内容','测试标题',0,NULL,NULL,'2025-06-16T15:23:26.808Z','2025-06-16T15:23:26.808Z',1,NULL,NULL,NULL,NULL,NULL);
-CREATE TABLE article_l (
-    id INTEGER NOT NULL,
-    lang_code TEXT NOT NULL, -- 存储语言代码，如 'en' for English, 'zh' for Chinese
-    title TEXT NOT NULL,
-    content TEXT NOT NULL,
-    keywords TEXT,
-    description TEXT,
-    PRIMARY KEY (id, lang_code), -- 联合主键，确保每篇文章的每种语言都是唯一的
-    FOREIGN KEY(id) REFERENCES article(id)
-);
-CREATE TABLE users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT DEFAULT '佚名',
-  email TEXT,
-  avatar TEXT DEFAULT 'noavatar.gif',
-  psw TEXT,
-  type INTEGER,
-  create_time TEXT,
-  position TEXT,
-  signature TEXT,
-  ip TEXT,
-  last_active_time TEXT,
-  is_active INTEGER DEFAULT 0,
-  paymentcode TEXT DEFAULT 'nopaymentcode.png',
-  active_code TEXT,
-  points INTEGER DEFAULT 0,
-  is_consult BLOB,
-  sid TEXT,
-  wechatAccount TEXT,
-  aliAccount TEXT,
-  amount REAL DEFAULT 0.00
-);
-INSERT INTO users VALUES(3,'Damon','a121440270@gmail.com','noavatar.gif','123456',NULL,'2025-06-19 04:25:33',NULL,NULL,NULL,'2025-06-19 04:25:33',1,'nopaymentcode.png','f1eb5b8516d8cf2392afe301d4b9129f',0,NULL,NULL,NULL,NULL,0.0);
-INSERT INTO users VALUES(4,'Damon','121440270@qq.com','noavatar.gif','123456',NULL,'2025-07-05 12:17:52',NULL,NULL,NULL,'2025-07-05 12:17:52',1,'nopaymentcode.png','43bf12747f30398963b043cba3c478eb',0,NULL,NULL,NULL,NULL,0.0);
-CREATE TABLE page_lang (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  route TEXT NOT NULL,
-  key TEXT NOT NULL,
-  value TEXT NOT NULL,
-  lang TEXT NOT NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE page_lang (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  route TEXT NOT NULL,
+  key TEXT NOT NULL,
+  value TEXT NOT NULL,
+  lang TEXT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 INSERT INTO page_lang VALUES(4,'all','login.submit','Sign In','en','2025-06-18 04:36:04','2025-08-09 08:02:03');
 INSERT INTO page_lang VALUES(5,'all','login.psw','Password','en','2025-06-18 04:36:04','2025-06-18 12:36:42');
@@ -311,22 +240,22 @@ INSERT INTO page_lang VALUES(234,'all','jsoncsv.paste_fail','Einfügen fehlgesch
 INSERT INTO page_lang VALUES(235,'all','jsoncsv.paste_not_supported','Zwischenablage-Einfügen nicht unterstützt','de','2025-08-15 13:16:12','2025-08-15 13:16:12');
 INSERT INTO page_lang VALUES(236,'all','jsoncsv.json_to_csv_error','JSON zu CSV fehlgeschlagen: {msg}','de','2025-08-15 13:16:12','2025-08-15 13:16:12');
 INSERT INTO page_lang VALUES(237,'all','jsoncsv.csv_to_json_error','CSV zu JSON fehlgeschlagen: {msg}','de','2025-08-15 13:16:12','2025-08-15 13:16:12');
-INSERT INTO page_lang VALUES(238,'all','jsoncsv.title','JSON & CSV Converter','en','2025-08-15 13:17:41','2025-08-15 13:17:41');
-INSERT INTO page_lang VALUES(239,'all','jsoncsv.input_placeholder','Paste JSON or CSV content','en','2025-08-15 13:17:41','2025-08-15 13:17:41');
-INSERT INTO page_lang VALUES(240,'all','jsoncsv.json_to_csv','JSON to CSV','en','2025-08-15 13:17:41','2025-08-15 13:17:41');
-INSERT INTO page_lang VALUES(241,'all','jsoncsv.csv_to_json','CSV to JSON','en','2025-08-15 13:17:41','2025-08-15 13:17:41');
-INSERT INTO page_lang VALUES(242,'all','jsoncsv.clear','Clear','en','2025-08-15 13:17:41','2025-08-15 13:17:41');
-INSERT INTO page_lang VALUES(243,'all','jsoncsv.paste','Paste','en','2025-08-15 13:17:41','2025-08-15 13:17:41');
-INSERT INTO page_lang VALUES(244,'all','jsoncsv.result_title','Conversion Result','en','2025-08-15 13:17:42','2025-08-15 13:17:42');
-INSERT INTO page_lang VALUES(245,'all','jsoncsv.download','Download File','en','2025-08-15 13:17:42','2025-08-15 13:17:42');
-INSERT INTO page_lang VALUES(246,'all','jsoncsv.copy','Copy Result','en','2025-08-15 13:17:42','2025-08-15 13:17:42');
-INSERT INTO page_lang VALUES(247,'all','jsoncsv.copy_success','Copied to clipboard','en','2025-08-15 13:17:42','2025-08-15 13:17:42');
-INSERT INTO page_lang VALUES(248,'all','jsoncsv.copy_fail','Copy failed','en','2025-08-15 13:17:42','2025-08-15 13:17:42');
-INSERT INTO page_lang VALUES(249,'all','jsoncsv.paste_success','Pasted clipboard content','en','2025-08-15 13:17:42','2025-08-15 13:17:42');
-INSERT INTO page_lang VALUES(250,'all','jsoncsv.paste_fail','Paste failed','en','2025-08-15 13:17:42','2025-08-15 13:17:42');
-INSERT INTO page_lang VALUES(251,'all','jsoncsv.paste_not_supported','Clipboard paste not supported','en','2025-08-15 13:17:42','2025-08-15 13:17:42');
-INSERT INTO page_lang VALUES(252,'all','jsoncsv.json_to_csv_error','JSON to CSV failed: {msg}','en','2025-08-15 13:17:42','2025-08-15 13:17:42');
-INSERT INTO page_lang VALUES(253,'all','jsoncsv.csv_to_json_error','CSV to JSON failed: {msg}','en','2025-08-15 13:17:42','2025-08-15 13:17:42');
+INSERT INTO page_lang VALUES(238,'all','jsoncsv.title','JSON & CSV Converter','en','2025-08-15 13:17:41','2025-09-04 13:58:42');
+INSERT INTO page_lang VALUES(239,'all','jsoncsv.input_placeholder','Paste JSON or CSV content','en','2025-08-15 13:17:41','2025-09-04 13:58:42');
+INSERT INTO page_lang VALUES(240,'all','jsoncsv.json_to_csv','JSON to CSV','en','2025-08-15 13:17:41','2025-09-04 13:58:42');
+INSERT INTO page_lang VALUES(241,'all','jsoncsv.csv_to_json','CSV to JSON','en','2025-08-15 13:17:41','2025-09-04 13:58:42');
+INSERT INTO page_lang VALUES(242,'all','jsoncsv.clear','Clear','en','2025-08-15 13:17:41','2025-09-04 13:58:42');
+INSERT INTO page_lang VALUES(243,'all','jsoncsv.paste','Paste','en','2025-08-15 13:17:41','2025-09-04 13:58:42');
+INSERT INTO page_lang VALUES(244,'all','jsoncsv.result_title','Conversion Result','en','2025-08-15 13:17:42','2025-09-04 13:58:42');
+INSERT INTO page_lang VALUES(245,'all','jsoncsv.download','Download File','en','2025-08-15 13:17:42','2025-09-04 13:58:42');
+INSERT INTO page_lang VALUES(246,'all','jsoncsv.copy','Copy Result','en','2025-08-15 13:17:42','2025-09-04 13:58:42');
+INSERT INTO page_lang VALUES(247,'all','jsoncsv.copy_success','Copied to clipboard','en','2025-08-15 13:17:42','2025-09-04 13:58:43');
+INSERT INTO page_lang VALUES(248,'all','jsoncsv.copy_fail','Copy failed','en','2025-08-15 13:17:42','2025-09-04 13:58:43');
+INSERT INTO page_lang VALUES(249,'all','jsoncsv.paste_success','Pasted clipboard content','en','2025-08-15 13:17:42','2025-09-04 13:58:43');
+INSERT INTO page_lang VALUES(250,'all','jsoncsv.paste_fail','Paste failed','en','2025-08-15 13:17:42','2025-09-04 13:58:43');
+INSERT INTO page_lang VALUES(251,'all','jsoncsv.paste_not_supported','Clipboard paste not supported','en','2025-08-15 13:17:42','2025-09-04 13:58:43');
+INSERT INTO page_lang VALUES(252,'all','jsoncsv.json_to_csv_error','JSON to CSV failed: {msg}','en','2025-08-15 13:17:42','2025-09-04 13:58:43');
+INSERT INTO page_lang VALUES(253,'all','jsoncsv.csv_to_json_error','CSV to JSON failed: {msg}','en','2025-08-15 13:17:42','2025-09-04 13:58:43');
 INSERT INTO page_lang VALUES(254,'all','jsoncsv.title','Convertisseur JSON & CSV','fr','2025-08-15 13:18:08','2025-08-15 13:18:08');
 INSERT INTO page_lang VALUES(255,'all','jsoncsv.input_placeholder','Collez le contenu JSON ou CSV','fr','2025-08-15 13:18:08','2025-08-15 13:18:08');
 INSERT INTO page_lang VALUES(256,'all','jsoncsv.json_to_csv','JSON vers CSV','fr','2025-08-15 13:18:08','2025-08-15 13:18:08');
@@ -343,37 +272,101 @@ INSERT INTO page_lang VALUES(266,'all','jsoncsv.paste_fail','Échec du collage',
 INSERT INTO page_lang VALUES(267,'all','jsoncsv.paste_not_supported','Le collage du presse-papiers n''est pas pris en charge','fr','2025-08-15 13:18:08','2025-08-15 13:18:08');
 INSERT INTO page_lang VALUES(268,'all','jsoncsv.json_to_csv_error','Échec de la conversion JSON vers CSV: {msg}','fr','2025-08-15 13:18:09','2025-08-15 13:18:09');
 INSERT INTO page_lang VALUES(269,'all','jsoncsv.csv_to_json_error','Échec de la conversion CSV vers JSON: {msg}','fr','2025-08-15 13:18:09','2025-08-15 13:18:09');
-INSERT INTO page_lang VALUES(270,'all','jsoncsv.title','JSON与CSV转换工具','zh','2025-08-15 13:18:24','2025-08-15 13:18:24');
-INSERT INTO page_lang VALUES(271,'all','jsoncsv.input_placeholder','粘贴 JSON 或 CSV 内容','zh','2025-08-15 13:18:25','2025-08-15 13:18:25');
-INSERT INTO page_lang VALUES(272,'all','jsoncsv.json_to_csv','JSON 转 CSV','zh','2025-08-15 13:18:25','2025-08-15 13:18:25');
-INSERT INTO page_lang VALUES(273,'all','jsoncsv.csv_to_json','CSV 转 JSON','zh','2025-08-15 13:18:25','2025-08-15 13:18:25');
-INSERT INTO page_lang VALUES(274,'all','jsoncsv.clear','清空','zh','2025-08-15 13:18:25','2025-08-15 13:18:25');
-INSERT INTO page_lang VALUES(275,'all','jsoncsv.paste','粘贴','zh','2025-08-15 13:18:25','2025-08-15 13:18:25');
-INSERT INTO page_lang VALUES(276,'all','jsoncsv.result_title','转换结果','zh','2025-08-15 13:18:25','2025-08-15 13:18:25');
-INSERT INTO page_lang VALUES(277,'all','jsoncsv.download','下载文件','zh','2025-08-15 13:18:25','2025-08-15 13:18:25');
-INSERT INTO page_lang VALUES(278,'all','jsoncsv.copy','复制结果','zh','2025-08-15 13:18:25','2025-08-15 13:18:25');
-INSERT INTO page_lang VALUES(279,'all','jsoncsv.copy_success','已复制到剪贴板','zh','2025-08-15 13:18:25','2025-08-15 13:18:25');
-INSERT INTO page_lang VALUES(280,'all','jsoncsv.copy_fail','复制失败','zh','2025-08-15 13:18:25','2025-08-15 13:18:25');
-INSERT INTO page_lang VALUES(281,'all','jsoncsv.paste_success','已粘贴剪贴板内容','zh','2025-08-15 13:18:25','2025-08-15 13:18:25');
-INSERT INTO page_lang VALUES(282,'all','jsoncsv.paste_fail','粘贴失败','zh','2025-08-15 13:18:25','2025-08-15 13:18:25');
-INSERT INTO page_lang VALUES(283,'all','jsoncsv.paste_not_supported','当前浏览器不支持自动粘贴','zh','2025-08-15 13:18:25','2025-08-15 13:18:25');
-INSERT INTO page_lang VALUES(284,'all','jsoncsv.json_to_csv_error','JSON 转 CSV 失败: {msg}','zh','2025-08-15 13:18:25','2025-08-15 13:18:25');
-INSERT INTO page_lang VALUES(285,'all','jsoncsv.csv_to_json_error','CSV 转 JSON 失败: {msg}','zh','2025-08-15 13:18:25','2025-08-15 13:18:25');
+INSERT INTO page_lang VALUES(270,'all','jsoncsv.title','JSON与CSV转换工具','zh','2025-08-15 13:18:24','2025-09-04 13:58:17');
+INSERT INTO page_lang VALUES(271,'all','jsoncsv.input_placeholder','粘贴 JSON 或 CSV 内容','zh','2025-08-15 13:18:25','2025-09-04 13:58:18');
+INSERT INTO page_lang VALUES(272,'all','jsoncsv.json_to_csv','JSON 转 CSV','zh','2025-08-15 13:18:25','2025-09-04 13:58:18');
+INSERT INTO page_lang VALUES(273,'all','jsoncsv.csv_to_json','CSV 转 JSON','zh','2025-08-15 13:18:25','2025-09-04 13:58:19');
+INSERT INTO page_lang VALUES(274,'all','jsoncsv.clear','清空','zh','2025-08-15 13:18:25','2025-09-04 13:58:19');
+INSERT INTO page_lang VALUES(275,'all','jsoncsv.paste','粘贴','zh','2025-08-15 13:18:25','2025-09-04 13:58:19');
+INSERT INTO page_lang VALUES(276,'all','jsoncsv.result_title','转换结果','zh','2025-08-15 13:18:25','2025-09-04 13:58:19');
+INSERT INTO page_lang VALUES(277,'all','jsoncsv.download','下载文件','zh','2025-08-15 13:18:25','2025-09-04 13:58:20');
+INSERT INTO page_lang VALUES(278,'all','jsoncsv.copy','复制结果','zh','2025-08-15 13:18:25','2025-09-04 13:58:20');
+INSERT INTO page_lang VALUES(279,'all','jsoncsv.copy_success','已复制到剪贴板','zh','2025-08-15 13:18:25','2025-09-04 13:58:20');
+INSERT INTO page_lang VALUES(280,'all','jsoncsv.copy_fail','复制失败','zh','2025-08-15 13:18:25','2025-09-04 13:58:20');
+INSERT INTO page_lang VALUES(281,'all','jsoncsv.paste_success','已粘贴剪贴板内容','zh','2025-08-15 13:18:25','2025-09-04 13:58:20');
+INSERT INTO page_lang VALUES(282,'all','jsoncsv.paste_fail','粘贴失败','zh','2025-08-15 13:18:25','2025-09-04 13:58:20');
+INSERT INTO page_lang VALUES(283,'all','jsoncsv.paste_not_supported','当前浏览器不支持自动粘贴','zh','2025-08-15 13:18:25','2025-09-04 13:58:20');
+INSERT INTO page_lang VALUES(284,'all','jsoncsv.json_to_csv_error','JSON 转 CSV 失败: {msg}','zh','2025-08-15 13:18:25','2025-09-04 13:58:20');
+INSERT INTO page_lang VALUES(285,'all','jsoncsv.csv_to_json_error','CSV 转 JSON 失败: {msg}','zh','2025-08-15 13:18:25','2025-09-04 13:58:20');
 INSERT INTO page_lang VALUES(286,'all','menu.jsoncsv','JSON/CSV Converter','en','2025-08-15 13:32:48','2025-08-15 13:36:46');
 INSERT INTO page_lang VALUES(287,'all','menu.jsoncsv','JSON/CSV Konverter','de','2025-08-15 13:32:56','2025-08-15 13:32:56');
 INSERT INTO page_lang VALUES(288,'all','menu.jsoncsv','JSON/CSV互转','zh','2025-08-15 13:33:14','2025-08-25 04:17:12');
 INSERT INTO page_lang VALUES(289,'all','menu.jsoncsv','Convertisseur JSON/CSV','fr','2025-08-15 13:36:26','2025-08-15 13:36:26');
+INSERT INTO page_lang VALUES(290,'all','jsoncsv.index','json与CSV格式相互转化工具','zh','2025-08-27 00:03:50','2025-08-27 00:03:51');
+INSERT INTO page_lang VALUES(291,'all','jsoncsv.index','JSON and CSV format conversion tool','en','2025-08-27 00:04:50','2025-09-04 14:23:36');
+INSERT INTO page_lang VALUES(292,'all','jsoncsv.seo_title','JSON与CSV转换工具','zh','2025-09-04 14:02:27','2025-09-04 14:02:27');
+INSERT INTO page_lang VALUES(293,'all','jsoncsv.seo_title','Free Online JSON to CSV Converter | CSV to JSON Tool','en','2025-09-04 14:02:27','2025-09-04 14:02:27');
+INSERT INTO page_lang VALUES(294,'all','jsoncsv.seo_description','Easily convert JSON to CSV and CSV to JSON online. Free, fast, and secure conversion tool that works directly in your browser. No file upload required.','en','2025-09-04 14:10:47','2025-09-04 14:10:47');
+INSERT INTO page_lang VALUES(295,'all','jsoncsv.seo_description','轻松实现 JSON 转 CSV 和 CSV 转 JSON 在线转换。免费、安全、快速，完全在浏览器中完成，无需上传文件。','zh','2025-09-04 14:10:47','2025-09-04 14:10:47');
+INSERT INTO page_lang VALUES(296,'all','jsoncsv.seo_keywords','JSON to CSV, CSV to JSON, online converter, free JSON to CSV tool, convert JSON, convert CSV, JSON converter, CSV converter, batch conversion','en','2025-09-04 14:10:47','2025-09-04 14:10:47');
+INSERT INTO page_lang VALUES(297,'all','jsoncsv.seo_keywords','JSON 转 CSV, CSV 转 JSON,在线转换工具,免费JSON转CSV,JSON转换器,CSV转换器,批量转换,前端工具','zh','2025-09-04 14:10:47','2025-09-04 14:10:47');
+CREATE TABLE tools (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  description TEXT,
+  route TEXT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+INSERT INTO tools VALUES(1,'QR Generator','Generate QR codes from text','/qr-generator','2025-08-26 23:58:43');
+INSERT INTO tools VALUES(2,'URL Shortener','Shorten long URLs','/url-shortener','2025-08-26 23:58:43');
+CREATE TABLE article (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  content TEXT NOT NULL,
+  title TEXT NOT NULL,
+  hits INTEGER DEFAULT 0,
+  type TEXT,
+  chapter INTEGER,
+  posted_time TEXT NOT NULL,
+  last_mod_time TEXT NOT NULL,
+  author_id INTEGER NOT NULL,
+  toc_id INTEGER,
+  status TEXT,
+  fee INTEGER,
+  keywords TEXT,
+  description TEXT
+);
+CREATE TABLE article_l (
+    id INTEGER NOT NULL,
+    lang_code TEXT NOT NULL, 
+    title TEXT NOT NULL,
+    content TEXT NOT NULL,
+    keywords TEXT,
+    description TEXT,
+    PRIMARY KEY (id, lang_code), 
+    FOREIGN KEY(id) REFERENCES article(id)
+);
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT DEFAULT '佚名',
+  email TEXT,
+  avatar TEXT DEFAULT 'noavatar.gif',
+  psw TEXT,
+  type INTEGER,
+  create_time TEXT,
+  position TEXT,
+  signature TEXT,
+  ip TEXT,
+  last_active_time TEXT,
+  is_active INTEGER DEFAULT 0,
+  paymentcode TEXT DEFAULT 'nopaymentcode.png',
+  active_code TEXT,
+  points INTEGER DEFAULT 0,
+  is_consult BLOB,
+  sid TEXT,
+  wechatAccount TEXT,
+  aliAccount TEXT,
+  amount REAL DEFAULT 0.00
+);
+INSERT INTO users VALUES(2,'Damon','121440270@qq.com','noavatar.gif','Mh07025971',NULL,'2025-08-27 14:42:28',NULL,NULL,NULL,'2025-08-27 14:42:28',1,'nopaymentcode.png','6e99f477f0e7e407a8f54969c6776380',0,NULL,NULL,NULL,NULL,0.0);
 CREATE TABLE _cf_METADATA (
         key INTEGER PRIMARY KEY,
         value BLOB
       );
-INSERT INTO _cf_METADATA VALUES(2,655);
+INSERT INTO _cf_METADATA VALUES(2,332);
 DELETE FROM sqlite_sequence;
-INSERT INTO sqlite_sequence VALUES('tools',6);
-INSERT INTO sqlite_sequence VALUES('d1_migrations',1);
-INSERT INTO sqlite_sequence VALUES('article',2);
-INSERT INTO sqlite_sequence VALUES('page_lang',289);
-INSERT INTO sqlite_sequence VALUES('users',4);
+INSERT INTO sqlite_sequence VALUES('tools',2);
+INSERT INTO sqlite_sequence VALUES('page_lang',297);
+INSERT INTO sqlite_sequence VALUES('users',2);
 CREATE UNIQUE INDEX idx_unique_lang_entry ON page_lang(route, key, lang);
 CREATE TRIGGER trg_page_lang_updated_at
 AFTER UPDATE ON page_lang
