@@ -1,8 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    head: {
+      script: [
+        {
+          src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1963722206933589",
+          async: true
+        }
+      ],
+      meta: [
+        { name: "google-adsense-account", content: "ca-pub-1963722206933589" } // 如果需要
+      ]
+    }
+  },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-
   nitro: {
     preset: "cloudflare_module",
     renderer: process.env.NITRO_PRESET === 'cloudflare_module'
