@@ -1,0 +1,19 @@
+{
+	"imageConvert": {
+		"webpToPngTitle": "WebP to PNG",
+		"webpToPngDesc": "Batch convert WebP images to PNG format. Supports multiple images, direct download or zip archive.",
+		"webpToJpgTitle": "WebP to JPG",
+		"webpToJpgDesc": "Batch convert WebP images to JPG format. Supports multiple images, direct download or zip archive.",
+		"description": "Select one or more images (WebP, PNG, JPG, JPEG, BMP, GIF, TIFF) and convert to your desired format. Supports batch processing and zip download.",
+		"selectedCount": "{count} images selected",
+		"clear": "Clear",
+		"targetFormat": "Target format",
+		"start": "Start conversion",
+		"progress": "Processing {current} of {total} images...",
+		"download": "Download",
+		"seoTitlePng": "WebP to PNG Online Tool | Batch Image Converter",
+		"seoDescPng": "Online WebP to PNG converter, batch image conversion, multi-language, best SEO, safe and efficient.",
+		"seoTitleJpg": "WebP to JPG Online Tool | Batch Image Converter",
+		"seoDescJpg": "Online WebP to JPG converter, batch image conversion, multi-language, best SEO, safe and efficient."
+	}
+}

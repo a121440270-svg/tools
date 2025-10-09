@@ -5,7 +5,7 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
        <!-- Font Compress Tool -->
-      <NuxtLink to="/font-compress" class="bg-white dark:bg-gray-800 p-6 rounded-lg border dark:border-gray-700 hover:shadow-md transition-shadow">
+  <NuxtLink to="/font-compress" class="p-6 rounded-lg border transition-shadow hover:shadow-md">
         <div class="flex items-center justify-between mb-3">
           <div class="text-primary">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -17,7 +17,7 @@
         <p class="text-gray-500 dark:text-gray-400 text-sm">{{$t('ttf.desc')}}</p>
       </NuxtLink>
       <!-- 图片转 WebP -->
-      <NuxtLink to="/image-to-webp" class="bg-white dark:bg-gray-800 p-6 rounded-lg border dark:border-gray-700 hover:shadow-md transition-shadow">
+  <NuxtLink to="/image-to-webp" class="p-6 rounded-lg border transition-shadow hover:shadow-md">
         <div class="flex items-center justify-between mb-3">
           <div class="text-primary">
             <!-- 图片图标 -->
@@ -33,8 +33,34 @@
           {{ t('webp.desc') }}
         </p>
       </NuxtLink>
+      <!-- WebP转JPG -->
+  <NuxtLink to="/webp-to-jpg" class="p-6 rounded-lg border transition-shadow hover:shadow-md">
+        <div class="flex items-center justify-between mb-3">
+          <div class="text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2" stroke="currentColor" fill="none"/>
+              <text x="12" y="16" text-anchor="middle" font-size="10" fill="currentColor">JPG</text>
+            </svg>
+          </div>
+        </div>
+  <h3 class="text-lg font-medium mb-1 dark:text-white">WebP转JPG</h3>
+  <p class="text-gray-500 dark:text-gray-200 text-sm">批量WebP转JPG，支持多图处理和压缩包下载。</p>
+      </NuxtLink>
+      <!-- WebP转PNG -->
+  <NuxtLink to="/webp-to-png" class="p-6 rounded-lg border transition-shadow hover:shadow-md">
+        <div class="flex items-center justify-between mb-3">
+          <div class="text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2" stroke="currentColor" fill="none"/>
+              <text x="12" y="16" text-anchor="middle" font-size="10" fill="currentColor">PNG</text>
+            </svg>
+          </div>
+        </div>
+  <h3 class="text-lg font-medium mb-1 dark:text-white">WebP转PNG</h3>
+  <p class="text-gray-500 dark:text-gray-200 text-sm">批量WebP转PNG，支持多图处理和压缩包下载。</p>
+      </NuxtLink>
       <!-- Token Generator -->
-      <NuxtLink to="/token-generator" class="bg-white dark:bg-gray-800 p-6 rounded-lg border dark:border-gray-700 hover:shadow-md transition-shadow">
+  <NuxtLink to="/token-generator" class="p-6 rounded-lg border transition-shadow hover:shadow-md">
         <div class="flex items-center justify-between mb-3">
           <div class="text-primary">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -54,7 +80,7 @@
       </NuxtLink>
 
       <!-- Hash Text -->
-      <NuxtLink to="/hash-text" class="bg-white dark:bg-gray-800 p-6 rounded-lg border dark:border-gray-700 hover:shadow-md transition-shadow">
+  <NuxtLink to="/hash-text" class="p-6 rounded-lg border transition-shadow hover:shadow-md">
         <div class="flex items-center justify-between mb-3">
           <div class="text-primary">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -77,7 +103,7 @@
       </NuxtLink>
 
       <!-- JSON/CSV 转换工具 -->
-      <NuxtLink to="/json-csv-convert" class="bg-white dark:bg-gray-800 p-6 rounded-lg border dark:border-gray-700 hover:shadow-md transition-shadow">
+  <NuxtLink to="/json-csv-convert" class="p-6 rounded-lg border transition-shadow hover:shadow-md">
         <div class="flex items-center justify-between mb-3">
           <div class="text-primary">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">

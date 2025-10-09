@@ -23,7 +23,7 @@
       </el-alert>
     </div>
     <div v-if="errorMsg" class="mt-4 text-red-600">{{ errorMsg }}</div>
-    <div class="mt-8 p-4 bg-blue-50 border border-blue-100 rounded text-blue-900 text-sm">
+  <div class="mt-8 p-4 border rounded text-sm dark:text-gray-100">
       <strong>WebP</strong> {{ t('webp.intro') }}
     </div>
   </div>

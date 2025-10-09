@@ -10,13 +10,13 @@
 			"path": "../../../html/wechat-chat-app"
 		},
 		{
-			"path": "../../../html/shop"
-		},
-		{
 			"path": "../.."
 		},
 		{
 			"path": "../../../html/uikit-ecommerce-template-master"
+		},
+		{
+			"path": "../../../html/shop"
 		}
 	],
 	"settings": {}

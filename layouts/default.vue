@@ -676,9 +676,11 @@ const categories = ref([
     name: "menu.filetype",
     expanded: true,
     tools: [
-      { name: "menu.ttf", path: "/font-compress", icon: markRaw(FontIcon) },
-      { name: "menu.webp", path: "/image-to-webp", icon: markRaw(WebpIcon) },
-      { name: "menu.jsoncsv", path: "/json-csv-convert", icon: markRaw(FontIcon) },
+  { name: "menu.ttf", path: "/font-compress", icon: markRaw(FontIcon) },
+  { name: "menu.webp", path: "/image-to-webp", icon: markRaw(WebpIcon) },
+  { name: "menu.webpToJpg", path: "/webp-to-jpg", icon: markRaw(WebpIcon) },
+  { name: "menu.webpToPng", path: "/webp-to-png", icon: markRaw(WebpIcon) },
+  { name: "menu.jsoncsv", path: "/json-csv-convert", icon: markRaw(FontIcon) },
     ],
   },
   {
@@ -689,6 +691,12 @@ const categories = ref([
       { name: "menu.hash", path: "/hash-text", icon: markRaw(HashIcon) },
     ],
   },
+  {
+    name: "menu.about",
+    expanded: false,
+    path: "/about",
+    icon: markRaw(InfoIcon)
+  }
 ]);
 
 const toggleCategory = (index) => {

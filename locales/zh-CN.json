@@ -1,0 +1,19 @@
+{
+	"imageConvert": {
+		"webpToPngTitle": "WebP转PNG",
+		"webpToPngDesc": "批量将WebP图片转换为PNG格式，支持多图处理，单图直接下载，多图打包下载。",
+		"webpToJpgTitle": "WebP转JPG",
+		"webpToJpgDesc": "批量将WebP图片转换为JPG格式，支持多图处理，单图直接下载，多图打包下载。",
+		"description": "选择一张或多张图片（WebP、PNG、JPG、JPEG、BMP、GIF、TIFF），转换为你需要的格式。支持批量处理和压缩包下载。",
+		"selectedCount": "已选择{count}张图片",
+		"clear": "清空",
+		"targetFormat": "目标格式",
+		"start": "开始处理",
+		"progress": "正在处理第{current}/{total}张图片...",
+		"download": "下载",
+		"seoTitlePng": "WebP转PNG在线工具 | 图片格式转换 | 批量处理",
+		"seoDescPng": "在线WebP转PNG工具，支持批量图片转换，支持多语言，最佳SEO，安全高效。",
+		"seoTitleJpg": "WebP转JPG在线工具 | 图片格式转换 | 批量处理",
+		"seoDescJpg": "在线WebP转JPG工具，支持批量图片转换，支持多语言，最佳SEO，安全高效。"
+	}
+}
