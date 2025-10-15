@@ -13,3 +13,10 @@ enabled = true
 binding = "D1Database"
 database_name = "tools"
 database_id = "405fe41f-8f36-4910-b2e2-ed4f97e77ec7"  # 替换为实际 ID
+
+[[r2_buckets]]
+binding = 'imgbucket'
+bucket_name = 'imgbucket'
+
+[env.accountA]
+config = "~/.wrangler/config/tools.toml"

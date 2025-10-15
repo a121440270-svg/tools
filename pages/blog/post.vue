@@ -164,20 +164,19 @@ function initTinymce() {
       //         callback('movie.mp4', { source2: 'alt.ogg', poster: 'https://www.baidu.com/img/bd_logo1.png' });
       //       }
       //   },
-      images_upload_handler: function (blobInfo, success, failure, progress) {
-          let fd = new FormData();
-          fd.append("uploadfile",blobInfo.blob(), blobInfo.filename()); //这里挂载的是一个文件
-          $.ajax({
-              url: "/blog/user/upload",
-              type: "post",
-              data: fd,
-              cache: false,
-              contentType: false,
-              processData: false,
-              success: function (data) {
-                  success(location.protocol + "//" + location.host + "/blog/"+data)
-              },
-          });
+      images_upload_handler: async function (blobInfo, success, failure, progress) {
+          const formData = new FormData()
+          formData.append('file', blobInfo.blob(), blobInfo.filename())
+          try {
+            const res = await fetch('/api/upload', {
+              method: 'POST',
+              body: formData
+            })
+            const data = await res.json()
+            success(data)
+          } catch (err) {
+            failure(err)
+          }
       },convert_urls: false,
       toolbar_sticky: true,
       autosave_ask_before_unload: false,

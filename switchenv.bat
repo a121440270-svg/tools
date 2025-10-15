@@ -1,0 +1,1 @@
+copy tools.toml C:\Users\Administrator\.wrangler\config\default.toml    

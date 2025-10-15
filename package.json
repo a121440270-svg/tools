@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "se":"switchenv.bat",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
