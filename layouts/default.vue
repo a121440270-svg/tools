@@ -695,7 +695,7 @@ const categories = ref([
     name: "menu.about",
     expanded: false,
     path: "/about",
-    icon: markRaw(InfoIcon)
+    icon: markRaw(BlogIcon)
   }
 ]);
 

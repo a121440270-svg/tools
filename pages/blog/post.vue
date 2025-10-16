@@ -173,7 +173,8 @@ function initTinymce() {
               body: formData
             })
             const data = await res.json()
-            success(data)
+            success(location.protocol + "//" + location.host + "/api/file/"+data.name)
+            // success(data)
           } catch (err) {
             failure(err)
           }

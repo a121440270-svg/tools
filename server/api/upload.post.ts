@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
   const url = filename
   // 保存到 img 表
   const imgObj: Partial<Img> = {
-    name: file.filename || filename,
+    name: filename,
     path: url,
     type: file.type,
     relId: 0,
@@ -39,5 +39,5 @@ export default defineEventHandler(async (event) => {
   // 查询刚插入的图片（按 path 唯一）
   const imgs = await select<Img>('img', { path: url })
   const img = imgs && imgs.length > 0 ? imgs[0] : null
-  return { id: img?.id, name: img?.name }
+  return { id: img?.id, name: filename }
 })

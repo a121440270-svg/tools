@@ -4,6 +4,7 @@ export interface Img {
   name: string;
   path: string;
   type: string;
+  reltype: string;
   relId: number;
   alt?: string;
   createAt: string;
