@@ -172,6 +172,7 @@ const userCategories = ref([])
 const newCategory = ref('')
 
 const form = reactive({
+  id:'',
   title: '',
   content: '',
   category: '',

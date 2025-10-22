@@ -9,7 +9,11 @@ export default defineEventHandler(async (event) => {
       statusMessage: 'Title is required',
     });
   }
-   if (!body || !body.id) {
+    if (!body) {
+    throw new Error('updateArticle requires body with id')
+  }
+  const id = Number(body.id)
+  if (id && !Number.isNaN(id) && id > 0) {
      await updateArticle(body as any)
   }else{
     // 保存主表 Article

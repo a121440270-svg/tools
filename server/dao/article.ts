@@ -136,10 +136,13 @@ export async function createArticle(body: any) {
 }
 
 export async function updateArticle(body: any) {
-  if (!body || !body.id) {
-    throw new Error('updateArticle requires body.id')
+  if (!body) {
+    throw new Error('updateArticle requires body with id')
   }
   const id = Number(body.id)
+  if (!id || Number.isNaN(id) || id <= 0) {
+    throw new Error('updateArticle requires body.id > 0')
+  }
   const now = new Date().toISOString()
 
   // prepare updatable article fields (use same keys as createArticle defaults)
@@ -160,13 +163,6 @@ export async function updateArticle(body: any) {
   })
   // always update last_mod_time
   articleUpdate.last_mod_time = now
-
-
-  // also allow updating some common fields that may not be in defaults
-  const extraFields = ['category', 'catalog', 'toc_id', 'status', 'fee']
-  extraFields.forEach(f => {
-    if (Object.prototype.hasOwnProperty.call(body, f)) articleUpdate[f] = (body as any)[f]
-  })
 
   // perform article update
   try {
