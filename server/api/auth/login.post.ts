@@ -14,5 +14,10 @@ export default defineEventHandler(async (event) => {
   }
   // 更新最后活跃时间
   // 可选：await update('users', { last_active_time: new Date().toISOString().slice(0, 19).replace('T', ' ') }, { id: users[0].id })
-  return users[0]
+  
+  // 不返回密码等敏感字段
+    const user = users[0]
+  const safeUser = { ...user } as any
+  delete safeUser.psw
+  return safeUser
 })

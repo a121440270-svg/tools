@@ -88,7 +88,7 @@ const sorts = [
 // 获取文章列表
 const fetchArticles = async () => {
   try {
-    const { data, error } = await useFetch('/api/article', {
+    const { data, error } = await useFetch('/api/articlepage', {
       params: {
         page: currentPage.value,
         pageSize,

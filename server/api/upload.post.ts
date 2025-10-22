@@ -1,5 +1,5 @@
 import { defineEventHandler, readMultipartFormData } from 'h3'
-import { insert, select } from '../db/orm'
+import { insert, select } from '~/server/db/orm'
 import type { Img } from '~/server/models/img'
 
 export default defineEventHandler(async (event) => {

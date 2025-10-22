@@ -13,6 +13,7 @@
         </svg>
         {{ $t('blog.backToList') }}
       </NuxtLink>
+      
     </div>
 
     <div class="bg-white dark:bg-gray-800 p-4 sm:p-8 rounded-lg border dark:border-gray-700">
@@ -21,6 +22,12 @@
       <div class="mb-4 flex flex-wrap gap-4 items-center">
         <span class="px-2 py-1 bg-primary/10 text-primary rounded text-xs">{{ $t('blog.category') }}：{{ article.category }}</span>
         <span class="text-xs text-gray-500 dark:text-gray-400">{{ $t('blog.author') }}：{{ article.author }}</span>
+        <!-- edit link shown only to the article author -->
+      <span v-if="canEdit" class="text-xs text-gray-500 dark:text-gray-400">
+        <NuxtLink :to="editLink">
+          编辑
+        </NuxtLink>
+      </span>
         <span class="text-xs text-gray-500 dark:text-gray-400">{{ $t('blog.lastUpdate') }}：{{ formatDate(article.last_mod_time) }}</span>
         <span class="text-xs text-gray-500 dark:text-gray-400">{{ $t('blog.hits') }}：{{ article.hits }}</span>
         <div v-if="article.catalog && article.catalog.length" class="relative">
@@ -33,19 +40,46 @@
         </div>
       </div>
 
-      <div class="prose dark:prose-invert max-w-none">
-        {{ article.content }}
+      <div class="prose dark:prose-invert max-w-none" v-html="article.content">
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useHead } from '#app'
 const route = useRoute()
 const { data: articleRaw, pending } = useFetch(`/api/articles/${route.params.id}`)
 const showCatalog = ref(true)
-const { t } = useI18n()
-debugger
+const { t, locale } = useI18n()
+
+// attempt to get current user from common places (project may use different auth)
+const currentUserState = useState ? useState('user') : null
+const currentUser = computed(() => {
+  if (!currentUserState) return null
+  return currentUserState.value || null
+})
+
+// canEdit if current user's id or username matches article author fields
+const canEdit = computed(() => {
+  debugger
+  if (!article.value || !currentUser.value) return false
+  // prefer authorId if backend provides it
+  if (article.value.author_id && currentUser.value.id) {
+    return String(article.value.author_id) === String(currentUser.value.id)
+  }
+  // fall back to username/email matching
+  if (article.value.author && currentUser.value.username) {
+    return String(article.value.author) === String(currentUser.value.username)
+  }
+  return false
+})
+
+const editLink = computed(() => {
+  const id = route.params.id
+  const lang = locale?.value || ''
+  return { path: '/blog/post', query: { id, lang } }
+})
 const article = computed(() => {
   if (!articleRaw.value) return null
   // 兼容后端返回的 catalog 字段为字符串或数组
@@ -55,6 +89,22 @@ const article = computed(() => {
   }
   return { ...articleRaw.value, catalog }
 })
+
+useHead(() => ({
+  title: article.value?.title || t('blog.defaultTitle') || 'Blog',
+  meta: [
+    {
+      name: 'description',
+      content: article.value?.description || article.value?.summary || ''
+    },
+    {
+      name: 'keywords',
+      content: Array.isArray(article.value?.keywords)
+        ? article.value.keywords.join(', ')
+        : (article.value?.keywords || '')
+    }
+  ]
+}))
 
 function formatDate(dateStr) {
   if (!dateStr) return ''

@@ -1,9 +1,7 @@
 // server/api/tools.post.ts
-import { createArticle } from '~/server/dao/article';
+import { createArticle,updateArticle } from '~/server/dao/article';
 
 export default defineEventHandler(async (event) => {
-  const lang = getHeader(event, 'accept-language')?.split(',')[0] || 'en';
-  console.log(lang)
   const body = await readBody(event);
   if(null==body.title||''===body.title.trim()){
     throw createError({
@@ -11,9 +9,13 @@ export default defineEventHandler(async (event) => {
       statusMessage: 'Title is required',
     });
   }
-  body.posted_time = new Date().toISOString();
-  body.last_mod_time = new Date().toISOString();
-  body.author_id = 1;
-  await createArticle(body);
+   if (!body || !body.id) {
+     await updateArticle(body as any)
+  }else{
+    // 保存主表 Article
+  await createArticle(body as any)
+  }
+  
+
   return { success: true };
 });

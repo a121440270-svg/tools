@@ -1,3 +1,5 @@
+import { Utils } from "~/server/utils";
+
 /**
  * replaceInto: 如果指定属性组合存在则更新，否则插入
  * @param table 表名
@@ -30,23 +32,41 @@ export async function replaceInto<T>(table: string, data: Partial<T>, keys: stri
 function runAll<T>(stmt: any): Promise<T[]> {
   return stmt.all().then((res: unknown) => (res as T[]));
 }
+function runOne<T>(stmt: any): Promise<T | null> {
+  // prefer get() if available, otherwise fallback to all()[0]
+  if (typeof stmt.get === 'function') {
+    return stmt.get().then((res: unknown) => (res as T) || null).catch(() => null)
+  }
+  return stmt.all().then((res: unknown) => {
+    const arr = res as T[]
+    return (Array.isArray(arr) && arr.length > 0) ? arr[0] : null
+  }).catch(() => null)
+}
 export function getDb() {
   return useDatabase("myDatabase");
 }
 
 export async function select<T>(table: string, where?: { [key: string]: any }): Promise<T[]> {
   const db = getDb();
-  let whereClause = where
-    ? 'WHERE ' + Object.keys(where).map(k => `${k} = ?`).join(' AND ')
-    : '';
-  const values = where ? Object.values(where) : [];
-  if (null == values || values.length == 0) {
-    whereClause = ''
+  let clauseArr: string[] = [];
+  let params: any[] = [];
+  if (where) {
+    for (const k in where) {
+      if (where[k] === null) {
+        clauseArr.push(`${k} IS NULL`);
+      } else {
+        clauseArr.push(`${k} = ?`);
+        params.push(where[k]);
+      }
+    }
   }
-  console.log(`SELECT * FROM ${table} ${whereClause}`);
-  let stmt = db.prepare(`SELECT * FROM ${table} ${whereClause}`);
-  if (null != values && values.length > 0) {
-    stmt = stmt.bind(...values);
+  const whereClause = clauseArr.length > 0 ? 'WHERE ' + clauseArr.join(' AND ') : '';
+  const sql = `SELECT * FROM ${table} ${whereClause}`;
+  const fullSql = Utils.formatSqlWithParams(sql, params);
+  console.log('SQL:', fullSql);
+  let stmt = db.prepare(sql);
+  if (params.length > 0) {
+    stmt = stmt.bind(...params);
   }
   return runAll<T>(stmt);
 }
@@ -55,9 +75,19 @@ export async function insert<T>(table: string, data: Partial<T>) {
   const db = getDb();
   const keys = Object.keys(data);
   const placeholders = keys.map(() => '?').join(', ');
-  console.log(`INSERT INTO ${table} (${keys.join(', ')}) VALUES (${placeholders})`);
-  const stmt = db.prepare(`INSERT INTO ${table} (${keys.join(', ')}) VALUES (${placeholders})`);
-  await stmt.bind(...Object.values(data) as (string | number | boolean | null)[]).run();
+  const sql = `INSERT INTO ${table} (${keys.join(', ')}) VALUES (${placeholders}) RETURNING id`;
+  const params = Object.values(data) as (string | number | boolean | null)[];
+  const fullSql = Utils.formatSqlWithParams(sql, params);
+  try {
+    const stmt = db.prepare(sql);
+    console.log('SQL:', fullSql);
+    const result = await stmt.bind(...params).run();
+    console.log('Insert result:', result);
+    return result;
+  } catch (err) {
+    console.error('Insert error:', err);
+    throw err;
+  }
 }
 
 export async function update<T>(table: string, data: Partial<T>, where: { [key: string]: any }) {
@@ -246,6 +276,16 @@ export class QueryBuilder {
       stmt = stmt.bind(...params);
     }
     return runAll<T>(stmt);
+  }
+
+  async one<T>(): Promise<T | null> {
+    const db = getDb();
+    const { sql, params } = this.buildQuery();
+    let stmt = db.prepare(sql);
+    if (params.length > 0 && typeof stmt.bind === 'function') {
+      stmt = stmt.bind(...params);
+    }
+    return runOne<T>(stmt);
   }
 }
 

@@ -8,8 +8,6 @@ export interface Tool {
 }
 export interface Article {
   id: number;
-  content: string;
-  title: string;
   hits: number;
   type?: string;
   chapter?: number;
@@ -19,12 +17,11 @@ export interface Article {
   toc_id?: number;
   status?: string;
   fee?: number;
-  keywords?: string;
-  description?: string;
 }
 
 export interface ArticleL {
   id: number;
+  article_id: number;
   lang_code: string;
   title: string;
   content: string;
