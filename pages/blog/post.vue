@@ -18,6 +18,7 @@
             <el-select
                   v-model="form.language"
                   @change="onLanguageChange"
+                  multiple
                   filterable
                   allow-create
                   default-first-option
@@ -177,7 +178,7 @@ const form = reactive({
   catalog: '',
   type: 'original',
   categories: [],
-  language: 'zh',
+  language: [],
   keywords: '',
   description: ''
 })
@@ -216,6 +217,7 @@ onMounted(async () => {
           form.category = main.article.category || ''
           form.language =[ main.articlel.lang_code || '']
           form.categories = (main.article.category && String(main.article.category).split(',').map(s => s.trim()).filter(Boolean)) || []
+          userCategories.value = form.categories
           form.type = main.article.type || form.type
           form.keywords = main.articlel.keywords || ''
           form.description = main.articlel.description || ''

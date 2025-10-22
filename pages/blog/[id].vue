@@ -62,7 +62,6 @@ const currentUser = computed(() => {
 
 // canEdit if current user's id or username matches article author fields
 const canEdit = computed(() => {
-  debugger
   if (!article.value || !currentUser.value) return false
   // prefer authorId if backend provides it
   if (article.value.author_id && currentUser.value.id) {
@@ -87,7 +86,7 @@ const article = computed(() => {
   if (typeof catalog === 'string') {
     catalog = catalog.split(',').map(i => i.trim()).filter(Boolean)
   }
-  return { ...articleRaw.value, catalog }
+  return { ...articleRaw.value.article,...articleRaw.value.articlel, catalog }
 })
 
 useHead(() => ({
