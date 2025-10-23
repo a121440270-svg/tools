@@ -197,7 +197,7 @@ INSERT INTO page_lang VALUES(191,'all','blog.backToList','返回列表','zh','20
 INSERT INTO page_lang VALUES(192,'all','blog.category','分类','zh','2025-08-01 04:30:25','2025-08-01 04:30:25');
 INSERT INTO page_lang VALUES(193,'all','common.loading','加载中...','en','2025-08-01 04:31:57','2025-08-01 04:31:57');
 INSERT INTO page_lang VALUES(194,'all','blog.backToList','返回列表','en','2025-08-01 04:31:57','2025-08-01 04:31:57');
-INSERT INTO page_lang VALUES(195,'all','blog.category','分类','en','2025-08-01 04:31:57','2025-08-01 04:31:57');
+INSERT INTO page_lang VALUES(195,'all','blog.category','Category','en','2025-08-01 04:31:57','2025-10-22 15:09:04');
 INSERT INTO page_lang VALUES(196,'all','webp.title','图片转 WebP','zh','2025-08-10 05:13:19','2025-08-10 05:39:35');
 INSERT INTO page_lang VALUES(197,'all','webp.desc','支持批量 jpg/png 图片转 webp，单张直接下载，多张打包为 zip 下载，纯前端实现。','zh','2025-08-10 05:13:19','2025-08-10 05:39:35');
 INSERT INTO page_lang VALUES(198,'all','webp.upload','上传图片','zh','2025-08-10 05:13:19','2025-08-10 05:13:19');
@@ -300,6 +300,72 @@ INSERT INTO page_lang VALUES(294,'all','jsoncsv.seo_description','Easily convert
 INSERT INTO page_lang VALUES(295,'all','jsoncsv.seo_description','轻松实现 JSON 转 CSV 和 CSV 转 JSON 在线转换。免费、安全、快速，完全在浏览器中完成，无需上传文件。','zh','2025-09-04 14:10:47','2025-09-04 14:10:47');
 INSERT INTO page_lang VALUES(296,'all','jsoncsv.seo_keywords','JSON to CSV, CSV to JSON, online converter, free JSON to CSV tool, convert JSON, convert CSV, JSON converter, CSV converter, batch conversion','en','2025-09-04 14:10:47','2025-09-04 14:10:47');
 INSERT INTO page_lang VALUES(297,'all','jsoncsv.seo_keywords','JSON 转 CSV, CSV 转 JSON,在线转换工具,免费JSON转CSV,JSON转换器,CSV转换器,批量转换,前端工具','zh','2025-09-04 14:10:47','2025-09-04 14:10:47');
+INSERT INTO page_lang VALUES(298,'all','imageConvert.webpToPngTitle','WebP转PNG','zh','2025-09-21 04:47:08','2025-09-21 04:47:08');
+INSERT INTO page_lang VALUES(299,'all','imageConvert.webpToPngDesc','批量将WebP图片转换为PNG格式，支持多图处理，单图直接下载，多图打包下载。','zh','2025-09-21 04:47:08','2025-09-21 04:47:08');
+INSERT INTO page_lang VALUES(300,'all','imageConvert.webpToJpgTitle','WebP转JPG','zh','2025-09-21 04:47:08','2025-09-21 04:47:08');
+INSERT INTO page_lang VALUES(301,'all','imageConvert.webpToJpgDesc','批量将WebP图片转换为JPG格式，支持多图处理，单图直接下载，多图打包下载。','zh','2025-09-21 04:47:08','2025-09-21 04:47:08');
+INSERT INTO page_lang VALUES(302,'all','imageConvert.description','选择一张或多张图片（WebP、PNG、JPG、JPEG、BMP、GIF、TIFF），转换为你需要的格式。支持批量处理和压缩包下载。','zh','2025-09-21 04:47:08','2025-09-21 04:47:08');
+INSERT INTO page_lang VALUES(303,'all','imageConvert.selectedCount','已选择{count}张图片','zh','2025-09-21 04:47:08','2025-09-21 04:47:08');
+INSERT INTO page_lang VALUES(304,'all','imageConvert.clear','清空','zh','2025-09-21 04:47:08','2025-09-21 04:47:08');
+INSERT INTO page_lang VALUES(305,'all','imageConvert.targetFormat','目标格式','zh','2025-09-21 04:47:09','2025-09-21 04:47:09');
+INSERT INTO page_lang VALUES(306,'all','imageConvert.start','开始处理','zh','2025-09-21 04:47:09','2025-09-21 04:47:09');
+INSERT INTO page_lang VALUES(307,'all','imageConvert.progress','正在处理第{current}/{total}张图片...','zh','2025-09-21 04:47:09','2025-09-21 04:47:09');
+INSERT INTO page_lang VALUES(308,'all','imageConvert.download','下载','zh','2025-09-21 04:47:09','2025-09-21 04:47:09');
+INSERT INTO page_lang VALUES(309,'all','imageConvert.seoTitlePng','WebP转PNG在线工具 | 图片格式转换 | 批量处理','zh','2025-09-21 04:47:09','2025-09-21 04:47:09');
+INSERT INTO page_lang VALUES(310,'all','imageConvert.seoDescPng','在线WebP转PNG工具，支持批量图片转换，支持多语言，最佳SEO，安全高效。','zh','2025-09-21 04:47:09','2025-09-21 04:47:09');
+INSERT INTO page_lang VALUES(311,'all','imageConvert.seoTitleJpg','WebP转JPG在线工具 | 图片格式转换 | 批量处理','zh','2025-09-21 04:47:09','2025-09-21 04:47:09');
+INSERT INTO page_lang VALUES(312,'all','imageConvert.seoDescJpg','在线WebP转JPG工具，支持批量图片转换，支持多语言，最佳SEO，安全高效。','zh','2025-09-21 04:47:09','2025-09-21 04:47:09');
+INSERT INTO page_lang VALUES(313,'all','imageConvert.webpToPngTitle','WebP to PNG','en','2025-09-21 04:47:28','2025-09-21 04:47:28');
+INSERT INTO page_lang VALUES(314,'all','imageConvert.webpToPngDesc','Batch convert WebP images to PNG format. Supports multiple images, direct download or zip archive.','en','2025-09-21 04:47:28','2025-09-21 04:47:28');
+INSERT INTO page_lang VALUES(315,'all','imageConvert.webpToJpgTitle','WebP to JPG','en','2025-09-21 04:47:28','2025-09-21 04:47:28');
+INSERT INTO page_lang VALUES(316,'all','imageConvert.webpToJpgDesc','Batch convert WebP images to JPG format. Supports multiple images, direct download or zip archive.','en','2025-09-21 04:47:28','2025-09-21 04:47:28');
+INSERT INTO page_lang VALUES(317,'all','imageConvert.description','Select one or more images (WebP, PNG, JPG, JPEG, BMP, GIF, TIFF) and convert to your desired format. Supports batch processing and zip download.','en','2025-09-21 04:47:28','2025-09-21 04:47:28');
+INSERT INTO page_lang VALUES(318,'all','imageConvert.selectedCount','{count} images selected','en','2025-09-21 04:47:28','2025-09-21 04:47:28');
+INSERT INTO page_lang VALUES(319,'all','imageConvert.clear','Clear','en','2025-09-21 04:47:28','2025-09-21 04:47:28');
+INSERT INTO page_lang VALUES(320,'all','imageConvert.targetFormat','Target format','en','2025-09-21 04:47:28','2025-09-21 04:47:28');
+INSERT INTO page_lang VALUES(321,'all','imageConvert.start','Start conversion','en','2025-09-21 04:47:28','2025-09-21 04:47:28');
+INSERT INTO page_lang VALUES(322,'all','imageConvert.progress','Processing {current} of {total} images...','en','2025-09-21 04:47:28','2025-09-21 04:47:28');
+INSERT INTO page_lang VALUES(323,'all','imageConvert.download','Download','en','2025-09-21 04:47:28','2025-09-21 04:47:28');
+INSERT INTO page_lang VALUES(324,'all','imageConvert.seoTitlePng','WebP to PNG Online Tool | Batch Image Converter','en','2025-09-21 04:47:28','2025-09-21 04:47:28');
+INSERT INTO page_lang VALUES(325,'all','imageConvert.seoDescPng','Online WebP to PNG converter, batch image conversion, multi-language, best SEO, safe and efficient.','en','2025-09-21 04:47:28','2025-09-21 04:47:28');
+INSERT INTO page_lang VALUES(326,'all','imageConvert.seoTitleJpg','WebP to JPG Online Tool | Batch Image Converter','en','2025-09-21 04:47:28','2025-09-21 04:47:28');
+INSERT INTO page_lang VALUES(327,'all','imageConvert.seoDescJpg','Online WebP to JPG converter, batch image conversion, multi-language, best SEO, safe and efficient.','en','2025-09-21 04:47:28','2025-09-21 04:47:28');
+INSERT INTO page_lang VALUES(328,'all','blog.lastUpdate','更新于','zh','2025-10-22 15:05:54','2025-10-22 15:05:54');
+INSERT INTO page_lang VALUES(329,'all','blog.lastUpdate','Update Time','en','2025-10-22 15:05:54','2025-10-22 15:05:54');
+INSERT INTO page_lang VALUES(330,'all','blog.edit','edit','en','2025-10-22 15:10:45','2025-10-22 15:10:45');
+INSERT INTO page_lang VALUES(331,'all','blog.edit','编辑','zh','2025-10-22 15:10:45','2025-10-22 15:10:45');
+INSERT INTO page_lang VALUES(332,'all','menu.about','关于','zh','2025-10-22 15:12:37','2025-10-22 15:13:23');
+INSERT INTO page_lang VALUES(333,'all','menu.about','About','en','2025-10-22 15:13:58','2025-10-22 15:13:58');
+INSERT INTO page_lang VALUES(334,'all','about.meTitle','About me','en','2025-10-22 15:27:49','2025-10-22 15:27:49');
+INSERT INTO page_lang VALUES(335,'all','about.meText1','Hi, I''m the developer of this site. I love frontend and tool development — feedback is welcome!','en','2025-10-22 15:27:49','2025-10-22 15:27:49');
+INSERT INTO page_lang VALUES(336,'all','about.contactEmail','Contact email:','en','2025-10-22 15:27:49','2025-10-22 15:27:49');
+INSERT INTO page_lang VALUES(337,'all','about.blogTitle','About this blog','en','2025-10-22 15:27:49','2025-10-22 15:27:49');
+INSERT INTO page_lang VALUES(338,'all','about.blogText','This blog shares frontend development, tool-making and technical notes. Welcome to follow and leave comments.','en','2025-10-22 15:27:49','2025-10-22 15:27:49');
+INSERT INTO page_lang VALUES(339,'all','about.toolsTitle','About the tools','en','2025-10-22 15:27:49','2025-10-22 15:27:49');
+INSERT INTO page_lang VALUES(340,'all','about.toolsText','All tools on this site are free online, supporting batch processing, format conversion and multilingual features. Updates ongoing.','en','2025-10-22 15:27:50','2025-10-22 15:27:50');
+INSERT INTO page_lang VALUES(341,'all','about.langsTitle','Supported languages','en','2025-10-22 15:27:50','2025-10-22 15:27:50');
+INSERT INTO page_lang VALUES(342,'all','about.langsList1','Chinese (Simplified)','en','2025-10-22 15:27:50','2025-10-22 15:27:50');
+INSERT INTO page_lang VALUES(343,'all','about.langsList2','English','en','2025-10-22 15:27:50','2025-10-22 15:27:50');
+INSERT INTO page_lang VALUES(344,'all','about.langsList3','More languages coming soon...','en','2025-10-22 15:27:50','2025-10-22 15:27:50');
+INSERT INTO page_lang VALUES(345,'all','about.tabMe','About me','en','2025-10-22 15:27:50','2025-10-22 15:27:50');
+INSERT INTO page_lang VALUES(346,'all','about.tabBlog','About blog','en','2025-10-22 15:27:50','2025-10-22 15:27:50');
+INSERT INTO page_lang VALUES(347,'all','about.tabTools','About tools','en','2025-10-22 15:27:50','2025-10-22 15:27:50');
+INSERT INTO page_lang VALUES(348,'all','about.tabLangs','Languages','en','2025-10-22 15:27:50','2025-10-22 15:27:50');
+INSERT INTO page_lang VALUES(349,'all','about.meTitle','关于我','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
+INSERT INTO page_lang VALUES(350,'all','about.meText1','你好，我是本网站的开发者，热爱前端与工具开发，欢迎交流与反馈！','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
+INSERT INTO page_lang VALUES(351,'all','about.contactEmail','联系邮箱：','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
+INSERT INTO page_lang VALUES(352,'all','about.blogTitle','关于博客','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
+INSERT INTO page_lang VALUES(353,'all','about.blogText','本博客分享前端开发、工具制作、技术心得等内容，欢迎关注和留言。','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
+INSERT INTO page_lang VALUES(354,'all','about.toolsTitle','关于工具','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
+INSERT INTO page_lang VALUES(355,'all','about.toolsText','本站所有工具均为免费在线使用，支持批量处理、格式转换、多语言等功能，持续更新中。','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
+INSERT INTO page_lang VALUES(356,'all','about.langsTitle','支持的多语言','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
+INSERT INTO page_lang VALUES(357,'all','about.langsList1','中文（简体）','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
+INSERT INTO page_lang VALUES(358,'all','about.langsList2','English','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
+INSERT INTO page_lang VALUES(359,'all','about.langsList3','其他语言持续添加中...','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
+INSERT INTO page_lang VALUES(360,'all','about.tabMe','关于我','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
+INSERT INTO page_lang VALUES(361,'all','about.tabBlog','关于博客','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
+INSERT INTO page_lang VALUES(362,'all','about.tabTools','关于工具','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
+INSERT INTO page_lang VALUES(363,'all','about.tabLangs','多语言','zh','2025-10-22 15:28:16','2025-10-22 15:28:16');
 CREATE TABLE tools (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL,
@@ -309,32 +375,6 @@ CREATE TABLE tools (
 );
 INSERT INTO tools VALUES(1,'QR Generator','Generate QR codes from text','/qr-generator','2025-08-26 23:58:43');
 INSERT INTO tools VALUES(2,'URL Shortener','Shorten long URLs','/url-shortener','2025-08-26 23:58:43');
-CREATE TABLE article (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  content TEXT NOT NULL,
-  title TEXT NOT NULL,
-  hits INTEGER DEFAULT 0,
-  type TEXT,
-  chapter INTEGER,
-  posted_time TEXT NOT NULL,
-  last_mod_time TEXT NOT NULL,
-  author_id INTEGER NOT NULL,
-  toc_id INTEGER,
-  status TEXT,
-  fee INTEGER,
-  keywords TEXT,
-  description TEXT
-);
-CREATE TABLE article_l (
-    id INTEGER NOT NULL,
-    lang_code TEXT NOT NULL, 
-    title TEXT NOT NULL,
-    content TEXT NOT NULL,
-    keywords TEXT,
-    description TEXT,
-    PRIMARY KEY (id, lang_code), 
-    FOREIGN KEY(id) REFERENCES article(id)
-);
 CREATE TABLE users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT DEFAULT '佚名',
@@ -357,16 +397,95 @@ CREATE TABLE users (
   aliAccount TEXT,
   amount REAL DEFAULT 0.00
 );
-INSERT INTO users VALUES(2,'Damon','121440270@qq.com','noavatar.gif','Mh07025971',NULL,'2025-08-27 14:42:28',NULL,NULL,NULL,'2025-08-27 14:42:28',1,'nopaymentcode.png','6e99f477f0e7e407a8f54969c6776380',0,NULL,NULL,NULL,NULL,0.0);
+INSERT INTO users VALUES(2,'Damon','121440270@qq.com','noavatar.gif','307025971',NULL,'2025-08-27 14:42:28',NULL,NULL,NULL,'2025-08-27 14:42:28',1,'nopaymentcode.png','6e99f477f0e7e407a8f54969c6776380',0,NULL,NULL,NULL,NULL,0.0);
 CREATE TABLE _cf_METADATA (
         key INTEGER PRIMARY KEY,
         value BLOB
       );
-INSERT INTO _cf_METADATA VALUES(2,332);
+INSERT INTO _cf_METADATA VALUES(2,2065);
+CREATE TABLE IF NOT EXISTS "img" (
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+  "name" TEXT,
+  "path" TEXT,
+  "type" TEXT,
+  "relId" INTEGER,
+  "alt" TEXT,
+  "createAt" TEXT,
+  "isDel" BOOLEAN DEFAULT 0,
+  "reltype" TEXT
+);
+CREATE TABLE IF NOT EXISTS "_article_old_20251020" (
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+  "content" TEXT NOT NULL,
+  "title" TEXT NOT NULL,
+  "hits" INTEGER DEFAULT 0,
+  "type" TEXT,
+  "chapter" INTEGER,
+  "posted_time" TEXT NOT NULL,
+  "last_mod_time" TEXT NOT NULL,
+  "author_id" INTEGER NOT NULL,
+  "toc_id" INTEGER,
+  "status" TEXT,
+  "fee" INTEGER
+);
+INSERT INTO _article_old_20251020 VALUES(1,'<p>dedede</p>','dede',0,'original',0,'2025-10-20T13:23:46.622Z','2025-10-20T13:23:46.622Z',1,NULL,NULL,NULL);
+INSERT INTO _article_old_20251020 VALUES(2,'<p>cxwec</p>','wedwe',0,'original',0,'2025-10-20T13:37:41.363Z','2025-10-20T13:37:41.363Z',1,NULL,NULL,NULL);
+INSERT INTO _article_old_20251020 VALUES(3,'<p>wedewdwe</p>','rfrfref',0,'original',0,'2025-10-20T13:53:35.191Z','2025-10-20T13:53:35.191Z',1,NULL,NULL,NULL);
+CREATE TABLE IF NOT EXISTS "_article_l_old_20251020" (
+  "id" INTEGER NOT NULL,
+  "article_id" INTEGER,
+  "lang_code" TEXT NOT NULL,
+  "title" TEXT NOT NULL,
+  "content" TEXT NOT NULL,
+  "keywords" TEXT,
+  "description" TEXT,
+  PRIMARY KEY ("id", "lang_code"),
+  FOREIGN KEY ("id") REFERENCES "article" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+CREATE TABLE IF NOT EXISTS "_article_l_old_20251021" (
+  "id" INTEGER NOT NULL,
+  "article_id" INTEGER,
+  "lang_code" TEXT NOT NULL,
+  "title" TEXT NOT NULL,
+  "content" TEXT NOT NULL,
+  "keywords" TEXT,
+  "description" TEXT,
+  PRIMARY KEY ("id"),
+  FOREIGN KEY ("id") REFERENCES "article" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+CREATE TABLE IF NOT EXISTS "article" (
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+  "hits" INTEGER DEFAULT 0,
+  "type" TEXT,
+  "chapter" INTEGER,
+  "posted_time" TEXT NOT NULL,
+  "last_mod_time" TEXT NOT NULL,
+  "author_id" INTEGER NOT NULL,
+  "toc_id" INTEGER,
+  "status" TEXT,
+  "fee" INTEGER
+);
+INSERT INTO article VALUES(10,0,'original',0,'2025-10-22T12:38:12.210Z','2025-10-22T12:44:13.806Z',2,NULL,NULL,NULL);
+CREATE TABLE IF NOT EXISTS "article_l" (
+  "id" INTEGER NOT NULL,
+  "article_id" INTEGER,
+  "lang_code" TEXT NOT NULL,
+  "title" TEXT NOT NULL,
+  "content" TEXT NOT NULL,
+  "keywords" TEXT,
+  "description" TEXT,
+  PRIMARY KEY ("id"),
+  FOREIGN KEY ("article_id") REFERENCES "article" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+INSERT INTO article_l VALUES(1,10,'en','test','<p>test</p>','test','test');
+INSERT INTO article_l VALUES(2,10,'zh','测试','<p>测试</p>','测试','测试');
 DELETE FROM sqlite_sequence;
 INSERT INTO sqlite_sequence VALUES('tools',2);
-INSERT INTO sqlite_sequence VALUES('page_lang',297);
+INSERT INTO sqlite_sequence VALUES('page_lang',363);
 INSERT INTO sqlite_sequence VALUES('users',2);
+INSERT INTO sqlite_sequence VALUES('img',0);
+INSERT INTO sqlite_sequence VALUES('_article_old_20251020',3);
+INSERT INTO sqlite_sequence VALUES('article',11);
 CREATE UNIQUE INDEX idx_unique_lang_entry ON page_lang(route, key, lang);
 CREATE TRIGGER trg_page_lang_updated_at
 AFTER UPDATE ON page_lang

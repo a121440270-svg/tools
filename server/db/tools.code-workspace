@@ -17,6 +17,9 @@
 		},
 		{
 			"path": "../../../html/shop"
+		},
+		{
+			"path": "../../../cmd"
 		}
 	],
 	"settings": {}

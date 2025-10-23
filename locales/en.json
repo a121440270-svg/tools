@@ -20,4 +20,22 @@
     "hash": "Hash Text",
     "jsoncsv": "JSON/CSV Converter"
   }
+  ,
+  "about": {
+    "meTitle": "About me",
+    "meText1": "Hi, I'm the developer of this site. I love frontend and tool development — feedback is welcome!",
+    "contactEmail": "Contact email:",
+    "blogTitle": "About this blog",
+    "blogText": "This blog shares frontend development, tool-making and technical notes. Welcome to follow and leave comments.",
+    "toolsTitle": "About the tools",
+    "toolsText": "All tools on this site are free online, supporting batch processing, format conversion and multilingual features. Updates ongoing.",
+    "langsTitle": "Supported languages",
+    "langsList1": "Chinese (Simplified)",
+    "langsList2": "English",
+    "langsList3": "More languages coming soon...",
+    "tabMe": "About me",
+    "tabBlog": "About blog",
+    "tabTools": "About tools",
+    "tabLangs": "Languages"
+  }
 }
