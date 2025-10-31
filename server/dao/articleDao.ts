@@ -1,6 +1,5 @@
-import { de } from 'element-plus/es/locales.mjs';
 import type { Article,ArticleL } from '../db/schema';
-import { select, insert, update, remove, selectCon } from '~/server/db/orm';
+import { insert, update, selectCon } from '~/server/db/orm';
 
 
 const TABLE = 'article';
@@ -9,7 +8,7 @@ export async function findArticles(where?: Partial<Article> & { page?: number, p
   , title?: string, content?: string, lang?: string }) {
   const query = selectCon('article')
   .select(['t.id','t.hits','t.type','t.chapter','t.posted_time',
-    't.last_mod_time','t.author_id','t.toc_id','t.status','t.fee','l.title','l.content'])
+    't.last_mod_time','t.author_id','t.toc_id','t.status','t.fee','l.title','l.content','l.slug'])
   .fromAlias('t')
   .join('article_l l', 't.id = l.article_id');
   const { page = 1, pageSize = 10, sort = 'hits', ...filters } = where || {};
@@ -132,7 +131,7 @@ export async function createArticle(body: any) {
     // 如果没有 article_l 表或插入失败，记录但不抛出
     console.warn('insert article_l failed', e)
   }
-
+  return id;
 }
 
 export async function updateArticle(body: any) {

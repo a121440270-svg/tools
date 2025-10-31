@@ -27,6 +27,7 @@ export interface ArticleL {
   content: string;
   keywords?: string;
   description?: string;
+  slug?: string;
 }
 
 export interface PageLang {

@@ -19,7 +19,7 @@
       <div v-if="activeTab === 'me'">
           <h2 class="text-xl font-bold mb-2">{{ $t('about.meTitle') }}</h2>
           <p class="mb-2">{{ $t('about.meText1') }}</p>
-          <p>{{ $t('about.contactEmail') }}<a href="mailto:your@email.com" class="underline text-primary">your@email.com</a></p>
+          <p>{{ $t('about.contactEmail') }}<a href="mailto:huiqinliu1005@gmail.com" class="underline text-primary">huiqinliu1005@gmail.com</a></p>
       </div>
       <div v-else-if="activeTab === 'blog'">
           <h2 class="text-xl font-bold mb-2">{{ $t('about.blogTitle') }}</h2>

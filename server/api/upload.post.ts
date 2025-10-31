@@ -3,6 +3,7 @@ import { insert, select } from '~/server/db/orm'
 import type { Img } from '~/server/models/img'
 
 export default defineEventHandler(async (event) => {
+  // return { id: 1, name: "111" }
   // 解析 multipart/form-data
   const files = await readMultipartFormData(event)
   const file = files?.find(f => f.name === 'file')

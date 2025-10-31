@@ -5,7 +5,7 @@
   <div v-else-if="article">
     <div class="flex items-center justify-between mb-6">
       <NuxtLink 
-        to="/blog" 
+        :to="localePath('/blog')" 
         class="flex items-center text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary-foreground"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
@@ -24,7 +24,7 @@
         <!-- <span class="text-xs text-gray-500 dark:text-gray-400">{{ $t('blog.author') }}：{{ article.author }}</span> -->
         <!-- edit link shown only to the article author -->
       <span v-if="canEdit" class="text-xs text-gray-500 dark:text-gray-400">
-        <NuxtLink :to="editLink">
+        <NuxtLink :to="localePath(editLink)">
           {{ $t('blog.edit') }}
         </NuxtLink>
       </span>
@@ -48,10 +48,14 @@
 
 <script setup>
 import { useHead } from '#app'
+import { useLocalePath } from '#i18n'
 const route = useRoute()
-const { data: articleRaw, pending } = useFetch(`/api/articles/${route.params.id}`)
+  const parts = route.params.id.split("-");
+  const id = parts[parts.length - 1];
+const { data: articleRaw, pending } = useFetch(`/api/articles/${id}`)
 const showCatalog = ref(true)
 const { t, locale } = useI18n()
+const localePath = useLocalePath()
 
 // attempt to get current user from common places (project may use different auth)
 const currentUserState = useState ? useState('user') : null
@@ -75,7 +79,8 @@ const canEdit = computed(() => {
 })
 
 const editLink = computed(() => {
-  const id = route.params.id
+  const parts = route.params.id.split("-");
+  const id = parts[parts.length - 1];
   const lang = locale?.value || ''
   return { path: '/blog/post', query: { id, lang } }
 })

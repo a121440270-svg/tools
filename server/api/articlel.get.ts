@@ -1,4 +1,4 @@
-import {findArticlelByIdAndLang } from '~/server/dao/article';
+import {findArticlelByIdAndLang } from '~/server/dao/articleDao';
 import { getCookie, getQuery, getHeader } from 'h3'
 
 export default defineEventHandler(async (event) => {

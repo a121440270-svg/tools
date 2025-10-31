@@ -34,7 +34,7 @@
           class="border-b dark:border-gray-700 pb-6 last:border-0"
         >
           <NuxtLink 
-            :to="`/blog/${article.id}`" 
+            :to="localePath(`/blog/${article.slug}-${article.id}`)" 
             class="block hover:text-primary dark:hover:text-primary-foreground"
           >
             <h2 class="text-xl font-medium mb-2">{{ article.title }}</h2>
@@ -68,6 +68,9 @@
 <script setup>
 import { ElMessage } from 'element-plus'
 import { useUser } from '~/composables/useAuth'
+import { useLocalePath } from '#i18n'
+
+const localePath = useLocalePath()
 const { t, locale } = useI18n()
 const user = useUser()
 const router = useRouter()
@@ -123,7 +126,7 @@ const sortedArticles = computed(() => articles.value)
 const handleWriteArticle = () => {
   if (!user.value?.id) {
     ElMessage.error(t('blog.needLogin'))
-    router.push('/auth/login')
+    router.push(localePath('/auth/login'))
     return
   }
   router.push('/blog/post')

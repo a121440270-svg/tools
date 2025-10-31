@@ -94,12 +94,17 @@ export async function update<T>(table: string, data: Partial<T>, where: { [key: 
   const db = getDb();
   const setClause = Object.keys(data).map(k => `${k} = ?`).join(', ');
   const whereClause = Object.keys(where).map(k => `${k} = ?`).join(' AND ');
-  const stmt = db.prepare(`UPDATE ${table} SET ${setClause} WHERE ${whereClause}`);
-  console.log(`UPDATE ${table} SET ${setClause} WHERE ${whereClause}`);
-  await stmt.bind(
+  const sql = `UPDATE ${table} SET ${setClause} WHERE ${whereClause}`;
+  const params = [
     ...Object.values(data) as (string | number | boolean | null)[],
     ...Object.values(where)
-  ).run();
+  ];
+  // 打印完整 SQL（带参数值）
+  // const fullSql = Utils.formatSqlWithParams(sql, params);
+  // console.log('Full UPDATE SQL:', fullSql);
+
+  const stmt = db.prepare(sql);
+  await stmt.bind(...params).run();
 }
 
 export async function remove(table: string, where: { [key: string]: any }) {
@@ -271,6 +276,7 @@ export class QueryBuilder {
   async all<T>(): Promise<T[]> {
     const db = getDb();
     const { sql, params } = this.buildQuery();
+    console.log('Full SQL:', Utils.formatSqlWithParams(sql, params));
     let stmt = db.prepare(sql);
     if (params.length > 0 && typeof stmt.bind === 'function') {
       stmt = stmt.bind(...params);
