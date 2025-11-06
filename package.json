@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "se":"switchenv.bat",
+    "se":"switchenv.bat && npx wrangler whoami && switchenvbk.bat",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
