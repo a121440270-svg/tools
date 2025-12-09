@@ -14,6 +14,7 @@ export async function findArticles(where?: Partial<Article> & { page?: number, p
   const { page = 1, pageSize = 10, sort = 'hits', ...filters } = where || {};
 
   query.where('l.lang_code', '=', where?.lang || 'en');
+  query.where('published_at', '<=',(new Date()).toISOString());
   delete filters.lang;
   // 添加 where 条件
   Object.entries(filters).forEach(([k, v]) => {
@@ -65,6 +66,13 @@ export async function findArticlelByIdAndLang(id: number,lang: string) {
 export async function createArticle(body: any) {
   // prepare Article and ArticleL instances with sensible defaults
     const now = new Date().toISOString()
+    // parse publishTime safely — only set published_at when a valid date is provided
+    let publishedAt: string | undefined = undefined
+    if (body && body.publishTime) {
+      const _d = new Date(body.publishTime)
+      if (!Number.isNaN(_d.getTime())) publishedAt = _d.toISOString()
+    }
+
     const article: Partial<Article> = {
       hits: 0,
       type: body.type ?? 'original',
@@ -72,6 +80,7 @@ export async function createArticle(body: any) {
       posted_time: now,
       last_mod_time: now,
       author_id: 1,
+      published_at: publishedAt
     }
   if(!body.id){
     article.last_mod_time = now
@@ -145,12 +154,20 @@ export async function updateArticle(body: any) {
   const now = new Date().toISOString()
 
   // prepare updatable article fields (use same keys as createArticle defaults)
+  // parse publishTime safely for updates as well
+  let publishedAt: string | undefined = undefined
+  if (body && body.publishTime) {
+    const _d = new Date(body.publishTime)
+    if (!Number.isNaN(_d.getTime())) publishedAt = _d.toISOString()
+  }
+
   const articleDefaults: Partial<Article> = {
     hits: 0,
     type: body.type ?? 'original',
     chapter: body.chapter ?? 0,
     last_mod_time: now,
     author_id: 1,
+    published_at: publishedAt
   }
 
   const articleUpdate: Record<string, any> = {}

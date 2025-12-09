@@ -14,6 +14,10 @@
         unique-opened
         router
       >
+            <el-menu-item index="/admin/img">
+        <el-icon><Picture /></el-icon>
+        <span>图片管理</span>
+      </el-menu-item>
         <el-menu-item index="/admin/userList">用户管理</el-menu-item>
         <el-menu-item index="/admin/articleList">文章管理</el-menu-item>
         <el-menu-item index="/admin/pageLang">多语言</el-menu-item>

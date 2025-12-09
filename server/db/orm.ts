@@ -129,7 +129,7 @@ export class QueryBuilder {
   private limitClause: string | null = null;
   private offsetClause: string | null = null;
   private alias: string | null = null;
-  private selectFields: string[] | null = null;
+  private selectFields: string[] | string | null = null;
   private orderByClause: string | null = null;
   private isCount: boolean = false;
   private updateData: Record<string, any> | null = null;
@@ -202,9 +202,9 @@ export class QueryBuilder {
     this.offsetClause = `OFFSET ${n}`;
     return this;
   }
-  // 选择字段
-  select(fields: string[]) {
-    this.selectFields = fields;
+  // 选择字段，可以接受字符串或字符串数组
+  select(fields: string | string[]) {
+    this.selectFields = Array.isArray(fields) ? fields : [fields as string];
     return this;
   }
 
@@ -243,7 +243,15 @@ export class QueryBuilder {
 
   private buildQuery(): { sql: string; params: any[] } {
     const tableAlias = this.alias ? `${this.table} ${this.alias}` : this.table;
-    const selectClause = this.selectFields ? this.selectFields.join(', ') : '*';
+    let selectClause: string;
+    if (!this.selectFields) {
+      selectClause = '*';
+    } else if (Array.isArray(this.selectFields)) {
+      selectClause = this.selectFields.join(', ');
+    } else {
+      // fallback: convert to string
+      selectClause = String(this.selectFields);
+    }
     const base = this.updateData
       ? `UPDATE ${tableAlias}`
       : `SELECT ${selectClause} FROM ${tableAlias}`;

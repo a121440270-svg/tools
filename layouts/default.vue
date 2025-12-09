@@ -666,11 +666,17 @@ const WebpIcon = defineComponent({
 });
 
 const categories = ref([
-  {
+      {
     name: "blog.name",
     expanded: true,
-    path: "/blog",
+    // Make blog a parent group so we can add sub-items like prompts
+    path: null,
     icon: markRaw(BlogIcon),
+    tools: [
+      { name: 'blog.name', path: '/blog', icon: markRaw(BlogIcon) },
+      // point the menu to the new frontend prompts page
+  { name: 'prompts.name', path: '/prompts', icon: markRaw(TokenIcon) }
+    ]
   },
   {
     name: "menu.filetype",

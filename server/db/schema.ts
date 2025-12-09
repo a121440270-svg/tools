@@ -17,6 +17,7 @@ export interface Article {
   toc_id?: number;
   status?: string;
   fee?: number;
+  published_at:string;
 }
 
 export interface ArticleL {

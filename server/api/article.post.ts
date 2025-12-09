@@ -1,6 +1,6 @@
 // server/api/tools.post.ts
 import { createArticle,updateArticle } from '~/server/dao/articleDao';
-import { linkImagesToTarget } from '../dao/imgDao';
+import {  imgDao } from '../dao/imgDao';
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
@@ -24,6 +24,6 @@ export default defineEventHandler(async (event) => {
     }
     id = createdId;
   }
-  await linkImagesToTarget(id, 'article', body.relImgs);
+  await imgDao.linkImagesToTarget(id, 'article', body.relImgs);
   return { success: true };
 });
