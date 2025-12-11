@@ -82,7 +82,7 @@ const total = ref(0)
 const articles = ref([])
 
 // 排序
-const sortBy = ref('hits')
+const sortBy = ref('posted_time')
 const sorts = [
   { label: 'blog.sort.hits', value: 'hits' },
   { label: 'blog.sort.time', value: 'posted_time' }

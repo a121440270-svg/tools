@@ -695,6 +695,7 @@ const categories = ref([
     tools: [
       { name: "menu.token", path: "/token-generator", icon: markRaw(TokenIcon) },
       { name: "menu.hash", path: "/hash-text", icon: markRaw(HashIcon) },
+      { name: "menu.uppercase", path: "/uppercase", icon: markRaw(TokenIcon) },
     ],
   },
   {

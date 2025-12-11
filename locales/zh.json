@@ -1,6 +1,7 @@
 {
   "menu": {
     "jsoncsv": "JSON/CSV转换工具"
+    ,"uppercase": "转大写工具"
   }
   ,
   "about": {
@@ -19,5 +20,14 @@
     "tabBlog": "关于博客",
     "tabTools": "关于工具",
     "tabLangs": "多语言"
+  }
+  ,
+  "uppercase": {
+    "desc": "将粘贴的文本自动转换为大写并复制到剪切板。",
+    "inputLabel": "在此粘贴文本：",
+    "placeholder": "粘贴文本（Ctrl+V），将自动转换为大写并复制...",
+    "copyBtn": "复制",
+    "clearBtn": "清空",
+    "tip": "粘贴后会自动转换并复制到剪贴板，也可点击复制按钮手动复制。"
   }
 }

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本转大写工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            transition: transform 0.3s ease;
+        }
+        
+        .container:hover {
+            transform: translateY(-5px);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .description {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        .input-section, .output-section {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #444;
+            font-weight: 500;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            resize: vertical;
+            min-height: 120px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #6a11cb;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+        }
+        
+        .output-section textarea {
+            background-color: #f9f9f9;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .copy-btn {
+            background-color: #6a11cb;
+            color: white;
+            flex: 1;
+            justify-content: center;
+        }
+        
+        .copy-btn:hover {
+            background-color: #5a0db3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+        }
+        
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+        
+        .clear-btn {
+            background-color: #f0f0f0;
+            color: #666;
+        }
+        
+        .clear-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .status-message {
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            opacity: 1;
+        }
+        
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+            opacity: 1;
+        }
+        
+        .info {
+            background-color: #e3f2fd;
+            color: #1565c0;
+            opacity: 1;
+        }
+        
+        .instructions {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 10px;
+            color: #444;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+            color: #666;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .button-container {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>文本转大写工具</h1>
+        <p class="description">粘贴文本后自动转换为大写并复制到剪贴板</p>
+        
+        <div class="input-section">
+            <label for="input-text">输入文本：</label>
+            <textarea id="input-text" placeholder="请在此处粘贴或输入文本..."></textarea>
+        </div>
+        
+        <div class="output-section">
+            <label for="output-text">大写文本：</label>
+            <textarea id="output-text" placeholder="转换后的大写文本将显示在这里..." readonly></textarea>
+        </div>
+        
+        <div class="button-container">
+            <button id="copy-btn" class="copy-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                </svg>
+                复制到剪贴板
+            </button>
+            <button id="clear-btn" class="clear-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                </svg>
+                清空
+            </button>
+        </div>
+        
+        <div id="status-message" class="status-message"></div>
+        
+        <div class="instructions">
+            <h3>使用说明：</h3>
+            <ul>
+                <li>在输入框中粘贴或输入文本</li>
+                <li>文本将自动转换为大写并显示在下方</li>
+                <li>点击"复制到剪贴板"按钮复制转换后的文本</li>
+                <li>复制结果将显示在上方状态区域</li>
+                <li>点击"清空"按钮可清除所有文本</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputText = document.getElementById('input-text');
+            const outputText = document.getElementById('output-text');
+            const copyBtn = document.getElementById('copy-btn');
+            const clearBtn = document.getElementById('clear-btn');
+            const statusMessage = document.getElementById('status-message');
+            
+            // 自动转换文本为大写
+            inputText.addEventListener('input', function() {
+                outputText.value = inputText.value.toUpperCase();
+                
+                // 如果输入框为空，隐藏状态消息
+                if (inputText.value === '') {
+                    statusMessage.className = 'status-message';
+                    statusMessage.textContent = '';
+                }
+            });
+            
+            // 复制功能
+            copyBtn.addEventListener('click', async function() {
+                if (outputText.value === '') {
+                    showStatus('请输入或粘贴文本后再复制', 'error');
+                    return;
+                }
+                
+                try {
+                    await navigator.clipboard.writeText(outputText.value);
+                    showStatus('文本已成功复制到剪贴板！', 'success');
+                } catch (err) {
+                    // 如果Clipboard API失败，使用备用方法
+                    try {
+                        outputText.select();
+                        document.execCommand('copy');
+                        showStatus('文本已成功复制到剪贴板！', 'success');
+                    } catch (backupErr) {
+                        showStatus('复制失败，请手动复制文本', 'error');
+                    }
+                }
+            });
+            
+            // 清空功能
+            clearBtn.addEventListener('click', function() {
+                inputText.value = '';
+                outputText.value = '';
+                statusMessage.className = 'status-message';
+                statusMessage.textContent = '';
+                inputText.focus();
+            });
+            
+            // 显示状态消息
+            function showStatus(message, type) {
+                statusMessage.textContent = message;
+                statusMessage.className = 'status-message ' + type;
+                
+                // 5秒后自动隐藏消息
+                setTimeout(() => {
+                    statusMessage.className = 'status-message';
+                    statusMessage.textContent = '';
+                }, 5000);
+            }
+            
+            // 初始提示
+            showStatus('请在上方输入或粘贴文本', 'info');
+        });
+    </script>
+</body>
+</html>

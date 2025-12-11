@@ -79,6 +79,19 @@
         </p>
       </NuxtLink>
 
+      <!-- Uppercase Tool -->
+  <NuxtLink to="/uppercase" class="p-6 rounded-lg border transition-shadow hover:shadow-md">
+        <div class="flex items-center justify-between mb-3">
+          <div class="text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 7h16M4 12h10M4 17h16" />
+            </svg>
+          </div>
+        </div>
+        <h3 class="text-lg font-medium mb-1 dark:text-white">{{ $t('menu.uppercase') }}</h3>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">快速将粘贴文本转换成大写并复制到剪切板。</p>
+      </NuxtLink>
+
       <!-- Hash Text -->
   <NuxtLink to="/hash-text" class="p-6 rounded-lg border transition-shadow hover:shadow-md">
         <div class="flex items-center justify-between mb-3">

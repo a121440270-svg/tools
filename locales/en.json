@@ -19,6 +19,7 @@
     "token": "Token Generator",
     "hash": "Hash Text",
     "jsoncsv": "JSON/CSV Converter"
+    ,"uppercase": "Uppercase"
   }
   ,
   "about": {
@@ -37,5 +38,14 @@
     "tabBlog": "About blog",
     "tabTools": "About tools",
     "tabLangs": "Languages"
+  }
+  ,
+  "uppercase": {
+    "desc": "Paste any text into the box — it will be converted to UPPERCASE and automatically copied to your clipboard.",
+    "inputLabel": "Paste text here:",
+    "placeholder": "Paste text (Ctrl+V) and it will be converted to UPPERCASE...",
+    "copyBtn": "Copy",
+    "clearBtn": "Clear",
+    "tip": "Pasting triggers automatic conversion + copy. You can also click Copy to copy the current text."
   }
 }
