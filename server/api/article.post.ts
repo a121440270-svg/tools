@@ -25,5 +25,5 @@ export default defineEventHandler(async (event) => {
     id = createdId;
   }
   await imgDao.linkImagesToTarget(id, 'article', body.relImgs);
-  return { success: true };
+  return { success: true,id:id };
 });
