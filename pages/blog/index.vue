@@ -51,16 +51,33 @@
     </div>
 
     <!-- Pagination section -->
-    <div class="mt-6 flex justify-center gap-2">
-      <button 
-        v-for="page in Math.ceil(total / pageSize)"
-        :key="page"
-        @click="currentPage = page"
-        class="px-3 py-1 rounded-md"
-        :class="page === currentPage ? 'bg-primary text-white' : 'bg-gray-100 dark:bg-gray-700'"
-      >
-        {{ page }}
-      </button>
+    <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <!-- 每页条数选择和总数 -->
+      <div class="flex items-center gap-2">
+        <span>{{$t('blog.pageSize')}}</span>
+        <select v-model.number="pageSize" @change="handlePageSizeChange" class="border rounded px-2 py-1 font-semibold bg-white text-gray-800 focus:ring-2 focus:ring-primary focus:border-primary shadow-sm">
+          <option v-for="size in [5, 10, 20, 50]" :key="size" :value="size">{{ size }}</option>
+        </select>
+        <span class="font-semibold text-gray-700">{{$t('blog.items')}}</span>
+        <span class="ml-2 text-gray-500">{{$t('blog.totalItems', { total: total })}}</span>
+      </div>
+      <!-- 分页条 -->
+      <div class="flex items-center gap-1">
+        <button :disabled="currentPage === 1" @click="changePage(1)" class="px-2 py-1 rounded" :class="currentPage === 1 ? 'bg-gray-200 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-600'">«</button>
+        <button :disabled="currentPage === 1" @click="changePage(currentPage-1)" class="px-2 py-1 rounded" :class="currentPage === 1 ? 'bg-gray-200 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-600'">‹</button>
+        <template v-for="page in paginationPages">
+          <button v-if="page === '...'" disabled class="px-2 py-1" :key="'ellipsis-'+page">...</button>
+          <button v-else @click="changePage(page)" :class="page === currentPage ? 'bg-primary text-white' : 'bg-gray-100 dark:bg-gray-700'" class="px-3 py-1 rounded-md" :key="'pagebtn-'+page">{{ page }}</button>
+        </template>
+        <button :disabled="currentPage === totalPages" @click="changePage(currentPage+1)" class="px-2 py-1 rounded" :class="currentPage === totalPages ? 'bg-gray-200 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-600'">›</button>
+        <button :disabled="currentPage === totalPages" @click="changePage(totalPages)" class="px-2 py-1 rounded" :class="currentPage === totalPages ? 'bg-gray-200 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-600'">»</button>
+      </div>
+      <!-- 跳转到指定页 -->
+      <div class="flex items-center gap-2">
+        <span>{{$t('blog.gotoPage') || '跳转到'}}</span>
+        <input type="number" v-model.number="jumpPage" min="1" :max="totalPages" class="border rounded px-2 py-1 w-16 font-semibold bg-white text-gray-800 focus:ring-2 focus:ring-primary focus:border-primary shadow-sm" @keyup.enter="handleJumpPage" />
+        <button @click="handleJumpPage" class="px-2 py-1 bg-primary text-white rounded font-semibold">{{$t('blog.go') || 'GO'}}</button>
+      </div>
     </div>
   </div>
 </template>
@@ -76,10 +93,49 @@ const user = useUser()
 const router = useRouter()
 
 // 分页参数
-const pageSize = 5
+const pageSize = ref(5)
 const currentPage = ref(1)
 const total = ref(0)
 const articles = ref([])
+const jumpPage = ref(1)
+
+const totalPages = computed(() => Math.max(1, Math.ceil(total.value / pageSize.value)))
+
+// 省略号分页算法
+const paginationPages = computed(() => {
+  const pages = []
+  const total = totalPages.value
+  const current = currentPage.value
+  if (total <= 7) {
+    for (let i = 1; i <= total; i++) pages.push(i)
+  } else {
+    pages.push(1)
+    if (current > 4) pages.push('...')
+    for (let i = Math.max(2, current - 2); i <= Math.min(total - 1, current + 2); i++) {
+      pages.push(i)
+    }
+    if (current < total - 3) pages.push('...')
+    pages.push(total)
+  }
+  return pages
+})
+
+function changePage(page) {
+  if (page < 1 || page > totalPages.value || page === currentPage.value) return
+  currentPage.value = page
+}
+
+function handlePageSizeChange() {
+  currentPage.value = 1
+  fetchArticles()
+}
+
+function handleJumpPage() {
+  let page = Number(jumpPage.value)
+  if (!page || page < 1) page = 1
+  if (page > totalPages.value) page = totalPages.value
+  currentPage.value = page
+}
 
 // 排序
 const sortBy = ref('posted_time')
@@ -94,7 +150,7 @@ const fetchArticles = async () => {
     const { data, error } = await useFetch('/api/articlepage', {
       params: {
         page: currentPage.value,
-        pageSize,
+        pageSize: pageSize.value,
         sort: sortBy.value
       }
     })
@@ -117,8 +173,8 @@ const fetchArticles = async () => {
   }
 }
 
-// 监听分页和排序变化
-watch([currentPage, sortBy], fetchArticles, { immediate: true })
+// 监听分页、排序、每页条数变化
+watch([currentPage, sortBy, pageSize], fetchArticles, { immediate: true })
 
 const paginatedArticles = computed(() => articles.value)
 const sortedArticles = computed(() => articles.value)

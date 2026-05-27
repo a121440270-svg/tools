@@ -290,22 +290,22 @@ onMounted(() => {
   if (process.env.NODE_ENV === "development") {
     console.log("development");
   } else {
-    let targetProtocol = "https:";
-    let url = window.location.href;
-    let protocol = window.location.protocol;
-    let changed = false;
-    if (protocol != targetProtocol) {
-      url = targetProtocol + url.substring(protocol.length);
-      changed = true;
-    }
-    if (url.indexOf("www.onlitools.com") > 0) {
-      url = url.replace("www.onlitools.com", "onlitools.com");
-      changed = true;
-    }
-    console.log(url);
-    if (changed) {
-      window.location.href = url;
-    }
+    // let targetProtocol = "https:";
+    // let url = window.location.href;
+    // let protocol = window.location.protocol;
+    // let changed = false;
+    // if (protocol != targetProtocol) {
+    //   url = targetProtocol + url.substring(protocol.length);
+    //   changed = true;
+    // }
+    // if (url.indexOf("www.onlitools.com") > 0) {
+    //   url = url.replace("www.onlitools.com", "onlitools.com");
+    //   changed = true;
+    // }
+    // console.log(url);
+    // if (changed) {
+    //   window.location.href = url;
+    // }
   }
   checkViewport();
   window.addEventListener("resize", checkViewport);

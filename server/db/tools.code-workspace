@@ -20,6 +20,12 @@
 		},
 		{
 			"path": "../../../cmd"
+		},
+		{
+			"path": "../../../html/studio"
+		},
+		{
+			"path": "../../../shopSpider"
 		}
 	],
 	"settings": {}

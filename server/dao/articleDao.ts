@@ -34,6 +34,7 @@ export async function findArticles(where?: Partial<Article> & { page?: number, p
 
   // 统计总数
   const countQuery = selectCon('article');
+  countQuery.where('published_at', '<=',(new Date()).toISOString());
   Object.entries(filters).forEach(([k, v]) => {
     countQuery.where(k, '=', v);
   });
@@ -67,7 +68,7 @@ export async function createArticle(body: any) {
   // prepare Article and ArticleL instances with sensible defaults
     const now = new Date().toISOString()
     // parse publishTime safely — only set published_at when a valid date is provided
-    let publishedAt: string | undefined = undefined
+    let publishedAt: string | undefined = now
     if (body && body.publishTime) {
       const _d = new Date(body.publishTime)
       if (!Number.isNaN(_d.getTime())) publishedAt = _d.toISOString()
@@ -77,8 +78,8 @@ export async function createArticle(body: any) {
       hits: 0,
       type: body.type ?? 'original',
       chapter: body.chapter ?? 0,
-      posted_time: now,
-      last_mod_time: now,
+      posted_time: publishedAt,
+      last_mod_time: publishedAt,
       author_id: 1,
       published_at: publishedAt
     }
@@ -93,7 +94,8 @@ export async function createArticle(body: any) {
       title: '',
       content: '',
       keywords: body.keywords || '',
-      description: body.metaDescription || body.description || ''
+      description: body.metaDescription || body.description || '',
+      slug: body.slug || ''
     }
   
     // map properties from body into article/articleL when names match
@@ -155,7 +157,7 @@ export async function updateArticle(body: any) {
 
   // prepare updatable article fields (use same keys as createArticle defaults)
   // parse publishTime safely for updates as well
-  let publishedAt: string | undefined = undefined
+  let publishedAt: string | undefined = now
   if (body && body.publishTime) {
     const _d = new Date(body.publishTime)
     if (!Number.isNaN(_d.getTime())) publishedAt = _d.toISOString()
@@ -165,7 +167,7 @@ export async function updateArticle(body: any) {
     hits: 0,
     type: body.type ?? 'original',
     chapter: body.chapter ?? 0,
-    last_mod_time: now,
+    last_mod_time: publishedAt,
     author_id: 1,
     published_at: publishedAt
   }
@@ -195,7 +197,8 @@ export async function updateArticle(body: any) {
     title: '',
     content: '',
     keywords: body.keywords || '',
-    description: body.metaDescription || body.description || ''
+    description: body.metaDescription || body.description || '',
+    slug: body.slug || ''
   }
 
   // build article_l payload from body

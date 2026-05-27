@@ -79,6 +79,11 @@
   },
   "blog": {
     "title": "博客文章",
+    "pageSize": "每页显示",
+    "items": "条",
+    "gotoPage": "跳转到",
+    "go": "跳转",
+    "totalItems": "共 {total} 条",
     "write": "写文章",
     "author": "作者",
     "posted": "发布日期",

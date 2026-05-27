@@ -79,6 +79,11 @@
   },
   "blog": {
     "title": "Articles de blog",
+    "pageSize": "Par page",
+    "items": "articles",
+    "gotoPage": "Aller à la page",
+    "go": "Aller",
+    "totalItems": "Total {total} articles",
     "write": "Écrire un article",
     "author": "Auteur",
     "posted": "Date de publication",
