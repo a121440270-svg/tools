@@ -1,7 +1,11 @@
 name = "tools"
+account_id = "aed369c9a117167519dad25a5f48439f"
 compatibility_date = "2025-01-09"
 main = "./.output/server/index.mjs"
 assets = { directory = "./.output/public/", binding = "ASSETS" }
+
+[vars]
+AGNES_API_BASE_URL = "https://apihub.agnes-ai.com"
 
 # Workers Logs
 # Docs: https://developers.cloudflare.com/workers/observability/logs/workers-logs/

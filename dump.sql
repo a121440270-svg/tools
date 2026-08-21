@@ -358,44 +358,73 @@ INSERT INTO page_lang VALUES(352,'all','about.blogTitle','关于博客','zh','20
 INSERT INTO page_lang VALUES(353,'all','about.blogText','本博客分享前端开发、工具制作、技术心得等内容，欢迎关注和留言。','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
 INSERT INTO page_lang VALUES(354,'all','about.toolsTitle','关于工具','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
 INSERT INTO page_lang VALUES(355,'all','about.toolsText','本站所有工具均为免费在线使用，支持批量处理、格式转换、多语言等功能，持续更新中。','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
-INSERT INTO page_lang VALUES(356,'all','about.langsTitle','支持的多语言','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
-INSERT INTO page_lang VALUES(357,'all','about.langsList1','中文（简体）','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
-INSERT INTO page_lang VALUES(358,'all','about.langsList2','English','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
-INSERT INTO page_lang VALUES(359,'all','about.langsList3','其他语言持续添加中...','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
-INSERT INTO page_lang VALUES(360,'all','about.tabMe','关于我','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
-INSERT INTO page_lang VALUES(361,'all','about.tabBlog','关于博客','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
-INSERT INTO page_lang VALUES(362,'all','about.tabTools','关于工具','zh','2025-10-22 15:28:15','2025-10-22 15:28:15');
-INSERT INTO page_lang VALUES(363,'all','about.tabLangs','多语言','zh','2025-10-22 15:28:16','2025-10-22 15:28:16');
-CREATE TABLE tools (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT NOT NULL,
-  description TEXT,
-  route TEXT NOT NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+INSERT INTO page_lang VALUES(364,'all','menu.image','图片工具','zh','2026-07-25 00:00:00','2026-07-25 00:00:00');
+INSERT INTO page_lang VALUES(365,'all','menu.image','Image Tools','en','2026-07-25 00:00:00','2026-07-25 00:00:00');
+INSERT INTO page_lang VALUES(366,'all','menu.webpToJpg','WebP转JPG','zh','2026-07-25 00:00:00','2026-07-25 00:00:00');
+INSERT INTO page_lang VALUES(367,'all','menu.webpToJpg','WebP to JPG','en','2026-07-25 00:00:00','2026-07-25 00:00:00');
+INSERT INTO page_lang VALUES(368,'all','menu.webpToPng','WebP转PNG','zh','2026-07-25 00:00:00','2026-07-25 00:00:00');
+INSERT INTO page_lang VALUES(369,'all','menu.webpToPng','WebP to PNG','en','2026-07-25 00:00:00','2026-07-25 00:00:00');
+INSERT INTO page_lang VALUES(370,'all','menu.imageCompress','图片压缩','zh','2026-07-25 00:00:00','2026-07-25 00:00:00');
+INSERT INTO page_lang VALUES(371,'all','menu.imageCompress','Image Compress','en','2026-07-25 00:00:00','2026-07-25 00:00:00');
+INSERT INTO page_lang VALUES(372,'all','menu.idPhoto','证件照生成','zh','2026-07-25 00:00:00','2026-07-25 00:00:00');
+INSERT INTO page_lang VALUES(373,'all','menu.idPhoto','ID Photo Maker','en','2026-07-25 00:00:00','2026-07-25 00:00:00');
+CREATE TABLE tools (
+
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+  name TEXT NOT NULL,
+
+  description TEXT,
+
+  route TEXT NOT NULL,
+
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+
 );
 INSERT INTO tools VALUES(1,'QR Generator','Generate QR codes from text','/qr-generator','2025-08-26 23:58:43');
 INSERT INTO tools VALUES(2,'URL Shortener','Shorten long URLs','/url-shortener','2025-08-26 23:58:43');
-CREATE TABLE users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT DEFAULT '佚名',
-  email TEXT,
-  avatar TEXT DEFAULT 'noavatar.gif',
-  psw TEXT,
-  type INTEGER,
-  create_time TEXT,
-  position TEXT,
-  signature TEXT,
-  ip TEXT,
-  last_active_time TEXT,
-  is_active INTEGER DEFAULT 0,
-  paymentcode TEXT DEFAULT 'nopaymentcode.png',
-  active_code TEXT,
-  points INTEGER DEFAULT 0,
-  is_consult BLOB,
-  sid TEXT,
-  wechatAccount TEXT,
-  aliAccount TEXT,
-  amount REAL DEFAULT 0.00
+CREATE TABLE users (
+
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+  name TEXT DEFAULT '佚名',
+
+  email TEXT,
+
+  avatar TEXT DEFAULT 'noavatar.gif',
+
+  psw TEXT,
+
+  type INTEGER,
+
+  create_time TEXT,
+
+  position TEXT,
+
+  signature TEXT,
+
+  ip TEXT,
+
+  last_active_time TEXT,
+
+  is_active INTEGER DEFAULT 0,
+
+  paymentcode TEXT DEFAULT 'nopaymentcode.png',
+
+  active_code TEXT,
+
+  points INTEGER DEFAULT 0,
+
+  is_consult BLOB,
+
+  sid TEXT,
+
+  wechatAccount TEXT,
+
+  aliAccount TEXT,
+
+  amount REAL DEFAULT 0.00
+
 );
 INSERT INTO users VALUES(2,'Damon','121440270@qq.com','noavatar.gif','307025971',NULL,'2025-08-27 14:42:28',NULL,NULL,NULL,'2025-08-27 14:42:28',1,'nopaymentcode.png','6e99f477f0e7e407a8f54969c6776380',0,NULL,NULL,NULL,NULL,0.0);
 CREATE TABLE _cf_METADATA (
@@ -403,79 +432,143 @@ CREATE TABLE _cf_METADATA (
         value BLOB
       );
 INSERT INTO _cf_METADATA VALUES(2,2065);
-CREATE TABLE IF NOT EXISTS "img" (
-  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-  "name" TEXT,
-  "path" TEXT,
-  "type" TEXT,
-  "relId" INTEGER,
-  "alt" TEXT,
-  "createAt" TEXT,
-  "isDel" BOOLEAN DEFAULT 0,
-  "reltype" TEXT
+CREATE TABLE IF NOT EXISTS "img" (
+
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+
+  "name" TEXT,
+
+  "path" TEXT,
+
+  "type" TEXT,
+
+  "relId" INTEGER,
+
+  "alt" TEXT,
+
+  "createAt" TEXT,
+
+  "isDel" BOOLEAN DEFAULT 0,
+
+  "reltype" TEXT
+
 );
-CREATE TABLE IF NOT EXISTS "_article_old_20251020" (
-  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-  "content" TEXT NOT NULL,
-  "title" TEXT NOT NULL,
-  "hits" INTEGER DEFAULT 0,
-  "type" TEXT,
-  "chapter" INTEGER,
-  "posted_time" TEXT NOT NULL,
-  "last_mod_time" TEXT NOT NULL,
-  "author_id" INTEGER NOT NULL,
-  "toc_id" INTEGER,
-  "status" TEXT,
-  "fee" INTEGER
+CREATE TABLE IF NOT EXISTS "_article_old_20251020" (
+
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+
+  "content" TEXT NOT NULL,
+
+  "title" TEXT NOT NULL,
+
+  "hits" INTEGER DEFAULT 0,
+
+  "type" TEXT,
+
+  "chapter" INTEGER,
+
+  "posted_time" TEXT NOT NULL,
+
+  "last_mod_time" TEXT NOT NULL,
+
+  "author_id" INTEGER NOT NULL,
+
+  "toc_id" INTEGER,
+
+  "status" TEXT,
+
+  "fee" INTEGER
+
 );
 INSERT INTO _article_old_20251020 VALUES(1,'<p>dedede</p>','dede',0,'original',0,'2025-10-20T13:23:46.622Z','2025-10-20T13:23:46.622Z',1,NULL,NULL,NULL);
 INSERT INTO _article_old_20251020 VALUES(2,'<p>cxwec</p>','wedwe',0,'original',0,'2025-10-20T13:37:41.363Z','2025-10-20T13:37:41.363Z',1,NULL,NULL,NULL);
 INSERT INTO _article_old_20251020 VALUES(3,'<p>wedewdwe</p>','rfrfref',0,'original',0,'2025-10-20T13:53:35.191Z','2025-10-20T13:53:35.191Z',1,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS "_article_l_old_20251020" (
-  "id" INTEGER NOT NULL,
-  "article_id" INTEGER,
-  "lang_code" TEXT NOT NULL,
-  "title" TEXT NOT NULL,
-  "content" TEXT NOT NULL,
-  "keywords" TEXT,
-  "description" TEXT,
-  PRIMARY KEY ("id", "lang_code"),
-  FOREIGN KEY ("id") REFERENCES "article" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
+CREATE TABLE IF NOT EXISTS "_article_l_old_20251020" (
+
+  "id" INTEGER NOT NULL,
+
+  "article_id" INTEGER,
+
+  "lang_code" TEXT NOT NULL,
+
+  "title" TEXT NOT NULL,
+
+  "content" TEXT NOT NULL,
+
+  "keywords" TEXT,
+
+  "description" TEXT,
+
+  PRIMARY KEY ("id", "lang_code"),
+
+  FOREIGN KEY ("id") REFERENCES "article" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
+
 );
-CREATE TABLE IF NOT EXISTS "_article_l_old_20251021" (
-  "id" INTEGER NOT NULL,
-  "article_id" INTEGER,
-  "lang_code" TEXT NOT NULL,
-  "title" TEXT NOT NULL,
-  "content" TEXT NOT NULL,
-  "keywords" TEXT,
-  "description" TEXT,
-  PRIMARY KEY ("id"),
-  FOREIGN KEY ("id") REFERENCES "article" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
+CREATE TABLE IF NOT EXISTS "_article_l_old_20251021" (
+
+  "id" INTEGER NOT NULL,
+
+  "article_id" INTEGER,
+
+  "lang_code" TEXT NOT NULL,
+
+  "title" TEXT NOT NULL,
+
+  "content" TEXT NOT NULL,
+
+  "keywords" TEXT,
+
+  "description" TEXT,
+
+  PRIMARY KEY ("id"),
+
+  FOREIGN KEY ("id") REFERENCES "article" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
+
 );
-CREATE TABLE IF NOT EXISTS "article" (
-  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-  "hits" INTEGER DEFAULT 0,
-  "type" TEXT,
-  "chapter" INTEGER,
-  "posted_time" TEXT NOT NULL,
-  "last_mod_time" TEXT NOT NULL,
-  "author_id" INTEGER NOT NULL,
-  "toc_id" INTEGER,
-  "status" TEXT,
-  "fee" INTEGER
+CREATE TABLE IF NOT EXISTS "article" (
+
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+
+  "hits" INTEGER DEFAULT 0,
+
+  "type" TEXT,
+
+  "chapter" INTEGER,
+
+  "posted_time" TEXT NOT NULL,
+
+  "last_mod_time" TEXT NOT NULL,
+
+  "author_id" INTEGER NOT NULL,
+
+  "toc_id" INTEGER,
+
+  "status" TEXT,
+
+  "fee" INTEGER
+
 );
 INSERT INTO article VALUES(10,0,'original',0,'2025-10-22T12:38:12.210Z','2025-10-22T12:44:13.806Z',2,NULL,NULL,NULL);
-CREATE TABLE IF NOT EXISTS "article_l" (
-  "id" INTEGER NOT NULL,
-  "article_id" INTEGER,
-  "lang_code" TEXT NOT NULL,
-  "title" TEXT NOT NULL,
-  "content" TEXT NOT NULL,
-  "keywords" TEXT,
-  "description" TEXT,
-  PRIMARY KEY ("id"),
-  FOREIGN KEY ("article_id") REFERENCES "article" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
+CREATE TABLE IF NOT EXISTS "article_l" (
+
+  "id" INTEGER NOT NULL,
+
+  "article_id" INTEGER,
+
+  "lang_code" TEXT NOT NULL,
+
+  "title" TEXT NOT NULL,
+
+  "content" TEXT NOT NULL,
+
+  "keywords" TEXT,
+
+  "description" TEXT,
+
+  PRIMARY KEY ("id"),
+
+  FOREIGN KEY ("article_id") REFERENCES "article" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
+
 );
 INSERT INTO article_l VALUES(1,10,'en','test','<p>test</p>','test','test');
 INSERT INTO article_l VALUES(2,10,'zh','测试','<p>测试</p>','测试','测试');
@@ -487,10 +580,15 @@ INSERT INTO sqlite_sequence VALUES('img',0);
 INSERT INTO sqlite_sequence VALUES('_article_old_20251020',3);
 INSERT INTO sqlite_sequence VALUES('article',11);
 CREATE UNIQUE INDEX idx_unique_lang_entry ON page_lang(route, key, lang);
-CREATE TRIGGER trg_page_lang_updated_at
-AFTER UPDATE ON page_lang
-FOR EACH ROW
-BEGIN
-  UPDATE page_lang SET updated_at = CURRENT_TIMESTAMP WHERE id = OLD.id;
+CREATE TRIGGER trg_page_lang_updated_at
+
+AFTER UPDATE ON page_lang
+
+FOR EACH ROW
+
+BEGIN
+
+  UPDATE page_lang SET updated_at = CURRENT_TIMESTAMP WHERE id = OLD.id;
+
 END;
 COMMIT;

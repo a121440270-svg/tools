@@ -1,15 +1,22 @@
 export default defineEventHandler(async(event)=> {
-
-    const db = useDatabase("myDatabase");
-
-    // const users = await db.sql`SELECT * FROM tools`;
-    
-    // return users.rows;
-    const results  = await db.prepare(
-        "SELECT * FROM tools WHERE name = ?",
-      )
-        .bind("QR Generator")
-        .all();
-    return results;
-
+    try {
+        const db = useDatabase("myDatabase");
+        const results = await db.prepare(
+            "SELECT * FROM tools WHERE name = ?",
+        )
+            .bind("QR Generator")
+            .all();
+        return results;
+    } catch (error) {
+        console.error("Database error:", error);
+        // Return default tools if database is unavailable
+        return {
+            success: false,
+            message: "Database not initialized. Please run migrations.",
+            tools: [
+                { id: 1, name: 'QR Generator', description: 'Generate QR codes', route: '/qr' },
+                { id: 2, name: 'URL Shortener', description: 'Shorten URLs', route: '/url-shortener' }
+            ]
+        };
+    }
 })

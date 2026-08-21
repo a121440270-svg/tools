@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "se":"switchenv.bat && npx wrangler whoami && switchenvbk.bat",
+    "se": "switchenv.bat && npx wrangler whoami && switchenvbk.bat",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
@@ -13,6 +13,7 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
+    "@imgly/background-removal": "^1.7.0",
     "@nuxtjs/i18n": "^9.5.5",
     "@nuxtjs/sitemap": "^7.4.3",
     "@nuxtjs/tailwindcss": "^6.13.2",

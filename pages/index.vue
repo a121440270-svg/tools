@@ -4,6 +4,33 @@
     <h2 class="text-2xl font-medium mb-6 text-gray-900 dark:text-white">All the tools</h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <NuxtLink to="/image-generator" class="p-6 rounded-lg border transition-shadow hover:shadow-md">
+        <div class="flex items-center justify-between mb-3">
+          <div class="text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke-width="2"/>
+              <path d="M8 15l2.5-3 2.5 2.5L16 9l5 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="9" cy="9" r="1.5" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="text-lg font-medium mb-1 dark:text-white">{{ $t('menu.agnes_image') }}</h3>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">{{ $t('agnesImage.subtitle') }}</p>
+      </NuxtLink>
+
+      <NuxtLink to="/video-generator" class="p-6 rounded-lg border transition-shadow hover:shadow-md">
+        <div class="flex items-center justify-between mb-3">
+          <div class="text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <rect x="3" y="3" width="18" height="18" rx="3" stroke-width="2"/>
+              <path d="M10 8l6 4-6 4V8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="text-lg font-medium mb-1 dark:text-white">{{ $t('menu.agnes_video') }}</h3>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">{{ $t('agnesVideo.subtitle') }}</p>
+      </NuxtLink>
+
        <!-- Font Compress Tool -->
   <NuxtLink to="/font-compress" class="p-6 rounded-lg border transition-shadow hover:shadow-md">
         <div class="flex items-center justify-between mb-3">

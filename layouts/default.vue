@@ -1,6 +1,6 @@
 <template>
   <!-- 确保根div闭合 -->
-  <div class="min-h-screen flex">
+  <div class="min-h-screen flex flex-col lg:flex-row">
     <!-- 移动端顶部导航栏 -->
     <header
       class="lg:hidden border-b bg-white dark:bg-gray-800 dark:border-gray-700"
@@ -33,13 +33,13 @@
     <!-- 侧边栏   fixed left-0 top-0 h-screen w-64 bg-gray-100 -->
     <aside
       :class="[
-        'sidebar-gradient fixed top-0 left-0 bottom-0 transition-all duration-300 z-30 overflow-y-auto',
+        'sidebar-gradient fixed top-0 bottom-0 transition-all duration-300 z-30 overflow-y-auto',
         isDesktop
           ? isSidebarCollapsed
-            ? 'w-0 overflow-hidden'
-            : 'w-64'
+            ? 'w-0 left-0 overflow-hidden'
+            : 'w-64 left-0'
           : isSidebarOpen
-          ? 'w-64'
+          ? 'w-64 left-0'
           : 'w-64 -left-64',
       ]"
     >
@@ -118,8 +118,8 @@
 
     <!-- 主内容区 flex-1 transition-all duration-300 lg:ml-64 -->
     <div
-      class="flex-1 min-w-0 transition-all duration-300"
-      :style="isDesktop && !isSidebarCollapsed ? 'ml-64' : ''"
+      class="flex-1 min-w-0 w-full transition-all duration-300"
+      :style="{ marginLeft: isDesktop && !isSidebarCollapsed ? '16rem' : '0' }"
     >
       <!-- 桌面端顶部导航栏 -->
       <header
@@ -205,7 +205,7 @@
       </header>
 
       <!-- 内容 -->
-      <main class="p-4 md:p-6 bg-background dark:bg-gray-900">
+      <main class="p-4 pt-0 md:p-6 md:pt-6 bg-background dark:bg-gray-900">
         <slot />
       </main>
     </div>
@@ -252,7 +252,11 @@ const isDesktop = ref(false);
 
 // 检查是否为桌面视图
 const checkViewport = () => {
-  isDesktop.value = window.innerWidth >= 1024;
+  const desktop = window.innerWidth >= 1024;
+  isDesktop.value = desktop;
+  if (desktop) {
+    isSidebarOpen.value = false;
+  }
 };
 
 // 切换侧边栏
@@ -682,11 +686,22 @@ const categories = ref([
     name: "menu.filetype",
     expanded: true,
     tools: [
-  { name: "menu.ttf", path: "/font-compress", icon: markRaw(FontIcon) },
-  { name: "menu.webp", path: "/image-to-webp", icon: markRaw(WebpIcon) },
-  { name: "menu.webpToJpg", path: "/webp-to-jpg", icon: markRaw(WebpIcon) },
-  { name: "menu.webpToPng", path: "/webp-to-png", icon: markRaw(WebpIcon) },
-  { name: "menu.jsoncsv", path: "/json-csv-convert", icon: markRaw(FontIcon) },
+      { name: "menu.ttf", path: "/font-compress", icon: markRaw(FontIcon) },
+      { name: "menu.jsoncsv", path: "/json-csv-convert", icon: markRaw(FontIcon) },
+    ],
+  },
+  {
+    name: "menu.image",
+    expanded: true,
+    icon: markRaw(WebpIcon),
+    tools: [
+      { name: "menu.webp", path: "/image-to-webp", icon: markRaw(WebpIcon) },
+      { name: "menu.webpToJpg", path: "/webp-to-jpg", icon: markRaw(WebpIcon) },
+      { name: "menu.webpToPng", path: "/webp-to-png", icon: markRaw(WebpIcon) },
+      { name: "menu.imageCompress", path: "/image-compress", icon: markRaw(WebpIcon) },
+      { name: "menu.idPhoto", path: "/id-photo", icon: markRaw(WebpIcon) },
+      { name: "menu.agnes_image", path: "/image-generator", icon: markRaw(WebpIcon) },
+      { name: "menu.agnes_video", path: "/video-generator", icon: markRaw(WebpIcon) },
     ],
   },
   {

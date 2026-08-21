@@ -18,8 +18,10 @@
     "webp": "Image to WebP",
     "token": "Token Generator",
     "hash": "Hash Text",
-    "jsoncsv": "JSON/CSV Converter"
-    ,"uppercase": "Uppercase"
+    "jsoncsv": "JSON/CSV Converter",
+    "uppercase": "Uppercase",
+    "agnes_image": "AI Image (Free)",
+    "agnes_video": "AI Video (Free)"
   }
   ,
   "about": {
@@ -47,5 +49,54 @@
     "copyBtn": "Copy",
     "clearBtn": "Clear",
     "tip": "Pasting triggers automatic conversion + copy. You can also click Copy to copy the current text."
+  },
+  "idPhoto": {
+    "title": "ID Photo Generator",
+    "subtitle": "Upload a portrait, then adjust the background, size and crop in one click.",
+    "uploadText": "Click or drag an image here",
+    "uploadHint": "Supports JPG, PNG, WEBP images",
+    "preview": "Preview",
+    "size": "Size preset",
+    "bgColor": "Background color",
+    "custom": "Custom",
+    "download": "Download photo",
+    "reUpload": "Re-upload",
+    "cutout": "Remove background",
+    "processing": "Processing...",
+    "cleared": "Image cleared",
+    "cutoutSuccess": "Background removed",
+    "cutoutError": "Failed to remove background. Please try again.",
+    "sizes": {
+      "oneInch": "1 inch",
+      "twoInch": "2 inch",
+      "smallOneInch": "Small 1 inch",
+      "passport": "Passport",
+      "visa": "Visa",
+      "socialSecurity": "Social security"
+    },
+    "adjust": "Adjustments",
+    "brightness": "Brightness",
+    "contrast": "Contrast",
+    "saturation": "Saturation",
+    "crop": "Crop",
+    "top": "Top",
+    "left": "Left",
+    "zoom": "Zoom",
+    "resetCrop": "Reset crop",
+    "seoDesc": "Create passport, ID, and visa photo templates online. Adjust size, crop, brightness, and color in seconds.",
+    "seoKeywords": "free ID photo, online ID photo, convert everyday photo to ID photo, passport photo, visa photo, background removal, change photo background"
+  }
+  ,
+  "agnesImage": {
+    "title": "Free AI Image Generator",
+    "subtitle": "Generate high-quality images for free. Simple prompts, fast results.",
+    "seoDesc": "Free AI image generation — create photos, art, and product visuals using advanced models.",
+    "footnote": "Supported by Agnes AI"
+  },
+  "agnesVideo": {
+    "title": "Free AI Video Generator",
+    "subtitle": "Generate short AI videos for free. Configure resolution, frames and fps.",
+    "seoDesc": "Free AI video generation — produce short clips from prompts using advanced video models.",
+    "footnote": "Supported by Agnes AI"
   }
 }
