@@ -71,14 +71,46 @@ const outputType = ref('ttf')
 const fontInputRef = ref(null)
 const textInputRef = ref(null)
 
+const pageTitle = computed(() => t('font.headtitle') || 'TTF Extraction & Compression')
+const pageDescription = computed(() => t('font.seo_desc') || 'Compress TTF fonts by subset, reduce file size, and download optimized font files for web and frontend projects.')
+const pageKeywords = computed(() => t('font.seo_keywords') || 'TTF, font compression, font subset, web optimization, font tools')
+
 useHead({
-  title: t('menu.ttf') || 'TTF extraction/compression',
+  title: pageTitle.value,
   meta: [
-    { name: 'description', content: t('font.seo_desc') },
-    { name: 'keywords', content: t('font.seo_keywords') }
+    { name: 'description', content: pageDescription.value },
+    { name: 'keywords', content: pageKeywords.value },
+    { property: 'og:title', content: pageTitle.value },
+    { property: 'og:description', content: pageDescription.value },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        name: pageTitle.value,
+        description: pageDescription.value,
+        applicationCategory: 'UtilitiesApplication',
+        operatingSystem: 'Any',
+        browserRequirements: 'Requires JavaScript',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD'
+        },
+        featureList: pageKeywords.value
+          .split(',')
+          .map(item => item.trim())
+          .filter(Boolean),
+        isAccessibleForFree: true,
+        category: 'Font Tools'
+      })
+    }
   ]
 })
-
 
 const charSet = computed(() => {
   // 去重排序
