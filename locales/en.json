@@ -19,6 +19,7 @@
     "token": "Token Generator",
     "hash": "Hash Text",
     "jsoncsv": "JSON/CSV Converter",
+    "jsonFormatter": "JSON Formatter",
     "uppercase": "Uppercase",
     "agnes_image": "AI Image (Free)",
     "agnes_video": "AI Video (Free)"

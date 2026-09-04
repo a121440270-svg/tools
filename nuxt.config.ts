@@ -9,7 +9,11 @@ export default defineNuxtConfig({
         }
       ],
       meta: [
-        { name: "google-adsense-account", content: "ca-pub-1963722206933589" } // 如果需要
+        { name: "google-adsense-account", content: "ca-pub-1963722206933589" }, // 如果需要
+                {
+          name: 'baidu-site-verification',
+          content: 'codeva-BmOApso5X8'
+        }
       ]
     }
   },

@@ -1,6 +1,7 @@
 {
   "menu": {
     "jsoncsv": "JSON/CSV转换工具",
+    "jsonFormatter": "JSON 格式化工具",
     "uppercase": "转大写工具",
     "agnes_image": "图片生成（免费）",
     "agnes_video": "视频生成（免费）"

@@ -1,6 +1,6 @@
-oauth_token = "cfoat_3KfBgHlN7mcGw2gV5cjsRI20N-kHSWKqszChnoQK0aQ.5C0cUmgvEp6K8TyLUi9c2ICXgP-B6d9oJ19n8HcdX54"
-expiration_time = "2026-08-21T15:29:32.794Z"
-refresh_token = "cfort_JfNPZjCPLPZyPSnqb3oltzIr9VLikpd98WhMDAbloYc.GI1iLlBpj5bA820yXRjnxWNgfvSFQXI7uQZNWVRHb9I"
+oauth_token = "cfoat_ZBvrhqAEGooeq0eZCq_uCKhJ2JJproXkfEMAiv-MiIw.rUqkyT1i2MXFrpsKp-wwXiWmFogePeyPaIUGLX3E52E"
+expiration_time = "2026-09-04T15:05:37.441Z"
+refresh_token = "cfort_TSKbLHn2NgvijsHa2QLnwpo-v5oK81i8eOnkOWQfBiM.7UqHMkdxPpBlxBAbeMhOjpjUP8g9VSqr3J5uMDwckh4"
 scopes = [
   "account:read",
   "user:read",

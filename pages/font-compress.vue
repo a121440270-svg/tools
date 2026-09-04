@@ -1,8 +1,9 @@
 <template>
-  <div class="max-w-2xl mx-auto py-10">
-    <h1 class="text-2xl font-bold mb-4">{{ t('font.title') }}</h1>
-    <p class="mb-4 text-gray-600">
-      {{ t('font.desc') }}
+  <div class="max-w-3xl mx-auto py-10">
+    <h1 class="text-3xl font-bold mb-4">Free Font Compressor &amp; Subsetter</h1>
+    <p class="mb-4 text-gray-600 text-base leading-7">
+      Compress TTF fonts online, remove unused glyphs and characters, and reduce font file size with font subsetting.
+      Upload a TTF file, keep only the characters you need, and export a lighter font for the web.
     </p>
     <el-form :label-width="'100px'" class="mb-6">
       <el-form-item :label="t('font.upload')">
@@ -47,6 +48,56 @@
       </el-alert>
     </div>
     <div v-if="errorMsg" class="mt-4 text-red-600">{{ t('font.error', { msg: errorMsg }) }}</div>
+
+    <section class="mt-10 space-y-8">
+      <div class="rounded-xl border border-gray-200 bg-gray-50 p-5">
+        <h2 class="text-xl font-semibold mb-2">What is font subsetting?</h2>
+        <p class="text-gray-700 leading-7">
+          Font subsetting removes unused glyphs and characters from a font file, creating a smaller font that only contains the characters your project actually needs.
+          This is one of the most effective ways to reduce font file size and improve web performance.
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-gray-200 p-5">
+        <h2 class="text-xl font-semibold mb-3">How to compress a TTF font</h2>
+        <ol class="list-decimal pl-5 text-gray-700 leading-7 space-y-2">
+          <li>Upload your TTF font file.</li>
+          <li>Enter the characters or text you want to keep.</li>
+          <li>Choose the output format such as TTF or WOFF.</li>
+          <li>Click Start Compression and download the optimized font.</li>
+        </ol>
+      </div>
+
+      <div class="rounded-xl border border-gray-200 p-5">
+        <h2 class="text-xl font-semibold mb-3">Why use a font compressor?</h2>
+        <p class="text-gray-700 leading-7">
+          Large fonts can slow down page loading, especially on mobile devices or when a website uses multiple font files.
+          A font compressor helps reduce the size of your TTF font by removing unnecessary glyphs and exporting a more efficient font subset for the web.
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-gray-200 p-5">
+        <h2 class="text-xl font-semibold mb-3">Frequently asked questions</h2>
+        <div class="space-y-5 text-gray-700">
+          <div>
+            <h3 class="font-semibold text-gray-900">What is a font subsetting tool?</h3>
+            <p class="mt-1 leading-7">A font subsetting tool keeps only the characters you need and removes the rest, creating a smaller and more efficient font file.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900">How do I reduce the size of a TTF file?</h3>
+            <p class="mt-1 leading-7">Upload the TTF, input the required characters, and regenerate a subset font. This removes unused glyphs and reduces file size.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900">Does font subsetting improve web performance?</h3>
+            <p class="mt-1 leading-7">Yes. Smaller font files reduce download size and can help pages load faster while keeping the required characters available.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900">Is WOFF smaller than TTF?</h3>
+            <p class="mt-1 leading-7">WOFF is typically more compact for web use because it is optimized for browser delivery. Combining WOFF output with font subsetting is a common optimization approach.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -71,9 +122,9 @@ const outputType = ref('ttf')
 const fontInputRef = ref(null)
 const textInputRef = ref(null)
 
-const pageTitle = computed(() => t('font.headtitle') || 'TTF Extraction & Compression')
-const pageDescription = computed(() => t('font.seo_desc') || 'Compress TTF fonts by subset, reduce file size, and download optimized font files for web and frontend projects.')
-const pageKeywords = computed(() => t('font.seo_keywords') || 'TTF, font compression, font subset, web optimization, font tools')
+const pageTitle = computed(() => 'Font Compressor Online – Compress & Subset TTF Fonts')
+const pageDescription = computed(() => 'Compress and subset TTF fonts online. Remove unused glyphs and characters to reduce font file size and optimize web fonts for faster loading.')
+const pageKeywords = computed(() => 'font compressor, font compression tool, font subsetting tool, font subsetter, TTF compressor, compress TTF font, reduce font file size, font optimizer, web font optimizer')
 
 useHead({
   title: pageTitle.value,

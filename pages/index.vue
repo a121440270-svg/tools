@@ -124,8 +124,8 @@
                 class="group rounded-xl border border-slate-200 bg-slate-50 p-3 transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md dark:border-slate-700 dark:bg-slate-800/70 dark:hover:border-blue-500"
               >
                 <div class="mb-2 flex items-center justify-between">
-                  <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-white text-lg shadow-sm dark:bg-slate-700">
-                    {{ tool.icon }}
+                  <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-white shadow-sm dark:bg-slate-700">
+                    <component :is="tool.icon" class="h-5 w-5 text-slate-700 dark:text-slate-100" />
                   </div>
                   <span class="rounded-full bg-blue-50 px-2 py-1 text-[10px] font-medium uppercase tracking-[0.12em] text-blue-600 dark:bg-blue-500/10 dark:text-blue-300">
                     Tool
@@ -150,11 +150,116 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+definePageMeta({
+  layout: false
+})
+
+import { computed, defineComponent, h, ref } from 'vue'
 
 const { t } = useI18n()
 
-// definePageMeta({ layout: false })
+const createIcon = (children) => defineComponent({
+  name: 'ToolSvgIcon',
+  setup() {
+    return () => h(
+      'svg',
+      {
+        xmlns: 'http://www.w3.org/2000/svg',
+        viewBox: '0 0 24 24',
+        fill: 'none',
+        stroke: 'currentColor',
+        'stroke-width': 1.8,
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round',
+        class: 'h-5 w-5'
+      },
+      children
+    )
+  }
+})
+
+const SparklesIcon = createIcon([
+  h('path', { d: 'M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7L12 3z' }),
+  h('path', { d: 'M18.5 14l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9.9-2.1z' }),
+  h('path', { d: 'M5.5 14l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9.9-2.1z' })
+])
+
+const VideoIcon = createIcon([
+  h('rect', { x: '3', y: '5', width: '14', height: '14', rx: '2' }),
+  h('path', { d: 'M17 10l4-3v10l-4-3' }),
+  h('path', { d: 'M8 9l5 3-5 3V9z' })
+])
+
+const ImageIcon = createIcon([
+  h('rect', { x: '3', y: '5', width: '18', height: '14', rx: '2' }),
+  h('circle', { cx: '9', cy: '10', r: '2.5' }),
+  h('path', { d: 'M21 15l-5-5L7 19' })
+])
+
+const CompressIcon = createIcon([
+  h('path', { d: 'M5 9h14' }),
+  h('path', { d: 'M8 5v4' }),
+  h('path', { d: 'M16 5v4' }),
+  h('path', { d: 'M9 15h6' }),
+  h('path', { d: 'M12 15v4' }),
+  h('path', { d: 'M4 19h16' })
+])
+
+const CameraIcon = createIcon([
+  h('path', { d: 'M4 8h3l1.5-2h7L17 8h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z' }),
+  h('circle', { cx: '12', cy: '12', r: '3.5' })
+])
+
+const TypographyIcon = createIcon([
+  h('path', { d: 'M4 18V6h7' }),
+  h('path', { d: 'M4 10h9' }),
+  h('path', { d: 'M15 6h5v12' }),
+  h('path', { d: 'M15 12h5' })
+])
+
+const FileIcon = createIcon([
+  h('path', { d: 'M14 3h5v18h-14V3h5' }),
+  h('path', { d: 'M14 3v5h5' }),
+  h('path', { d: 'M8 12h8M8 16h8' })
+])
+
+const CodeIcon = createIcon([
+  h('path', { d: 'M8 8l-4 4 4 4' }),
+  h('path', { d: 'M16 8l4 4-4 4' }),
+  h('path', { d: 'M14 4l-4 16' })
+])
+
+const TextIcon = createIcon([
+  h('path', { d: 'M4 7h16M4 12h10M4 17h16' }),
+  h('path', { d: 'M17 7v10' })
+])
+
+const CalendarIcon = createIcon([
+  h('rect', { x: '3', y: '5', width: '18', height: '16', rx: '2' }),
+  h('path', { d: 'M8 3v4M16 3v4M3 10h18' }),
+  h('path', { d: 'M8 14h3v3H8z' })
+])
+
+const KeyIcon = createIcon([
+  h('circle', { cx: '8', cy: '15', r: '3.5' }),
+  h('path', { d: 'M11.5 15h8.5v3M15 15V9h4' }),
+  h('path', { d: 'M18 9v3h-3' })
+])
+
+const HashIcon = createIcon([
+  h('path', { d: 'M5 9h14M5 15h14M9 4l-2 16M17 4l-2 16' })
+])
+
+const BookIcon = createIcon([
+  h('path', { d: 'M4 6.5A2.5 2.5 0 0 1 6.5 4H20v15H6.5A2.5 2.5 0 0 0 4 21.5V6.5z' }),
+  h('path', { d: 'M4 6.5V19' }),
+  h('path', { d: 'M8 8h8M8 12h8' })
+])
+
+const LightbulbIcon = createIcon([
+  h('path', { d: 'M9 18h6M10 21h4' }),
+  h('path', { d: 'M9.5 15.5a6 6 0 1 1 5 0l-1.3 1.5h-2.4L9.5 15.5z' })
+])
 
 const keyword = ref('')
 const selectedCategory = ref('all')
@@ -170,13 +275,13 @@ const toolGroups = computed(() => [
         name: t('menu.agnes_image') || 'AI 图片生成',
         path: '/image-generator',
         description: t('agnesImage.subtitle') || '根据提示词生成高质量图片。',
-        icon: '🎨'
+        icon: SparklesIcon
       },
       {
         name: t('menu.agnes_video') || 'AI 视频生成',
         path: '/video-generator',
         description: t('agnesVideo.subtitle') || '生成短视频与创意动画内容。',
-        icon: '🎬'
+        icon: VideoIcon
       }
     ]
   },
@@ -189,31 +294,31 @@ const toolGroups = computed(() => [
         name: t('webp.title') || '图片转 WebP',
         path: '/image-to-webp',
         description: t('webp.desc') || '批量将图片转换为 WebP 格式。',
-        icon: '🖼️'
+        icon: ImageIcon
       },
       {
         name: 'WebP 转 JPG',
         path: '/webp-to-jpg',
         description: '批量 WebP 转 JPG，支持多图处理。',
-        icon: '🧩'
+        icon: CompressIcon
       },
       {
         name: 'WebP 转 PNG',
         path: '/webp-to-png',
         description: '批量 WebP 转 PNG，适合图片透明处理。',
-        icon: '🪟'
+        icon: ImageIcon
       },
       {
         name: t('menu.imageCompress') || '图片压缩',
         path: '/image-compress',
         description: '压缩 JPG、PNG 等图片，减少体积。',
-        icon: '📦'
+        icon: CompressIcon
       },
       {
         name: t('menu.idPhoto') || '证件照制作',
         path: '/id-photo',
         description: '上传照片并快速生成证件照尺寸与背景。',
-        icon: '📸'
+        icon: CameraIcon
       }
     ]
   },
@@ -226,13 +331,25 @@ const toolGroups = computed(() => [
         name: t('menu.ttf') || 'TTF 字体压缩',
         path: '/font-compress',
         description: t('font.seo_desc') || '压缩 TTF 字体并生成更小的子集字体。',
-        icon: '🔤'
+        icon: TypographyIcon
       },
       {
         name: t('menu.jsoncsv') || 'JSON/CSV 转换',
         path: '/json-csv-convert',
         description: t('jsoncsv.index') || '快速转换 JSON 和 CSV 数据文件。',
-        icon: '📄'
+        icon: FileIcon
+      },
+      {
+        name: t('menu.jsonFormatter') || 'JSON Formatter',
+        path: '/json-formatter',
+        description: '格式化、压缩、校验和搜索 JSON 数据。',
+        icon: CodeIcon
+      },
+      {
+        name: '时间格式化工具',
+        path: '/date-format',
+        description: '自动识别输入时间并转换为可选目标格式。',
+        icon: CalendarIcon
       }
     ]
   },
@@ -245,19 +362,19 @@ const toolGroups = computed(() => [
         name: t('menu.uppercase') || '大写转换',
         path: '/uppercase',
         description: '快速把文本转成大写并复制到剪贴板。',
-        icon: '🔠'
+        icon: TextIcon
       },
       {
         name: 'Token generator',
         path: '/token-generator',
         description: '生成随机 Token，支持字母、数字和符号组合。',
-        icon: '⚡'
+        icon: KeyIcon
       },
       {
         name: 'Hash text',
         path: '/hash-text',
         description: '对文本执行 MD5、SHA 等常见哈希算法。',
-        icon: '🧬'
+        icon: HashIcon
       }
     ]
   },
@@ -270,13 +387,13 @@ const toolGroups = computed(() => [
         name: 'Blog',
         path: '/blog',
         description: '浏览文章和站内教程内容。',
-        icon: '📝'
+        icon: BookIcon
       },
       {
         name: 'Prompts',
         path: '/prompts',
         description: '查看和使用可复用的提示词模板。',
-        icon: '💡'
+        icon: LightbulbIcon
       }
     ]
   }
