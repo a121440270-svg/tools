@@ -1,0 +1,9 @@
+{
+  "blog": {
+    "pageSize": "Per page",
+    "items": "items",
+    "gotoPage": "Go to page",
+    "go": "Go",
+    "totalItems": "Total {total} items"
+  }
+}

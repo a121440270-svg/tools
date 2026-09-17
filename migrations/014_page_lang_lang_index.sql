@@ -1,0 +1,1 @@
+CREATE INDEX IF NOT EXISTS idx_page_lang_lang ON page_lang(lang);
