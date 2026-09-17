@@ -7,17 +7,14 @@ assets = { directory = "./.output/public/", binding = "ASSETS" }
 [vars]
 AGNES_API_BASE_URL = "https://apihub.agnes-ai.com"
 
-# Workers Logs
-# Docs: https://developers.cloudflare.com/workers/observability/logs/workers-logs/
-# Configuration: https://developers.cloudflare.com/workers/observability/logs/workers-logs/#enable-workers-logs
 [observability]
 enabled = true
 
 [[d1_databases]]
 binding = "D1Database"
 database_name = "tools"
-database_id = "405fe41f-8f36-4910-b2e2-ed4f97e77ec7"  # 替换为实际 ID
+database_id = "405fe41f-8f36-4910-b2e2-ed4f97e77ec7"
 
 [[r2_buckets]]
-binding = 'imgbucket'
-bucket_name = 'imgbucket'
+binding = "imgbucket"
+bucket_name = "imgbucket"

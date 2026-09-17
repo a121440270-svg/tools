@@ -1,7 +1,9 @@
 <template>
   <div class="max-w-2xl mx-auto py-10">
-    <h1 class="text-2xl font-bold mb-4">{{ t('webp.title') }}</h1>
-    <p class="mb-4 text-gray-600">{{ t('webp.desc') }}</p>
+    <h1 class="text-2xl font-bold mb-4">{{ pageTitle }}</h1>
+    <p class="mb-4 text-gray-600">{{ pageDescription }}</p>
+    <p class="mb-4 text-sm font-semibold text-primary">{{ batchMessage }}</p>
+    <p class="mb-4 text-sm text-gray-600">{{ localMessage }}</p>
     <el-form :label-width="'120px'" class="mb-6">
       <el-form-item :label="t('webp.upload')">
         <input type="file" accept="image/jpeg,image/png" multiple @change="onFilesChange" ref="inputRef" />
@@ -17,20 +19,20 @@
       <el-alert type="success" show-icon :title="t('webp.success')">
         <template #default>
           <a :href="downloadUrl" :download="downloadName" class="text-primary underline">
-            {{ t(isZip ? 'webp.download_zip' : 'webp.download_img') }}
+            {{ isZip ? batchDownloadMessage : t('webp.download_img') }}
           </a>
         </template>
       </el-alert>
     </div>
     <div v-if="errorMsg" class="mt-4 text-red-600">{{ errorMsg }}</div>
-  <div class="mt-8 p-4 border rounded text-sm dark:text-gray-100">
+    <div class="mt-8 p-4 border rounded text-sm dark:text-gray-100">
       <strong>WebP</strong> {{ t('webp.intro') }}
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 const { t } = useI18n()
 // 需安装 jszip: npm i jszip
 import JSZip from 'jszip'
@@ -45,14 +47,44 @@ const loading = ref(false)
 const progress = ref(0)
 const isZip = ref(false)
 
+const pageTitle = computed(() => t('webp.seo_title') || t('webp.title') || 'Batch JPG/PNG to WebP Converter')
+const pageDescription = computed(() => t('webp.seo_desc') || t('webp.desc') || 'Batch convert JPG and PNG images to WebP online. Convert multiple images at once and download them as a ZIP file.')
+const pageKeywords = computed(() => t('webp.seo_keywords') || 'batch image converter, JPG to WebP, PNG to WebP, bulk WebP converter, online image converter')
+const batchMessage = computed(() => t('webp.batch_message') || 'Batch convert multiple JPG and PNG images to WebP in one go.')
+const localMessage = computed(() => t('webp.local_message') || 'Files are processed locally in your browser and are never uploaded.')
+const batchDownloadMessage = computed(() => t('webp.download_zip') || 'Download converted images as ZIP')
 
-useHead({
-  title: t('menu.webp') || 'JPG/PNG to WebP',
+useHead(() => ({
+  title: pageTitle.value,
   meta: [
-    { name: 'description', content: t('font.seo_desc') },
-    { name: 'keywords', content: t('font.seo_keywords') }
-  ]
-})
+    { name: 'description', content: pageDescription.value },
+    { name: 'keywords', content: pageKeywords.value },
+    { property: 'og:title', content: pageTitle.value },
+    { property: 'og:description', content: pageDescription.value },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary' }
+  ],
+  script: [{
+    type: 'application/ld+json',
+    children: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: pageTitle.value,
+      description: `${pageDescription.value} ${localMessage.value}`,
+      applicationCategory: 'UtilitiesApplication',
+      operatingSystem: 'Any',
+      browserRequirements: 'Requires JavaScript',
+      featureList: [
+        'Batch JPG and PNG to WebP conversion',
+        'Convert multiple images at once',
+        'ZIP download for batch results',
+        'Local browser processing with no file upload'
+      ],
+      isAccessibleForFree: true,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
+    })
+  }]
+}))
 
 
 function onFilesChange(e) {
@@ -60,6 +92,7 @@ function onFilesChange(e) {
   fileNames.value = files.value.map(f => f.name)
   downloadUrl.value = ''
   errorMsg.value = ''
+  isZip.value = false
 }
 
 function clearAll() {
@@ -67,11 +100,13 @@ function clearAll() {
   fileNames.value = []
   downloadUrl.value = ''
   errorMsg.value = ''
+  isZip.value = false
   if (inputRef.value) inputRef.value.value = ''
 }
 
 async function convertImages() {
   errorMsg.value = ''
+  if (downloadUrl.value) URL.revokeObjectURL(downloadUrl.value)
   downloadUrl.value = ''
   loading.value = true
   progress.value = 0

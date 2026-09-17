@@ -44,7 +44,7 @@
       ]"
     >
       <div
-        class="py-8 px-6 cursor-pointer"
+        class="sidebar-brand py-8 px-6 cursor-pointer"
         @click="navigateTo(localePath('/'))"
       >
         <h1 class="text-2xl font-bold text-white">OnliTool</h1>
@@ -249,14 +249,21 @@ watch(themeClass, (newClass, oldClass) => {
 const isSidebarCollapsed = ref(false);
 const isSidebarOpen = ref(false);
 const isDesktop = ref(false);
+const compactDesktopBreakpoint = 1280;
+let viewportInitialized = false;
 
 // 检查是否为桌面视图
 const checkViewport = () => {
   const desktop = window.innerWidth >= 1024;
+  const wasDesktop = isDesktop.value;
   isDesktop.value = desktop;
   if (desktop) {
     isSidebarOpen.value = false;
+    if (!viewportInitialized || !wasDesktop) {
+      isSidebarCollapsed.value = window.innerWidth <= compactDesktopBreakpoint;
+    }
   }
+  viewportInitialized = true;
 };
 
 // 切换侧边栏
@@ -688,6 +695,8 @@ const categories = ref([
     tools: [
       { name: "menu.ttf", path: "/font-compress", icon: markRaw(FontIcon) },
       { name: "menu.jsoncsv", path: "/json-csv-convert", icon: markRaw(FontIcon) },
+      { name: "home.tools.jsonFormatter.name", path: "/json-formatter", icon: markRaw(FontIcon) },
+      { name: "home.tools.dateFormat.name", path: "/date-format", icon: markRaw(DateIcon) },
     ],
   },
   {
@@ -711,6 +720,13 @@ const categories = ref([
       { name: "menu.token", path: "/token-generator", icon: markRaw(TokenIcon) },
       { name: "menu.hash", path: "/hash-text", icon: markRaw(HashIcon) },
       { name: "menu.uppercase", path: "/uppercase", icon: markRaw(TokenIcon) },
+    ],
+  },
+  {
+    name: "home.categories.utility",
+    expanded: true,
+    tools: [
+      { name: "home.tools.shareNote.name", path: "/send-script-to-remote-user", icon: markRaw(BlogIcon) },
     ],
   },
   {

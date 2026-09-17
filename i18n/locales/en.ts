@@ -1,5 +1,14 @@
 export default defineI18nLocale(async (locale) => {
-  return await $fetch(`/api/page-lang-json?lang=${locale}`)
+  const lang = typeof locale === 'string' ? locale : locale?.code || 'en'
+  const route = useRoute()
+  const normalizedRoute = String(route?.path || '').replace(/^\/+|\/+$/g, '') || 'index'
+
+  return await $fetch('/api/page-lang-json', {
+    query: {
+      lang: String(lang),
+      route: normalizedRoute
+    }
+  })
 })
 
 // export default defineI18nLocale(locale => {

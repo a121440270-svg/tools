@@ -46,7 +46,7 @@ export function getDb() {
   return useDatabase("myDatabase");
 }
 
-export async function select<T>(table: string, where?: { [key: string]: any }): Promise<T[]> {
+export async function select<T>(table: string, where?: { [key: string]: any }, fields: string[] = ['*']): Promise<T[]> {
   const db = getDb();
   let clauseArr: string[] = [];
   let params: any[] = [];
@@ -61,7 +61,7 @@ export async function select<T>(table: string, where?: { [key: string]: any }): 
     }
   }
   const whereClause = clauseArr.length > 0 ? 'WHERE ' + clauseArr.join(' AND ') : '';
-  const sql = `SELECT * FROM ${table} ${whereClause}`;
+  const sql = `SELECT ${fields.join(', ')} FROM ${table} ${whereClause}`;
   const fullSql = Utils.formatSqlWithParams(sql, params);
   console.log('SQL:', fullSql);
   let stmt = db.prepare(sql);

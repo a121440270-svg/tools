@@ -66,6 +66,14 @@
     "left": "左边距",
     "zoom": "缩放",
     "resetCrop": "重置裁剪",
+    "brushCutout": "涂抹区域抠图",
+    "brushSize": "画笔大小",
+    "brushSizeValue": "{size}px",
+    "startPainting": "开始涂抹",
+    "stopPainting": "退出涂抹",
+    "removePaintedArea": "去除涂抹区域",
+    "paintHint": "请在图片上涂抹要去除的区域",
+    "paintSuccess": "涂抹区域已去除",
     "seoDesc": "在线制作护照、身份证、签证等证件照模板，快速调整尺寸、裁剪、亮度和背景颜色。",
     "seoKeywords": "免费证件照,在线证件照,日常照片转证件照,一寸照,二寸照,护照照片,签证照片,证件照换背景,在线抠图"
   }

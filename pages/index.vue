@@ -22,7 +22,7 @@
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700'"
               @click="selectedCategory = 'all'"
             >
-              全部
+              {{ t('home.all') }}
             </button>
             <button
               v-for="group in toolGroups"
@@ -44,18 +44,18 @@
         <div class="grid gap-4 lg:grid-cols-[1.4fr_0.9fr] lg:items-center">
           <div>
             <div class="mb-2 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium tracking-[0.2em] text-blue-100 uppercase">
-              Tool Directory
+              {{ t('home.eyebrow') }}
             </div>
             <h1 class="text-2xl font-bold tracking-tight sm:text-3xl">
-              全站工具导航，快速找到你需要的在线工具
+              {{ t('home.title') }}
             </h1>
             <p class="mt-2 max-w-xl text-sm leading-6 text-slate-200">
-              图片处理、字体压缩、文本转换、AI 工具与开发辅助工具，全部集中在这里，支持关键词搜索和分类快速筛选。
+              {{ t('home.description') }}
             </p>
           </div>
 
           <div class="rounded-2xl border border-white/10 bg-white/5 p-3 shadow-inner">
-            <label class="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-slate-300">搜索</label>
+            <label class="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-slate-300">{{ t('home.searchLabel') }}</label>
             <div class="relative">
               <span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-slate-300">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -66,16 +66,12 @@
               <input
                 v-model="keyword"
                 type="text"
-                placeholder="搜索所有本站工具..."
+                :placeholder="t('home.searchPlaceholder')"
                 class="w-full rounded-xl border border-white/10 bg-slate-950/30 py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-slate-400 outline-none ring-0 transition focus:border-blue-400"
               />
             </div>
             <div class="mt-3 flex flex-wrap gap-2 text-xs text-slate-300">
-              <span class="rounded-full bg-white/5 px-2 py-1">图片</span>
-              <span class="rounded-full bg-white/5 px-2 py-1">AI</span>
-              <span class="rounded-full bg-white/5 px-2 py-1">文本</span>
-              <span class="rounded-full bg-white/5 px-2 py-1">压缩</span>
-              <span class="rounded-full bg-white/5 px-2 py-1">开发</span>
+              <span v-for="tag in searchTags" :key="tag" class="rounded-full bg-white/5 px-2 py-1">{{ tag }}</span>
             </div>
           </div>
         </div>
@@ -128,7 +124,7 @@
                     <component :is="tool.icon" class="h-5 w-5 text-slate-700 dark:text-slate-100" />
                   </div>
                   <span class="rounded-full bg-blue-50 px-2 py-1 text-[10px] font-medium uppercase tracking-[0.12em] text-blue-600 dark:bg-blue-500/10 dark:text-blue-300">
-                    Tool
+                    {{ t('home.toolBadge') }}
                   </span>
                 </div>
 
@@ -143,7 +139,7 @@
       </div>
 
       <div v-else class="rounded-3xl border border-dashed border-slate-300 bg-white p-12 text-center text-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
-        没有找到匹配的工具，换个关键词试试。
+        {{ t('home.empty') }}
       </div>
     </div>
   </div>
@@ -265,135 +261,149 @@ const keyword = ref('')
 const selectedCategory = ref('all')
 const expandedGroups = ref(['ai', 'image', 'file', 'text', 'utility'])
 
+const searchTags = computed(() => [
+  t('home.tags.image'),
+  t('home.tags.ai'),
+  t('home.tags.text'),
+  t('home.tags.compression'),
+  t('home.tags.development')
+])
+
 const toolGroups = computed(() => [
   {
     key: 'ai',
-    label: t('menu.image') || 'AI 工具',
-    title: 'AI 创意工具',
+    label: t('home.categories.ai'),
+    title: t('home.categoryTitles.ai'),
     tools: [
       {
-        name: t('menu.agnes_image') || 'AI 图片生成',
+        name: t('home.tools.aiImage.name'),
         path: '/image-generator',
-        description: t('agnesImage.subtitle') || '根据提示词生成高质量图片。',
+        description: t('home.tools.aiImage.description'),
         icon: SparklesIcon
       },
       {
-        name: t('menu.agnes_video') || 'AI 视频生成',
+        name: t('home.tools.aiVideo.name'),
         path: '/video-generator',
-        description: t('agnesVideo.subtitle') || '生成短视频与创意动画内容。',
+        description: t('home.tools.aiVideo.description'),
         icon: VideoIcon
       }
     ]
   },
   {
     key: 'image',
-    label: t('menu.image') || '图片处理',
-    title: '图片工具',
+    label: t('home.categories.image'),
+    title: t('home.categoryTitles.image'),
     tools: [
       {
-        name: t('webp.title') || '图片转 WebP',
+        name: t('home.tools.imageToWebp.name'),
         path: '/image-to-webp',
-        description: t('webp.desc') || '批量将图片转换为 WebP 格式。',
+        description: t('home.tools.imageToWebp.description'),
         icon: ImageIcon
       },
       {
-        name: 'WebP 转 JPG',
+        name: t('home.tools.webpToJpg.name'),
         path: '/webp-to-jpg',
-        description: '批量 WebP 转 JPG，支持多图处理。',
+        description: t('home.tools.webpToJpg.description'),
         icon: CompressIcon
       },
       {
-        name: 'WebP 转 PNG',
+        name: t('home.tools.webpToPng.name'),
         path: '/webp-to-png',
-        description: '批量 WebP 转 PNG，适合图片透明处理。',
+        description: t('home.tools.webpToPng.description'),
         icon: ImageIcon
       },
       {
-        name: t('menu.imageCompress') || '图片压缩',
+        name: t('home.tools.imageCompress.name'),
         path: '/image-compress',
-        description: '压缩 JPG、PNG 等图片，减少体积。',
+        description: t('home.tools.imageCompress.description'),
         icon: CompressIcon
       },
       {
-        name: t('menu.idPhoto') || '证件照制作',
+        name: t('home.tools.idPhoto.name'),
         path: '/id-photo',
-        description: '上传照片并快速生成证件照尺寸与背景。',
+        description: t('home.tools.idPhoto.description'),
         icon: CameraIcon
       }
     ]
   },
   {
     key: 'file',
-    label: t('menu.filetype') || '文件工具',
-    title: '文件与格式工具',
+    label: t('home.categories.file'),
+    title: t('home.categoryTitles.file'),
     tools: [
       {
-        name: t('menu.ttf') || 'TTF 字体压缩',
+        name: t('home.tools.fontCompress.name'),
         path: '/font-compress',
-        description: t('font.seo_desc') || '压缩 TTF 字体并生成更小的子集字体。',
+        description: t('home.tools.fontCompress.description'),
         icon: TypographyIcon
       },
       {
-        name: t('menu.jsoncsv') || 'JSON/CSV 转换',
+        name: t('home.tools.jsonCsv.name'),
         path: '/json-csv-convert',
-        description: t('jsoncsv.index') || '快速转换 JSON 和 CSV 数据文件。',
+        description: t('home.tools.jsonCsv.description'),
         icon: FileIcon
       },
       {
-        name: t('menu.jsonFormatter') || 'JSON Formatter',
+        name: t('home.tools.jsonFormatter.name'),
         path: '/json-formatter',
-        description: '格式化、压缩、校验和搜索 JSON 数据。',
+        description: t('home.tools.jsonFormatter.description'),
         icon: CodeIcon
       },
       {
-        name: '时间格式化工具',
+        name: t('home.tools.dateFormat.name'),
         path: '/date-format',
-        description: '自动识别输入时间并转换为可选目标格式。',
+        description: t('home.tools.dateFormat.description'),
         icon: CalendarIcon
       }
     ]
   },
   {
     key: 'text',
-    label: '文本工具',
-    title: '文本与内容工具',
+    label: t('home.categories.text'),
+    title: t('home.categoryTitles.text'),
     tools: [
       {
-        name: t('menu.uppercase') || '大写转换',
+        name: t('home.tools.uppercase.name'),
         path: '/uppercase',
-        description: '快速把文本转成大写并复制到剪贴板。',
+        description: t('home.tools.uppercase.description'),
         icon: TextIcon
       },
       {
-        name: 'Token generator',
+        name: t('home.tools.token.name'),
         path: '/token-generator',
-        description: '生成随机 Token，支持字母、数字和符号组合。',
+        description: t('home.tools.token.description'),
         icon: KeyIcon
       },
       {
-        name: 'Hash text',
+        name: t('home.tools.hash.name'),
         path: '/hash-text',
-        description: '对文本执行 MD5、SHA 等常见哈希算法。',
+        description: t('home.tools.hash.description'),
         icon: HashIcon
       }
     ]
   },
   {
     key: 'utility',
-    label: t('menu.crypto') || '实用工具',
-    title: '开发与工具类',
+    label: t('home.categories.utility'),
+    title: t('home.categoryTitles.utility'),
     tools: [
       {
-        name: 'Blog',
+        name: t('home.tools.blog.name'),
         path: '/blog',
-        description: '浏览文章和站内教程内容。',
+        description: t('home.tools.blog.description'),
         icon: BookIcon
       },
       {
-        name: 'Prompts',
+        name: t('home.tools.prompts.name'),
         path: '/prompts',
-        description: '查看和使用可复用的提示词模板。',
+        description: t('home.tools.prompts.description'),
         icon: LightbulbIcon
+      },
+      {
+        name: t('home.tools.shareNote.name'),
+        path: '/send-script-to-remote-user',
+        description: t('home.tools.shareNote.description'),
+        icon: CodeIcon
       }
     ]
   }
@@ -437,12 +447,12 @@ function toggleGroup(groupKey) {
 }
 
 useHead({
-  title: 'OnliTool - 全站工具导航',
+  title: t('home.seoTitle'),
   meta: [
-    { name: 'description', content: 'OnliTool 提供图片处理、AI 工具、字体压缩、文本转换、开发辅助等在线工具，一站式工具导航。' },
-    { name: 'keywords', content: '在线工具, 图片处理, AI工具, 字体压缩, 文件转换, 开发工具, OnliTool' },
-    { property: 'og:title', content: 'OnliTool - 全站工具导航' },
-    { property: 'og:description', content: '一站式在线工具导航，快速找到图片、AI、文本、转换和开发辅助工具。' },
+    { name: 'description', content: t('home.seoDescription') },
+    { name: 'keywords', content: t('home.seoKeywords') },
+    { property: 'og:title', content: t('home.seoTitle') },
+    { property: 'og:description', content: t('home.seoOgDescription') },
     { name: 'twitter:card', content: 'summary_large_image' }
   ],
   script: [
@@ -453,7 +463,7 @@ useHead({
         '@type': 'WebSite',
         name: 'OnliTool',
         url: 'https://onlitools.com',
-        description: 'OnliTool 提供图片处理、字体压缩、文本转换、AI 工具和开发辅助工具。',
+        description: t('home.seoDescription'),
         potentialAction: {
           '@type': 'SearchAction',
           target: 'https://onlitools.com/?q={search_term_string}',

@@ -1,9 +1,10 @@
-oauth_token = "cfoat_ZBvrhqAEGooeq0eZCq_uCKhJ2JJproXkfEMAiv-MiIw.rUqkyT1i2MXFrpsKp-wwXiWmFogePeyPaIUGLX3E52E"
-expiration_time = "2026-09-04T15:05:37.441Z"
-refresh_token = "cfort_TSKbLHn2NgvijsHa2QLnwpo-v5oK81i8eOnkOWQfBiM.7UqHMkdxPpBlxBAbeMhOjpjUP8g9VSqr3J5uMDwckh4"
+oauth_token = "cfoat_fZITufYHp9ABZw0GQXExHz8vZpLNVNhOXn4gsb7zj8A.Vx1a6hYUYvc4rJG5nD8MqBdZ9bKjgp9sp64fkCA94vk"
+expiration_time = "2026-09-16T16:39:16.544Z"
+refresh_token = "cfort_dYKhk0ajy3xxxvGbWj3atlclee-jHiYx7Vhudf9eox0.FpWGimvuErp-wA5Fa4JNGHZSKE-4INY3n-fHEtvcdyo"
 scopes = [
-  "account:read",
   "user:read",
+  "offline_access",
+  "account:read",
   "workers:write",
   "workers_kv:write",
   "workers_routes:write",
@@ -18,6 +19,5 @@ scopes = [
   "pipelines:write",
   "secrets_store:write",
   "containers:write",
-  "cloudchamber:write",
-  "offline_access"
+  "cloudchamber:write"
 ]

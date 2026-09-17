@@ -84,6 +84,14 @@
     "left": "Left",
     "zoom": "Zoom",
     "resetCrop": "Reset crop",
+    "brushCutout": "Brush cleanup",
+    "brushSize": "Brush size",
+    "brushSizeValue": "{size}px",
+    "startPainting": "Start painting",
+    "stopPainting": "Stop painting",
+    "removePaintedArea": "Remove painted area",
+    "paintHint": "Paint over the area you want to remove",
+    "paintSuccess": "Painted area removed",
     "seoDesc": "Create passport, ID, and visa photo templates online. Adjust size, crop, brightness, and color in seconds.",
     "seoKeywords": "free ID photo, online ID photo, convert everyday photo to ID photo, passport photo, visa photo, background removal, change photo background"
   }

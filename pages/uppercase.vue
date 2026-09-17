@@ -2,8 +2,8 @@
   <div class="max-w-2xl mx-auto py-10">
       <div class="header-row">
         <div>
-          <h1 class="text-2xl font-bold mb-4">{{ $t('menu.uppercase') || '文本转大写工具' }}</h1>
-          <p class="mb-4 text-gray-600 dark:text-gray-300">{{ $t('uppercase.desc') || '粘贴文本后自动转换为大写并复制到剪贴板' }}</p>
+          <h1 class="text-2xl font-bold mb-4">{{ $t('uppercase.title') }}</h1>
+          <p class="mb-4 text-gray-600 dark:text-gray-300">{{ $t('uppercase.desc') }}</p>
         </div>
 
         <div class="theme-toggle-wrap">
@@ -20,25 +20,25 @@
 
       <div class="io-grid">
         <div class="panel">
-          <label class="label">{{ $t('uppercase.inputLabel') || '输入文本' }}</label>
+          <label class="label">{{ $t('uppercase.inputLabel') }}</label>
           <textarea
             ref="area"
             v-model="text"
             @paste="handlePaste"
             @input="onInput"
-            :placeholder="$t('uppercase.placeholder') || '请在此处粘贴或输入文本...'
+            :placeholder="$t('uppercase.placeholder')
             "
             class="w-full px-4 py-3 border dark:border-gray-700 rounded-lg resize-none h-40 bg-white dark:bg-gray-900 dark:text-white"
           ></textarea>
         </div>
 
         <div class="panel">
-          <label class="label">{{ $t('uppercase.outputLabel') || '大写文本' }}</label>
+          <label class="label">{{ $t('uppercase.outputLabel') }}</label>
           <textarea
             :value="uppercaseText"
             readonly
             class="w-full px-4 py-3 border dark:border-gray-700 rounded-lg resize-none h-40 bg-gray-50 dark:bg-gray-900 dark:text-white font-semibold"
-            placeholder="转换后的大写文本将显示在这里..."
+            :placeholder="$t('uppercase.outputPlaceholder')"
           ></textarea>
         </div>
       </div>
@@ -49,11 +49,11 @@
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
           </svg>
-          {{ $t('uppercase.copyBtn') || '复制到剪贴板' }}
+          {{ $t('uppercase.copyBtn') }}
         </button>
 
         <button @click="clearText" class="btn ghost">
-          {{ $t('uppercase.clearBtn') || '清空' }}
+          {{ $t('uppercase.clearBtn') }}
         </button>
 
         <div class="status-container">
@@ -62,12 +62,12 @@
       </div>
 
       <div class="instructions">
-        <h3>使用说明</h3>
+        <h3>{{ $t('uppercase.instructions.title') }}</h3>
         <ul>
-          <li>在输入框中粘贴或输入文本</li>
-          <li>文本将自动转换为大写并显示在右侧</li>
-          <li>点击"复制到剪贴板"复制转换后的文本</li>
-          <li>点击"清空"清除输入内容</li>
+          <li>{{ $t('uppercase.instructions.input') }}</li>
+          <li>{{ $t('uppercase.instructions.convert') }}</li>
+          <li>{{ $t('uppercase.instructions.copy') }}</li>
+          <li>{{ $t('uppercase.instructions.clear') }}</li>
         </ul>
       </div>
   </div>
@@ -213,7 +213,7 @@ const handlePaste = (e) => {
     // try to copy uppercase to clipboard immediately
     const upper = pasted.toUpperCase()
     navigator.clipboard && navigator.clipboard.writeText(upper).then(() => {
-      setStatus('复制成功', 'success')
+      setStatus(t('uppercase.status.copySuccess'), 'success')
     }).catch(() => {
       // ignore; user can still press copy
     })
@@ -229,7 +229,7 @@ const onInput = () => {
 
 const copyText = async () => {
   if (!uppercaseText.value) {
-    setStatus('没有文本可复制', 'error')
+    setStatus(t('uppercase.status.noText'), 'error')
     return
   }
   try {
@@ -244,10 +244,10 @@ const copyText = async () => {
       document.execCommand('copy')
       document.body.removeChild(ta)
     }
-    setStatus('复制成功', 'success')
+    setStatus(t('uppercase.status.copySuccess'), 'success')
   } catch (err) {
     console.error(err)
-    setStatus('复制失败', 'error')
+    setStatus(t('uppercase.status.copyError'), 'error')
   }
 }
 
