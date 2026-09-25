@@ -1,100 +1,473 @@
 {
-  "locale": {
-    "en": "Anglais",
-    "ja": "Japonais",
-    "ko": "Coréen",
-    "ru": "Russe",
-    "zh": "Chinois"
-  },
-  "login": {
-    "title": "Connexion utilisateur",
-    "welcome": "Bon retour, veuillez saisir vos identifiants",
-    "email": "Adresse e-mail",
-    "password": "Mot de passe",
-    "submit": "Connexion",
-    "github": "Se connecter avec GitHub",
-    "out": "Déconnexion"
-  },
-  "auth": {
-    "register": "Inscription utilisateur",
-    "create_account": "Créez votre compte",
-    "username": "Nom d'utilisateur",
-    "confirm_password": "Confirmer le mot de passe",
-    "register_btn": "S'inscrire maintenant",
-    "no_account": "Pas de compte ?",
-    "register_now": "S'inscrire maintenant",
-    "have_account": "Déjà un compte ?",
-    "login_here": "Se connecter ici"
+  "webp": {
+    "title": "Image vers WebP",
+    "desc": "Convertissez des images JPG/PNG par lots en WebP ; téléchargez une image directement ou plusieurs en ZIP.",
+    "upload": "Importer des images",
+    "selected": "{count} images sélectionnées",
+    "start": "Lancer la conversion",
+    "clear": "Effacer",
+    "success": "Conversion réussie",
+    "download_img": "Télécharger l’image",
+    "download_zip": "Télécharger le ZIP",
+    "intro": "is a modern image format developed by Google, featuring high compression and excellent quality. It supports lossy and lossless compression, transparency, and animation. Compared to JPG/PNG, WebP can significantly reduce image size, speed up website loading, and improve site performance and SEO. All major browsers support WebP. It is recommended for website use.",
+    "no_file": "Sélectionnez d’abord des images",
+    "error": "Échec de la conversion : {msg}",
+    "seo_title": "Convertisseur JPG/PNG vers WebP en ligne",
+    "seo_desc": "Convertissez plusieurs images JPG, JPEG et PNG en WebP en ligne. Sélectionnez vos images et téléchargez le résultat en ZIP. Le traitement est local, sans téléversement.",
+    "seo_keywords": "convertisseur d’images en ligne, JPG vers WebP, PNG vers WebP, convertisseur WebP par lots, conversion d’images",
+    "batch_message": "Select multiple JPG and PNG images to convert them to WebP in one batch.",
+    "local_message": "Files are processed locally in your browser and are never uploaded."
   },
   "menu": {
-    "desc": "Outils et articles pratiques pour les développeurs",
-    "ttf": "Extraction/Compression TTF",
-    "filetype": "Traitement de fichiers",
-    "crypto": "Traitement cryptographique",
-    "token": "Génération de jeton",
-    "hash": "Génération de hash"
+    "ttf": "Compresser une police",
+    "webp": "Image vers WebP",
+    "token": "Token Generator",
+    "hash": "Hash Text",
+    "jsoncsv": "Convertisseur JSON/CSV",
+    "jsonFormatter": "Formateur JSON",
+    "uppercase": "text Convert upper and lower case",
+    "agnes_image": "AI Image (Free)",
+    "agnes_video": "AI Video (Free)",
+    "desc": "Handy tools and atricles for developers",
+    "filetype": "File processing",
+    "crypto": "Crypto",
+    "about": "À propos",
+    "webpToJpg": "webp to jpg",
+    "webpToPng": "webp to png",
+    "imageCompress": "Compresser une image",
+    "idPhoto": "Créer une photo d’identité",
+    "image": "image tools"
   },
+  "about": {
+    "meTitle": "About me",
+    "meText1": "Hi, I'm the developer of this site. I love frontend and tool development — feedback is welcome!",
+    "contactEmail": "Contact email:",
+    "blogTitle": "About this blog",
+    "blogText": "This blog shares frontend development, tool-making and technical notes. Welcome to follow and leave comments.",
+    "toolsTitle": "About the tools",
+    "toolsText": "All tools on this site are free online, supporting batch processing, format conversion and multilingual features. Updates ongoing.",
+    "langsTitle": "Supported languages",
+    "langsList1": "Chinese (Simplified)",
+    "langsList2": "English",
+    "langsList3": "More languages coming soon...",
+    "tabMe": "About me",
+    "tabBlog": "About blog",
+    "tabTools": "About tools",
+    "tabLangs": "Languages"
+  },
+  "uppercase": {
+    "desc": "Paste text to convert it to uppercase and copy it to the clipboard automatically.",
+    "inputLabel": "Input text",
+    "placeholder": "Paste or type text here...",
+    "copyBtn": "Copy to clipboard",
+    "clearBtn": "Effacer",
+    "tip": "Pasting triggers automatic conversion + copy. You can also click Copy to copy the current text.",
+    "title": "Uppercase Converter",
+    "outputLabel": "Uppercase text",
+    "outputPlaceholder": "Converted uppercase text will appear here...",
+    "instructions": {
+      "title": "Instructions",
+      "input": "Paste or type text in the input box.",
+      "convert": "The text is automatically converted to uppercase and shown on the right.",
+      "copy": "Click \"Copy to clipboard\" to copy the converted text.",
+      "clear": "Click \"Clear\" to remove the input text."
+    },
+    "status": {
+      "copySuccess": "Copied successfully",
+      "noText": "There is no text to copy",
+      "copyError": "Échec de la copie"
+    }
+  },
+  "idPhoto": {
+    "title": "Générateur de photos d’identité",
+    "subtitle": "Upload a portrait, then adjust the background, size and crop in one click.",
+    "uploadText": "Click or drag an image here",
+    "uploadHint": "Supports JPG, PNG, WEBP images",
+    "preview": "Aperçu",
+    "size": "Size preset",
+    "bgColor": "Couleur d’arrière-plan",
+    "custom": "Custom",
+    "download": "Télécharger la photo",
+    "reUpload": "Re-upload",
+    "cutout": "Supprimer l’arrière-plan",
+    "processing": "Processing...",
+    "cleared": "Image cleared",
+    "cutoutSuccess": "Background removed",
+    "cutoutError": "Failed to remove background. Please try again.",
+    "sizes": {
+      "oneInch": "1 inch",
+      "twoInch": "2 inch",
+      "smallOneInch": "Small 1 inch",
+      "passport": "Passport",
+      "visa": "Visa",
+      "socialSecurity": "Social security"
+    },
+    "adjust": "Adjustments",
+    "brightness": "Luminosité",
+    "contrast": "Contraste",
+    "saturation": "Saturation",
+    "crop": "Recadrer",
+    "top": "Top",
+    "left": "Left",
+    "zoom": "Zoom",
+    "resetCrop": "Réinitialiser le cadrage",
+    "brushCutout": "Brush cleanup",
+    "brushSize": "Taille du pinceau",
+    "brushSizeValue": "{size}px",
+    "startPainting": "Start painting",
+    "stopPainting": "Exit painting",
+    "removePaintedArea": "Remove painted area",
+    "paintHint": "Paint over the area you want to remove",
+    "paintSuccess": "Painted area removed",
+    "seoDesc": "Créez en ligne des photos de passeport, d’identité et de visa. Ajustez le format, le cadrage, la luminosité et la couleur en quelques secondes.",
+    "seoKeywords": "photo d’identité en ligne, photo de passeport, photo de visa, photo d’identité gratuite, supprimer l’arrière-plan, changer le fond d’une photo"
+  },
+  "agnesImage": {
+    "title": "Free AI Image Generator",
+    "subtitle": "Generate high-quality images for free. Simple prompts, fast results.",
+    "seoDesc": "Free AI image generation — create photos, art, and product visuals using advanced models.",
+    "footnote": "Supported by Agnes AI"
+  },
+  "agnesVideo": {
+    "title": "Free AI Video Generator",
+    "subtitle": "Generate short AI videos for free. Configure resolution, frames and fps.",
+    "seoDesc": "Free AI video generation — produce short clips from prompts using advanced video models.",
+    "footnote": "Supported by Agnes AI"
+  },
+  "login": {
+    "submit": "Se connecter",
+    "psw": "Mot de passe",
+    "title": "Connexion utilisateur",
+    "welcome": "Welcome back, please enter your credentials",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "out": "Se déconnecter"
+  },
+  "locale": {
+    "en": "EN",
+    "zh": "CN",
+    "ja": "JP",
+    "ko": "KR",
+    "ru": "RU"
+  },
+  "auth": {
+    "no_account": "No account? ",
+    "register_now": "Sign up",
+    "email": "邮箱",
+    "username": "User Name",
+    "password": "密码",
+    "confirm_password": "Confirmer le mot de passe",
+    "register_btn": "Envoyer",
+    "have_account": "Already have an account?",
+    "login_here": "Log in!",
+    "register": "Inscription utilisateur",
+    "create_account": "创建账号",
+    "login_success": "登录成功"
+  },
+  "password_mismatch": "确认码和密码不一致",
   "home": {
-    "title": "Accueil",
-    "seo_desc": "Collection d'outils en ligne, comprenant la compression de polices, la génération de jetons, le hachage, etc., pour améliorer l'efficacité du développement.",
-    "seo_keywords": "Outils en ligne, compression de polices, génération de jetons, hachage, outils de développement, outils frontend"
+    "title": "Trouvez rapidement le bon outil en ligne",
+    "seo_desc": "Collection d’outils en ligne : compression de polices TTF, conversion JSON et CSV, conversion d’images en WebP, génération de jetons, hachage et autres outils pratiques pour les développeurs.",
+    "seo_keywords": "outils en ligne, compression de police TTF, TTF vers WOFF, convertisseur JSON CSV, générateur de jetons, hachage, outils de développement, outils frontend",
+    "all": "Tous",
+    "eyebrow": "Répertoire d’outils",
+    "description": "Image processing, font compression, text conversion, AI tools, and developer utilities in one place, with keyword search and category filters.",
+    "searchLabel": "Rechercher",
+    "searchPlaceholder": "Search all tools...",
+    "toolBadge": "Tool",
+    "empty": "Aucun outil correspondant. Essayez un autre mot-clé.",
+    "categories": {
+      "ai": "Outils IA",
+      "image": "Image Processing",
+      "file": "Outils de fichiers",
+      "text": "Outils de texte",
+      "utility": "Utilitaires"
+    },
+    "categoryTitles": {
+      "ai": "AI Creative Tools",
+      "image": "Outils d’image",
+      "file": "File and Format Tools",
+      "text": "Text and Content Tools",
+      "utility": "Developer and Utility Tools"
+    },
+    "tags": {
+      "image": "Images",
+      "ai": "AI",
+      "text": "Text",
+      "compression": "Compression",
+      "development": "Development"
+    },
+    "tools": {
+      "aiImage": {
+        "name": "AI Image Generator",
+        "description": "Generate high-quality images from prompts."
+      },
+      "aiVideo": {
+        "name": "AI Video Generator",
+        "description": "Generate short videos and creative animations."
+      },
+      "imageToWebp": {
+        "name": "Image vers WebP",
+        "description": "Batch convert images to WebP format."
+      },
+      "webpToJpg": {
+        "name": "WebP to JPG",
+        "description": "Batch convert WebP images to JPG."
+      },
+      "webpToPng": {
+        "name": "WebP to PNG",
+        "description": "Batch convert WebP images to PNG for transparent image processing."
+      },
+      "imageCompress": {
+        "name": "Image Compression",
+        "description": "Compress JPG, PNG, and other images to reduce file size."
+      },
+      "idPhoto": {
+        "name": "ID Photo Maker",
+        "description": "Create ID photo sizes and backgrounds from an uploaded photo."
+      },
+      "fontCompress": {
+        "name": "TTF Font Compression",
+        "description": "Compress TTF fonts and generate smaller subset fonts."
+      },
+      "jsonCsv": {
+        "name": "Convertisseur JSON/CSV",
+        "description": "Quickly convert JSON and CSV data files."
+      },
+      "jsonFormatter": {
+        "name": "Formateur JSON",
+        "description": "Format, minify, validate, and search JSON data."
+      },
+      "dateFormat": {
+        "name": "Date Format Tool",
+        "description": "Detect input dates and convert them to a selected format."
+      },
+      "uppercase": {
+        "name": "Uppercase Converter",
+        "description": "Convert text to uppercase and copy it to the clipboard."
+      },
+      "token": {
+        "name": "Token Generator",
+        "description": "Generate random tokens with letters, numbers, and symbols."
+      },
+      "hash": {
+        "name": "Hash Text",
+        "description": "Apply common MD5, SHA, and other hash algorithms to text."
+      },
+      "blog": {
+        "name": "Blog",
+        "description": "Browse articles and tutorials on the site."
+      },
+      "prompts": {
+        "name": "Prompts",
+        "description": "View and use reusable prompt templates."
+      },
+      "shareNote": {
+        "name": "Share Note",
+        "description": "Temporarily share commands, scripts, configurations, and technical text."
+      }
+    },
+    "seoTitle": "OnliTool - Répertoire d’outils en ligne",
+    "seoDescription": "OnliTool propose des outils en ligne pour le traitement d’images, l’IA, la compression de polices, la conversion de texte et le développement.",
+    "seoKeywords": "outils en ligne, traitement d’images, outils IA, compression de polices, conversion de fichiers, outils développeur, OnliTool",
+    "seoOgDescription": "Un répertoire unique d’outils en ligne pour les images, l’IA, le texte, la conversion et le développement."
   },
   "search": {
-    "placeholder": "Recherche"
+    "placeholder": "Rechercher"
   },
   "ttf": {
-    "desc": "Extrayez et compressez les polices TTF en fonction des caractères saisis ou téléchargés, ne conservez que les glyphes nécessaires et réduisez considérablement la taille du fichier (sortie ttf, woff)."
+    "desc": "Input characters or Upload text, extract needed glyphs from TTF, output smaller TTF & WOFF."
   },
   "font": {
-    "title": "Outil d'extraction et de compression de polices TTF",
-    "desc": "Extrayez et compressez les fichiers de polices TTF en saisissant les caractères nécessaires ou en téléchargeant un texte les contenant. Seuls les glyphes nécessaires sont conservés, ce qui réduit considérablement la taille du fichier.",
-    "upload": "Télécharger une police TTF",
+    "seo_desc": "Outil de compression de polices TTF en ligne avec jeux de caractères personnalisés. Réduisez fortement la taille des fichiers et optimisez les performances frontend.",
+    "seo_keywords": "TTF, compression de police, sous-ensemble de police, optimisation frontend, outil de police, extraction de glyphes, réduire une police",
+    "title": "Compresseur et sous-ensemble de polices gratuit",
+    "desc": "Upload a TTF font, enter the characters you need, remove unused glyphs, and generate a smaller font file for better web performance.",
+    "h1": "Compresseur et sous-ensemble de polices gratuit",
+    "lead": "Compress TTF fonts online, remove unused glyphs and characters, and reduce font file size for better web and frontend performance.",
+    "upload": "Importer une police TTF",
     "selected": "Sélectionné : {name}",
-    "origin_size": "Taille d'origine : {size}",
-    "input_chars": "Saisir les caractères",
-    "input_placeholder": "Veuillez saisir les caractères à conserver",
-    "char_count": "{count} caractères après suppression des doublons",
-    "upload_text": "Ou télécharger un texte",
+    "origin_size": "Taille d’origine : {size}",
+    "input_chars": "Caractères à conserver",
+    "input_placeholder": "Enter the characters you want to keep",
+    "char_count": "Deduplicated: {count}",
+    "upload_text": "Or upload text",
     "text_selected": "Sélectionné : {name}",
     "output_type": "Format de sortie",
-    "start": "Démarrer la compression",
-    "clear": "Tout effacer",
+    "start": "Lancer la compression",
+    "clear": "Clear All",
     "success": "Compression terminée",
-    "download": "Cliquez pour télécharger le fichier de police compressé",
-    "only_glyphs": "(Contient uniquement les glyphes nécessaires)",
-    "compressed_size": "Après compression : {size}",
+    "download": "Click to download the compressed font",
+    "only_glyphs": "(Only contains required glyphs)",
+    "compressed_size": "Compressée : {size}",
     "error": "Échec de la compression de la police : {msg}",
-    "preview_generating": "Génération de l'aperçu de la police...",
-    "seo_desc": "Outil de compression de polices TTF, prend en charge les jeux de caractères personnalisés, réduit considérablement la taille du fichier, idéal pour l'optimisation frontend.",
-    "seo_keywords": "TTF, compression de polices, sous-ensemble de polices, optimisation frontend, outils de polices, extraction de polices, réduction de polices"
+    "preview_generating": "Generating font preview...",
+    "section": {
+      "subsetting_title": "What is font subsetting?",
+      "subsetting_text": "Font subsetting removes unused glyphs and characters, keeping only the ones your project actually needs to significantly reduce font file size.",
+      "steps_title": "How to compress a TTF font",
+      "steps_1": "Upload your TTF font file.",
+      "steps_2": "Enter the characters or text you want to keep.",
+      "steps_3": "Choose the output format, such as TTF or WOFF.",
+      "steps_4": "Click Start Compression and download the optimized font.",
+      "why_title": "Why use a font compressor?",
+      "why_text": "Large fonts increase page load time, especially on mobile devices or when multiple font files are used. Font compression and subsetting can significantly improve web performance and reduce download size.",
+      "faq_title": "Frequently asked questions",
+      "faq_1_q": "What is a font subsetting tool?",
+      "faq_1_a": "A font subsetting tool keeps the characters you actually need and removes the rest to create a smaller font file.",
+      "faq_2_q": "How do I reduce the size of a TTF file?",
+      "faq_2_a": "Upload the TTF file, input the required characters, and generate a subset font to remove unused glyphs and shrink the file size.",
+      "faq_3_q": "Does font subsetting improve web performance?",
+      "faq_3_a": "Yes. Smaller font files mean less downloaded data and faster page loading while keeping the required characters available.",
+      "faq_4_q": "Is WOFF smaller than TTF?",
+      "faq_4_a": "For web delivery, WOFF is often more suitable because it is optimized for browser transfer. Combining WOFF output with font subsetting is a common optimization strategy."
+    }
   },
   "privacy": {
-    "title": "Nous nous soucions de votre vie privée",
-    "desc": "Nous utilisons des cookies pour améliorer votre expérience. Vous pouvez personnaliser vos préférences de cookies ci-dessous.",
-    "necessary": "Cookies nécessaires (toujours activés)",
-    "analytics": "Cookies analytiques",
-    "ads": "Cookies publicitaires",
-    "acceptAll": "Tout accepter",
-    "save": "Enregistrer les paramètres"
+    "title": "We Care About Your Privacy",
+    "desc": "We use cookies to enhance your experience. You can customize your cookie preferences below.",
+    "necessary": "Necessary Cookies (Always enabled)",
+    "analytics": "Analytics Cookies",
+    "ads": "Advertising Cookies",
+    "acceptAll": "Allow All",
+    "save": "Enregistrer les préférences"
   },
   "blog": {
-    "title": "Articles de blog",
-    "pageSize": "Par page",
-    "items": "articles",
-    "gotoPage": "Aller à la page",
-    "go": "Aller",
-    "totalItems": "Total {total} articles",
-    "write": "Écrire un article",
+    "title": "Articles du blog",
+    "write": "Write Article",
     "author": "Auteur",
-    "posted": "Date de publication",
+    "posted": "Posted",
     "sort": {
-      "hits": "Par popularité",
-      "time": "Par date"
+      "hits": "By Popularity",
+      "time": "By Date"
     },
-    "fetchError": "Échec de la récupération des articles",
-    "needLogin": "Veuillez vous connecter avant de publier un article",
+    "fetchError": "Failed to fetch articles",
+    "needLogin": "Please login before posting",
     "name": "Blog",
-    "seoDesc": "Articles techniques Java, JS, tutoriels pratiques, etc.",
-    "seoKeywords": "JavaScript, TypeScript, Vue, React, Node.js, Python, Go, Rust, Développement web, Frontend, Backend, Full Stack, Cloud Native, Docker, Kubernetes, Microservices, Base de données, DevOps, IA, Apprentissage automatique"
+    "seoDesc": "Java, JavaScript technical articles, and practical tutorials",
+    "seoKeywords": "JavaScript, TypeScript, Vue, React, Node.js, Python, Go, Rust, Web开发, 前端, 后端, 全栈, 云原生, Docker, Kubernetes, 微服务, 数据库, DevOps, AI, 机器学习",
+    "type": "Tag",
+    "hits": "Views",
+    "backToList": "返回列表",
+    "category": "Catégorie",
+    "lastUpdate": "Mise à jour",
+    "edit": "edit",
+    "pageSize": "Par page",
+    "items": "items",
+    "gotoPage": "Aller à la page",
+    "go": "Go",
+    "totalItems": "{total} éléments au total"
+  },
+  "common": {
+    "loading": "加载中..."
+  },
+  "jsoncsv": {
+    "title": "Convertisseur JSON et CSV",
+    "input_placeholder": "Paste JSON or CSV content",
+    "json_to_csv": "JSON vers CSV",
+    "csv_to_json": "CSV vers JSON",
+    "clear": "Effacer",
+    "paste": "Paste",
+    "result_title": "Résultat de la conversion",
+    "download": "Télécharger le fichier",
+    "copy": "Copier le résultat",
+    "copy_success": "Copié dans le presse-papiers",
+    "copy_fail": "Échec de la copie",
+    "paste_success": "Pasted clipboard content",
+    "paste_fail": "Paste failed",
+    "paste_not_supported": "Clipboard paste not supported",
+    "json_to_csv_error": "JSON to CSV failed: {msg}",
+    "csv_to_json_error": "CSV to JSON failed: {msg}",
+    "index": "JSON and CSV format conversion tool",
+    "seo_title": "Convertisseur JSON vers CSV en ligne | CSV vers JSON",
+    "seo_description": "Convertissez facilement JSON en CSV et CSV en JSON en ligne. Un outil gratuit, rapide et sécurisé, sans téléversement.",
+    "seo_keywords": "JSON vers CSV, CSV vers JSON, convertisseur en ligne, convertisseur JSON CSV gratuit, convertir JSON, convertir CSV"
+  },
+  "imageConvert": {
+    "webpToPngTitle": "WebP to PNG",
+    "webpToPngDesc": "Batch convert WebP images to PNG format. Supports multiple images, direct download or zip archive.",
+    "webpToJpgTitle": "WebP to JPG",
+    "webpToJpgDesc": "Batch convert WebP images to JPG format. Supports multiple images, direct download or zip archive.",
+    "description": "Select one or more images (WebP, PNG, JPG, JPEG, BMP, GIF, TIFF) and convert to your desired format. Supports batch processing and zip download.",
+    "selectedCount": "{count} images sélectionnées",
+    "clear": "Effacer",
+    "targetFormat": "Format cible",
+    "start": "Lancer la conversion",
+    "progress": "Traitement de {current} image(s) sur {total} ...",
+    "download": "Télécharger",
+    "seoTitlePng": "WebP vers PNG en ligne | Convertisseur d’images par lots",
+    "seoDescPng": "Convertisseur WebP vers PNG en ligne pour la conversion d’images par lots. Sûr et efficace.",
+    "seoTitleJpg": "WebP vers JPG en ligne | Convertisseur d’images par lots",
+    "seoDescJpg": "Convertisseur WebP vers JPG en ligne pour la conversion d’images par lots. Sûr et efficace."
+  },
+  "prompts": {
+    "title": "Prompts",
+    "name": "Bibliothèque de prompts",
+    "write": "ADD"
+  },
+  "compress": {
+    "title": "Compresseur d’images en ligne gratuit"
+  },
+  "dateFormat": {
+    "badge": "Time Decoder",
+    "title": "Décodeur de formats temporels",
+    "description": "Paste any time string or timestamp, detect its format automatically, and convert it to your preferred fixed output format.",
+    "copyResult": "Copier le résultat",
+    "loadSample": "Sample Data",
+    "clear": "Effacer",
+    "detectedResult": "Detected result",
+    "parsedCount": "{count} time values",
+    "inputLabel": "Input content",
+    "fillSample": "Fill sample",
+    "placeholder": "Example:\\n1788184699872\\n1717147200\\n2024-05-06T08:30:45.000Z\\n31/05/2024\\n2024年5月6日",
+    "outputFormat": "Output format",
+    "bestFormat": "Most likely format",
+    "confidence": "Confidence",
+    "noInput": "Please enter a recognizable date or time value",
+    "decodeResult": "Decoded result",
+    "copyUtc": "Copier l’UTC",
+    "resultPlaceholder": "Parsed time will appear here...",
+    "recognitionTitle": "Recognition notes",
+    "whyThis": "Why is it {value}?",
+    "best": "Best",
+    "alt": "Alt",
+    "scriptTitle": "Multi-language script generation",
+    "generateLanguage": "Generated language",
+    "runLocal": "Exécuter localement",
+    "runDemo": "Remote demo",
+    "copyScript": "Copier le script",
+    "runOutput": "Runtime output",
+    "supportedFormats": "Supported time formats",
+    "formatAuto": "Auto detect",
+    "support": {
+      "unixSeconds": "Unix seconds",
+      "unixMilliseconds": "Unix milliseconds",
+      "unixMicroseconds": "Unix microseconds",
+      "excelDate": "Excel date",
+      "chineseDate": "Chinese date",
+      "mixedInput": "Mixed date input"
+    },
+    "seoTitle": "Time Format Decoder - Auto-detect timestamps and date formats",
+    "seoDescription": "Auto-detect Unix seconds/milliseconds, ISO 8601, Chinese dates, and other time formats, then convert them into fixed formats such as yyyy-MM-dd.",
+    "seoKeywords": "time format decoder, timestamp recognition, Unix timestamp, ISO 8601, date format conversion, time string parsing, yyyy-MM-dd format",
+    "messages": {
+      "noScript": "There is no script content to copy",
+      "scriptCopied": "Script copied to clipboard",
+      "copyFailed": "Copy failed, please copy manually",
+      "noOutput": "There is no time result to copy",
+      "outputCopied": "Time format copied to clipboard",
+      "noUtcData": "There is no time content to convert",
+      "utcCopied": "UTC time copied"
+    }
+  },
+  "webpTo": {
+    "batch_message": "Select multiple WebP images and download batch results as a ZIP file.",
+    "local_message": "Files are processed locally in your browser and are never uploaded.",
+    "batch_success": "Batch converted {count} images",
+    "title": "Convertisseur WebP vers {format} en ligne",
+    "description": "Convert WebP images to {format} in batches. Process multiple images at once and download them as a ZIP file. Files are processed locally in your browser and never uploaded.",
+    "keywords": "WebP to {format}, WebP batch converter, batch image conversion, {format} online tool, local image processing, no upload",
+    "seoSuffix": "Convertisseur d’images | Traitement par lots",
+    "intro": "Convert WebP images to multiple formats in batches, with direct downloads for single images and ZIP downloads for multiple images."
   }
 }

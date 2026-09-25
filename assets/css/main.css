@@ -128,6 +128,5 @@
 .dark .share-action-primary, .dark .share-action-primary:hover { border-color: rgb(59 130 246); background: rgb(37 99 235); color: white; }
 .dark .editor-tool-button { border-color: rgb(71 85 105); background: rgb(15 23 42); color: rgb(203 213 225); }
 .dark .editor-tool-button:hover { border-color: rgb(96 165 250); background: rgb(30 41 59); color: rgb(147 197 253); }
-.editor-fullscreen { position: fixed; inset: 0; z-index: 60; border-radius: 0; background: rgb(15 23 42); }
-.editor-fullscreen .share-note-editor, .editor-fullscreen .share-note-editor .codemirror-host { height: 100vh; min-height: 100vh; }
+.editor-fullscreen .share-note-editor, .editor-fullscreen .share-note-editor .codemirror-host { height: calc(100vh - 180px); min-height: calc(100vh - 180px); }
 @media (max-width: 800px) { .share-note-editor, .share-note-editor .codemirror-host { min-height: 330px; height: 330px; } }

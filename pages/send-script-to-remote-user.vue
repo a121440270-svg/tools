@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+  <div :class="['mx-auto px-4 py-8 sm:px-6 lg:px-8', editorFullscreen ? 'max-w-full' : 'max-w-6xl']">
     <div class="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div>
         <p class="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-blue-600 dark:text-blue-400">Remote Script Handoff</p>
@@ -48,7 +48,7 @@
         </div>
       </div>
       <div v-if="sharedError" class="mb-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700 dark:border-amber-900/60 dark:bg-amber-500/10 dark:text-amber-300">{{ sharedError }}</div>
-      <div ref="editorFrame" class="overflow-hidden rounded-xl border border-slate-200 bg-slate-950 dark:border-slate-700" :class="{ 'editor-fullscreen': editorFullscreen }">
+      <div class="overflow-hidden rounded-xl border border-slate-200 bg-slate-950 dark:border-slate-700" :class="{ 'editor-fullscreen': editorFullscreen }">
         <div class="share-note-editor"><CodeMirrorEditor v-model="content" :language="language" :theme="editorTheme" :readonly="isViewingSharedContent" aria-label="Share content" /></div>
       </div>
       <p v-if="errorMessage" class="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900/60 dark:bg-red-500/10 dark:text-red-300">{{ errorMessage }}</p>
@@ -94,7 +94,6 @@ const expiresAt = ref<number | null>(null)
 const qrDataUrl = ref('')
 const editorTheme = ref<'dark' | 'light'>('light')
 const editorFullscreen = ref(false)
-const editorFrame = ref<HTMLElement | null>(null)
 let themeObserver: MutationObserver | null = null
 const slugStorageKey = 'opsdrop-temp-note-code'
 const savedSlugStorageKey = 'opsdrop-temp-note-saved-code'
@@ -212,18 +211,8 @@ async function copyShareLink() {
   }
 }
 
-async function toggleEditorFullscreen() {
-  if (!editorFrame.value) return
-  if (document.fullscreenElement) {
-    await document.exitFullscreen()
-    editorFullscreen.value = false
-    return
-  }
-  try {
-    await editorFrame.value.requestFullscreen()
-  } catch {
-    editorFullscreen.value = !editorFullscreen.value
-  }
+function toggleEditorFullscreen() {
+  editorFullscreen.value = !editorFullscreen.value
 }
 
 async function generateQrCode() {
@@ -287,8 +276,6 @@ onMounted(async () => {
   syncEditorTheme()
   themeObserver = new MutationObserver(syncEditorTheme)
   themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
-  document.addEventListener('fullscreenchange', () => { editorFullscreen.value = document.fullscreenElement === editorFrame.value })
-
   if (shareId) {
     await loadSharedShare(shareId)
   }

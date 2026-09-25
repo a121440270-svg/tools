@@ -216,6 +216,8 @@ const localizedRecognitionText = computed(() => {
         dotNetReason: '这是 .NET DateTime 的 tick 计数格式，通常为 17~19 位。',
         isoReason: '它看起来像常见日期字符串，浏览器能够直接解析。',
         iso8601Reason: '包含 T 或 Z / 时区标记，属于 ISO 8601 结构。',
+        rfcJavaLabel: 'RFC / Java Date String',
+        rfcJavaReason: '它符合英文星期、月份和 GMT/UTC 时区偏移组成的常见日志或 Java 日期格式。',
         dayMonthReason: '它是典型的“日/月/年”或“月/日/年”格式，系统已按最可能顺序推断。',
         unknownReason: '这串内容没有明显的时间模式，无法安全识别。'
       }
@@ -240,6 +242,8 @@ const localizedRecognitionText = computed(() => {
         dotNetReason: 'This is the .NET DateTime tick count format, typically in the 17–19 digit range.',
         isoReason: 'This looks like a common date string and can be parsed directly by the browser.',
         iso8601Reason: 'This includes T, Z, or timezone markers and matches the ISO 8601 format.',
+        rfcJavaLabel: 'RFC / Java Date String',
+        rfcJavaReason: 'This matches a common log or Java date string with an English weekday, month, and GMT/UTC offset.',
         dayMonthReason: 'This is a typical day/month/year or month/day/year pattern and the system infers the most likely order.',
         unknownReason: 'This value does not match a clear time pattern and cannot be safely identified.'
       }
@@ -389,8 +393,27 @@ function parseStructuredDate(input) {
     .replace(/\s+/g, ' ')
     .trim()
 
-  const direct = new Date(normalized)
   const text = localizedRecognitionText.value
+
+  // Parse RFC/Java-style dates explicitly because browser support for this non-ISO form varies.
+  const rfcJavaMatch = value.match(/^(?:Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+([A-Za-z]{3,9})\s+(\d{1,2})\s+(\d{2}):(\d{2})(?::(\d{2})(?:\.(\d{1,3}))?)?\s+(?:(?:GMT|UTC)([+-]\d{2}:?\d{2})?|Z)\s+(\d{4})$/i)
+  if (rfcJavaMatch) {
+    const [, monthName, day, hour, minute, second = '0', fraction = '', offset = '+00:00', year] = rfcJavaMatch
+    const monthIndex = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'].indexOf(monthName.slice(0, 3).toLowerCase())
+    const milliseconds = Number(fraction.padEnd(3, '0'))
+    const offsetMatch = offset.match(/^([+-])(\d{2}):?(\d{2})$/)
+    const offsetMinutes = offsetMatch
+      ? (Number(offsetMatch[2]) * 60 + Number(offsetMatch[3])) * (offsetMatch[1] === '+' ? 1 : -1)
+      : 0
+    const timestamp = Date.UTC(Number(year), monthIndex, Number(day), Number(hour), Number(minute), Number(second), milliseconds) - offsetMinutes * 60000
+    const parsed = new Date(timestamp)
+    const isValid = monthIndex >= 0 && Number(day) >= 1 && Number(day) <= 31 && Number(hour) <= 23 && Number(minute) <= 59 && Number(second) <= 59 && !Number.isNaN(parsed.getTime())
+    if (isValid) {
+      candidates.push(buildCandidate(text.rfcJavaLabel, 97, parsed, text.rfcJavaReason))
+    }
+  }
+
+  const direct = new Date(normalized)
   if (!Number.isNaN(direct.getTime())) {
     candidates.push(buildCandidate(text.isoLabel, 90, direct, text.isoReason))
   }

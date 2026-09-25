@@ -49,11 +49,10 @@ export default defineNuxtConfig({
     langDir: 'locales/',
     strategy: 'prefix_except_default',
     locales: [
-      { code: 'en', name: 'English', file: 'en.ts' },
-      // { code: 'ja', name: '日语', file: 'en.ts' },
-      // { code: 'ko', name: '韩语', file: 'en.ts' },
-      // { code: 'ru', name: '俄语', file: 'en.ts' },
-      { code: 'zh', name: '中文', file: 'en.ts' }
+      { code: 'en', name: 'English', file: 'en.json' },
+      { code: 'zh', name: 'Chinese', file: 'zh.json' },
+      { code: 'de', name: 'German', file: 'de.json' },
+      { code: 'fr', name: 'French', file: 'fr.json' }
     ]
   }, site: {
     url: 'https://onlitools.com',

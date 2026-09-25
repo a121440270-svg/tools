@@ -1,9 +1,473 @@
 {
+  "webp": {
+    "title": "Image to WebP",
+    "desc": "Batch convert jpg/png images to webp. Download single image directly, or multiple images as a zip file.",
+    "upload": "Upload images",
+    "selected": "{count} images selected",
+    "start": "Start conversion",
+    "clear": "Clear",
+    "success": "Conversion successful",
+    "download_img": "Download image",
+    "download_zip": "Download zip",
+    "intro": "is a modern image format developed by Google, featuring high compression and excellent quality. It supports lossy and lossless compression, transparency, and animation. Compared to JPG/PNG, WebP can significantly reduce image size, speed up website loading, and improve site performance and SEO. All major browsers support WebP. It is recommended for website use.",
+    "no_file": "Please select images first",
+    "error": "Conversion failed: {msg}",
+    "seo_title": "Batch JPG/PNG to WebP Converter Online",
+    "seo_desc": "Convert multiple JPG, JPEG, and PNG images to WebP online. Select images in bulk and download the converted files as a ZIP archive. Files are processed locally in your browser and never uploaded.",
+    "seo_keywords": "batch image converter, JPG to WebP, PNG to WebP, bulk WebP converter, online image converter",
+    "batch_message": "Select multiple JPG and PNG images to convert them to WebP in one batch.",
+    "local_message": "Files are processed locally in your browser and are never uploaded."
+  },
+  "menu": {
+    "ttf": "Font Compress",
+    "webp": "Image to WebP",
+    "token": "Token Generator",
+    "hash": "Hash Text",
+    "jsoncsv": "JSON/CSV Converter",
+    "jsonFormatter": "JSON Formatter",
+    "uppercase": "text Convert upper and lower case",
+    "agnes_image": "AI Image (Free)",
+    "agnes_video": "AI Video (Free)",
+    "desc": "Handy tools and atricles for developers",
+    "filetype": "File processing",
+    "crypto": "Crypto",
+    "about": "About",
+    "webpToJpg": "webp to jpg",
+    "webpToPng": "webp to png",
+    "imageCompress": "Image Compress",
+    "idPhoto": "ID photo maker",
+    "image": "image tools"
+  },
+  "about": {
+    "meTitle": "About me",
+    "meText1": "Hi, I'm the developer of this site. I love frontend and tool development — feedback is welcome!",
+    "contactEmail": "Contact email:",
+    "blogTitle": "About this blog",
+    "blogText": "This blog shares frontend development, tool-making and technical notes. Welcome to follow and leave comments.",
+    "toolsTitle": "About the tools",
+    "toolsText": "All tools on this site are free online, supporting batch processing, format conversion and multilingual features. Updates ongoing.",
+    "langsTitle": "Supported languages",
+    "langsList1": "Chinese (Simplified)",
+    "langsList2": "English",
+    "langsList3": "More languages coming soon...",
+    "tabMe": "About me",
+    "tabBlog": "About blog",
+    "tabTools": "About tools",
+    "tabLangs": "Languages"
+  },
+  "uppercase": {
+    "desc": "Paste text to convert it to uppercase and copy it to the clipboard automatically.",
+    "inputLabel": "Input text",
+    "placeholder": "Paste or type text here...",
+    "copyBtn": "Copy to clipboard",
+    "clearBtn": "Clear",
+    "tip": "Pasting triggers automatic conversion + copy. You can also click Copy to copy the current text.",
+    "title": "Uppercase Converter",
+    "outputLabel": "Uppercase text",
+    "outputPlaceholder": "Converted uppercase text will appear here...",
+    "instructions": {
+      "title": "Instructions",
+      "input": "Paste or type text in the input box.",
+      "convert": "The text is automatically converted to uppercase and shown on the right.",
+      "copy": "Click \"Copy to clipboard\" to copy the converted text.",
+      "clear": "Click \"Clear\" to remove the input text."
+    },
+    "status": {
+      "copySuccess": "Copied successfully",
+      "noText": "There is no text to copy",
+      "copyError": "Copy failed"
+    }
+  },
+  "idPhoto": {
+    "title": "ID Photo Generator",
+    "subtitle": "Upload a portrait, then adjust the background, size and crop in one click.",
+    "uploadText": "Click or drag an image here",
+    "uploadHint": "Supports JPG, PNG, WEBP images",
+    "preview": "Preview",
+    "size": "Size preset",
+    "bgColor": "Background color",
+    "custom": "Custom",
+    "download": "Download photo",
+    "reUpload": "Re-upload",
+    "cutout": "Remove background",
+    "processing": "Processing...",
+    "cleared": "Image cleared",
+    "cutoutSuccess": "Background removed",
+    "cutoutError": "Failed to remove background. Please try again.",
+    "sizes": {
+      "oneInch": "1 inch",
+      "twoInch": "2 inch",
+      "smallOneInch": "Small 1 inch",
+      "passport": "Passport",
+      "visa": "Visa",
+      "socialSecurity": "Social security"
+    },
+    "adjust": "Adjustments",
+    "brightness": "Brightness",
+    "contrast": "Contrast",
+    "saturation": "Saturation",
+    "crop": "Crop",
+    "top": "Top",
+    "left": "Left",
+    "zoom": "Zoom",
+    "resetCrop": "Reset crop",
+    "brushCutout": "Brush cleanup",
+    "brushSize": "Brush size",
+    "brushSizeValue": "{size}px",
+    "startPainting": "Start painting",
+    "stopPainting": "Exit painting",
+    "removePaintedArea": "Remove painted area",
+    "paintHint": "Paint over the area you want to remove",
+    "paintSuccess": "Painted area removed",
+    "seoDesc": "Create passport, ID, and visa photo templates online. Adjust size, crop, brightness, and color in seconds.",
+    "seoKeywords": "free ID photo, online ID photo, convert everyday photo to ID photo, passport photo, visa photo, background removal, change photo background"
+  },
+  "agnesImage": {
+    "title": "Free AI Image Generator",
+    "subtitle": "Generate high-quality images for free. Simple prompts, fast results.",
+    "seoDesc": "Free AI image generation — create photos, art, and product visuals using advanced models.",
+    "footnote": "Supported by Agnes AI"
+  },
+  "agnesVideo": {
+    "title": "Free AI Video Generator",
+    "subtitle": "Generate short AI videos for free. Configure resolution, frames and fps.",
+    "seoDesc": "Free AI video generation — produce short clips from prompts using advanced video models.",
+    "footnote": "Supported by Agnes AI"
+  },
+  "login": {
+    "submit": "Sign In",
+    "psw": "Password",
+    "title": "User Login",
+    "welcome": "Welcome back, please enter your credentials",
+    "email": "Email Address",
+    "password": "Password",
+    "out": "Logout"
+  },
+  "locale": {
+    "en": "EN",
+    "zh": "CN",
+    "ja": "JP",
+    "ko": "KR",
+    "ru": "RU"
+  },
+  "auth": {
+    "no_account": "No account? ",
+    "register_now": "Sign up",
+    "email": "邮箱",
+    "username": "User Name",
+    "password": "密码",
+    "confirm_password": "Confirm Password",
+    "register_btn": "Submit",
+    "have_account": "Already have an account?",
+    "login_here": "Log in!",
+    "register": "User registration",
+    "create_account": "创建账号",
+    "login_success": "登录成功"
+  },
+  "password_mismatch": "确认码和密码不一致",
+  "home": {
+    "title": "Find the right online tool quickly",
+    "seo_desc": "Online tool collection: TTF font compression, JSON & CSV conversion, image to WebP, token generation, hash encryption, and other practical tools to boost development efficiency.",
+    "seo_keywords": "Online tools, TTF font compression, TTF to WOFF, JSON & CSV conversion, token generation, hash encryption, development tools, frontend tools.",
+    "all": "All",
+    "eyebrow": "Tool Directory",
+    "description": "Image processing, font compression, text conversion, AI tools, and developer utilities in one place, with keyword search and category filters.",
+    "searchLabel": "Search",
+    "searchPlaceholder": "Search all tools...",
+    "toolBadge": "Tool",
+    "empty": "No matching tools found. Try another keyword.",
+    "categories": {
+      "ai": "AI Tools",
+      "image": "Image Processing",
+      "file": "File Tools",
+      "text": "Text Tools",
+      "utility": "Utilities"
+    },
+    "categoryTitles": {
+      "ai": "AI Creative Tools",
+      "image": "Image Tools",
+      "file": "File and Format Tools",
+      "text": "Text and Content Tools",
+      "utility": "Developer and Utility Tools"
+    },
+    "tags": {
+      "image": "Images",
+      "ai": "AI",
+      "text": "Text",
+      "compression": "Compression",
+      "development": "Development"
+    },
+    "tools": {
+      "aiImage": {
+        "name": "AI Image Generator",
+        "description": "Generate high-quality images from prompts."
+      },
+      "aiVideo": {
+        "name": "AI Video Generator",
+        "description": "Generate short videos and creative animations."
+      },
+      "imageToWebp": {
+        "name": "Image to WebP",
+        "description": "Batch convert images to WebP format."
+      },
+      "webpToJpg": {
+        "name": "WebP to JPG",
+        "description": "Batch convert WebP images to JPG."
+      },
+      "webpToPng": {
+        "name": "WebP to PNG",
+        "description": "Batch convert WebP images to PNG for transparent image processing."
+      },
+      "imageCompress": {
+        "name": "Image Compression",
+        "description": "Compress JPG, PNG, and other images to reduce file size."
+      },
+      "idPhoto": {
+        "name": "ID Photo Maker",
+        "description": "Create ID photo sizes and backgrounds from an uploaded photo."
+      },
+      "fontCompress": {
+        "name": "TTF Font Compression",
+        "description": "Compress TTF fonts and generate smaller subset fonts."
+      },
+      "jsonCsv": {
+        "name": "JSON/CSV Converter",
+        "description": "Quickly convert JSON and CSV data files."
+      },
+      "jsonFormatter": {
+        "name": "JSON Formatter",
+        "description": "Format, minify, validate, and search JSON data."
+      },
+      "dateFormat": {
+        "name": "Date Format Tool",
+        "description": "Detect input dates and convert them to a selected format."
+      },
+      "uppercase": {
+        "name": "Uppercase Converter",
+        "description": "Convert text to uppercase and copy it to the clipboard."
+      },
+      "token": {
+        "name": "Token Generator",
+        "description": "Generate random tokens with letters, numbers, and symbols."
+      },
+      "hash": {
+        "name": "Hash Text",
+        "description": "Apply common MD5, SHA, and other hash algorithms to text."
+      },
+      "blog": {
+        "name": "Blog",
+        "description": "Browse articles and tutorials on the site."
+      },
+      "prompts": {
+        "name": "Prompts",
+        "description": "View and use reusable prompt templates."
+      },
+      "shareNote": {
+        "name": "Share Note",
+        "description": "Temporarily share commands, scripts, configurations, and technical text."
+      }
+    },
+    "seoTitle": "OnliTool - Online Tool Directory",
+    "seoDescription": "OnliTool provides online tools for image processing, AI, font compression, text conversion, and development.",
+    "seoKeywords": "online tools, image processing, AI tools, font compression, file conversion, developer tools, OnliTool",
+    "seoOgDescription": "A one-stop online tool directory for image, AI, text, conversion, and developer utilities."
+  },
+  "search": {
+    "placeholder": "Search"
+  },
+  "ttf": {
+    "desc": "Input characters or Upload text, extract needed glyphs from TTF, output smaller TTF & WOFF."
+  },
+  "font": {
+    "seo_desc": "TTF font compression tool, supports custom character sets, greatly reduces font size, ideal for frontend performance optimization.",
+    "seo_keywords": "TTF, font compression, font subset, frontend optimization, font tool, font extraction, font slimming",
+    "title": "Free Font Compressor & Subsetter",
+    "desc": "Upload a TTF font, enter the characters you need, remove unused glyphs, and generate a smaller font file for better web performance.",
+    "h1": "Free Font Compressor & Subsetter",
+    "lead": "Compress TTF fonts online, remove unused glyphs and characters, and reduce font file size for better web and frontend performance.",
+    "upload": "Upload TTF Font",
+    "selected": "Selected: {name}",
+    "origin_size": "Original size: {size}",
+    "input_chars": "Input Characters",
+    "input_placeholder": "Enter the characters you want to keep",
+    "char_count": "Deduplicated: {count}",
+    "upload_text": "Or upload text",
+    "text_selected": "Selected: {name}",
+    "output_type": "Output Format",
+    "start": "Start Compression",
+    "clear": "Clear All",
+    "success": "Compression Complete",
+    "download": "Click to download the compressed font",
+    "only_glyphs": "(Only contains required glyphs)",
+    "compressed_size": "Compressed: {size}",
+    "error": "Font compression failed: {msg}",
+    "preview_generating": "Generating font preview...",
+    "section": {
+      "subsetting_title": "What is font subsetting?",
+      "subsetting_text": "Font subsetting removes unused glyphs and characters, keeping only the ones your project actually needs to significantly reduce font file size.",
+      "steps_title": "How to compress a TTF font",
+      "steps_1": "Upload your TTF font file.",
+      "steps_2": "Enter the characters or text you want to keep.",
+      "steps_3": "Choose the output format, such as TTF or WOFF.",
+      "steps_4": "Click Start Compression and download the optimized font.",
+      "why_title": "Why use a font compressor?",
+      "why_text": "Large fonts increase page load time, especially on mobile devices or when multiple font files are used. Font compression and subsetting can significantly improve web performance and reduce download size.",
+      "faq_title": "Frequently asked questions",
+      "faq_1_q": "What is a font subsetting tool?",
+      "faq_1_a": "A font subsetting tool keeps the characters you actually need and removes the rest to create a smaller font file.",
+      "faq_2_q": "How do I reduce the size of a TTF file?",
+      "faq_2_a": "Upload the TTF file, input the required characters, and generate a subset font to remove unused glyphs and shrink the file size.",
+      "faq_3_q": "Does font subsetting improve web performance?",
+      "faq_3_a": "Yes. Smaller font files mean less downloaded data and faster page loading while keeping the required characters available.",
+      "faq_4_q": "Is WOFF smaller than TTF?",
+      "faq_4_a": "For web delivery, WOFF is often more suitable because it is optimized for browser transfer. Combining WOFF output with font subsetting is a common optimization strategy."
+    }
+  },
+  "privacy": {
+    "title": "We Care About Your Privacy",
+    "desc": "We use cookies to enhance your experience. You can customize your cookie preferences below.",
+    "necessary": "Necessary Cookies (Always enabled)",
+    "analytics": "Analytics Cookies",
+    "ads": "Advertising Cookies",
+    "acceptAll": "Allow All",
+    "save": "Save Preferences"
+  },
   "blog": {
+    "title": "Blog Articles",
+    "write": "Write Article",
+    "author": "Author",
+    "posted": "Posted",
+    "sort": {
+      "hits": "By Popularity",
+      "time": "By Date"
+    },
+    "fetchError": "Failed to fetch articles",
+    "needLogin": "Please login before posting",
+    "name": "Blog",
+    "seoDesc": "Java, JavaScript technical articles, and practical tutorials",
+    "seoKeywords": "JavaScript, TypeScript, Vue, React, Node.js, Python, Go, Rust, Web开发, 前端, 后端, 全栈, 云原生, Docker, Kubernetes, 微服务, 数据库, DevOps, AI, 机器学习",
+    "type": "Tag",
+    "hits": "Views",
+    "backToList": "返回列表",
+    "category": "Category",
+    "lastUpdate": "Update Time",
+    "edit": "edit",
     "pageSize": "Per page",
     "items": "items",
     "gotoPage": "Go to page",
     "go": "Go",
     "totalItems": "Total {total} items"
+  },
+  "common": {
+    "loading": "加载中..."
+  },
+  "jsoncsv": {
+    "title": "JSON & CSV Converter",
+    "input_placeholder": "Paste JSON or CSV content",
+    "json_to_csv": "JSON to CSV",
+    "csv_to_json": "CSV to JSON",
+    "clear": "Clear",
+    "paste": "Paste",
+    "result_title": "Conversion Result",
+    "download": "Download File",
+    "copy": "Copy Result",
+    "copy_success": "Copied to clipboard",
+    "copy_fail": "Copy failed",
+    "paste_success": "Pasted clipboard content",
+    "paste_fail": "Paste failed",
+    "paste_not_supported": "Clipboard paste not supported",
+    "json_to_csv_error": "JSON to CSV failed: {msg}",
+    "csv_to_json_error": "CSV to JSON failed: {msg}",
+    "index": "JSON and CSV format conversion tool",
+    "seo_title": "Free Online JSON to CSV Converter | CSV to JSON Tool",
+    "seo_description": "Easily convert JSON to CSV and CSV to JSON online. Free, fast, and secure conversion tool that works directly in your browser. No file upload required.",
+    "seo_keywords": "JSON to CSV, CSV to JSON, online converter, free JSON to CSV tool, convert JSON, convert CSV, JSON converter, CSV converter, batch conversion"
+  },
+  "imageConvert": {
+    "webpToPngTitle": "WebP to PNG",
+    "webpToPngDesc": "Batch convert WebP images to PNG format. Supports multiple images, direct download or zip archive.",
+    "webpToJpgTitle": "WebP to JPG",
+    "webpToJpgDesc": "Batch convert WebP images to JPG format. Supports multiple images, direct download or zip archive.",
+    "description": "Select one or more images (WebP, PNG, JPG, JPEG, BMP, GIF, TIFF) and convert to your desired format. Supports batch processing and zip download.",
+    "selectedCount": "{count} images selected",
+    "clear": "Clear",
+    "targetFormat": "Target format",
+    "start": "Start conversion",
+    "progress": "Processing {current} of {total} images...",
+    "download": "Download",
+    "seoTitlePng": "WebP to PNG Online Tool | Batch Image Converter",
+    "seoDescPng": "Online WebP to PNG converter, batch image conversion, multi-language, best SEO, safe and efficient.",
+    "seoTitleJpg": "WebP to JPG Online Tool | Batch Image Converter",
+    "seoDescJpg": "Online WebP to JPG converter, batch image conversion, multi-language, best SEO, safe and efficient."
+  },
+  "prompts": {
+    "title": "Prompts",
+    "name": "Prompt Library",
+    "write": "ADD"
+  },
+  "compress": {
+    "title": "Free online image compressor"
+  },
+  "dateFormat": {
+    "badge": "Time Decoder",
+    "title": "Time Format Decoder",
+    "description": "Paste any time string or timestamp, detect its format automatically, and convert it to your preferred fixed output format.",
+    "copyResult": "Copy Result",
+    "loadSample": "Sample Data",
+    "clear": "Clear",
+    "detectedResult": "Detected result",
+    "parsedCount": "{count} time values",
+    "inputLabel": "Input content",
+    "fillSample": "Fill sample",
+    "placeholder": "Example:\\n1788184699872\\n1717147200\\n2024-05-06T08:30:45.000Z\\n31/05/2024\\n2024年5月6日",
+    "outputFormat": "Output format",
+    "bestFormat": "Most likely format",
+    "confidence": "Confidence",
+    "noInput": "Please enter a recognizable date or time value",
+    "decodeResult": "Decoded result",
+    "copyUtc": "Copy UTC",
+    "resultPlaceholder": "Parsed time will appear here...",
+    "recognitionTitle": "Recognition notes",
+    "whyThis": "Why is it {value}?",
+    "best": "Best",
+    "alt": "Alt",
+    "scriptTitle": "Multi-language script generation",
+    "generateLanguage": "Generated language",
+    "runLocal": "Run locally",
+    "runDemo": "Remote demo",
+    "copyScript": "Copy script",
+    "runOutput": "Runtime output",
+    "supportedFormats": "Supported time formats",
+    "formatAuto": "Auto detect",
+    "support": {
+      "unixSeconds": "Unix seconds",
+      "unixMilliseconds": "Unix milliseconds",
+      "unixMicroseconds": "Unix microseconds",
+      "excelDate": "Excel date",
+      "chineseDate": "Chinese date",
+      "mixedInput": "Mixed date input"
+    },
+    "seoTitle": "Time Format Decoder - Auto-detect timestamps and date formats",
+    "seoDescription": "Auto-detect Unix seconds/milliseconds, ISO 8601, Chinese dates, and other time formats, then convert them into fixed formats such as yyyy-MM-dd.",
+    "seoKeywords": "time format decoder, timestamp recognition, Unix timestamp, ISO 8601, date format conversion, time string parsing, yyyy-MM-dd format",
+    "messages": {
+      "noScript": "There is no script content to copy",
+      "scriptCopied": "Script copied to clipboard",
+      "copyFailed": "Copy failed, please copy manually",
+      "noOutput": "There is no time result to copy",
+      "outputCopied": "Time format copied to clipboard",
+      "noUtcData": "There is no time content to convert",
+      "utcCopied": "UTC time copied"
+    }
+  },
+  "webpTo": {
+    "batch_message": "Select multiple WebP images and download batch results as a ZIP file.",
+    "local_message": "Files are processed locally in your browser and are never uploaded.",
+    "batch_success": "Batch converted {count} images",
+    "title": "WebP to {format} Online Tool",
+    "description": "Convert WebP images to {format} in batches. Process multiple images at once and download them as a ZIP file. Files are processed locally in your browser and never uploaded.",
+    "keywords": "WebP to {format}, WebP batch converter, batch image conversion, {format} online tool, local image processing, no upload",
+    "seoSuffix": "Image Converter | Batch Processing",
+    "intro": "Convert WebP images to multiple formats in batches, with direct downloads for single images and ZIP downloads for multiple images."
   }
 }

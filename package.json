@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "se": "switchenv.bat && npx wrangler whoami && switchenvbk.bat",
-    "build": "nuxt build",
+    "build": "node --max-old-space-size=4096 ./node_modules/nuxt/bin/nuxt.mjs build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "npm run build && wrangler dev",

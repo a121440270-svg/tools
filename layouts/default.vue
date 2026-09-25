@@ -696,6 +696,7 @@ const categories = ref([
       { name: "menu.ttf", path: "/font-compress", icon: markRaw(FontIcon) },
       { name: "menu.jsoncsv", path: "/json-csv-convert", icon: markRaw(FontIcon) },
       { name: "home.tools.jsonFormatter.name", path: "/json-formatter", icon: markRaw(FontIcon) },
+      { name: "JSON Compare", path: "/json-compare", icon: markRaw(FontIcon) },
       { name: "home.tools.dateFormat.name", path: "/date-format", icon: markRaw(DateIcon) },
     ],
   },

@@ -319,6 +319,18 @@ const toolGroups = computed(() => [
         icon: CompressIcon
       },
       {
+        name: 'Image Aspect Ratio Changer',
+        path: '/image-aspect-ratio',
+        description: 'Change images to 16:9, 1:1, 9:16, 4:3 and custom ratios with crop, fit, blur, or stretch modes.',
+        icon: ImageIcon
+      },
+      {
+        name: 'Increase Image Size in KB',
+        path: '/increase-image-size',
+        description: 'Increase image file size to a target KB or MB while keeping the original image dimensions.',
+        icon: CompressIcon
+      },
+      {
         name: t('home.tools.idPhoto.name'),
         path: '/id-photo',
         description: t('home.tools.idPhoto.description'),
@@ -347,6 +359,12 @@ const toolGroups = computed(() => [
         name: t('home.tools.jsonFormatter.name'),
         path: '/json-formatter',
         description: t('home.tools.jsonFormatter.description'),
+        icon: CodeIcon
+      },
+      {
+        name: t('home.tools.jsonCompare.name'),
+        path: '/json-compare',
+        description: t('home.tools.jsonCompare.description'),
         icon: CodeIcon
       },
       {

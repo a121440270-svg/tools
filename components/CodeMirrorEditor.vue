@@ -77,14 +77,21 @@ function getLanguageSupport(language: string): LanguageSupport | [] {
 }
 
 function createDiffDecorations() {
-  return EditorView.decorations.of((state) => {
+  return EditorView.decorations.of((view) => {
     const builder = new RangeSetBuilder<ReturnType<typeof Decoration.mark>>()
+    const doc = view.state.doc
 
-    for (const range of props.diffRanges) {
-      const startLine = Math.max(1, Math.min(range.startLine + 1, state.doc.lines))
-      const endLine = Math.max(startLine, Math.min(range.endLine + 1, state.doc.lines))
-      const start = state.doc.line(startLine).from
-      const end = state.doc.line(endLine).to
+    const decorations = props.diffRanges.map(range => {
+      const startLine = Math.max(1, Math.min(range.startLine + 1, doc.lines))
+      const endLine = Math.max(startLine, Math.min(range.endLine + 1, doc.lines))
+      return {
+        range,
+        start: doc.line(startLine).from,
+        end: doc.line(endLine).to
+      }
+    }).sort((left, right) => left.start - right.start || left.end - right.end)
+
+    for (const { range, start, end } of decorations) {
       builder.add(start, end, Decoration.mark({ class: `cm-diff-${range.type}` }))
     }
 
