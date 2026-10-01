@@ -188,12 +188,12 @@ function normalizeTargetSize(value, fallback = 500) {
 }
 
 const sizePresets = [
-  { label: '20 KB', value: 20, desc: 'small', path: '/image-compress-to-20kb' },
-  { label: '50 KB', value: 50, desc: 'email', path: '/image-compress-to-50kb' },
-  { label: '100 KB', value: 100, desc: 'common', path: '/image-compress-to-100kb' },
-  { label: '200 KB', value: 200, desc: 'website', path: '/image-compress-to-200kb' },
-  { label: '500 KB', value: 500, desc: 'large', path: '/image-compress-to-500kb' },
-  { label: '1 MB', value: 1024, desc: 'high quality', path: '/image-compress-to-1mb' }
+  { label: '20 KB', value: 20, desc: 'Small', path: '/image-compress-to-20kb' },
+  { label: '50 KB', value: 50, desc: 'Email', path: '/image-compress-to-50kb' },
+  { label: '100 KB', value: 100, desc: 'Common', path: '/image-compress-to-100kb' },
+  { label: '200 KB', value: 200, desc: 'Website', path: '/image-compress-to-200kb' },
+  { label: '500 KB', value: 500, desc: 'Large', path: '/image-compress-to-500kb' },
+  { label: '1 MB', value: 1024, desc: 'HighQuality', path: '/image-compress-to-1mb' }
 ]
 
 useHead({
