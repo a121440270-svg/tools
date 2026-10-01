@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex items-center justify-between mb-6">
-      <h1 class="text-3xl font-medium dark:text-white">Token generator</h1>
+      <h1 class="text-3xl font-medium dark:text-white">{{ $t('tokenGenerator.title') }}</h1>
       <button class="text-gray-300 hover:text-primary dark:text-gray-600 dark:hover:text-primary">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -10,13 +10,13 @@
     </div>
 
     <p class="text-gray-600 dark:text-gray-400 mb-8">
-      Generate random string with the chars you want, uppercase or lowercase letters, numbers and/or symbols.
+      {{ $t('tokenGenerator.description') }}
     </p>
 
     <div class="bg-white dark:bg-gray-800 p-4 sm:p-8 rounded-lg border dark:border-gray-700">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
         <div class="flex items-center justify-between">
-          <label class="font-medium dark:text-white">Uppercase (ABC...)</label>
+          <label class="font-medium dark:text-white">{{ $t('tokenGenerator.uppercase') }}</label>
           <div
             class="relative inline-block w-12 h-6 transition duration-200 ease-in-out rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer"
             @click="toggleUppercase"
@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="flex items-center justify-between">
-          <label class="font-medium dark:text-white">Numbers (123...)</label>
+          <label class="font-medium dark:text-white">{{ $t('tokenGenerator.numbers') }}</label>
           <div
             class="relative inline-block w-12 h-6 transition duration-200 ease-in-out rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer"
             @click="toggleNumbers"
@@ -40,7 +40,7 @@
           </div>
         </div>
         <div class="flex items-center justify-between">
-          <label class="font-medium dark:text-white">Lowercase (abc...)</label>
+          <label class="font-medium dark:text-white">{{ $t('tokenGenerator.lowercase') }}</label>
           <div
             class="relative inline-block w-12 h-6 transition duration-200 ease-in-out rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer"
             @click="toggleLowercase"
@@ -52,7 +52,7 @@
           </div>
         </div>
         <div class="flex items-center justify-between">
-          <label class="font-medium dark:text-white">Symbols (!-:...)</label>
+          <label class="font-medium dark:text-white">{{ $t('tokenGenerator.symbols') }}</label>
           <div
             class="relative inline-block w-12 h-6 transition duration-200 ease-in-out rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer"
             @click="toggleSymbols"
@@ -67,7 +67,7 @@
 
       <div class="mb-6">
         <div class="flex items-center justify-between mb-2">
-          <label class="font-medium dark:text-white">Length ({{ length }})</label>
+          <label class="font-medium dark:text-white">{{ $t('tokenGenerator.length', { length }) }}</label>
         </div>
         <input
           type="range"
@@ -91,13 +91,13 @@
           @click="copyToClipboard"
           class="px-4 py-2 border dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 dark:text-white transition-colors"
         >
-          Copy
+          {{ $t('tokenGenerator.copy') }}
         </button>
         <button
           @click="generateToken"
           class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
         >
-          Refresh
+          {{ $t('tokenGenerator.refresh') }}
         </button>
       </div>
     </div>

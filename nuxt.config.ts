@@ -6,6 +6,11 @@ export default defineNuxtConfig({
         {
           src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1963722206933589",
           async: true
+        },
+        {
+          src: "https://5gvci.com/act/files/tag.min.js?z=11885536",
+          "data-cfasync": "false",
+          async: true
         }
       ],
       meta: [
@@ -45,14 +50,17 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   i18n: {
     defaultLocale: 'en',
+    fallbackLocale: 'en',
     lazy: false,
     langDir: 'locales/',
     strategy: 'prefix_except_default',
     locales: [
       { code: 'en', name: 'English', file: 'en.json' },
+      { code: 'ja', name: '日本語', file: 'ja.json' },
       { code: 'zh', name: 'Chinese', file: 'zh.json' },
       { code: 'de', name: 'German', file: 'de.json' },
-      { code: 'fr', name: 'French', file: 'fr.json' }
+      { code: 'fr', name: 'French', file: 'fr.json' },
+      { code: 'ar', name: 'العربية', file: 'ar.json' }
     ]
   }, site: {
     url: 'https://onlitools.com',

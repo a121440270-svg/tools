@@ -1,24 +1,39 @@
 <template>
   <div class="max-w-3xl mx-auto py-10">
-    <h1 class="text-3xl font-bold mb-4">Free Font Compressor &amp; Subsetter</h1>
+    <h1 class="text-3xl font-bold mb-4">{{ t('font.h1') }}</h1>
     <p class="mb-4 text-gray-600 text-base leading-7">
-      Compress TTF fonts online, remove unused glyphs and characters, and reduce font file size with font subsetting.
-      Upload a TTF file, keep only the characters you need, and export a lighter font for the web.
+      {{ t('font.lead') }}
     </p>
     <el-form :label-width="'100px'" class="mb-6">
       <el-form-item :label="t('font.upload')">
-        <input type="file" accept=".ttf" @change="onFontFileChange" ref="fontInputRef" />
+        <input type="file" accept=".ttf,.otf,.woff,.woff2" @change="onFontFileChange" ref="fontInputRef" />
         <span v-if="fontName" class="ml-2 text-green-600">{{ t('font.selected', { name: fontName }) }}</span>
         <span v-if="originSize" class="ml-4 text-xs text-gray-500">{{ t('font.origin_size', { size: prettySize(originSize) }) }}</span>
       </el-form-item>
       <el-form-item :label="t('font.input_chars')">
+        <el-radio-group v-model="inputMode" class="mb-3">
+          <el-radio-button label="text">{{ t('font.custom_text') }}</el-radio-button>
+          <el-radio-button label="range">{{ t('font.unicode_range') }}</el-radio-button>
+          <el-radio-button label="preset">{{ t('font.language_preset') }}</el-radio-button>
+        </el-radio-group>
         <el-input
+          v-if="inputMode === 'text'"
           v-model="charInput"
           type="textarea"
           :rows="3"
           :placeholder="t('font.input_placeholder')"
         />
-        <span class="ml-2 text-xs text-gray-500">{{ t('font.char_count', { count: charSet.length }) }}</span>
+        <el-input
+          v-else-if="inputMode === 'range'"
+          v-model="rangeInput"
+          type="textarea"
+          :rows="2"
+          placeholder="U+0000-00FF, U+4E00-9FFF"
+        />
+        <el-select v-else v-model="selectedPreset" class="w-full" @change="applyPreset">
+          <el-option v-for="preset in languagePresets" :key="preset.value" :label="preset.label" :value="preset.value" />
+        </el-select>
+        <span class="ml-2 text-xs text-gray-500">{{ t('font.char_count', { count: selectedCodePoints.length }) }}</span>
       </el-form-item>
       <el-form-item :label="t('font.upload_text')">
         <input type="file" accept=".txt" @change="onTextFileChange" ref="textInputRef" />
@@ -26,18 +41,20 @@
       </el-form-item>
       <el-form-item :label="t('font.output_type')">
         <el-radio-group v-model="outputType">
-          <el-radio label="ttf">TTF</el-radio>
-          <el-radio label="woff">WOFF</el-radio>
+          <el-radio-button label="ttf">TTF</el-radio-button>
+          <el-radio-button label="woff">WOFF</el-radio-button>
+          <el-radio-button label="woff2">WOFF2</el-radio-button>
         </el-radio-group>
       </el-form-item>
+      <p class="mb-5 text-sm text-gray-500">{{ t('font.local_processing') }}</p>
       <el-form-item>
-        <el-button type="primary" :disabled="!fontBuffer || !charSet.length || loading" @click="extractFont">
+        <el-button type="primary" :disabled="!fontBuffer || !selectedCodePoints.length || loading" @click="extractFont">
           {{ t('font.start') }}
         </el-button>
         <el-button size="default" class="ml-2" @click="clearAll">{{ t('font.clear') }}</el-button>
       </el-form-item>
     </el-form>
-    <el-progress v-if="loading" :percentage="progress" status="active" class="mb-4" />
+    <el-progress v-if="loading" :percentage="progress" class="mb-4" />
     <div v-if="downloadUrl" class="mt-6">
       <el-alert type="success" show-icon :title="t('font.success')">
         <template #default>
@@ -46,54 +63,60 @@
           <span v-if="compressedSize" class="ml-4 text-xs text-gray-500">{{ t('font.compressed_size', { size: prettySize(compressedSize) }) }}</span>
         </template>
       </el-alert>
+      <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div class="border-l-2 border-gray-300 pl-3"><div class="text-xs text-gray-500">{{ t('font.original_size') }}</div><strong>{{ prettySize(originSize) }}</strong></div>
+        <div class="border-l-2 border-green-600 pl-3"><div class="text-xs text-gray-500">{{ t('font.optimized_size') }}</div><strong>{{ prettySize(compressedSize) }}</strong></div>
+        <div class="border-l-2 border-blue-600 pl-3"><div class="text-xs text-gray-500">{{ t('font.saved_size') }}</div><strong>{{ prettySize(originSize - compressedSize) }}</strong></div>
+        <div class="border-l-2 border-amber-500 pl-3"><div class="text-xs text-gray-500">{{ t('font.reduction') }}</div><strong>{{ reductionPercentage }}%</strong></div>
+      </div>
+      <p class="mt-3 text-sm text-gray-600">{{ t('font.glyph_count') }}: {{ originalGlyphCount.toLocaleString() }} → {{ remainingGlyphCount.toLocaleString() }}</p>
     </div>
     <div v-if="errorMsg" class="mt-4 text-red-600">{{ t('font.error', { msg: errorMsg }) }}</div>
 
+    <nav class="mt-8 flex flex-wrap gap-x-5 gap-y-2 border-t border-gray-200 pt-4 text-sm">
+      <NuxtLink to="/font-inspector" class="text-primary underline">{{ t('font.tools.inspector') }}</NuxtLink>
+      <NuxtLink to="/font-unicode-checker" class="text-primary underline">{{ t('font.tools.unicodeChecker') }}</NuxtLink>
+    </nav>
+
     <section class="mt-10 space-y-8">
       <div class="rounded-xl border border-gray-200 bg-gray-50 p-5">
-        <h2 class="text-xl font-semibold mb-2">What is font subsetting?</h2>
-        <p class="text-gray-700 leading-7">
-          Font subsetting removes unused glyphs and characters from a font file, creating a smaller font that only contains the characters your project actually needs.
-          This is one of the most effective ways to reduce font file size and improve web performance.
-        </p>
+        <h2 class="text-xl font-semibold mb-2">{{ t('font.section.subsetting_title') }}</h2>
+        <p class="text-gray-700 leading-7">{{ t('font.section.subsetting_text') }}</p>
       </div>
 
       <div class="rounded-xl border border-gray-200 p-5">
-        <h2 class="text-xl font-semibold mb-3">How to compress a TTF font</h2>
+        <h2 class="text-xl font-semibold mb-3">{{ t('font.section.steps_title') }}</h2>
         <ol class="list-decimal pl-5 text-gray-700 leading-7 space-y-2">
-          <li>Upload your TTF font file.</li>
-          <li>Enter the characters or text you want to keep.</li>
-          <li>Choose the output format such as TTF or WOFF.</li>
-          <li>Click Start Compression and download the optimized font.</li>
+          <li>{{ t('font.section.steps_1') }}</li>
+          <li>{{ t('font.section.steps_2') }}</li>
+          <li>{{ t('font.section.steps_3') }}</li>
+          <li>{{ t('font.section.steps_4') }}</li>
         </ol>
       </div>
 
       <div class="rounded-xl border border-gray-200 p-5">
-        <h2 class="text-xl font-semibold mb-3">Why use a font compressor?</h2>
-        <p class="text-gray-700 leading-7">
-          Large fonts can slow down page loading, especially on mobile devices or when a website uses multiple font files.
-          A font compressor helps reduce the size of your TTF font by removing unnecessary glyphs and exporting a more efficient font subset for the web.
-        </p>
+        <h2 class="text-xl font-semibold mb-3">{{ t('font.section.why_title') }}</h2>
+        <p class="text-gray-700 leading-7">{{ t('font.section.why_text') }}</p>
       </div>
 
       <div class="rounded-xl border border-gray-200 p-5">
-        <h2 class="text-xl font-semibold mb-3">Frequently asked questions</h2>
+        <h2 class="text-xl font-semibold mb-3">{{ t('font.section.faq_title') }}</h2>
         <div class="space-y-5 text-gray-700">
           <div>
-            <h3 class="font-semibold text-gray-900">What is a font subsetting tool?</h3>
-            <p class="mt-1 leading-7">A font subsetting tool keeps only the characters you need and removes the rest, creating a smaller and more efficient font file.</p>
+            <h3 class="font-semibold text-gray-900">{{ t('font.section.faq_1_q') }}</h3>
+            <p class="mt-1 leading-7">{{ t('font.section.faq_1_a') }}</p>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900">How do I reduce the size of a TTF file?</h3>
-            <p class="mt-1 leading-7">Upload the TTF, input the required characters, and regenerate a subset font. This removes unused glyphs and reduces file size.</p>
+            <h3 class="font-semibold text-gray-900">{{ t('font.section.faq_2_q') }}</h3>
+            <p class="mt-1 leading-7">{{ t('font.section.faq_2_a') }}</p>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900">Does font subsetting improve web performance?</h3>
-            <p class="mt-1 leading-7">Yes. Smaller font files reduce download size and can help pages load faster while keeping the required characters available.</p>
+            <h3 class="font-semibold text-gray-900">{{ t('font.section.faq_3_q') }}</h3>
+            <p class="mt-1 leading-7">{{ t('font.section.faq_3_a') }}</p>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900">Is WOFF smaller than TTF?</h3>
-            <p class="mt-1 leading-7">WOFF is typically more compact for web use because it is optimized for browser delivery. Combining WOFF output with font subsetting is a common optimization approach.</p>
+            <h3 class="font-semibold text-gray-900">{{ t('font.section.faq_4_q') }}</h3>
+            <p class="mt-1 leading-7">{{ t('font.section.faq_4_a') }}</p>
           </div>
         </div>
       </div>
@@ -102,9 +125,12 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import { Font } from 'fonteditor-core'
+import { ensureWoff2Support, FONT_LANGUAGE_PRESETS, getFontFormat, getMappedCodePoints, parseFontBuffer, parseUnicodeRanges, useSharedFontFile, useSharedSubsetText } from '~/composables/useFontTools'
 const { t } = useI18n()
+const sharedFontFile = useSharedFontFile()
+const sharedSubsetText = useSharedSubsetText()
 
 const fontBuffer = ref(null)
 const fontName = ref('')
@@ -118,13 +144,20 @@ const compressedSize = ref(0)
 const loading = ref(false)
 const progress = ref(0)
 const outputType = ref('ttf')
+const inputMode = ref('text')
+const rangeInput = ref('')
+const selectedPreset = ref('latin')
+const sourceFormat = ref(null)
+const sourceCodePoints = ref([])
+const originalGlyphCount = ref(0)
+const remainingGlyphCount = ref(0)
 
 const fontInputRef = ref(null)
 const textInputRef = ref(null)
 
-const pageTitle = computed(() => 'Font Compressor Online – Compress & Subset TTF Fonts')
-const pageDescription = computed(() => 'Compress and subset TTF fonts online. Remove unused glyphs and characters to reduce font file size and optimize web fonts for faster loading.')
-const pageKeywords = computed(() => 'font compressor, font compression tool, font subsetting tool, font subsetter, TTF compressor, compress TTF font, reduce font file size, font optimizer, web font optimizer')
+const pageTitle = computed(() => t('font.title'))
+const pageDescription = computed(() => t('font.seo_desc'))
+const pageKeywords = computed(() => t('font.seo_keywords'))
 
 useHead({
   title: pageTitle.value,
@@ -163,10 +196,24 @@ useHead({
   ]
 })
 
-const charSet = computed(() => {
-  // 去重排序
-  return Array.from(new Set(charInput.value.split(''))).filter(Boolean).sort()
+const languagePresets = FONT_LANGUAGE_PRESETS
+
+const selectedCodePoints = computed(() => {
+  if (inputMode.value === 'text') {
+    return Array.from(new Set(Array.from(charInput.value, character => character.codePointAt(0))))
+      .filter(codePoint => codePoint !== undefined)
+      .sort((left, right) => left - right)
+  }
+
+  const input = inputMode.value === 'preset'
+    ? languagePresets.find(preset => preset.value === selectedPreset.value)?.range || ''
+    : rangeInput.value
+  return selectAvailableCodePoints(input, sourceCodePoints.value)
 })
+
+const reductionPercentage = computed(() => originSize.value
+  ? (((originSize.value - compressedSize.value) / originSize.value) * 100).toFixed(1)
+  : '0.0')
 
 function prettySize(size) {
   if (!size) return ''
@@ -178,21 +225,64 @@ function prettySize(size) {
 function onFontFileChange(e) {
   const file = e.target.files[0]
   if (!file) return
+  loadFontFile(file)
+}
+
+function loadFontFile(file) {
+  const format = getFontFormat(file.name)
+  sharedFontFile.value = file
   fontName.value = file.name
+  fontBuffer.value = null
+  sourceCodePoints.value = []
   downloadUrl.value = ''
   errorMsg.value = ''
   originSize.value = file.size
   compressedSize.value = 0
-  const reader = new FileReader()
-  reader.onload = function(evt) {
-    fontBuffer.value = evt.target.result
+  originalGlyphCount.value = 0
+  remainingGlyphCount.value = 0
+  if (!format) {
+    errorMsg.value = 'Choose a TTF, OTF, WOFF, or WOFF2 font file.'
+    return
   }
-  // 只支持 ttf
-  if (file.name.endsWith('.ttf')) {
-    reader.readAsArrayBuffer(file)
-  } else {
-    errorMsg.value = '仅支持上传 ttf 格式字体文件'
+
+  sourceFormat.value = format
+  file.arrayBuffer().then(async buffer => {
+    try {
+      const parsed = await parseFontBuffer(buffer, format)
+      fontBuffer.value = buffer
+      sourceCodePoints.value = getMappedCodePoints(parsed.data.cmap)
+      originalGlyphCount.value = parsed.data.maxp?.numGlyphs || parsed.data.glyf.length
+    } catch {
+      errorMsg.value = 'The selected font could not be read. Check that the file is valid and not password-protected.'
+    }
+  }).catch(() => {
+    errorMsg.value = 'The selected font could not be read.'
+  })
+}
+
+onMounted(() => {
+  const route = useRoute()
+  if (typeof route.query.text === 'string') {
+    charInput.value = route.query.text
+    inputMode.value = 'text'
+  } else if (sharedSubsetText.value) {
+    charInput.value = sharedSubsetText.value
+    inputMode.value = 'text'
+    sharedSubsetText.value = ''
   }
+  if (sharedFontFile.value && !fontBuffer.value) loadFontFile(sharedFontFile.value)
+})
+
+function applyPreset() {
+  inputMode.value = 'preset'
+}
+
+function selectAvailableCodePoints(value, availableCodePoints) {
+  const ranges = []
+  const parsedRanges = parseUnicodeRanges(value)
+  if (!parsedRanges) return []
+  ranges.push(...parsedRanges)
+  return availableCodePoints.filter(codePoint => ranges.some(([start, end]) => codePoint >= start && codePoint <= end))
 }
 
 function onTextFileChange(e) {
@@ -208,8 +298,13 @@ function onTextFileChange(e) {
 }
 
 function clearFontFile() {
+  sharedFontFile.value = null
   fontBuffer.value = null
   fontName.value = ''
+  sourceFormat.value = null
+  sourceCodePoints.value = []
+  originalGlyphCount.value = 0
+  remainingGlyphCount.value = 0
   originSize.value = 0
   compressedSize.value = 0
   downloadUrl.value = ''
@@ -238,107 +333,31 @@ async function extractFont() {
   loading.value = true
   progress.value = 10
   try {
-    // 使用 fonteditor-core 的 Font 对象进行子集化
-    await new Promise(resolve => setTimeout(resolve, 100)) // 模拟进度
-    progress.value = 30
+    progress.value = 25
+    if (outputType.value === 'woff2') await ensureWoff2Support()
     const font = Font.create(fontBuffer.value, {
-      type: 'ttf',
-      subset: charSet.value.join(''),
+      type: sourceFormat.value,
+      subset: selectedCodePoints.value,
       hinting: true,
       compound2simple: true,
-      inflate: null,
       combinePath: false
     })
-    await new Promise(resolve => setTimeout(resolve, 100))
-    progress.value = 60
-    let buffer, mime, ext
-    if (outputType.value === 'woff') {
-      buffer = font.write({
-        type: 'woff',
-        hinting: true
-      })
-      mime = 'font/woff'
-      ext = '.woff'
-    } else {
-      buffer = font.write({
-        type: 'ttf',
-        hinting: true
-      })
-      mime = 'font/ttf'
-      ext = '.ttf'
-    }
-    await new Promise(resolve => setTimeout(resolve, 100))
-    progress.value = 90
+    progress.value = 65
+    remainingGlyphCount.value = font.get().glyf.length
+    const buffer = font.write({ type: outputType.value, hinting: true })
+    const mime = outputType.value === 'ttf' ? 'font/ttf' : `font/${outputType.value}`
+    const ext = `.${outputType.value}`
     const blob = new Blob([buffer], { type: mime })
     downloadName.value = 'compressed-' + fontName.value.replace(/\.\w+$/, ext)
     downloadUrl.value = URL.createObjectURL(blob)
     compressedSize.value = blob.size
     progress.value = 100
   } catch (e) {
-    errorMsg.value = '字体压缩失败: ' + (e.message || e)
+    errorMsg.value = 'Font subsetting failed. The font may use unsupported tables or contain invalid data.'
   } finally {
     setTimeout(() => { loading.value = false }, 300)
   }
 }
 
-const fontPreviewUrl = ref('')
-const previewFontFamily = 'preview-font'
 
-// 动态插入 @font-face 样式
-function injectFontFace(url) {
-  removeFontFace()
-  if (!url) return
-  const style = document.createElement('style')
-  style.setAttribute('type', 'text/css')
-  style.setAttribute('id', 'preview-font-face-style')
-  style.innerHTML = `
-    @font-face {
-      font-family: '${previewFontFamily}';
-      src: url('${url}');
-    }
-  `
-  document.head.appendChild(style)
-}
-function removeFontFace() {
-  const old = document.getElementById('preview-font-face-style')
-  if (old) old.remove()
-}
-
-// 生成预览字体（ttf格式即可）
-async function updateFontPreview() {
-  fontPreviewUrl.value = ''
-  removeFontFace()
-  if (!fontBuffer.value || !charSet.value.length) return
-  try {
-    const font = Font.create(fontBuffer.value, {
-      type: 'ttf',
-      subset: charSet.value.join(''),
-      hinting: true,
-      compound2simple: true,
-      inflate: null,
-      combinePath: false
-    })
-    const ttfBuffer = font.write({
-      type: 'ttf',
-      hinting: true
-    })
-    const blob = new Blob([ttfBuffer], { type: 'font/ttf' })
-    const url = URL.createObjectURL(blob)
-    fontPreviewUrl.value = url
-    injectFontFace(url)
-  } catch (e) {
-    fontPreviewUrl.value = ''
-    removeFontFace()
-  }
-}
-
-// 监听字体和字符变化，自动生成预览
-watch([fontBuffer, charSet], () => {
-  updateFontPreview()
-})
-
-// 保证每次文本变化都同步去重排序显示
-watch(charInput, (val) => {
-  // 触发 charSet 变化
-}, { immediate: true })
 </script>

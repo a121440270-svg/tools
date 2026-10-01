@@ -36,6 +36,37 @@
             >
               {{ group.label }}
             </button>
+            <div class="relative inline-flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="pointer-events-none absolute left-3 h-4 w-4 text-slate-500 dark:text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+              <select
+                :value="locale"
+                aria-label="Language"
+                class="rounded-full border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
+                @change="changeLanguage"
+              >
+                <option v-for="availableLocale in locales" :key="availableLocale.code" :value="availableLocale.code">
+                  {{ t(`locale.${availableLocale.code}`) }}
+                </option>
+              </select>
+            </div>
+            <button
+              type="button"
+              class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+              :aria-label="isDark() ? 'Switch to light theme' : 'Switch to dark theme'"
+              :title="isDark() ? 'Switch to light theme' : 'Switch to dark theme'"
+              @click="toggleTheme"
+            >
+              <svg v-if="isDark()" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+              </svg>
+              <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13z" />
+              </svg>
+            </button>
           </nav>
         </div>
       </header>
@@ -116,7 +147,7 @@
               <NuxtLink
                 v-for="tool in group.tools"
                 :key="tool.path"
-                :to="tool.path"
+                :to="localePath(tool.path)"
                 class="group rounded-xl border border-slate-200 bg-slate-50 p-3 transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md dark:border-slate-700 dark:bg-slate-800/70 dark:hover:border-blue-500"
               >
                 <div class="mb-2 flex items-center justify-between">
@@ -152,7 +183,13 @@ definePageMeta({
 
 import { computed, defineComponent, h, ref } from 'vue'
 
-const { t } = useI18n()
+const { t, locales, locale, setLocale } = useI18n()
+const localePath = useLocalePath()
+const { toggleTheme, isDark } = useTheme()
+
+function changeLanguage(event) {
+  setLocale(event.target.value)
+}
 
 const createIcon = (children) => defineComponent({
   name: 'ToolSvgIcon',
@@ -319,15 +356,15 @@ const toolGroups = computed(() => [
         icon: CompressIcon
       },
       {
-        name: 'Image Aspect Ratio Changer',
+        name: t('home.tools.imageAspectRatio.name'),
         path: '/image-aspect-ratio',
-        description: 'Change images to 16:9, 1:1, 9:16, 4:3 and custom ratios with crop, fit, blur, or stretch modes.',
+        description: t('home.tools.imageAspectRatio.description'),
         icon: ImageIcon
       },
       {
-        name: 'Increase Image Size in KB',
+        name: t('home.tools.increaseImageSize.name'),
         path: '/increase-image-size',
-        description: 'Increase image file size to a target KB or MB while keeping the original image dimensions.',
+        description: t('home.tools.increaseImageSize.description'),
         icon: CompressIcon
       },
       {
@@ -347,6 +384,18 @@ const toolGroups = computed(() => [
         name: t('home.tools.fontCompress.name'),
         path: '/font-compress',
         description: t('home.tools.fontCompress.description'),
+        icon: TypographyIcon
+      },
+      {
+        name: t('home.tools.fontInspector.name'),
+        path: '/font-inspector',
+        description: t('home.tools.fontInspector.description'),
+        icon: TypographyIcon
+      },
+      {
+        name: t('home.tools.fontUnicodeChecker.name'),
+        path: '/font-unicode-checker',
+        description: t('home.tools.fontUnicodeChecker.description'),
         icon: TypographyIcon
       },
       {

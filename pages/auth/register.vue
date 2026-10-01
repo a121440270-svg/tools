@@ -119,7 +119,7 @@ const handleRegister = async () => {
       }
     })
     if (data.value && data.value.success) {
-      ElMessage.success('注册成功，请登录')
+      ElMessage.success(t('auth.register_success'))
       await router.push('/auth/login')
     } else {
       ElMessage.error(data.value?.error || t('auth.register_failed'))

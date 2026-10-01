@@ -42,7 +42,7 @@
               type="button"
               @click="showPassword = !showPassword"
               :aria-pressed="showPassword"
-              :title="showPassword ? 'Hide password' : 'Show password'"
+              :title="$t(showPassword ? 'auth.hide_password' : 'auth.show_password')"
               class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
             >
               <svg v-if="!showPassword" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">

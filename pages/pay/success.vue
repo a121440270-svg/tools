@@ -2,21 +2,21 @@
   <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-yellow-50 to-pink-50 px-4">
     <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-md text-center">
       <div v-if="avatar" class="flex justify-center mb-4">
-        <img :src="avatar" alt="Avatar" class="w-20 h-20 rounded-full shadow-lg object-cover border-2 border-yellow-400" />
+        <img :src="avatar" :alt="$t('paymentSuccess.avatar')" class="w-20 h-20 rounded-full shadow-lg object-cover border-2 border-yellow-400" />
       </div>
-      <h1 class="text-3xl font-bold text-amber-600">☕ Thank you!</h1>
+      <h1 class="text-3xl font-bold text-amber-600">☕ {{ $t('paymentSuccess.title') }}</h1>
       <p class="mt-4 text-lg text-gray-800">
-        <span v-if="name">Dear <strong>{{ name }}</strong>,</span>
-        <span v-else>Dear friend,</span><br />
-        Thanks for buying me a coffee <span v-if="amount">(${{ amount }})</span>!
+        <span v-if="name">{{ $t('paymentSuccess.dear', { name }) }}</span>
+        <span v-else>{{ $t('paymentSuccess.dearFriend') }}</span><br />
+        {{ $t('paymentSuccess.thanks') }} <span v-if="amount">(${{ amount }})</span>!
       </p>
       <p v-if="timestamp" class="mt-2 text-sm text-gray-500">
-        Paid on {{ formatDate(timestamp) }}
+        {{ $t('paymentSuccess.paidOn', { date: formatDate(timestamp) }) }}
       </p>
       <div class="mt-6 text-sm text-gray-500">
-        You’ll be redirected in <span class="font-semibold">{{ countdown }}</span> seconds...
+        {{ $t('paymentSuccess.redirecting', { countdown }) }}
       </div>
-      <NuxtLink to="/" class="mt-4 inline-block text-blue-500 hover:underline">← Back to Home</NuxtLink>
+      <NuxtLink to="/" class="mt-4 inline-block text-blue-500 hover:underline">← {{ $t('paymentSuccess.backHome') }}</NuxtLink>
     </div>
   </div>
 </template>

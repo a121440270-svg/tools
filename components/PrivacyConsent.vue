@@ -1,7 +1,7 @@
 <template>
   <div v-if="show" class="privacy-consent-toast" :class="theme">
     <div class="toast-content">
-      <button class="close-btn" @click="close" aria-label="Close">&times;</button>
+      <button class="close-btn" @click="close" :aria-label="$t('privacy.close')">&times;</button>
       <h2>{{ $t('privacy.title') }}</h2>
       <p>{{ $t('privacy.desc') }}</p>
       <form>

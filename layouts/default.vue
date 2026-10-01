@@ -1,6 +1,6 @@
 <template>
   <!-- 确保根div闭合 -->
-  <div class="min-h-screen flex flex-col lg:flex-row">
+  <div class="min-h-screen flex flex-col lg:flex-row" dir="ltr">
     <!-- 移动端顶部导航栏 -->
     <header
       class="lg:hidden border-b bg-white dark:bg-gray-800 dark:border-gray-700"
@@ -119,7 +119,10 @@
     <!-- 主内容区 flex-1 transition-all duration-300 lg:ml-64 -->
     <div
       class="flex-1 min-w-0 w-full transition-all duration-300"
-      :style="{ marginLeft: isDesktop && !isSidebarCollapsed ? '16rem' : '0' }"
+      :style="{
+        marginLeft:
+          isDesktop && !isSidebarCollapsed ? '16rem' : '0',
+      }"
     >
       <!-- 桌面端顶部导航栏 -->
       <header
@@ -174,19 +177,25 @@
           >
             {{ $t("login.out") }}
           </NuxtLink>
-          <select
-            @change="changeLanguage"
-            :value="$i18n.locale"
-            class="bg-transparent py-1 px-2 rounded border text-sm dark:bg-gray-700 dark:text-white dark:border-gray-600"
-          >
-            <option
-              v-for="locale in locales"
-              :key="locale.code"
-              :value="locale.code"
+          <div class="relative inline-flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="pointer-events-none absolute left-2 h-4 w-4 text-gray-500 dark:text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+            <select
+              @change="changeLanguage"
+              :value="$i18n.locale"
+              class="bg-transparent py-1 pl-8 pr-2 rounded border text-sm dark:bg-gray-700 dark:text-white dark:border-gray-600"
             >
-              {{ $t(`locale.${locale.code}`) }}
-            </option>
-          </select>
+              <option
+                v-for="locale in locales"
+                :key="locale.code"
+                :value="locale.code"
+              >
+                {{ $t(`locale.${locale.code}`) }}
+              </option>
+            </select>
+          </div>
           <button
             class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
             @click="toggleTheme"
@@ -199,13 +208,16 @@
             @click="pay"
             class="bg-primary text-primary-foreground rounded-full px-4 py-2 text-sm hover:bg-primary/90 transition-colors"
           >
-            Buy me a coffee ❤️
+            {{ $t('layout.support') }} ❤️
           </a>
         </div>
       </header>
 
       <!-- 内容 -->
-      <main class="p-4 pt-0 md:p-6 md:pt-6 bg-background dark:bg-gray-900">
+      <main
+        class="p-4 pt-0 md:p-6 md:pt-6 bg-background dark:bg-gray-900"
+        :dir="isRtl ? 'rtl' : 'ltr'"
+      >
         <slot />
       </main>
     </div>
@@ -216,7 +228,7 @@
 // Add user state initialization
 import { useUser } from "~/composables/useAuth";
 const user = useUser();
-const { t, locales, setLocale } = useI18n();
+const { t, locales, setLocale, locale } = useI18n();
 import {
   h,
   defineComponent,
@@ -231,6 +243,13 @@ import { useLocalePath } from "#i18n";
 import { markRaw } from "vue";
 
 const localePath = useLocalePath();
+const isRtl = computed(() => locale.value === "ar");
+useHead(() => ({
+  htmlAttrs: {
+    lang: locale.value,
+    dir: isRtl.value ? "rtl" : "ltr",
+  },
+}));
 // 主题管理
 const { theme, toggleTheme, isDark, isLight } = useTheme();
 
@@ -694,6 +713,8 @@ const categories = ref([
     expanded: true,
     tools: [
       { name: "menu.ttf", path: "/font-compress", icon: markRaw(FontIcon) },
+      { name: "menu.fontInspector", path: "/font-inspector", icon: markRaw(FontIcon) },
+      { name: "menu.fontUnicodeChecker", path: "/font-unicode-checker", icon: markRaw(FontIcon) },
       { name: "menu.jsoncsv", path: "/json-csv-convert", icon: markRaw(FontIcon) },
       { name: "home.tools.jsonFormatter.name", path: "/json-formatter", icon: markRaw(FontIcon) },
       { name: "JSON Compare", path: "/json-compare", icon: markRaw(FontIcon) },

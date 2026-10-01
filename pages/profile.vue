@@ -11,14 +11,14 @@
       
       <div class="space-y-4">
         <div class="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-          <h3 class="font-medium mb-2 dark:text-white">账户信息</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-400">注册时间：2024-03-01</p>
+          <h3 class="font-medium mb-2 dark:text-white">{{ $t('profile.accountInfo') }}</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400">{{ $t('profile.registeredAt') }}: {{ user.created_at || '—' }}</p>
         </div>
       </div>
     </div>
     
     <div class="mt-8 space-y-6">
-      <h2 class="text-xl font-bold dark:text-white">活动时间线</h2>
+      <h2 class="text-xl font-bold dark:text-white">{{ $t('profile.timeline') }}</h2>
       <div class="border-l-2 border-gray-200 dark:border-gray-700 pl-4 space-y-4">
         <div 
           v-for="(activity, index) in sortedActivities" 
@@ -51,18 +51,19 @@ if (!user.value?.id) {
 }
 
 // 添加模拟活动数据
-const activities = ref([
+const { t } = useI18n()
+const activities = computed(() => [
   {
     timestamp: new Date('2024-03-25T14:30:00'),
-    description: '修改了个人资料信息'
+    description: t('profile.profileUpdated')
   },
   {
     timestamp: new Date('2024-03-24T09:15:00'),
-    description: '发布了新文章《Nuxt3最佳实践》'
+    description: t('profile.articlePublished')
   },
   {
     timestamp: new Date('2024-03-23T16:45:00'), 
-    description: '登录系统'
+    description: t('profile.loggedIn')
   }
 ])
 

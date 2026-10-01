@@ -3,7 +3,7 @@
     <div class="bg-white dark:bg-gray-800 p-4 sm:p-8 rounded-lg border dark:border-gray-700">
       <div class="space-y-6">
         <div>
-          <label class="block font-medium mb-2 dark:text-white">文章标题</label>
+          <label class="block font-medium mb-2 dark:text-white">{{ t('blogPost.articleTitle') }}</label>
           <div class="flex items-center">
           <el-row :gutter="12" class="w-full">
           <el-col :span="15">
@@ -11,7 +11,7 @@
                     v-model="form.title"
                     type="text"
                     class="w-[100%] px-4 py-3 border dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 dark:text-white"
-                    placeholder="请输入文章标题"
+                    :placeholder="t('blogPost.titlePlaceholder')"
                   />
           </el-col>
             <el-col :span="6">
@@ -23,7 +23,7 @@
                   allow-create
                   default-first-option
                   :reserve-keyword="false"
-                  placeholder="选择语言"
+                  :placeholder="t('blogPost.chooseLanguage')"
                   class=" px-4 py-3 "
                 >
                   <el-option
@@ -41,12 +41,12 @@
         </div>
 
         <div>
-          <label class="block font-medium mb-2 dark:text-white">文章内容</label>
+          <label class="block font-medium mb-2 dark:text-white">{{ t('blogPost.articleContent') }}</label>
           <textarea id="tinymce-editor"></textarea>
         </div>
 
         <div>
-          <label class="block font-medium mb-2 dark:text-white">用户分类</label>
+          <label class="block font-medium mb-2 dark:text-white">{{ t('blogPost.categories') }}</label>
           <div class="flex flex-wrap gap-3 mb-2">
             <label
               v-for="cat in userCategories"
@@ -70,18 +70,18 @@
             @blur="addCategory"
             type="text"
             class="w-[60%] w-full px-4 py-2 border dark:border-gray-700 bg-white dark:bg-gray-900 dark:text-white"
-            placeholder="输入逗號分隔的分类"
+            :placeholder="t('blogPost.categoriesPlaceholder')"
             />
           </el-col>
           <el-col :span="6">
             <select
               v-model="form.type"
               class="w-[40%] w-full px-4 py-2 border dark:border-gray-700 bg-white dark:bg-gray-900 dark:text-white"
-              :placeholder="'请选择类型'"
+              :placeholder="t('blogPost.type')"
             >
-              <option value="" disabled selected>请选择类型</option>
-              <option value="original">原创</option>
-              <option value="repost">转载</option>
+              <option value="" disabled selected>{{ t('blogPost.type') }}</option>
+              <option value="original">{{ t('blogPost.original') }}</option>
+              <option value="repost">{{ t('blogPost.repost') }}</option>
             </select>
           </el-col>
                     </el-row>
@@ -92,26 +92,26 @@
   </div>
   <el-row :gutter="12" class="w-full">
     <el-col :span="15">
-    <label class="block text-sm font-medium mb-2 dark:text-white">slug</label>
-    <input v-model="form.slug" type="text" placeholder="输入slug" class="w-full px-4 py-2 border dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 dark:text-white" />
+    <label class="block text-sm font-medium mb-2 dark:text-white">{{ t('blogPost.slug') }}</label>
+    <input v-model="form.slug" type="text" :placeholder="t('blogPost.slugPlaceholder')" class="w-full px-4 py-2 border dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 dark:text-white" />
     </el-col>
     <el-col :span="6">
-    <label class="block text-sm font-medium mb-2 dark:text-white">上线时间</label>
+    <label class="block text-sm font-medium mb-2 dark:text-white">{{ t('blogPost.publishTime') }}</label>
     <el-date-picker
       v-model="form.publishTime"
       type="datetime"
-      placeholder="选择上线时间 (可选)"
+      :placeholder="t('blogPost.publishTimePlaceholder')"
       class="w-full"
     />
     </el-col>
   </el-row>
   <div class="mt-3">
-    <label class="block text-sm font-medium mb-2 dark:text-white">Keywords</label>
-    <input v-model="form.keywords" type="text" placeholder="输入关键词，逗号分隔" class="w-full px-4 py-2 border dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 dark:text-white" />
+    <label class="block text-sm font-medium mb-2 dark:text-white">{{ t('blogPost.keywords') }}</label>
+    <input v-model="form.keywords" type="text" :placeholder="t('blogPost.keywordsPlaceholder')" class="w-full px-4 py-2 border dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 dark:text-white" />
   </div>
   <div class="mt-3">
-    <label class="block text-sm font-medium mb-2 dark:text-white">Meta Description</label>
-    <textarea v-model="form.description" placeholder="输入用于SEO的描述（可选）" class="w-full px-4 py-2 border dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 dark:text-white" rows="3"></textarea>
+    <label class="block text-sm font-medium mb-2 dark:text-white">{{ t('blogPost.metaDescription') }}</label>
+    <textarea v-model="form.description" :placeholder="t('blogPost.descriptionPlaceholder')" class="w-full px-4 py-2 border dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 dark:text-white" rows="3"></textarea>
   </div>
 
         <div class="flex justify-end">
@@ -119,7 +119,7 @@
             @click="submitArticle"
             class="px-6 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
           >
-            提交文章
+            {{ t('blogPost.submit') }}
           </button>
         </div>
       </div>
@@ -139,7 +139,7 @@ const user = useUser()
 const router = useRouter()
 const route = useRoute()
 
-const { locales } = useI18n()
+const { locales, t } = useI18n()
 function normalizeLocales(rawLocales) {
   let src = rawLocales
   // if it's a function (some i18n implementations expose a getter)
@@ -335,13 +335,13 @@ function initTinymce() {
 const submitting = ref(false)
 const submitArticle = async () => {
   if (!form.title.trim()) {
-    ElMessage.error('标题不能为空')
+    ElMessage.error(t('blogPost.titleRequired'))
     return
   }
   form.category = form.categories.join(',')
   form.author_id = user.value?.id || ''
   if (!form.category.trim()) {
-    ElMessage.error('分类不能为空')
+    ElMessage.error(t('blogPost.categoriesRequired'))
     return
   }
   // 获取编辑器内容
@@ -349,20 +349,20 @@ const submitArticle = async () => {
     form.content = window.tinymce.get('tinymce-editor').getContent()
   }
   if (!form.content || form.content === '<p><br></p>') {
-    ElMessage.error('内容不能为空')
+    ElMessage.error(t('blogPost.contentRequired'))
     return
   }
   form.relImgs = relImgs?.value || []
 
-  const loading = ElLoading.service({ fullscreen: true, lock: true, text: '提交中...' })
+  const loading = ElLoading.service({ fullscreen: true, lock: true, text: t('blogPost.submitting') })
   submitting.value = true
   try {
     await $fetch('/api/article', { method: 'POST', body: form })
-    ElMessage.success('发布成功')
+    ElMessage.success(t('blogPost.published'))
     router.push(localePath('/blog'))
   } catch (e) {
     console.error('submitArticle error', e)
-    ElMessage.error('提交失败')
+    ElMessage.error(t('blogPost.failed'))
   } finally {
     submitting.value = false
     loading.close()
@@ -370,6 +370,6 @@ const submitArticle = async () => {
 }
 
 useHead({
-  title: '发表文章 - 博客后台'
+  title: t('blogPost.seoTitle')
 })
 </script>

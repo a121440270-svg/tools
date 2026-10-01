@@ -9,7 +9,7 @@
         class="rounded-full border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-700"
         @click="clearChat"
       >
-        Clear
+        {{ $t('agnesGenerator.clear') }}
       </button>
     </div>
 
@@ -18,16 +18,16 @@
         <div class="border-b border-gray-200 bg-gray-50 px-4 py-3 dark:border-gray-700 dark:bg-gray-900/60">
           <div class="flex flex-wrap gap-2">
             <div v-if="isImage" class="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200">
-              Size: <span class="font-medium text-gray-900 dark:text-white">{{ imageSize }}</span>
+              {{ $t('agnesGenerator.size') }}: <span class="font-medium text-gray-900 dark:text-white">{{ imageSize }}</span>
             </div>
             <div v-if="isVideo" class="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200">
-              Size: <span class="font-medium text-gray-900 dark:text-white">{{ videoWidth }}×{{ videoHeight }}</span>
+              {{ $t('agnesGenerator.size') }}: <span class="font-medium text-gray-900 dark:text-white">{{ videoWidth }}×{{ videoHeight }}</span>
             </div>
             <div v-if="isVideo" class="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200">
-              Frames: <span class="font-medium text-gray-900 dark:text-white">{{ videoFrames }}</span>
+              {{ $t('agnesGenerator.frames') }}: <span class="font-medium text-gray-900 dark:text-white">{{ videoFrames }}</span>
             </div>
             <div v-if="isVideo" class="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200">
-              FPS: <span class="font-medium text-gray-900 dark:text-white">{{ videoFps }}</span>
+              {{ $t('agnesGenerator.fps') }}: <span class="font-medium text-gray-900 dark:text-white">{{ videoFps }}</span>
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
           <div v-for="(message, index) in messages" :key="`${message.role}-${index}`" class="mb-4 flex" :class="message.role === 'user' ? 'justify-end' : 'justify-start'">
             <div class="max-w-[85%]" :class="message.role === 'user' ? 'items-end' : 'items-start'">
               <div class="mb-1 text-[11px] font-medium uppercase tracking-[0.2em] text-gray-400" :class="message.role === 'user' ? 'text-right' : 'text-left'">
-                {{ message.role === 'user' ? 'You' : 'Assistant' }}
+                {{ message.role === 'user' ? $t('agnesGenerator.you') : $t('agnesGenerator.assistant') }}
               </div>
 
               <div
@@ -59,7 +59,7 @@
                     <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 fill-current" aria-hidden="true">
                       <path d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1Zm-7 14a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1a1 1 0 0 1 1-1Z"/>
                     </svg>
-                    Download
+                    {{ $t('agnesGenerator.download') }}
                   </a>
                 </div>
 
@@ -70,7 +70,7 @@
 
           <div v-if="loading" class="mb-4 flex justify-start">
             <div class="max-w-[80%]">
-              <div class="mb-1 text-[11px] font-medium uppercase tracking-[0.2em] text-gray-400">Assistant</div>
+              <div class="mb-1 text-[11px] font-medium uppercase tracking-[0.2em] text-gray-400">{{ $t('agnesGenerator.assistant') }}</div>
               <div class="rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200">
                 <span class="typing-dot" />
                 <span class="typing-dot" />
@@ -90,7 +90,7 @@
               v-model="prompt"
               rows="1"
               class="min-h-[58px] flex-1 resize-none rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm outline-none transition focus:border-primary dark:border-gray-700 dark:bg-gray-900 dark:text-white"
-              :placeholder="isImage ? 'Describe the scene, style or product you want to generate...' : 'Describe the motion, scene, or story you want to generate...'"
+              :placeholder="$t(isImage ? 'agnesGenerator.imagePrompt' : 'agnesGenerator.videoPrompt')"
               @keydown.enter.exact.prevent="submitPrompt"
               @keydown.shift.enter.prevent="prompt += '\n'"
             ></textarea>
@@ -99,7 +99,7 @@
               :disabled="loading || !prompt.trim()"
               @click="submitPrompt"
             >
-              {{ loading ? 'Generating...' : 'Generate' }}
+              {{ loading ? $t('agnesGenerator.generating') : $t('agnesGenerator.generate') }}
             </button>
           </div>
 
@@ -111,7 +111,7 @@
         <slot name="aside">
           <div class="overflow-hidden rounded-[18px] border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 p-4 sticky top-8">
             <div v-if="isImage" class="mb-4">
-              <div class="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-gray-500">Size</div>
+              <div class="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-gray-500">{{ $t('agnesGenerator.size') }}</div>
               <select v-model="imageSize" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none transition focus:border-primary dark:border-gray-700 dark:bg-gray-900 dark:text-white">
                 <option value="1K">1K</option>
                 <option value="2K">2K</option>
@@ -122,7 +122,7 @@
             </div>
 
             <div v-if="isImage" class="mb-4">
-              <div class="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-gray-500">Ratio</div>
+              <div class="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-gray-500">{{ $t('agnesGenerator.ratio') }}</div>
               <select v-model="imageRatio" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none transition focus:border-primary dark:border-gray-700 dark:bg-gray-900 dark:text-white">
                 <option value="1:1">1:1</option>
                 <option value="3:4">3:4</option>
@@ -136,7 +136,7 @@
             </div>
 
             <div v-if="isImage" class="mb-4">
-              <div class="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-gray-500">Output</div>
+              <div class="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-gray-500">{{ $t('agnesGenerator.output') }}</div>
               <select v-model="imageOutput" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none transition focus:border-primary dark:border-gray-700 dark:bg-gray-900 dark:text-white">
                 <option value="url">URL</option>
                 <option value="b64">Base64</option>
@@ -145,11 +145,11 @@
 
             <div v-if="isVideo" class="mb-4 grid gap-3">
               <label class="block">
-                <span class="mb-1.5 block text-xs font-medium uppercase tracking-[0.2em] text-gray-500">Width</span>
+                <span class="mb-1.5 block text-xs font-medium uppercase tracking-[0.2em] text-gray-500">{{ $t('agnesGenerator.width') }}</span>
                 <input v-model.number="videoWidth" type="number" min="256" step="32" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none transition focus:border-primary dark:border-gray-700 dark:bg-gray-900 dark:text-white" />
               </label>
               <label class="block mt-3">
-                <span class="mb-1.5 block text-xs font-medium uppercase tracking-[0.2em] text-gray-500">Height</span>
+                <span class="mb-1.5 block text-xs font-medium uppercase tracking-[0.2em] text-gray-500">{{ $t('agnesGenerator.height') }}</span>
                 <input v-model.number="videoHeight" type="number" min="256" step="32" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none transition focus:border-primary dark:border-gray-700 dark:bg-gray-900 dark:text-white" />
               </label>
               <label class="block mt-3">
@@ -163,13 +163,13 @@
             </div>
 
             <div class="mb-4">
-              <div class="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-gray-500">Reference image</div>
-              <input v-model="referenceImage" type="url" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none transition focus:border-primary dark:border-gray-700 dark:bg-gray-900 dark:text-white" placeholder="https://.../image.jpg" />
+              <div class="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-gray-500">{{ $t('agnesGenerator.referenceImage') }}</div>
+              <input v-model="referenceImage" type="url" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none transition focus:border-primary dark:border-gray-700 dark:bg-gray-900 dark:text-white" :placeholder="$t('agnesGenerator.referencePlaceholder')" />
             </div>
 
             <div class="mb-4">
-              <div class="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-gray-500">Negative prompt</div>
-              <input v-model="negativePrompt" type="text" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none transition focus:border-primary dark:border-gray-700 dark:bg-gray-900 dark:text-white" placeholder="Avoid artifacts, blurry details..." />
+              <div class="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-gray-500">{{ $t('agnesGenerator.negativePrompt') }}</div>
+              <input v-model="negativePrompt" type="text" class="w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm outline-none transition focus:border-primary dark:border-gray-700 dark:bg-gray-900 dark:text-white" :placeholder="$t('agnesGenerator.negativePlaceholder')" />
             </div>
 
             <div class="flex gap-3">
@@ -178,9 +178,9 @@
                 :disabled="loading || !prompt.trim()"
                 @click="submitPrompt"
               >
-                {{ loading ? 'Generating...' : 'Generate' }}
+                {{ loading ? $t('agnesGenerator.generating') : $t('agnesGenerator.generate') }}
               </button>
-              <button class="rounded-2xl border px-4 py-2 text-sm" @click="clearChat">Clear</button>
+              <button class="rounded-2xl border px-4 py-2 text-sm" @click="clearChat">{{ $t('agnesGenerator.clear') }}</button>
             </div>
 
             <p class="mt-4 text-xs text-gray-500">{{ footnote }}</p>
@@ -315,15 +315,17 @@ const submitPrompt = async () => {
     const url = resolveImageUrl(result)
     const imageDownloadName = `agnes-generated-${Date.now()}.png`
     const messageType = isImage.value ? 'image' : result?.status === 'video' || url ? 'video' : 'text'
-    const messageText = result?.status ? `${isVideo.value ? 'Video' : 'Image'} status: ${result.status}` : (isImage.value ? 'Image generation succeeded.' : 'Video generation succeeded.')
+    const messageText = result?.status
+      ? t(isVideo.value ? 'agnesGenerator.videoStatus' : 'agnesGenerator.imageStatus', { status: result.status })
+      : t(isImage.value ? 'agnesGenerator.imageSuccess' : 'agnesGenerator.videoSuccess')
 
     addAssistantMessage({ role: 'assistant', type: messageType, text: messageText, url, downloadName: imageDownloadName })
 
     if (result?.status === 'failed') {
-      error.value = (isVideo.value ? 'Video' : 'Image') + ' generation failed. Please check your prompt and try again.'
+      error.value = t('agnesGenerator.generationFailed', { type: t(isVideo.value ? 'agnesGenerator.video' : 'agnesGenerator.image') })
     }
   } catch (e) {
-    const msg = e?.data?.statusMessage || e?.message || 'Request failed.'
+    const msg = e?.data?.statusMessage || e?.message || t('agnesGenerator.requestFailed')
     error.value = msg
     addAssistantMessage({ role: 'assistant', type: 'text', text: msg })
   } finally {

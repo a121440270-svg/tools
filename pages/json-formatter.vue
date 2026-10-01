@@ -2,17 +2,17 @@
   <div class="mx-auto max-w-full px-4 py-8 sm:px-6 lg:px-8">
     <div class="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div>
-        <p class="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-blue-600 dark:text-blue-400">JSON Tool</p>
-        <h1 class="text-2xl font-bold text-slate-900 dark:text-white">JSON Formatter</h1>
+        <p class="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-blue-600 dark:text-blue-400">{{ $t('jsonFormatter.category') }}</p>
+        <h1 class="text-2xl font-bold text-slate-900 dark:text-white">{{ $t('jsonFormatter.title') }}</h1>
       </div>
 
       <div class="flex flex-wrap items-center gap-2">
-        <button class="btn-primary" @click="formatJson">Format</button>
-        <button class="btn-secondary" @click="minifyJson">Minify</button>
-        <button class="btn-secondary" @click="copyJson">Copy</button>
-        <button class="btn-secondary" @click="pasteJson">Paste</button>
-        <button class="btn-secondary" @click="clearJson">Clear</button>
-        <button class="btn-secondary" @click="downloadJson">Download</button>
+        <button class="btn-primary" @click="formatJson">{{ $t('jsonFormatter.format') }}</button>
+        <button class="btn-secondary" @click="minifyJson">{{ $t('jsonFormatter.minify') }}</button>
+        <button class="btn-secondary" @click="copyJson">{{ $t('jsonFormatter.copy') }}</button>
+        <button class="btn-secondary" @click="pasteJson">{{ $t('jsonFormatter.paste') }}</button>
+        <button class="btn-secondary" @click="clearJson">{{ $t('jsonFormatter.clear') }}</button>
+        <button class="btn-secondary" @click="downloadJson">{{ $t('jsonFormatter.download') }}</button>
       </div>
     </div>
 
@@ -20,15 +20,15 @@
       <div class="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-700 dark:bg-slate-900">
         <div class="mb-2 flex items-center justify-between px-1">
           <div class="flex items-center gap-2">
-            <label class="text-sm font-medium text-slate-700 dark:text-slate-200">Input</label>
-            <span class="rounded-full border border-slate-200 bg-slate-100 px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.14em] text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">Local Only</span>
+            <label class="text-sm font-medium text-slate-700 dark:text-slate-200">{{ $t('jsonFormatter.input') }}</label>
+            <span class="rounded-full border border-slate-200 bg-slate-100 px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.14em] text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">{{ $t('jsonFormatter.localOnly') }}</span>
           </div>
           <div class="flex items-center gap-2">
-            <button class="text-xs text-blue-600 hover:text-blue-500 dark:text-blue-400" @click="loadSample">Load sample</button>
+            <button class="text-xs text-blue-600 hover:text-blue-500 dark:text-blue-400" @click="loadSample">{{ $t('jsonFormatter.loadSample') }}</button>
           </div>
         </div>
         <div class="editor-fullscreen overflow-hidden rounded-xl border border-slate-200 bg-slate-950 dark:border-slate-700">
-          <div class="share-note-editor"><CodeMirrorEditor v-model="jsonText" language="json" :theme="editorTheme" aria-label="JSON input" /></div>
+          <div class="share-note-editor"><CodeMirrorEditor v-model="jsonText" language="json" :theme="editorTheme" :aria-label="$t('jsonFormatter.input')" /></div>
         </div>
       </div>
 
@@ -41,7 +41,7 @@
     <section class="mt-10 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
       <div class="mb-5">
         <p class="text-xs font-semibold uppercase tracking-[0.22em] text-blue-600 dark:text-blue-400">FAQ</p>
-        <h2 class="mt-2 text-2xl font-bold text-slate-900 dark:text-white">Frequently asked questions</h2>
+        <h2 class="mt-2 text-2xl font-bold text-slate-900 dark:text-white">{{ $t('jsonFormatter.faqTitle') }}</h2>
       </div>
 
       <div class="space-y-4">
@@ -55,8 +55,9 @@
 </template>
 
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { ElMessage } from 'element-plus'
+const { t, tm, rt } = useI18n()
 
 const jsonText = ref(`{
   "name": "OnliTool",
@@ -89,9 +90,9 @@ const formatJson = () => {
   try {
     const parsed = JSON.parse(jsonText.value)
     jsonText.value = JSON.stringify(parsed, null, 2)
-    ElMessage.success('JSON formatted successfully')
+    ElMessage.success(t('jsonFormatter.messages.formatted'))
   } catch (err) {
-    errorMessage.value = `Invalid JSON: ${err.message}`
+    errorMessage.value = t('jsonFormatter.invalidJson', { message: err.message })
   }
 }
 
@@ -100,23 +101,23 @@ const minifyJson = () => {
   try {
     const parsed = JSON.parse(jsonText.value)
     jsonText.value = JSON.stringify(parsed)
-    ElMessage.success('JSON minified successfully')
+    ElMessage.success(t('jsonFormatter.messages.minified'))
   } catch (err) {
-    errorMessage.value = `Invalid JSON: ${err.message}`
+    errorMessage.value = t('jsonFormatter.invalidJson', { message: err.message })
   }
 }
 
 const copyJson = async () => {
   if (!jsonText.value.trim()) {
-    ElMessage.warning('Nothing to copy')
+    ElMessage.warning(t('jsonFormatter.messages.nothingToCopy'))
     return
   }
 
   try {
     await navigator.clipboard.writeText(jsonText.value)
-    ElMessage.success('JSON copied to clipboard')
+    ElMessage.success(t('jsonFormatter.messages.copied'))
   } catch {
-    ElMessage.error('Copy failed. Please copy manually.')
+    ElMessage.error(t('jsonFormatter.messages.copyFailed'))
   }
 }
 
@@ -124,9 +125,9 @@ const pasteJson = async () => {
   try {
     const text = await navigator.clipboard.readText()
     jsonText.value = text
-    ElMessage.success('Pasted from clipboard')
+    ElMessage.success(t('jsonFormatter.messages.pasted'))
   } catch {
-    ElMessage.error('Paste not available in this browser')
+    ElMessage.error(t('jsonFormatter.messages.pasteUnavailable'))
   }
 }
 
@@ -153,7 +154,7 @@ const loadSample = () => {
 
 const downloadJson = () => {
   if (!jsonText.value.trim()) {
-    ElMessage.warning('No JSON content to download')
+    ElMessage.warning(t('jsonFormatter.messages.nothingToDownload'))
     return
   }
 
@@ -168,38 +169,24 @@ const downloadJson = () => {
     a.click()
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
-    ElMessage.success('JSON file downloaded')
+    ElMessage.success(t('jsonFormatter.messages.downloaded'))
   } catch (err) {
-    errorMessage.value = `Invalid JSON: ${err.message}`
+    errorMessage.value = t('jsonFormatter.invalidJson', { message: err.message })
   }
 }
 
-const faqItems = [
-  {
-    q: 'What is a JSON formatter?',
-    a: 'A JSON formatter beautifies compact JSON into a readable, indented structure so you can inspect nested data and debug API responses faster.'
-  },
-  {
-    q: 'Can I validate JSON before saving it?',
-    a: 'Yes. This tool checks whether the input is valid JSON in real time and highlights invalid content before you copy or download the result.'
-  },
-  {
-    q: 'Does this tool work locally in the browser?',
-    a: 'Yes. All formatting and validation happen in your browser, so your JSON is not uploaded to a server.'
-  },
-  {
-    q: 'Can I minify JSON for production use?',
-    a: 'Yes. Use the Minify action to remove whitespace and reduce file size while preserving valid JSON syntax.'
-  }
-]
+const faqItems = computed(() => tm('jsonFormatter.faq').map(item => ({
+  q: rt(item.q),
+  a: rt(item.a)
+})))
 
 useHead({
-  title: 'JSON Formatter Online - Format, Validate, Minify & Download JSON',
+  title: t('jsonFormatter.seoTitle'),
   meta: [
-    { name: 'description', content: 'Free online JSON formatter, validator, minifier and beautifier. Format, validate, copy, paste, and download JSON instantly in your browser.' },
-    { name: 'keywords', content: 'json formatter, json validator, json minifier, format json, pretty print json, json beautifier, online JSON tool' },
-    { property: 'og:title', content: 'JSON Formatter Online - Format, Validate, Minify & Download JSON' },
-    { property: 'og:description', content: 'Format, validate, minify and download JSON online for free with a fast browser-based tool that keeps your data private.' },
+    { name: 'description', content: t('jsonFormatter.seoDescription') },
+    { name: 'keywords', content: t('jsonFormatter.seoKeywords') },
+    { property: 'og:title', content: t('jsonFormatter.seoTitle') },
+    { property: 'og:description', content: t('jsonFormatter.seoDescription') },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' }
   ],
@@ -209,8 +196,8 @@ useHead({
       children: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebApplication',
-        name: 'JSON Formatter Online',
-        description: 'Free online JSON formatter, validator, minifier and beautifier for developers and data teams.',
+        name: t('jsonFormatter.title'),
+        description: t('jsonFormatter.seoDescription'),
         applicationCategory: 'DeveloperApplication',
         operatingSystem: 'Any',
         browserRequirements: 'Requires JavaScript',
@@ -219,12 +206,12 @@ useHead({
           price: '0',
           priceCurrency: 'USD'
         },
-        featureList: ['Format JSON', 'Validate JSON', 'Minify JSON', 'Download JSON', 'Copy JSON'],
+        featureList: [t('jsonFormatter.format'), t('jsonFormatter.minify'), t('jsonFormatter.download'), t('jsonFormatter.copy')],
         isAccessibleForFree: true,
-        category: 'Developer Tools',
+        category: t('menu.desc'),
         audience: {
           '@type': 'Audience',
-          audienceType: 'Developers, QA engineers, and data analysts'
+          audienceType: t('jsonFormatter.audience')
         }
       })
     },
@@ -233,7 +220,7 @@ useHead({
       children: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
-        mainEntity: faqItems.map((item) => ({
+        mainEntity: faqItems.value.map((item) => ({
           '@type': 'Question',
           name: item.q,
           acceptedAnswer: {

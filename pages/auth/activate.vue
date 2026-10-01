@@ -1,18 +1,18 @@
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
     <div class="w-full max-w-md p-8 space-y-8 bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 text-center">
-      <h1 class="text-2xl font-bold mb-4">账号激活</h1>
+      <h1 class="text-2xl font-bold mb-4">{{ $t('accountActivation.title') }}</h1>
       <div v-if="loading">
-        正在激活，请稍候...
+        {{ $t('accountActivation.activating') }}
       </div>
       <div v-else-if="success">
-        <div class="text-green-600 text-lg mb-2">激活成功！</div>
-        <div>3秒后自动跳转到登录页面</div>
-        <el-button type="primary" class="mt-4" @click="goLogin">立即登录</el-button>
+        <div class="text-green-600 text-lg mb-2">{{ $t('accountActivation.success') }}</div>
+        <div>{{ $t('accountActivation.redirecting') }}</div>
+        <el-button type="primary" class="mt-4" @click="goLogin">{{ $t('accountActivation.loginNow') }}</el-button>
       </div>
       <div v-else>
-        <div class="text-red-600 text-lg mb-2">激活失败：{{ errorMsg }}</div>
-        <el-button type="primary" class="mt-4" @click="goLogin">去登录</el-button>
+        <div class="text-red-600 text-lg mb-2">{{ $t('accountActivation.failed', { message: errorMsg }) }}</div>
+        <el-button type="primary" class="mt-4" @click="goLogin">{{ $t('accountActivation.login') }}</el-button>
       </div>
     </div>
   </div>
@@ -20,6 +20,7 @@
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
 const loading = ref(true)
@@ -34,7 +35,7 @@ onMounted(async () => {
   await nextTick()
   const { email, code } = route.query
   if (!email || !code) {
-    errorMsg.value = '参数缺失'
+    errorMsg.value = t('accountActivation.missingParams')
     loading.value = false
     return
   }
@@ -46,7 +47,7 @@ onMounted(async () => {
     success.value = true
     setTimeout(goLogin, 3000)
   } else {
-    errorMsg.value = data.value?.error || '激活失败'
+    errorMsg.value = data.value?.error || t('accountActivation.failedFallback')
   }
   loading.value = false
 })

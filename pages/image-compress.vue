@@ -9,13 +9,13 @@
         </svg>
       </div>
       <div>
-        <h1 class="text-2xl font-bold text-foreground">Compress Images to a Specific File Size</h1>
-        <p class="text-sm text-muted-foreground mt-1">Reduce JPG, PNG, and WebP images to a target size directly in your browser without uploading files.</p>
+        <h1 class="text-2xl font-bold text-foreground">{{ t('imageTools.compressor.title') }}</h1>
+        <p class="text-sm text-muted-foreground mt-1">{{ t('imageTools.compressor.description') }}</p>
       </div>
     </div>
 
     <div class="quick-targets">
-      <div class="quick-targets-header">Target size presets</div>
+      <div class="quick-targets-header">{{ t('imageTools.compressor.presetsTitle') }}</div>
       <div class="quick-target-grid">
         <button
           v-for="preset in sizePresets"
@@ -26,7 +26,7 @@
           @click="targetSizeKb = preset.value"
         >
           <span>{{ preset.label }}</span>
-          <small>{{ preset.desc }}</small>
+          <small>{{ t(`imageTools.compressor.preset${preset.desc}`) }}</small>
         </button>
       </div>
     </div>
@@ -40,8 +40,8 @@
           <path d="M21 15l-5-5L5 21"/>
         </svg>
       </div>
-      <p class="upload-text">Click or drag images here</p>
-      <p class="upload-hint">Compress multiple images locally. No upload required.</p>
+      <p class="upload-text">{{ t('imageTools.uploadPrompt') }}</p>
+      <p class="upload-hint">{{ t('imageTools.localProcessing') }}</p>
       <input ref="fileInput" type="file" accept="image/*" multiple @change="onFileChange" class="hidden" />
     </div>
 
@@ -50,12 +50,12 @@
       <!-- Left: image list -->
       <div class="list-panel">
         <div class="panel-top">
-          <span class="count-badge">{{ images.length }} images</span>
+          <span class="count-badge">{{ images.length }} {{ t('imageTools.images') }}</span>
           <button class="btn-clear" @click="clearAll">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
               <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
             </svg>
-            Clear all
+            {{ t('imageTools.clearAll') }}
           </button>
         </div>
 
@@ -89,24 +89,24 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2">
             <path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><path d="M10 12v4"/>
           </svg>
-          Start compression</button>
+          {{ t('imageTools.compressor.start') }}</button>
         <button v-if="processing" class="btn btn-primary btn-block" disabled>
           <span class="spinner mr-2"></span>
-          Processing...</button>
+          {{ t('imageTools.compressor.processing') }}</button>
         <button v-if="allDone" class="btn btn-success btn-block" @click="downloadAll">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2">
             <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
           </svg>
-          Download all</button>
+          {{ t('imageTools.downloadAll') }}</button>
       </div>
 
       <!-- Right: settings panel -->
       <div class="settings-panel">
-        <div class="section-title">Settings</div>
+        <div class="section-title">{{ t('imageTools.compressor.settings') }}</div>
 
         <div class="slider-group">
           <div class="slider-label">
-            <span>Target size</span>
+            <span>{{ t('imageTools.targetSize') }}</span>
             <span class="slider-val">{{ targetSizeKb }} KB</span>
           </div>
           <div class="target-size-box">
@@ -121,25 +121,25 @@
         <!-- Quality -->
         <div class="slider-group">
           <div class="slider-label">
-            <span>Quality</span>
+            <span>{{ t('imageTools.compressor.quality') }}</span>
             <span class="slider-val">{{ quality }}%</span>
           </div>
           <input type="range" v-model.number="quality" min="1" max="100" class="slider" />
           <div class="quality-presets">
-            <button :class="['preset-btn', quality === 80 ? 'active' : '']" @click="quality = 80">High</button>
-            <button :class="['preset-btn', quality === 60 ? 'active' : '']" @click="quality = 60">Medium</button>
-            <button :class="['preset-btn', quality === 40 ? 'active' : '']" @click="quality = 40">Low</button>
-            <button :class="['preset-btn', quality === 20 ? 'active' : '']" @click="quality = 20">Extreme</button>
+            <button :class="['preset-btn', quality === 80 ? 'active' : '']" @click="quality = 80">{{ t('imageTools.compressor.high') }}</button>
+            <button :class="['preset-btn', quality === 60 ? 'active' : '']" @click="quality = 60">{{ t('imageTools.compressor.medium') }}</button>
+            <button :class="['preset-btn', quality === 40 ? 'active' : '']" @click="quality = 40">{{ t('imageTools.compressor.low') }}</button>
+            <button :class="['preset-btn', quality === 20 ? 'active' : '']" @click="quality = 20">{{ t('imageTools.compressor.extreme') }}</button>
           </div>
         </div>
 
         <!-- Max dimension -->
         <div class="slider-group">
           <div class="slider-label">
-            <span>Max dimension</span>
+            <span>{{ t('imageTools.compressor.maxDimension') }}</span>
           </div>
           <select v-model.number="maxDim" class="select-input">
-            <option :value="0">Original size</option>
+            <option :value="0">{{ t('imageTools.compressor.originalSize') }}</option>
             <option :value="1920">1920px</option>
             <option :value="1280">1280px</option>
             <option :value="800">800px</option>
@@ -150,7 +150,7 @@
         <!-- Output format -->
         <div class="slider-group">
           <div class="slider-label">
-            <span>Output format</span>
+            <span>{{ t('imageTools.output') }} {{ t('imageTools.format') }}</span>
           </div>
           <div class="format-tabs">
             <button :class="['format-tab', outputFormat === 'jpeg' ? 'active' : '']" @click="outputFormat = 'jpeg'">JPEG</button>
@@ -162,11 +162,11 @@
         <!-- Stats -->
         <div class="stats-box" v-if="totalSaved > 0">
           <div class="stat-row">
-            <span>Saved</span>
+            <span>{{ t('imageTools.compressor.saved') }}</span>
             <span class="stat-value positive">-{{ formatBytes(totalSaved) }}</span>
           </div>
           <div class="stat-row">
-            <span>Savings</span>
+            <span>{{ t('imageTools.compressor.savings') }}</span>
             <span class="stat-value positive">{{ Math.round(savingsRate) }}%</span>
           </div>
         </div>
@@ -197,10 +197,10 @@ const sizePresets = [
 ]
 
 useHead({
-  title: 'Compress Images to a Specific File Size | OnliTool',
+  title: t('imageTools.compressor.seoTitle'),
   meta: [
-    { name: 'description', content: 'Compress JPG, PNG and WebP images to a target file size. Reduce image size directly in your browser without upload and keep the best possible quality.' },
-    { name: 'keywords', content: 'compress image to target size, image compressor, reduce image size, jpg compress, png compress, webp compress' }
+    { name: 'description', content: t('imageTools.compressor.seoDescription') },
+    { name: 'keywords', content: t('imageTools.compressor.seoKeywords') }
   ]
 })
 

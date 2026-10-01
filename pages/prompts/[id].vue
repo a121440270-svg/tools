@@ -1,27 +1,27 @@
 <template>
   <div class="p-4">
     <div class="flex items-center justify-between mb-4">
-      <h2 class="text-lg font-medium">提示词详情</h2>
+      <h2 class="text-lg font-medium">{{ $t('promptDetail.title') }}</h2>
       <div>
-        <el-button type="primary" @click="goEdit">编辑</el-button>
-        <el-button @click="goList">返回</el-button>
+        <el-button type="primary" @click="goEdit">{{ $t('promptDetail.edit') }}</el-button>
+        <el-button @click="goList">{{ $t('promptDetail.back') }}</el-button>
       </div>
     </div>
 
-    <div v-if="loading">加载中...</div>
+    <div v-if="loading">{{ $t('promptDetail.loading') }}</div>
     <div v-else>
       <div class="mb-4">
         <h3 class="text-xl font-semibold">{{ item.title }}</h3>
-        <div class="text-sm text-gray-500">应用 AI: {{ item.ai_app || '—' }}</div>
+        <div class="text-sm text-gray-500">{{ $t('promptDetail.aiApp') }} {{ item.ai_app || '—' }}</div>
       </div>
 
       <div class="mb-4">
-        <h4 class="font-medium">提示词内容</h4>
+        <h4 class="font-medium">{{ $t('promptDetail.content') }}</h4>
         <pre class="whitespace-pre-wrap bg-gray-50 p-3 rounded">{{ item.content }}</pre>
       </div>
 
       <div>
-        <h4 class="font-medium">使用说明</h4>
+        <h4 class="font-medium">{{ $t('promptDetail.instructions') }}</h4>
         <div class="prose">
           <p v-html="item.instructions"></p>
         </div>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex items-center justify-between mb-6">
-      <h1 class="text-3xl font-medium dark:text-white">Hash text</h1>
+      <h1 class="text-3xl font-medium dark:text-white">{{ $t('hashTool.title') }}</h1>
       <button class="text-gray-300 hover:text-primary dark:text-gray-600 dark:hover:text-primary">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -10,29 +10,29 @@
     </div>
 
     <p class="text-gray-600 dark:text-gray-400 mb-8">
-      Hash a text string using the function you need: MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3 or RIPEMD160
+      {{ $t('hashTool.description') }}
     </p>
 
     <div class="bg-white dark:bg-gray-800 p-4 sm:p-8 rounded-lg border dark:border-gray-700">
       <div class="mb-6">
-        <label class="block font-medium mb-2 dark:text-white">Your text to hash:</label>
+        <label class="block font-medium mb-2 dark:text-white">{{ $t('hashTool.inputLabel') }}</label>
         <textarea
           v-model="textToHash"
           class="w-full px-4 py-3 border dark:border-gray-700 rounded-lg resize-none h-32 bg-white dark:bg-gray-900 dark:text-white"
-          placeholder="Your string to hash..."
+          :placeholder="$t('hashTool.placeholder')"
           @input="generateHashes"
         ></textarea>
       </div>
 
       <div class="mb-6">
-        <label class="block font-medium mb-2 dark:text-white">Digest encoding</label>
+        <label class="block font-medium mb-2 dark:text-white">{{ $t('hashTool.encoding') }}</label>
         <div class="relative">
           <select
             v-model="encoding"
             class="w-full appearance-none bg-white dark:bg-gray-900 dark:text-white border dark:border-gray-700 rounded-lg py-2 px-4 pr-8"
             @change="generateHashes"
           >
-            <option value="hex">Hexadecimal (base 16)</option>
+            <option value="hex">{{ $t('hashTool.hex') }}</option>
             <option value="base64">Base64</option>
           </select>
           <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
@@ -56,7 +56,7 @@
             <button
               @click="copyHash(hash)"
               class="absolute right-2 top-1/2 transform -translate-y-1/2"
-              title="Copy to clipboard"
+              :title="$t('hashTool.copyTitle')"
             >
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 hover:text-primary dark:text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
