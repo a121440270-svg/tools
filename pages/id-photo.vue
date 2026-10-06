@@ -177,31 +177,13 @@ import { ref, computed, watch, nextTick } from 'vue'
 import { removeBackground } from '@imgly/background-removal'
 const { t } = useI18n()
 
-useHead({
-  title: t('idPhoto.title') + ' | OnliTool',
-  meta: [
-    { name: 'description', content: t('idPhoto.seoDesc') },
-    { name: 'keywords', content: t('idPhoto.seoKeywords') }
-  ],
-  script: [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'WebApplication',
-        name: t('idPhoto.title'),
-        description: t('idPhoto.seoDesc'),
-        applicationCategory: 'PhotographyApplication',
-        operatingSystem: 'Web',
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'USD',
-        },
-        featureList: t('idPhoto.seoKeywords'),
-      }),
-    },
-  ],
+useToolSeo({
+  title: () => `${t('idPhoto.title')} | OnliTool`,
+  description: () => t('idPhoto.seoDesc'),
+  keywords: () => t('idPhoto.seoKeywords'),
+  applicationCategory: 'PhotographyApplication',
+  schemaProperties: { operatingSystem: 'Web' },
+  featureList: () => t('idPhoto.seoKeywords').split(',').map(item => item.trim()).filter(Boolean)
 })
 
 const fileInput = ref(null)

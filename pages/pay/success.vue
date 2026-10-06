@@ -16,7 +16,7 @@
       <div class="mt-6 text-sm text-gray-500">
         {{ $t('paymentSuccess.redirecting', { countdown }) }}
       </div>
-      <NuxtLink to="/" class="mt-4 inline-block text-blue-500 hover:underline">← {{ $t('paymentSuccess.backHome') }}</NuxtLink>
+      <NuxtLinkLocale to="/" class="mt-4 inline-block text-blue-500 hover:underline">← {{ $t('paymentSuccess.backHome') }}</NuxtLinkLocale>
     </div>
   </div>
 </template>
@@ -27,6 +27,7 @@ import { ref, onMounted } from 'vue'
 
 const route = useRoute()
 const router = useRouter()
+const localePath = useLocalePath()
 
 const name = (route.query.name as string) || ''
 const amount = (route.query.amount as string) || ''
@@ -40,7 +41,7 @@ onMounted(() => {
     countdown.value--
     if (countdown.value <= 0) {
       clearInterval(interval)
-      router.push('/')
+      router.push(localePath('/'))
     }
   }, 1000)
 })

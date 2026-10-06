@@ -120,7 +120,7 @@ const handleRegister = async () => {
     })
     if (data.value && data.value.success) {
       ElMessage.success(t('auth.register_success'))
-      await router.push('/auth/login')
+      await router.push(localePath('/auth/login'))
     } else {
       ElMessage.error(data.value?.error || t('auth.register_failed'))
     }

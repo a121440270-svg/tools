@@ -54,37 +54,17 @@ const batchMessage = computed(() => t('webp.batch_message') || 'Batch convert mu
 const localMessage = computed(() => t('webp.local_message') || 'Files are processed locally in your browser and are never uploaded.')
 const batchDownloadMessage = computed(() => t('webp.download_zip') || 'Download converted images as ZIP')
 
-useHead(() => ({
-  title: pageTitle.value,
-  meta: [
-    { name: 'description', content: pageDescription.value },
-    { name: 'keywords', content: pageKeywords.value },
-    { property: 'og:title', content: pageTitle.value },
-    { property: 'og:description', content: pageDescription.value },
-    { property: 'og:type', content: 'website' },
-    { name: 'twitter:card', content: 'summary' }
-  ],
-  script: [{
-    type: 'application/ld+json',
-    children: JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'WebApplication',
-      name: pageTitle.value,
-      description: `${pageDescription.value} ${localMessage.value}`,
-      applicationCategory: 'UtilitiesApplication',
-      operatingSystem: 'Any',
-      browserRequirements: 'Requires JavaScript',
-      featureList: [
-        'Batch JPG and PNG to WebP conversion',
-        'Convert multiple images at once',
-        'ZIP download for batch results',
-        'Local browser processing with no file upload'
-      ],
-      isAccessibleForFree: true,
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
-    })
-  }]
-}))
+useToolSeo({
+  title: pageTitle,
+  description: pageDescription,
+  keywords: pageKeywords,
+  featureList: [
+    'Batch JPG and PNG to WebP conversion',
+    'Convert multiple images at once',
+    'ZIP download for batch results',
+    'Local browser processing with no file upload'
+  ]
+})
 
 
 function onFilesChange(e) {

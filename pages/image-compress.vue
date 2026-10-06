@@ -196,12 +196,10 @@ const sizePresets = [
   { label: '1 MB', value: 1024, desc: 'HighQuality', path: '/image-compress-to-1mb' }
 ]
 
-useHead({
-  title: t('imageTools.compressor.seoTitle'),
-  meta: [
-    { name: 'description', content: t('imageTools.compressor.seoDescription') },
-    { name: 'keywords', content: t('imageTools.compressor.seoKeywords') }
-  ]
+useToolSeo({
+  title: () => t('imageTools.compressor.seoTitle'),
+  description: () => t('imageTools.compressor.seoDescription'),
+  keywords: () => t('imageTools.compressor.seoKeywords')
 })
 
 const fileInput = ref(null)

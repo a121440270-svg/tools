@@ -12,7 +12,7 @@
     <div v-if="sharedLoading" class="mb-4 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-700 dark:border-blue-900/60 dark:bg-blue-500/10 dark:text-blue-300">{{ t('remoteShare.loading') }}</div>
     <div v-if="isViewingSharedContent" class="mb-3 flex items-center justify-between rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700 dark:border-emerald-900/60 dark:bg-emerald-500/10 dark:text-emerald-300">
       <span>{{ t('remoteShare.visitorMode') }}</span>
-      <NuxtLink to="/send-script-to-remote-user" class="font-semibold underline">{{ t('remoteShare.createOwn') }}</NuxtLink>
+      <button type="button" class="font-semibold underline" @click="createOwnShare">{{ t('remoteShare.createOwn') }}</button>
     </div>
     <form class="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-700 dark:bg-slate-900" @submit.prevent="createShare">
       <div class="mb-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 dark:border-slate-700 dark:bg-slate-950">
@@ -70,20 +70,19 @@
 <script setup lang="ts">
 import QRCode from 'qrcode'
 import { ElMessage } from 'element-plus'
+import { useToolSeo } from '~/composables/useToolSeo'
 
 const { locale, t } = useI18n()
 
-useHead({
-  title: t('remoteShare.seoTitle'),
-  meta: [
-    { name: 'description', content: t('remoteShare.seoDescription') },
-    { name: 'keywords', content: t('remoteShare.seoKeywords') },
-    { property: 'og:title', content: t('remoteShare.seoTitle') },
-    { property: 'og:description', content: t('remoteShare.seoDescription') },
-    { property: 'og:type', content: 'website' }
-  ],
-  link: [{ rel: 'canonical', href: 'https://onlitools.com/send-script-to-remote-user' }],
-  script: [{ type: 'application/ld+json', innerHTML: JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'OpsDrop Remote Script Handoff', url: 'https://onlitools.com/send-script-to-remote-user', applicationCategory: 'DeveloperApplication', description: 'Send scripts, commands and configuration to remote users with a temporary share link. Built for IT support, sysadmins and DevOps.' }) }]
+useToolSeo({
+  title: () => t('remoteShare.seoTitle'),
+  description: () => t('remoteShare.seoDescription'),
+  keywords: () => t('remoteShare.seoKeywords'),
+  applicationCategory: 'DeveloperApplication',
+  schemaProperties: {
+    name: 'OpsDrop Remote Script Handoff',
+    description: 'Send scripts, commands and configuration to remote users with a temporary share link. Built for IT support, sysadmins and DevOps.'
+  }
 })
 
 const slug = ref('')
@@ -213,6 +212,23 @@ async function copyShareLink() {
 
 function toggleEditorFullscreen() {
   editorFullscreen.value = !editorFullscreen.value
+}
+
+function createOwnShare() {
+  const nextUrl = new URL(window.location.href)
+  nextUrl.searchParams.delete('share')
+  window.history.replaceState(window.history.state, '', nextUrl)
+
+  shared.value = null
+  isOwnerMode.value = true
+  sharedError.value = ''
+  errorMessage.value = ''
+  qrDataUrl.value = ''
+  slug.value = makeSlug()
+  content.value = ''
+  language.value = 'shell'
+  saved.value = false
+  expiresAt.value = Date.now() + 259200000
 }
 
 async function generateQrCode() {

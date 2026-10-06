@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-import { useRoute, useHead } from '#imports'
+import { useRoute } from '#imports'
 import { ref, computed } from 'vue'
 import JSZip from 'jszip'
 const { t } = useI18n()
@@ -64,35 +64,17 @@ const localMessage = computed(() => t('webpTo.local_message') || 'Files are proc
 const resultsCount = ref(0)
 const batchSuccessMessage = computed(() => t('webpTo.batch_success', { count: resultsCount.value }) || `Batch converted ${resultsCount.value} images`)
 
-useHead(() => ({
-  title: `${pageTitle.value} | ${t('webpTo.seoSuffix')}`,
-  meta: [
-    { name: 'description', content: pageDescription.value },
-    { name: 'keywords', content: pageKeywords.value },
-    { property: 'og:title', content: pageTitle.value },
-    { property: 'og:description', content: pageDescription.value },
-    { property: 'og:type', content: 'website' }
-  ],
-  script: [{
-    type: 'application/ld+json',
-    children: JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'WebApplication',
-      name: pageTitle.value,
-      description: pageDescription.value,
-      applicationCategory: 'UtilitiesApplication',
-      operatingSystem: 'Any',
-      featureList: [
-        'Batch WebP image conversion',
-        `WebP to ${targetFormat.value.toUpperCase()} conversion`,
-        'ZIP download for multiple images',
-        'Local browser processing with no file upload'
-      ],
-      isAccessibleForFree: true,
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
-    })
-  }]
-}))
+useToolSeo({
+  title: () => `${pageTitle.value} | ${t('webpTo.seoSuffix')}`,
+  description: pageDescription,
+  keywords: pageKeywords,
+  featureList: () => [
+    'Batch WebP image conversion',
+    `WebP to ${targetFormat.value.toUpperCase()} conversion`,
+    'ZIP download for multiple images',
+    'Local browser processing with no file upload'
+  ]
+})
 const files = ref([])
 const progress = ref(0)
 const processing = ref(false)

@@ -180,57 +180,15 @@ const faqItems = computed(() => tm('jsonFormatter.faq').map(item => ({
   a: rt(item.a)
 })))
 
-useHead({
-  title: t('jsonFormatter.seoTitle'),
-  meta: [
-    { name: 'description', content: t('jsonFormatter.seoDescription') },
-    { name: 'keywords', content: t('jsonFormatter.seoKeywords') },
-    { property: 'og:title', content: t('jsonFormatter.seoTitle') },
-    { property: 'og:description', content: t('jsonFormatter.seoDescription') },
-    { property: 'og:type', content: 'website' },
-    { name: 'twitter:card', content: 'summary_large_image' }
-  ],
-  script: [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'WebApplication',
-        name: t('jsonFormatter.title'),
-        description: t('jsonFormatter.seoDescription'),
-        applicationCategory: 'DeveloperApplication',
-        operatingSystem: 'Any',
-        browserRequirements: 'Requires JavaScript',
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'USD'
-        },
-        featureList: [t('jsonFormatter.format'), t('jsonFormatter.minify'), t('jsonFormatter.download'), t('jsonFormatter.copy')],
-        isAccessibleForFree: true,
-        category: t('menu.desc'),
-        audience: {
-          '@type': 'Audience',
-          audienceType: t('jsonFormatter.audience')
-        }
-      })
-    },
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: faqItems.value.map((item) => ({
-          '@type': 'Question',
-          name: item.q,
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: item.a
-          }
-        }))
-      })
-    }
-  ]
+useToolSeo({
+  title: () => t('jsonFormatter.seoTitle'),
+  description: () => t('jsonFormatter.seoDescription'),
+  keywords: () => t('jsonFormatter.seoKeywords'),
+  applicationCategory: 'DeveloperApplication',
+  featureList: () => [t('jsonFormatter.format'), t('jsonFormatter.minify'), t('jsonFormatter.download'), t('jsonFormatter.copy')],
+  faqItems,
+  audience: () => t('jsonFormatter.audience'),
+  schemaProperties: () => ({ category: t('menu.desc') })
 })
 </script>
 

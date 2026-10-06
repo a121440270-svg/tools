@@ -44,10 +44,11 @@
 <script setup>
 import { useUser } from '~/composables/useAuth'
 const user = useUser()
+const localePath = useLocalePath()
 
 // 添加重定向逻辑
 if (!user.value?.id) {
-  await navigateTo('/auth/login')
+  await navigateTo(localePath('/auth/login'))
 }
 
 // 添加模拟活动数据

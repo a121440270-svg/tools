@@ -23,12 +23,13 @@ import { useRoute, useRouter } from 'vue-router'
 const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
+const localePath = useLocalePath()
 const loading = ref(true)
 const success = ref(false)
 const errorMsg = ref('')
 
 function goLogin() {
-  router.push('/auth/login')
+  router.push(localePath('/auth/login'))
 }
 
 onMounted(async () => {

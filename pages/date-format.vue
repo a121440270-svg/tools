@@ -684,55 +684,11 @@ async function copyUtcOutput() {
 const pageTitle = computed(() => t('dateFormat.seoTitle'))
 const pageDescription = computed(() => t('dateFormat.seoDescription'))
 const pageKeywords = computed(() => t('dateFormat.seoKeywords'))
-const siteUrl = 'https://onlitools.com'
-const canonicalUrl = `${siteUrl}/date-format`
-const alternates = [
-  { rel: 'alternate', hreflang: 'zh', href: `${siteUrl}/date-format` },
-  { rel: 'alternate', hreflang: 'en', href: `${siteUrl}/en/date-format` }
-]
-
-useHead({
+useToolSeo({
   title: pageTitle,
-  meta: [
-    { name: 'description', content: pageDescription },
-    { name: 'keywords', content: pageKeywords },
-    { property: 'og:title', content: pageTitle },
-    { property: 'og:description', content: pageDescription },
-    { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: canonicalUrl },
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: pageTitle },
-    { name: 'twitter:description', content: pageDescription },
-    ...alternates.map((item) => ({
-      hid: `alternate-${item.hreflang}`,
-      rel: item.rel,
-      hreflang: item.hreflang,
-      href: item.href
-    }))
-  ],
-  link: [
-    { rel: 'canonical', href: canonicalUrl },
-    ...alternates.map((item) => ({ rel: item.rel, hreflang: item.hreflang, href: item.href }))
-  ],
-  script: [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'WebApplication',
-        name: pageTitle.value,
-        applicationCategory: 'DeveloperApplication',
-        operatingSystem: 'Any',
-        description: pageDescription.value,
-        url: canonicalUrl,
-        keywords: pageKeywords.value,
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'USD'
-        }
-      })
-    }
-  ]
+  description: pageDescription,
+  keywords: pageKeywords,
+  applicationCategory: 'DeveloperApplication',
+  faqItems
 })
 </script>

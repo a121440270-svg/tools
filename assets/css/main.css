@@ -58,6 +58,16 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  :where(.dark) .bg-white:not([class*="dark:bg-"]) {
+    color: rgb(15 23 42);
+  }
+
+  .dark .blog-content pre {
+    overflow-x: auto;
+    border: 1px solid rgb(71 85 105);
+    background-color: rgb(15 23 42) !important;
+  }
 }
 
 .sidebar-gradient {

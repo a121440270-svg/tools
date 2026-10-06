@@ -156,6 +156,7 @@ const selectedImages = ref([])
 
 definePageMeta({ layout: "admin" });
 const router = useRouter()
+const localePath = useLocalePath()
 
 function formatDate(val) {
 	if (!val) return '';
@@ -208,7 +209,7 @@ function getImageUrl(p) {
 
 function editProduct(row) {
 	// 跳转到 mew.vue 页面，传递 id 和 slug
-	router.push(`/admin/products/new?id=${row.id}&slug=${row.slug}`)
+	router.push({ path: localePath('/admin/products/new'), query: { id: row.id, slug: row.slug } })
 }
 
 async function fetchImages() {

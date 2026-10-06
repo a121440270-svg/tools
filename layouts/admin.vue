@@ -14,13 +14,13 @@
         unique-opened
         router
       >
-            <el-menu-item index="/admin/img">
+            <el-menu-item :index="localePath('/admin/img')">
         <el-icon><Picture /></el-icon>
         <span>图片管理</span>
       </el-menu-item>
-        <el-menu-item index="/admin/userList">用户管理</el-menu-item>
-        <el-menu-item index="/admin/articleList">文章管理</el-menu-item>
-        <el-menu-item index="/admin/pageLang">多语言</el-menu-item>
+        <el-menu-item :index="localePath('/admin/userList')">用户管理</el-menu-item>
+        <el-menu-item :index="localePath('/admin/articleList')">文章管理</el-menu-item>
+        <el-menu-item :index="localePath('/admin/pageLang')">多语言</el-menu-item>
         <!-- 可继续添加其他一级菜单项 -->
       </el-menu>
       <div class="mt-auto p-4 text-xs text-gray-400 dark:text-gray-600">
@@ -33,7 +33,7 @@
       <header class="admin-header h-16 flex items-center px-8 banner-bg border-b dark:bg-gray-900 dark:border-gray-800 shadow-sm z-10 header-bg">
         <div class="ml-auto flex items-center gap-4 w-full justify-end">
           <span class="text-gray-500 dark:text-gray-300 text-sm">管理员</span>
-          <el-button type="text" size="small" @click="$router.push('/admin/logout')">
+          <el-button type="text" size="small" @click="$router.push(localePath('/admin/logout'))">
             <i class="el-icon-switch-button"></i> 退出
           </el-button>
         </div>
@@ -48,6 +48,7 @@
 <script setup>
 import { useRoute } from 'vue-router'
 const route = useRoute()
+const localePath = useLocalePath()
 const activeMenu = computed(() => route.path)
 </script>
 

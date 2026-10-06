@@ -22,10 +22,10 @@
           :key="p.id"
           class="border-b dark:border-gray-700 pb-6 last:border-0"
         >
-          <NuxtLink :to="`/prompts/${p.id}`" class="block hover:text-primary dark:hover:text-primary-foreground">
+          <NuxtLinkLocale :to="`/prompts/${p.id}`" class="block hover:text-primary dark:hover:text-primary-foreground">
             <h2 class="text-xl font-medium mb-2">{{ p.title }}</h2>
             <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">{{ summarize(p.content) }}</p>
-          </NuxtLink>
+          </NuxtLinkLocale>
           <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
             <span class="mr-4">{{ p.ai_app || '-' }}</span>
             <span class="mr-4">{{ formatDate(p.created_at) }}</span>
@@ -57,6 +57,7 @@ import { useUser } from '~/composables/useAuth'
 const { locale, t } = useI18n()
 const user = useUser()
 const router = useRouter()
+const localePath = useLocalePath()
 
 const pageSize = 5
 const currentPage = ref(1)
@@ -90,10 +91,10 @@ function formatDate(s) {
 function handleWritePrompt() {
   if (!user.value?.id) {
     ElMessage.error(t('prompts.needLogin'))
-    router.push('/auth/login')
+    router.push(localePath('/auth/login'))
     return
   }
-  router.push('/prompts/edit/new')
+  router.push(localePath('/prompts/edit/new'))
 }
 </script>
 

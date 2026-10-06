@@ -39,6 +39,7 @@ const { t } = useI18n()
 
 const route = useRoute()
 const router = useRouter()
+const localePath = useLocalePath()
 const idParam = route.params.id
 const isNew = idParam === 'new'
 const id = isNew ? null : Number(idParam)
@@ -65,14 +66,14 @@ async function save() {
       await $fetch(`/api/prompts/${id}`, { method: 'PUT', body: form.value })
       ElMessage({ type: 'success', message: t('promptEdit.saved') })
     }
-    router.push('/prompts')
+    router.push(localePath('/prompts'))
   } catch (e) {
     console.error(e)
     ElMessage({ type: 'error', message: t('promptEdit.failed') })
   }
 }
 
-function cancel() { router.push('/prompts') }
+function cancel() { router.push(localePath('/prompts')) }
 
 onMounted(load)
 </script>

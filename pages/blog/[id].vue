@@ -40,14 +40,13 @@
         </div>
       </div>
 
-      <div class="prose dark:prose-invert max-w-none" v-html="article.content">
+      <div class="prose dark:prose-invert blog-content max-w-none" v-html="article.content">
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { useHead } from '#app'
 import { useLocalePath } from '#i18n'
 const route = useRoute()
   const parts = route.params.id.split("-");
@@ -94,21 +93,20 @@ const article = computed(() => {
   return { ...articleRaw.value.article,...articleRaw.value.articlel, catalog }
 })
 
-useHead(() => ({
-  title: article.value?.title || t('blog.defaultTitle') || 'Blog',
-  meta: [
-    {
-      name: 'description',
-      content: article.value?.description || article.value?.summary || ''
-    },
-    {
-      name: 'keywords',
-      content: Array.isArray(article.value?.keywords)
-        ? article.value.keywords.join(', ')
-        : (article.value?.keywords || '')
-    }
-  ]
-}))
+useToolSeo({
+  title: () => article.value?.title || t('blog.defaultTitle') || 'Blog',
+  description: () => article.value?.description || article.value?.summary || '',
+  keywords: () => Array.isArray(article.value?.keywords)
+    ? article.value.keywords.join(', ')
+    : (article.value?.keywords || ''),
+  type: 'BlogPosting',
+  schemaProperties: () => ({
+    headline: article.value?.title,
+    datePublished: article.value?.posted_time,
+    dateModified: article.value?.last_mod_time,
+    ...(article.value?.author ? { author: { '@type': 'Person', name: article.value.author } } : {})
+  })
+})
 
 function formatDate(dateStr) {
   if (!dateStr) return ''

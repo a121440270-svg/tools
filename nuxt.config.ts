@@ -1,5 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      baiduMapAk: ''
+    }
+  },
   app: {
     head: {
       script: [
@@ -49,22 +54,29 @@ export default defineNuxtConfig({
   ],
   css: ['~/assets/css/main.css'],
   i18n: {
+    baseUrl: 'https://onlitools.com',
     defaultLocale: 'en',
     fallbackLocale: 'en',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      alwaysRedirect: false,
+      fallbackLocale: 'en'
+    },
     lazy: false,
     langDir: 'locales/',
     strategy: 'prefix_except_default',
     locales: [
-      { code: 'en', name: 'English', file: 'en.json' },
-      { code: 'ja', name: '日本語', file: 'ja.json' },
-      { code: 'zh', name: 'Chinese', file: 'zh.json' },
-      { code: 'de', name: 'German', file: 'de.json' },
-      { code: 'fr', name: 'French', file: 'fr.json' },
-      { code: 'ar', name: 'العربية', file: 'ar.json' }
+      { code: 'en', name: 'English', language: 'en', file: 'en.json' },
+      { code: 'ja', name: '日本語', language: 'ja', file: 'ja.json' },
+      { code: 'zh', name: 'Chinese', language: 'zh-CN', file: 'zh.json' },
+      { code: 'de', name: 'German', language: 'de', file: 'de.json' },
+      { code: 'fr', name: 'French', language: 'fr', file: 'fr.json' },
+      { code: 'ar', name: 'العربية', language: 'ar', file: 'ar.json' }
     ]
   }, site: {
     url: 'https://onlitools.com',
-    name: 'ONLITOOLS-developer tools'  
+    name: 'OnliTool - Online Tools for Developers'
   }, sitemap: {
     // exclude all URLs that start with /secret
     exclude: ['/admin/**','/auth/**','/blog/post','/profile','/pay/success'],

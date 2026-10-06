@@ -9,6 +9,9 @@
 <script setup>
 import AgnesGenerator from '~/components/AgnesGenerator.vue'
 const { t } = useI18n()
-useHead({ title: t('agnesVideo.title'), meta: [{ name: 'description', content: t('agnesVideo.seoDesc') }] })
+useToolSeo({
+  title: () => t('agnesVideo.title'),
+  description: () => t('agnesVideo.seoDesc')
+})
 </script>
 

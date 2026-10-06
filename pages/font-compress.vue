@@ -74,8 +74,8 @@
     <div v-if="errorMsg" class="mt-4 text-red-600">{{ t('font.error', { msg: errorMsg }) }}</div>
 
     <nav class="mt-8 flex flex-wrap gap-x-5 gap-y-2 border-t border-gray-200 pt-4 text-sm">
-      <NuxtLink to="/font-inspector" class="text-primary underline">{{ t('font.tools.inspector') }}</NuxtLink>
-      <NuxtLink to="/font-unicode-checker" class="text-primary underline">{{ t('font.tools.unicodeChecker') }}</NuxtLink>
+      <NuxtLinkLocale to="/font-inspector" class="text-primary underline">{{ t('font.tools.inspector') }}</NuxtLinkLocale>
+      <NuxtLinkLocale to="/font-unicode-checker" class="text-primary underline">{{ t('font.tools.unicodeChecker') }}</NuxtLinkLocale>
     </nav>
 
     <section class="mt-10 space-y-8">
@@ -159,41 +159,12 @@ const pageTitle = computed(() => t('font.title'))
 const pageDescription = computed(() => t('font.seo_desc'))
 const pageKeywords = computed(() => t('font.seo_keywords'))
 
-useHead({
-  title: pageTitle.value,
-  meta: [
-    { name: 'description', content: pageDescription.value },
-    { name: 'keywords', content: pageKeywords.value },
-    { property: 'og:title', content: pageTitle.value },
-    { property: 'og:description', content: pageDescription.value },
-    { property: 'og:type', content: 'website' },
-    { name: 'twitter:card', content: 'summary_large_image' }
-  ],
-  script: [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'WebApplication',
-        name: pageTitle.value,
-        description: pageDescription.value,
-        applicationCategory: 'UtilitiesApplication',
-        operatingSystem: 'Any',
-        browserRequirements: 'Requires JavaScript',
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'USD'
-        },
-        featureList: pageKeywords.value
-          .split(',')
-          .map(item => item.trim())
-          .filter(Boolean),
-        isAccessibleForFree: true,
-        category: 'Font Tools'
-      })
-    }
-  ]
+useToolSeo({
+  title: pageTitle,
+  description: pageDescription,
+  keywords: pageKeywords,
+  featureList: computed(() => pageKeywords.value.split(',').map(item => item.trim()).filter(Boolean)),
+  schemaProperties: { category: 'Font Tools' }
 })
 
 const languagePresets = FONT_LANGUAGE_PRESETS

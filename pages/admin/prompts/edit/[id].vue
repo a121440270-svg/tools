@@ -38,6 +38,7 @@ import { ElMessage } from 'element-plus'
 
 const route = useRoute()
 const router = useRouter()
+const localePath = useLocalePath()
 const idParam = route.params.id
 const isNew = idParam === 'new'
 const id = isNew ? null : Number(idParam)
@@ -64,14 +65,14 @@ async function save() {
       await $fetch(`/api/prompts/${id}`, { method: 'PUT', body: form.value })
       ElMessage({ type: 'success', message: '已保存' })
     }
-    router.push('/admin/prompts')
+    router.push(localePath('/admin/prompts'))
   } catch (e) {
     console.error(e)
     ElMessage({ type: 'error', message: '保存失败' })
   }
 }
 
-function cancel() { router.push('/admin/prompts') }
+function cancel() { router.push(localePath('/admin/prompts')) }
 
 onMounted(load)
 </script>

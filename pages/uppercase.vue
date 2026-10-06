@@ -75,7 +75,6 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { useHead, useRoute, useRuntimeConfig } from '#imports'
 const { t, locale } = useI18n()
 
 const text = ref('')
@@ -123,66 +122,16 @@ onMounted(() => {
   applyTheme(pref)
 })
 
-// --- SEO / i18n-aware head tags ---
-const route = useRoute()
-const runtime = useRuntimeConfig()
-
-const siteName = runtime.public?.site?.name || runtime.public?.siteName || 'Online Tools'
-const supportedLocales = ['en', 'zh', 'fr', 'es', 'de']
-
-const pageTitle = computed(() => `${t('menu.uppercase') || 'Uppercase'} — ${siteName}`)
+const siteName = useRuntimeConfig().public.siteName || 'OnliTool'
+const pageTitle = computed(() => `${t('menu.uppercase') || 'Uppercase'} | ${siteName}`)
 const pageDescription = computed(() => t('uppercase.desc') || 'Convert text to uppercase online and copy to clipboard quickly.')
 const keywords = computed(() => `${t('menu.uppercase') || 'uppercase'}, text, convert, online tool, clipboard`)
 
-// build canonical / alternate URLs if siteUrl is configured
-const canonicalUrl = (() => {
-  try {
-    const base = runtime.public?.site?.url || runtime.public?.siteUrl || ''
-    if (!base) return undefined
-    // use route.path for relative
-    return new URL(route.fullPath || route.path, base).toString()
-  } catch (e) {
-    return undefined
-  }
-})()
-
-const alternates = supportedLocales.map(code => {
-  try {
-    const base = runtime.public?.site?.url || runtime.public?.siteUrl || ''
-    const href = base ? new URL(route.fullPath || route.path, base).toString().replace(/(^https?:\/\/[^/]+)(.*)$/, `$1/${code}$2`) : undefined
-    return href ? { rel: 'alternate', hreflang: code, href } : null
-  } catch (e) { return null }
-}).filter(Boolean)
-
-useHead({
-  title: pageTitle.value,
-  meta: [
-    { name: 'description', content: pageDescription.value },
-    { name: 'keywords', content: keywords.value },
-    { property: 'og:title', content: pageTitle.value },
-    { property: 'og:description', content: pageDescription.value },
-    canonicalUrl ? { property: 'og:url', content: canonicalUrl } : null,
-    { name: 'twitter:card', content: 'summary' }
-  ].filter(Boolean),
-  link: [
-    canonicalUrl ? { rel: 'canonical', href: canonicalUrl } : null,
-    ...alternates
-  ].filter(Boolean),
-  htmlAttrs: {
-    lang: locale.value || 'en'
-  },
-  script: canonicalUrl ? [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'WebPage',
-        'name': pageTitle.value,
-        'description': pageDescription.value,
-        'url': canonicalUrl
-      })
-    }
-  ] : []
+useToolSeo({
+  title: pageTitle,
+  description: pageDescription,
+  keywords,
+  type: 'WebPage'
 })
 
 const toggleTheme = () => {

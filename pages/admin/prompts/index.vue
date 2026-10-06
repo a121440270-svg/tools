@@ -42,6 +42,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { useRouter } from '#imports'
 
 const router = useRouter()
+const localePath = useLocalePath()
 const list = ref([])
 const total = ref(0)
 const page = ref(1)
@@ -64,10 +65,10 @@ async function fetchList() {
 
 function viewRow(row) {
   // open public view
-  router.push(`/prompts/${row.id}`)
+  router.push(localePath(`/prompts/${row.id}`))
 }
 function editRow(row) {
-  router.push(`/admin/prompts/edit/${row.id}`)
+  router.push(localePath(`/admin/prompts/edit/${row.id}`))
 }
 
 async function deleteRow(row) {
@@ -82,7 +83,7 @@ async function deleteRow(row) {
 }
 
 function goCreate() {
-  router.push('/admin/prompts/edit/new')
+  router.push(localePath('/admin/prompts/edit/new'))
 }
 
 function onPageChange(p) { page.value = p; fetchList() }

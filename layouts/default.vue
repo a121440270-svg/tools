@@ -1,6 +1,6 @@
 <template>
   <!-- 确保根div闭合 -->
-  <div class="min-h-screen flex flex-col lg:flex-row" dir="ltr">
+  <div class="min-h-screen flex flex-col lg:flex-row" :dir="isRtl ? 'rtl' : 'ltr'">
     <!-- 移动端顶部导航栏 -->
     <header
       class="lg:hidden border-b bg-white dark:bg-gray-800 dark:border-gray-700"
@@ -47,7 +47,7 @@
         class="sidebar-brand py-8 px-6 cursor-pointer"
         @click="navigateTo(localePath('/'))"
       >
-        <h1 class="text-2xl font-bold text-white">OnliTool</h1>
+          <span class="text-2xl font-bold text-white">OnliTool</span>
         <p class="text-sm text-white/80">{{ $t("menu.desc") }}</p>
       </div>
 
@@ -136,7 +136,7 @@
         </button>
         <button
           class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
-          @click="navigateTo('/')"
+          @click="navigateTo(localePath('/'))"
         >
           <HomeIcon class="w-5 h-5 text-gray-700 dark:text-gray-200" />
         </button>
@@ -163,7 +163,7 @@
 
           <NuxtLink
             v-else
-            to="localePath('/profile')"
+            :to="localePath('/profile')"
             class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
           >
             <img :src="user.avatar" class="w-6 h-6 rounded-full mr-2" />
@@ -200,7 +200,10 @@
             class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
             @click="toggleTheme"
           >
-            <component :is="isDark() ? SunIcon : MoonIcon" class="w-5 h-5" />
+            <component
+              :is="isDark() ? SunIcon : MoonIcon"
+              class="w-5 h-5 text-gray-700 dark:text-gray-200"
+            />
           </button>
 
           <a
@@ -239,17 +242,39 @@ import {
   watch,
 } from "vue";
 import { useTheme } from "~/composables/useTheme";
-import { useLocalePath } from "#i18n";
+import { useLocaleHead, useLocalePath } from "#i18n";
 import { markRaw } from "vue";
 
 const localePath = useLocalePath();
 const isRtl = computed(() => locale.value === "ar");
-useHead(() => ({
-  htmlAttrs: {
-    lang: locale.value,
-    dir: isRtl.value ? "rtl" : "ltr",
-  },
-}));
+const route = useRoute();
+const localeHead = useLocaleHead({ seo: { canonicalQueries: [] } });
+const isNoIndexRoute = computed(() => {
+  const path = route.path.replace(/^\/(zh|ja|de|fr|ar)(?=\/|$)/, "") || "/";
+  return ["/admin", "/auth", "/profile", "/pay/success", "/blog/post"].some(
+    (prefix) => path === prefix || path.startsWith(`${prefix}/`),
+  );
+});
+
+useHead(() => {
+  const canonicalUrl = localeHead.value.link?.find((link) => link.rel === "canonical")?.href;
+
+  return {
+    htmlAttrs: {
+      ...localeHead.value.htmlAttrs,
+      dir: isRtl.value ? "rtl" : "ltr",
+    },
+    link: localeHead.value.link || [],
+    meta: [
+      ...(localeHead.value.meta || []),
+      { property: "og:site_name", content: "OnliTool" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      ...(canonicalUrl ? [{ property: "og:url", content: canonicalUrl }] : []),
+      ...(isNoIndexRoute.value ? [{ name: "robots", content: "noindex, nofollow" }] : []),
+    ],
+  };
+});
 // 主题管理
 const { theme, toggleTheme, isDark, isLight } = useTheme();
 
@@ -715,6 +740,9 @@ const categories = ref([
       { name: "menu.ttf", path: "/font-compress", icon: markRaw(FontIcon) },
       { name: "menu.fontInspector", path: "/font-inspector", icon: markRaw(FontIcon) },
       { name: "menu.fontUnicodeChecker", path: "/font-unicode-checker", icon: markRaw(FontIcon) },
+      { name: "menu.fontSizeAnalyzer", path: "/font-size-analyzer", icon: markRaw(FontIcon) },
+      { name: "menu.fontValidator", path: "/font-validator", icon: markRaw(FontIcon) },
+      { name: "menu.fontCssGenerator", path: "/font-css-generator", icon: markRaw(FontIcon) },
       { name: "menu.jsoncsv", path: "/json-csv-convert", icon: markRaw(FontIcon) },
       { name: "home.tools.jsonFormatter.name", path: "/json-formatter", icon: markRaw(FontIcon) },
       { name: "JSON Compare", path: "/json-compare", icon: markRaw(FontIcon) },
@@ -727,6 +755,16 @@ const categories = ref([
     icon: markRaw(WebpIcon),
     tools: [
       { name: "menu.webp", path: "/image-to-webp", icon: markRaw(WebpIcon) },
+      { name: "imageTools.converter.title", path: "/image-converter", icon: markRaw(WebpIcon) },
+      { name: "imageTools.heic.title", path: "/heic-to-jpg", icon: markRaw(WebpIcon) },
+      { name: "imageTools.resizer.title", path: "/image-resizer", icon: markRaw(WebpIcon) },
+      { name: "imageTools.cropper.title", path: "/image-cropper", icon: markRaw(WebpIcon) },
+      { name: "imageTools.base64.toTitle", path: "/image-to-base64", icon: markRaw(WebpIcon) },
+      { name: "imageTools.base64.fromTitle", path: "/base64-to-image", icon: markRaw(WebpIcon) },
+      { name: "imageTools.info.title", path: "/image-info", icon: markRaw(WebpIcon) },
+      { name: "imageTools.exif.title", path: "/remove-exif", icon: markRaw(WebpIcon) },
+      { name: "imageTools.colorPicker.title", path: "/image-color-picker", icon: markRaw(WebpIcon) },
+      { name: "imageTools.svg.title", path: "/svg-converter", icon: markRaw(WebpIcon) },
       { name: "menu.webpToJpg", path: "/webp-to-jpg", icon: markRaw(WebpIcon) },
       { name: "menu.webpToPng", path: "/webp-to-png", icon: markRaw(WebpIcon) },
       { name: "menu.imageCompress", path: "/image-compress", icon: markRaw(WebpIcon) },
@@ -764,6 +802,6 @@ const toggleCategory = (index) => {
 };
 const handleLogout = () => {
   user.value = { id: null, name: "", email: "", avatar: "" };
-  navigateTo("/"); // 修改这里从 '/auth/login' 改为 '/'
+  navigateTo(localePath("/"));
 };
 </script>

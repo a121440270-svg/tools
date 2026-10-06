@@ -185,7 +185,7 @@ const handleWriteArticle = () => {
     router.push(localePath('/auth/login'))
     return
   }
-  router.push('/blog/post')
+  router.push(localePath('/blog/post'))
 }
 
 // 格式化日期
@@ -200,26 +200,10 @@ function formatDate(dateStr) {
   return `${y}-${m}-${day} ${h}:${min}`
 }
 
-// SEO meta
-useHead({
-  title: t('blog.title'),
-  meta: [
-    {
-      name: 'description',
-      content: t('blog.seoDesc')
-    },
-    {
-      name: 'keywords',
-      content: t('blog.seoKeywords')
-    },
-    {
-      property: 'og:title',
-      content: t('blog.title')
-    },
-    {
-      property: 'og:description',
-      content: t('blog.seoDesc')
-    }
-  ]
+useToolSeo({
+  title: () => t('blog.title'),
+  description: () => t('blog.seoDesc'),
+  keywords: () => t('blog.seoKeywords'),
+  type: 'WebPage'
 })
 </script>

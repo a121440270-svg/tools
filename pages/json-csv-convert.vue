@@ -211,11 +211,9 @@ function copyResult() {
     document.body.removeChild(textarea)
   }
 }
-useHead({
-  title: t('jsoncsv.seo_title'),
-  meta: [
-    { name: 'description', content: t('jsoncsv.seo_description') },
-    { name: 'keywords', content: t('jsoncsv.seo_keywords') }
-  ]
+useToolSeo({
+  title: () => t('jsoncsv.seo_title'),
+  description: () => t('jsoncsv.seo_description'),
+  keywords: () => t('jsoncsv.seo_keywords')
 })
 </script>

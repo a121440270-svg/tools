@@ -36,6 +36,7 @@ import { useRoute, useRouter } from '#imports'
 
 const route = useRoute()
 const router = useRouter()
+const localePath = useLocalePath()
 const id = Number(route.params.id)
 const item = ref(null)
 const loading = ref(true)
@@ -49,8 +50,8 @@ async function fetch() {
   } finally { loading.value = false }
 }
 
-function goEdit() { router.push(`/prompts/edit/${id}`) }
-function goList() { router.push('/prompts') }
+function goEdit() { router.push(localePath(`/prompts/edit/${id}`)) }
+function goList() { router.push(localePath('/prompts')) }
 
 fetch()
 </script>

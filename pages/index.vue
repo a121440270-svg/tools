@@ -338,6 +338,78 @@ const toolGroups = computed(() => [
         icon: ImageIcon
       },
       {
+        name: t('imageTools.converter.title'),
+        path: '/image-converter',
+        description: t('imageTools.converter.description'),
+        icon: ImageIcon
+      },
+      {
+        name: t('imageTools.heic.title'),
+        path: '/heic-to-jpg',
+        description: t('imageTools.heic.description'),
+        icon: ImageIcon
+      },
+      {
+        name: t('imageTools.resizer.title'),
+        path: '/image-resizer',
+        description: t('imageTools.resizer.description'),
+        icon: ImageIcon
+      },
+      {
+        name: t('imageTools.cropper.title'),
+        path: '/image-cropper',
+        description: t('imageTools.cropper.description'),
+        icon: ImageIcon
+      },
+      {
+        name: t('imageTools.base64.toTitle'),
+        path: '/image-to-base64',
+        description: t('imageTools.base64.toDescription'),
+        icon: ImageIcon
+      },
+      {
+        name: t('imageTools.base64.fromTitle'),
+        path: '/base64-to-image',
+        description: t('imageTools.base64.fromDescription'),
+        icon: ImageIcon
+      },
+      {
+        name: t('imageTools.info.title'),
+        path: '/image-info',
+        description: t('imageTools.info.description'),
+        icon: ImageIcon
+      },
+      {
+        name: t('imageTools.exif.title'),
+        path: '/remove-exif',
+        description: t('imageTools.exif.description'),
+        icon: ImageIcon
+      },
+      {
+        name: t('imageTools.metadataHub.title'),
+        path: '/image-metadata',
+        description: t('imageTools.metadataHub.description'),
+        icon: ImageIcon
+      },
+      {
+        name: t('imageTools.exifEditor.title'),
+        path: '/exif-editor',
+        description: t('imageTools.exifEditor.description'),
+        icon: ImageIcon
+      },
+      {
+        name: t('imageTools.colorPicker.title'),
+        path: '/image-color-picker',
+        description: t('imageTools.colorPicker.description'),
+        icon: ImageIcon
+      },
+      {
+        name: t('imageTools.svg.title'),
+        path: '/svg-converter',
+        description: t('imageTools.svg.description'),
+        icon: ImageIcon
+      },
+      {
         name: t('home.tools.webpToJpg.name'),
         path: '/webp-to-jpg',
         description: t('home.tools.webpToJpg.description'),
@@ -399,6 +471,24 @@ const toolGroups = computed(() => [
         icon: TypographyIcon
       },
       {
+        name: t('home.tools.fontSizeAnalyzer.name'),
+        path: '/font-size-analyzer',
+        description: t('home.tools.fontSizeAnalyzer.description'),
+        icon: TypographyIcon
+      },
+      {
+        name: t('home.tools.fontValidator.name'),
+        path: '/font-validator',
+        description: t('home.tools.fontValidator.description'),
+        icon: TypographyIcon
+      },
+      {
+        name: t('home.tools.fontCssGenerator.name'),
+        path: '/font-css-generator',
+        description: t('home.tools.fontCssGenerator.description'),
+        icon: TypographyIcon
+      },
+      {
         name: t('home.tools.jsonCsv.name'),
         path: '/json-csv-convert',
         description: t('home.tools.jsonCsv.description'),
@@ -411,9 +501,9 @@ const toolGroups = computed(() => [
         icon: CodeIcon
       },
       {
-        name: t('home.tools.jsonCompare.name'),
+        name: t('jsonCompare.title'),
         path: '/json-compare',
-        description: t('home.tools.jsonCompare.description'),
+        description: t('jsonCompare.description'),
         icon: CodeIcon
       },
       {
@@ -513,31 +603,17 @@ function toggleGroup(groupKey) {
   }
 }
 
-useHead({
-  title: t('home.seoTitle'),
-  meta: [
-    { name: 'description', content: t('home.seoDescription') },
-    { name: 'keywords', content: t('home.seoKeywords') },
-    { property: 'og:title', content: t('home.seoTitle') },
-    { property: 'og:description', content: t('home.seoOgDescription') },
-    { name: 'twitter:card', content: 'summary_large_image' }
-  ],
-  script: [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'WebSite',
-        name: 'OnliTool',
-        url: 'https://onlitools.com',
-        description: t('home.seoDescription'),
-        potentialAction: {
-          '@type': 'SearchAction',
-          target: 'https://onlitools.com/?q={search_term_string}',
-          'query-input': 'required name=search_term_string'
-        }
-      })
+useToolSeo({
+  title: computed(() => t('home.seoTitle')),
+  description: computed(() => t('home.seoDescription')),
+  keywords: computed(() => t('home.seoKeywords')),
+  type: 'WebSite',
+  schemaProperties: computed(() => ({
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://onlitools.com/?q={search_term_string}',
+      'query-input': 'required name=search_term_string'
     }
-  ]
+  }))
 })
 </script>
