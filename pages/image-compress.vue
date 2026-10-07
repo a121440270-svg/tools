@@ -1,17 +1,9 @@
 <template>
-  <div class="img-compress-page">
-    <div class="page-header">
-      <div class="header-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
-          <path d="M21 8v13H3V8"/>
-          <path d="M1 3h22v5H1z"/>
-          <path d="M10 12h4"/>
-        </svg>
-      </div>
-      <div>
-        <h1 class="text-2xl font-bold text-foreground">{{ t('imageTools.compressor.title') }}</h1>
-        <p class="text-sm text-muted-foreground mt-1">{{ t('imageTools.compressor.description') }}</p>
-      </div>
+  <div class="tool-page py-6">
+    <div class="tool-header">
+      <span class="tool-badge mb-4">{{ t('home.categories.image') }}</span>
+      <h1>{{ t('imageTools.compressor.title') }}</h1>
+      <p>{{ t('imageTools.compressor.description') }}</p>
     </div>
 
     <div class="quick-targets">
@@ -32,16 +24,16 @@
     </div>
 
     <!-- Upload -->
-    <div v-if="!images.length" class="upload-zone" @click="$refs.fileInput.click()" @drop.prevent="onDrop" @dragover.prevent>
-      <div class="upload-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10">
+    <div v-if="!images.length" class="drop-zone mx-auto flex max-w-3xl flex-col items-center justify-center px-6 py-16 text-center" @click="$refs.fileInput.click()" @drop.prevent="onDrop" @dragover.prevent @dragenter.prevent @dragleave.prevent>
+      <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-accent/20 ring-1 ring-primary/30">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-primary">
           <rect x="3" y="3" width="18" height="18" rx="2"/>
           <circle cx="8.5" cy="8.5" r="1.5"/>
           <path d="M21 15l-5-5L5 21"/>
         </svg>
       </div>
-      <p class="upload-text">{{ t('imageTools.uploadPrompt') }}</p>
-      <p class="upload-hint">{{ t('imageTools.localProcessing') }}</p>
+      <p class="text-lg font-semibold text-slate-900 dark:text-white">{{ t('imageTools.uploadPrompt') }}</p>
+      <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">{{ t('imageTools.localProcessing') }}</p>
       <input ref="fileInput" type="file" accept="image/*" multiple @change="onFileChange" class="hidden" />
     </div>
 

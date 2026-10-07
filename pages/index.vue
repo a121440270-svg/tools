@@ -1,25 +1,27 @@
 <template>
-  <div class="min-h-screen bg-slate-50 dark:bg-slate-950">
+  <div class="min-h-screen">
     <div class="mx-auto max-w-7xl px-3 py-3 sm:px-6 lg:px-8">
-      <header class="sticky top-0 z-40 mb-8 rounded-3xl border border-slate-200 bg-white/80 p-4 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/80">
+      <header class="sticky top-0 z-40 mb-6 mt-1 rounded-3xl border border-slate-200/90 bg-white/85 p-3 shadow-[0_18px_40px_-34px_rgba(0,0,0,0.6)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/85 sm:p-4">
         <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div class="flex items-center gap-3">
-            <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-violet-600 text-lg font-bold text-white shadow-md">
+          <NuxtLinkLocale to="/" class="group flex items-center gap-3">
+            <span class="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 font-display text-lg font-bold text-white shadow-[0_10px_30px_-18px_rgba(0,0,0,0.8)] transition-all duration-200 group-hover:-rotate-6 group-hover:shadow-[0_16px_40px_-18px_rgba(255,90,45,0.8)] dark:bg-gradient-to-br dark:from-white dark:to-slate-100 dark:text-slate-900">
               O
-            </div>
-            <div>
-              <div class="text-xl font-bold text-slate-900 dark:text-white">OnliTool</div>
-              <div class="text-xs text-slate-500 dark:text-slate-400">{{ t('menu.desc') }}</div>
-            </div>
-          </div>
+              <span class="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-[#ff5a2d] shadow-[0_0_0_4px_rgba(255,90,45,0.3)] ring-2 ring-white dark:ring-slate-900" />
+              <span class="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100"></span>
+            </span>
+            <span>
+              <span class="block font-display text-xl font-bold tracking-tight text-slate-900 dark:text-white">OnliTool</span>
+              <span class="block font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{{ t('menu.desc') }}</span>
+            </span>
+          </NuxtLinkLocale>
 
-          <nav class="flex flex-wrap items-center gap-2">
+          <nav class="flex flex-wrap items-center gap-1.5">
             <button
               type="button"
-              class="rounded-full px-3 py-2 text-sm font-medium transition"
+              class="rounded-full px-3.5 py-2 font-mono text-[11px] uppercase tracking-[0.12em] transition"
               :class="selectedCategory === 'all'
                 ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900'
-                : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700'"
+                : 'text-slate-600 hover:bg-white hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white'"
               @click="selectedCategory = 'all'"
             >
               {{ t('home.all') }}
@@ -28,10 +30,10 @@
               v-for="group in toolGroups"
               :key="group.key"
               type="button"
-              class="rounded-full px-3 py-2 text-sm font-medium transition"
+              class="rounded-full px-3.5 py-2 font-mono text-[11px] uppercase tracking-[0.12em] transition"
               :class="selectedCategory === group.key
-                ? 'bg-blue-600 text-white shadow-sm'
-                : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700'"
+                ? 'bg-primary text-white shadow-[0_8px_18px_-10px_rgb(var(--primary))]'
+                : 'text-slate-600 hover:bg-white hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white'"
               @click="selectedCategory = group.key"
             >
               {{ group.label }}
@@ -44,7 +46,7 @@
               <select
                 :value="locale"
                 aria-label="Language"
-                class="rounded-full border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
+                class="appearance-none rounded-full border border-slate-200 bg-white py-2 pl-9 pr-3 font-mono text-[11px] uppercase tracking-[0.1em] text-slate-700 transition hover:border-slate-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
                 @change="changeLanguage"
               >
                 <option v-for="availableLocale in locales" :key="availableLocale.code" :value="availableLocale.code">
@@ -54,16 +56,16 @@
             </div>
             <button
               type="button"
-              class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+              class="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-slate-400 hover:-translate-y-0.5 hover:text-slate-900 hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:text-white"
               :aria-label="isDark() ? 'Switch to light theme' : 'Switch to dark theme'"
               :title="isDark() ? 'Switch to light theme' : 'Switch to dark theme'"
               @click="toggleTheme"
             >
-              <svg v-if="isDark()" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg v-if="isDark()" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="4" />
                 <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
               </svg>
-              <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13z" />
               </svg>
             </button>
@@ -71,61 +73,89 @@
         </div>
       </header>
 
-      <section class="mb-5 overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 p-5 text-white shadow-xl dark:border-slate-700 sm:p-6">
-        <div class="grid gap-4 lg:grid-cols-[1.4fr_0.9fr] lg:items-center">
-          <div>
-            <div class="mb-2 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium tracking-[0.2em] text-blue-100 uppercase">
-              {{ t('home.eyebrow') }}
-            </div>
-            <h1 class="text-2xl font-bold tracking-tight sm:text-3xl">
-              {{ t('home.title') }}
-            </h1>
-            <p class="mt-2 max-w-xl text-sm leading-6 text-slate-200">
-              {{ t('home.description') }}
-            </p>
+      <!-- hero -->
+      <section class="mb-6 grid gap-5 lg:grid-cols-[1.35fr_1fr] lg:items-end">
+        <div class="reveal relative overflow-hidden rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-[0_24px_48px_-40px_rgba(0,0,0,0.7)] backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/90 sm:p-8" style="--rd: 60ms">
+          <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(800px_400px_at_0%_0%,rgba(15,163,125,0.08),transparent_60%)] dark:bg-[radial-gradient(800px_400px_at_0%_0%,rgba(15,163,125,0.12),transparent_60%)]"></div>
+          <p class="kicker">{{ t('home.eyebrow') }}</p>
+          <h1 class="mt-4 font-display text-[clamp(2.4rem,5.4vw,4.2rem)] font-extrabold leading-[0.98] tracking-[-0.04em] text-slate-900 dark:text-white">
+            <span class="bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 bg-clip-text text-transparent dark:from-white dark:via-slate-200 dark:to-white">{{ t('home.title') }}</span>
+          </h1>
+          <p class="mt-4 max-w-xl text-base leading-7 text-slate-600 dark:text-slate-300">
+            {{ t('home.description') }}
+          </p>
+          <div class="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
+            <span class="inline-flex items-center gap-2"><span class="h-2 w-2 animate-pulse rounded-full bg-primary shadow-[0_0_0_3px_rgb(var(--primary)/0.2)]" />local-first</span>
+            <span class="inline-flex items-center gap-2"><span class="h-2 w-2 animate-pulse rounded-full bg-[#ff5a2d] shadow-[0_0_0_3px_rgba(255,90,45,0.25)] [animation-delay:200ms]" />no signup</span>
+            <span class="inline-flex items-center gap-2"><span class="h-2 w-2 animate-pulse rounded-full bg-amber-500 shadow-[0_0_0_3px_rgba(245,158,11,0.25)] [animation-delay:400ms]" />free</span>
           </div>
+        </div>
 
-          <div class="rounded-2xl border border-white/10 bg-white/5 p-3 shadow-inner">
-            <label class="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-slate-300">{{ t('home.searchLabel') }}</label>
-            <div class="relative">
-              <span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-slate-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <circle cx="11" cy="11" r="7" />
-                  <path d="M20 20l-3.5-3.5" />
-                </svg>
-              </span>
-              <input
-                v-model="keyword"
-                type="text"
-                :placeholder="t('home.searchPlaceholder')"
-                class="w-full rounded-xl border border-white/10 bg-slate-950/30 py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-slate-400 outline-none ring-0 transition focus:border-blue-400"
-              />
-            </div>
-            <div class="mt-3 flex flex-wrap gap-2 text-xs text-slate-300">
-              <span v-for="tag in searchTags" :key="tag" class="rounded-full bg-white/5 px-2 py-1">{{ tag }}</span>
-            </div>
+        <!-- search console -->
+        <div class="reveal group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-4 shadow-[0_28px_56px_-40px_rgba(0,0,0,0.9)] transition-transform duration-200 hover:-translate-y-0.5 dark:border-slate-700 sm:p-5" style="--rd: 160ms">
+          <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_0%_0%,rgba(15,163,125,0.15),transparent_60%)] opacity-80 transition group-hover:opacity-100"></div>
+          <div class="mb-3 flex items-center justify-between border-b border-white/10 pb-3">
+            <span class="tool-badge">{{ t('home.searchLabel') }}</span>
+            <span class="flex gap-1.5" aria-hidden="true">
+              <span class="h-2 w-2 rounded-full bg-white/25 transition group-hover:bg-white/40" />
+              <span class="h-2 w-2 rounded-full bg-white/25 transition group-hover:bg-white/40" />
+              <span class="h-2 w-2 rounded-full bg-[#ff5a2d] shadow-[0_0_0_3px_rgba(255,107,61,0.25)]" />
+            </span>
+          </div>
+          <label class="mb-2 block font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400">{{ t('home.searchLabel') }}</label>
+          <div class="relative">
+            <span class="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-slate-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="7" />
+                <path d="M20 20l-3.5-3.5" />
+              </svg>
+            </span>
+            <input
+              ref="searchInput"
+              v-model="keyword"
+              type="text"
+              :placeholder="t('home.searchPlaceholder')"
+              class="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-11 pr-14 text-sm text-white placeholder:text-slate-400 outline-none ring-0 transition focus:border-[#ff5a2d] focus:bg-white/10 focus:ring-2 focus:ring-[#ff5a2d]/30"
+            />
+            <kbd class="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded-md border border-white/15 bg-white/5 px-2 py-1 font-mono text-[10px] text-slate-400 backdrop-blur-sm sm:block">/</kbd>
+          </div>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <button
+              v-for="tag in searchTags"
+              :key="tag"
+              type="button"
+              class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-slate-300 backdrop-blur-sm transition hover:border-[#ff5a2d] hover:bg-[#ff5a2d]/10 hover:text-white"
+              @click="keyword = tag"
+            >
+              {{ tag }}
+            </button>
           </div>
         </div>
       </section>
 
-      <div v-if="filteredGroups.length" class="space-y-5 pb-8">
+      <!-- groups -->
+      <div v-if="filteredGroups.length" class="space-y-5 pb-10">
         <section
-          v-for="group in filteredGroups"
+          v-for="(group, groupIndex) in filteredGroups"
           :key="group.key"
-          class="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-4"
+          class="reveal rounded-3xl border border-slate-200 bg-white/70 p-3 shadow-[0_20px_44px_-40px_rgba(0,0,0,0.7)] backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/70 sm:p-4"
+          :style="{ '--rd': `${80 + groupIndex * 60}ms` }"
         >
           <button
             type="button"
-            class="flex w-full items-center justify-between gap-3 text-left"
+            class="group flex w-full items-center justify-between gap-3 rounded-2xl px-2 py-2 text-left transition hover:bg-white dark:hover:bg-slate-800/60"
             @click="toggleGroup(group.key)"
           >
-            <div>
-              <div class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
-                {{ group.label }}
-              </div>
-              <div class="mt-1 text-xl font-bold text-slate-900 dark:text-white">{{ group.title }}</div>
+            <div class="flex items-baseline gap-3">
+              <span class="font-mono text-xs text-[#ff5a2d]">{{ String(groupIndex + 1).padStart(2, '0') }}</span>
+              <span>
+                <span class="block font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+                  {{ group.label }} · {{ group.tools.length }}
+                </span>
+                <span class="mt-0.5 block font-display text-xl font-bold tracking-tight text-slate-900 dark:text-white">{{ group.title }}</span>
+              </span>
             </div>
-            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition dark:bg-slate-800 dark:text-slate-200">
+            <span class="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition group-hover:border-slate-900 group-hover:bg-slate-900 group-hover:text-white dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:group-hover:border-white dark:group-hover:bg-white dark:group-hover:text-slate-900">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5 transition-transform"
@@ -145,32 +175,42 @@
           <div v-show="expandedGroups.includes(group.key)" class="mt-3">
             <div class="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
               <NuxtLink
-                v-for="tool in group.tools"
+                v-for="(tool, toolIndex) in group.tools"
                 :key="tool.path"
                 :to="localePath(tool.path)"
-                class="group rounded-xl border border-slate-200 bg-slate-50 p-3 transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md dark:border-slate-700 dark:bg-slate-800/70 dark:hover:border-blue-500"
+                class="lift card-glow group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-700/70 dark:bg-slate-800/60"
+                :style="{ '--rd': `${toolIndex * 30}ms` }"
               >
-                <div class="mb-2 flex items-center justify-between">
-                  <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-white shadow-sm dark:bg-slate-700">
-                    <component :is="tool.icon" class="h-5 w-5 text-slate-700 dark:text-slate-100" />
-                  </div>
-                  <span class="rounded-full bg-blue-50 px-2 py-1 text-[10px] font-medium uppercase tracking-[0.12em] text-blue-600 dark:bg-blue-500/10 dark:text-blue-300">
-                    {{ t('home.toolBadge') }}
+                <div class="mb-3 flex items-start justify-between">
+                  <span class="relative flex h-11 w-11 items-center justify-center rounded-xl border border-slate-900/5 bg-gradient-to-br from-slate-900 to-slate-950 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] transition-all duration-200 group-hover:-translate-y-0.5 group-hover:border-transparent group-hover:bg-gradient-to-br group-hover:from-[#ff5a2d] group-hover:to-[#ff8a5d] group-hover:shadow-[0_10px_30px_-16px_rgba(255,90,45,1)] dark:border-white/10 dark:bg-slate-950 dark:group-hover:from-[#ff5a2d] dark:group-hover:to-[#ff8a5d]">
+                    <component :is="tool.icon" class="h-5 w-5" />
+                    <span class="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100"></span>
                   </span>
+                  <span class="font-mono text-sm text-slate-300 transition-all duration-200 group-hover:translate-x-1 group-hover:text-[#ff5a2d] dark:text-slate-600">→</span>
                 </div>
 
-                <h3 class="text-base font-semibold text-slate-900 dark:text-white">{{ tool.name }}</h3>
+                <h3 class="font-display text-base font-bold tracking-tight text-slate-900 dark:text-white">{{ tool.name }}</h3>
                 <p class="mt-1 text-sm leading-5 text-slate-600 dark:text-slate-300">
                   {{ tool.description }}
                 </p>
+                <span class="mt-3 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">
+                  {{ t('home.toolBadge') }}
+                </span>
               </NuxtLink>
             </div>
           </div>
         </section>
       </div>
 
-      <div v-else class="rounded-3xl border border-dashed border-slate-300 bg-white p-12 text-center text-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
-        {{ t('home.empty') }}
+      <div v-else class="rounded-3xl border border-dashed border-slate-300 bg-white/70 p-14 text-center dark:border-slate-700 dark:bg-slate-900/70">
+        <p class="font-display text-xl font-bold text-slate-900 dark:text-white">{{ t('home.empty') }}</p>
+        <button
+          type="button"
+          class="btn-secondary mt-5"
+          @click="keyword = ''; selectedCategory = 'all'"
+        >
+          {{ t('home.all') }}
+        </button>
       </div>
     </div>
   </div>
@@ -181,7 +221,7 @@ definePageMeta({
   layout: false
 })
 
-import { computed, defineComponent, h, ref } from 'vue'
+import { computed, defineComponent, h, onBeforeUnmount, onMounted, ref } from 'vue'
 
 const { t, locales, locale, setLocale } = useI18n()
 const localePath = useLocalePath()
@@ -297,6 +337,23 @@ const LightbulbIcon = createIcon([
 const keyword = ref('')
 const selectedCategory = ref('all')
 const expandedGroups = ref(['ai', 'image', 'file', 'text', 'utility'])
+const searchInput = ref(null)
+
+// "/" or Cmd/Ctrl+K jumps straight into search
+function onSearchShortcut(event) {
+  const target = event.target
+  const typing = target && ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)
+  const pressedSlash = event.key === '/'
+  const pressedK = (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k'
+  if (!pressedSlash && !pressedK) return
+  if (typing && pressedSlash) return
+  event.preventDefault()
+  searchInput.value?.focus()
+  searchInput.value?.select?.()
+}
+
+onMounted(() => window.addEventListener('keydown', onSearchShortcut))
+onBeforeUnmount(() => window.removeEventListener('keydown', onSearchShortcut))
 
 const searchTags = computed(() => [
   t('home.tags.image'),

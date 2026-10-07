@@ -1,187 +1,105 @@
 <template>
-  <div>
-    <div class="flex items-center justify-between mb-6">
-      <h1 class="text-3xl font-medium dark:text-white">{{ $t('tokenGenerator.title') }}</h1>
-      <button class="text-gray-300 hover:text-primary dark:text-gray-600 dark:hover:text-primary">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-        </svg>
-      </button>
-    </div>
+  <div class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+    <header class="mb-6 reveal" style="--rd: 40ms">
+      <p class="kicker">{{ $t('tokenTool.category') || 'Security' }}</p>
+      <h1 class="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl dark:text-white">
+        {{ $t('tokenTool.title') }}
+      </h1>
+      <p class="mt-2 max-w-2xl text-base leading-6 text-slate-600 dark:text-slate-300">
+        {{ $t('tokenTool.description') }}
+      </p>
+    </header>
 
-    <p class="text-gray-600 dark:text-gray-400 mb-8">
-      {{ $t('tokenGenerator.description') }}
-    </p>
-
-    <div class="bg-white dark:bg-gray-800 p-4 sm:p-8 rounded-lg border dark:border-gray-700">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-        <div class="flex items-center justify-between">
-          <label class="font-medium dark:text-white">{{ $t('tokenGenerator.uppercase') }}</label>
-          <div
-            class="relative inline-block w-12 h-6 transition duration-200 ease-in-out rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer"
-            @click="toggleUppercase"
-          >
-            <div
-              class="absolute inset-0 m-0.5 w-5 h-5 transition duration-200 ease-in-out transform rounded-full"
-              :class="[uppercase ? 'translate-x-6 bg-primary' : 'translate-x-0 bg-white dark:bg-gray-400']"
-            ></div>
-          </div>
+    <section class="reveal overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900" style="--rd: 160ms">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 px-4 py-3 dark:border-slate-700 sm:px-5">
+        <div class="flex items-center gap-2">
+          <span class="flex h-2.5 w-2.5 rounded-full bg-primary" />
+          <span class="font-mono text-[11px] uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">Generator</span>
         </div>
-        <div class="flex items-center justify-between">
-          <label class="font-medium dark:text-white">{{ $t('tokenGenerator.numbers') }}</label>
-          <div
-            class="relative inline-block w-12 h-6 transition duration-200 ease-in-out rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer"
-            @click="toggleNumbers"
-          >
-            <div
-              class="absolute inset-0 m-0.5 w-5 h-5 transition duration-200 ease-in-out transform rounded-full"
-              :class="[numbers ? 'translate-x-6 bg-primary' : 'translate-x-0 bg-white dark:bg-gray-400']"
-            ></div>
-          </div>
-        </div>
-        <div class="flex items-center justify-between">
-          <label class="font-medium dark:text-white">{{ $t('tokenGenerator.lowercase') }}</label>
-          <div
-            class="relative inline-block w-12 h-6 transition duration-200 ease-in-out rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer"
-            @click="toggleLowercase"
-          >
-            <div
-              class="absolute inset-0 m-0.5 w-5 h-5 transition duration-200 ease-in-out transform rounded-full"
-              :class="[lowercase ? 'translate-x-6 bg-primary' : 'translate-x-0 bg-white dark:bg-gray-400']"
-            ></div>
-          </div>
-        </div>
-        <div class="flex items-center justify-between">
-          <label class="font-medium dark:text-white">{{ $t('tokenGenerator.symbols') }}</label>
-          <div
-            class="relative inline-block w-12 h-6 transition duration-200 ease-in-out rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer"
-            @click="toggleSymbols"
-          >
-            <div
-              class="absolute inset-0 m-0.5 w-5 h-5 transition duration-200 ease-in-out transform rounded-full"
-              :class="[symbols ? 'translate-x-6 bg-primary' : 'translate-x-0 bg-white dark:bg-gray-400']"
-            ></div>
-          </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <button class="btn-secondary" type="button" @click="copyToken">{{ $t('tokenTool.copy') }}</button>
+          <button class="btn-primary" type="button" @click="generateToken">{{ $t('tokenTool.generate') }}</button>
         </div>
       </div>
 
-      <div class="mb-6">
-        <div class="flex items-center justify-between mb-2">
-          <label class="font-medium dark:text-white">{{ $t('tokenGenerator.length', { length }) }}</label>
+      <div class="space-y-6 p-4 sm:p-6">
+        <div>
+          <label class="mb-2 block text-sm font-medium text-slate-700 dark:text-white">{{ $t('tokenTool.outputLabel') }}</label>
+          <input
+            v-model="token"
+            readonly
+            type="text"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+            :placeholder="$t('tokenTool.placeholder')"
+          />
         </div>
-        <input
-          type="range"
-          min="4"
-          max="128"
-          v-model="length"
-          class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-primary"
-        />
-      </div>
 
-      <div class="mb-6">
-        <textarea
-          v-model="generatedToken"
-          class="w-full px-4 py-3 border dark:border-gray-700 rounded-lg resize-none h-24 bg-white dark:bg-gray-900 dark:text-white"
-          readonly
-        ></textarea>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label class="mb-2 block text-sm font-medium text-slate-700 dark:text-white">{{ $t('tokenTool.length') }}</label>
+            <div class="flex items-center gap-3">
+              <input v-model.number="length" type="range" min="4" max="128" step="1" class="h-2 w-full flex-1 cursor-pointer appearance-none rounded-full bg-slate-200 dark:bg-slate-700" />
+              <span class="w-12 rounded-lg bg-slate-100 px-2 py-1 text-center font-mono text-sm dark:bg-slate-800 dark:text-white">{{ length }}</span>
+            </div>
+          </div>
+          <div>
+            <label class="mb-2 block text-sm font-medium text-slate-700 dark:text-white">{{ $t('tokenTool.type') }}</label>
+            <div class="relative">
+              <select
+                v-model="type"
+                class="w-full appearance-none rounded-xl border border-slate-200 bg-white px-4 py-2.5 pr-9 text-sm text-slate-700 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
+              >
+                <option value="alphanumeric">{{ $t('tokenTool.alphanumeric') }}</option>
+                <option value="hex">{{ $t('tokenTool.hex') }}</option>
+                <option value="base64">{{ $t('tokenTool.base64') }}</option>
+              </select>
+              <svg class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="flex justify-end gap-4">
-        <button
-          @click="copyToClipboard"
-          class="px-4 py-2 border dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 dark:text-white transition-colors"
-        >
-          {{ $t('tokenGenerator.copy') }}
-        </button>
-        <button
-          @click="generateToken"
-          class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
-        >
-          {{ $t('tokenGenerator.refresh') }}
-        </button>
-      </div>
-    </div>
+    </section>
   </div>
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
+import { ElMessage } from 'element-plus'
 
-const uppercase = ref(true)
-const lowercase = ref(true)
-const numbers = ref(true)
-const symbols = ref(false)
-const length = ref(64)
-const generatedToken = ref('')
-
-const toggleUppercase = () => {
-  uppercase.value = !uppercase.value
-  if (!uppercase.value && !lowercase.value && !numbers.value && !symbols.value) {
-    lowercase.value = true
-  }
-}
-
-const toggleLowercase = () => {
-  lowercase.value = !lowercase.value
-  if (!uppercase.value && !lowercase.value && !numbers.value && !symbols.value) {
-    uppercase.value = true
-  }
-}
-
-const toggleNumbers = () => {
-  numbers.value = !numbers.value
-  if (!uppercase.value && !lowercase.value && !numbers.value && !symbols.value) {
-    lowercase.value = true
-  }
-}
-
-const toggleSymbols = () => {
-  symbols.value = !symbols.value
-  if (!uppercase.value && !lowercase.value && !numbers.value && !symbols.value) {
-    lowercase.value = true
-  }
-}
+const { t } = useI18n()
+const token = ref('')
+const length = ref(32)
+const type = ref('alphanumeric')
 
 const generateToken = () => {
-  let chars = ''
-
-  if (uppercase.value) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  if (lowercase.value) chars += 'abcdefghijklmnopqrstuvwxyz'
-  if (numbers.value) chars += '0123456789'
-  if (symbols.value) chars += '!@#$%^&*()-_=+[]{}|;:,.<>?'
-
-  if (chars === '') {
-    lowercase.value = true
-    chars = 'abcdefghijklmnopqrstuvwxyz'
+  const chars = {
+    alphanumeric: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
+    hex: '0123456789abcdef',
+    base64: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
   }
-
   let result = ''
-  const charsLength = chars.length
-
+  const charSet = chars[type.value] || chars.alphanumeric
+  const array = new Uint32Array(length.value)
+  window.crypto.getRandomValues(array)
   for (let i = 0; i < length.value; i++) {
-    result += chars.charAt(Math.floor(Math.random() * charsLength))
+    result += charSet[array[i] % charSet.length]
   }
-
-  generatedToken.value = result
+  token.value = result
 }
 
-const copyToClipboard = () => {
-  navigator.clipboard.writeText(generatedToken.value)
-    .then(() => {
-      // 可以添加复制成功的提示
-      console.log('Copied to clipboard')
-    })
-    .catch((err) => {
-      console.error('Could not copy text: ', err)
-    })
+const copyToken = async () => {
+  if (!token.value) return
+  try {
+    await navigator.clipboard.writeText(token.value)
+    ElMessage.success(t('tokenTool.copied') || 'Copied')
+  } catch (err) {
+    console.error('Copy failed', err)
+    ElMessage.error(t('common.copyFailed') || 'Copy failed')
+  }
 }
 
-// 当选项改变时重新生成
-watch([uppercase, lowercase, numbers, symbols, length], () => {
-  generateToken()
-})
-
-// 组件加载时生成初始令牌
 onMounted(() => {
   generateToken()
 })

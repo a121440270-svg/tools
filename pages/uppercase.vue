@@ -1,284 +1,115 @@
 <template>
-  <div class="max-w-2xl mx-auto py-10">
-      <div class="header-row">
-        <div>
-          <h1 class="text-2xl font-bold mb-4">{{ $t('uppercase.title') }}</h1>
-          <p class="mb-4 text-gray-600 dark:text-gray-300">{{ $t('uppercase.desc') }}</p>
-        </div>
+  <div class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+    <header class="mb-6 reveal" style="--rd: 40ms">
+      <p class="kicker">{{ $t('caseTool.category') || 'Text tools' }}</p>
+      <h1 class="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl dark:text-white">
+        {{ $t('caseTool.title') || $t('home.tools.uppercase.name') }}
+      </h1>
+      <p class="mt-2 max-w-2xl text-base leading-6 text-slate-600 dark:text-slate-300">
+        {{ $t('caseTool.description') || $t('home.tools.uppercase.description') }}
+      </p>
+    </header>
 
-        <div class="theme-toggle-wrap">
-          <button class="theme-toggle" @click="toggleTheme" :aria-pressed="isDark">
-            <svg v-if="!isDark" xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 3v2M12 19v2M4.22 4.22 5.64 5.64M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"></path>
-            </svg>
-            <svg v-else xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-          </button>
+    <section class="reveal overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900" style="--rd: 160ms">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 px-4 py-3 dark:border-slate-700 sm:px-5">
+        <div class="flex items-center gap-2">
+          <span class="flex h-2.5 w-2.5 rounded-full bg-primary" />
+          <span class="font-mono text-[11px] uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">Converter</span>
         </div>
-      </div>
-
-      <div class="io-grid">
-        <div class="panel">
-          <label class="label">{{ $t('uppercase.inputLabel') }}</label>
-          <textarea
-            ref="area"
-            v-model="text"
-            @paste="handlePaste"
-            @input="onInput"
-            :placeholder="$t('uppercase.placeholder')
-            "
-            class="w-full px-4 py-3 border dark:border-gray-700 rounded-lg resize-none h-40 bg-white dark:bg-gray-900 dark:text-white"
-          ></textarea>
-        </div>
-
-        <div class="panel">
-          <label class="label">{{ $t('uppercase.outputLabel') }}</label>
-          <textarea
-            :value="uppercaseText"
-            readonly
-            class="w-full px-4 py-3 border dark:border-gray-700 rounded-lg resize-none h-40 bg-gray-50 dark:bg-gray-900 dark:text-white font-semibold"
-            :placeholder="$t('uppercase.outputPlaceholder')"
-          ></textarea>
+        <div class="flex flex-wrap items-center gap-2">
+          <button class="btn-secondary" type="button" @click="copyResult">{{ $t('caseTool.copy') || $t('common.copy') }}</button>
+          <button class="btn-secondary" type="button" @click="clearAll">{{ $t('common.clear') || 'Clear' }}</button>
         </div>
       </div>
 
-      <div class="button-row">
-        <button @click="copyText" class="btn primary">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-          </svg>
-          {{ $t('uppercase.copyBtn') }}
-        </button>
-
-        <button @click="clearText" class="btn ghost">
-          {{ $t('uppercase.clearBtn') }}
-        </button>
-
-        <div class="status-container">
-          <div v-if="status" :class="['status-message', statusType]">{{ status }}</div>
+      <div class="space-y-5 p-4 sm:p-6">
+        <textarea
+          v-model="inputText"
+          class="h-40 w-full resize-none rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-800 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+          :placeholder="$t('caseTool.placeholder')"
+        />
+        <div class="flex flex-wrap gap-2">
+          <button v-for="action in actions" :key="action.key" class="btn-secondary" type="button" @click="apply(action.key)">{{ action.label }}</button>
         </div>
+        <textarea
+          v-model="outputText"
+          readonly
+          class="h-40 w-full resize-none rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-800 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+          :placeholder="$t('caseTool.outputPlaceholder')"
+        />
       </div>
-
-      <div class="instructions">
-        <h3>{{ $t('uppercase.instructions.title') }}</h3>
-        <ul>
-          <li>{{ $t('uppercase.instructions.input') }}</li>
-          <li>{{ $t('uppercase.instructions.convert') }}</li>
-          <li>{{ $t('uppercase.instructions.copy') }}</li>
-          <li>{{ $t('uppercase.instructions.clear') }}</li>
-        </ul>
-      </div>
+    </section>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
-const { t, locale } = useI18n()
+import { ref, computed } from 'vue'
+import { ElMessage } from 'element-plus'
 
-const text = ref('')
-const status = ref('')
-const statusType = ref('')
-let timer = null
+const { t } = useI18n()
+const inputText = ref('')
+const transformType = ref('uppercase')
 
-const area = ref(null)
-
-const uppercaseText = computed(() => (text.value || '').toUpperCase())
-
-// theme handling (SSR-safe)
-const isDark = ref(false)
-
-const readPref = () => {
-  try {
-    if (typeof window === 'undefined') return false
-    const stored = window.localStorage && window.localStorage.getItem && window.localStorage.getItem('site-theme')
-    if (stored === 'dark') return true
-    if (stored === 'light') return false
-    // fallback to system preference (if available)
-    if (window.matchMedia) return window.matchMedia('(prefers-color-scheme: dark)').matches
-  } catch (e) {
-    // ignore and default to light
+const outputText = computed(() => {
+  const text = inputText.value
+  switch (transformType.value) {
+    case 'uppercase':
+      return text.toUpperCase()
+    case 'lowercase':
+      return text.toLowerCase()
+    case 'capitalize':
+      return text.replace(/\b\w/g, (char) => char.toUpperCase())
+    case 'title':
+      return text.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase())
+    case 'sentence':
+      return text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, (char) => char.toUpperCase())
+    case 'alternating':
+      return text.split('').map((char, i) => (i % 2 === 0 ? char.toLowerCase() : char.toUpperCase())).join('')
+    case 'inverse':
+      return text.split('').map((char) => (char === char.toUpperCase() && char !== char.toLowerCase()) ? char.toLowerCase() : (char === char.toLowerCase() && char !== char.toUpperCase()) ? char.toUpperCase() : char).join('')
+    case 'camel':
+      return text.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => index === 0 ? word.toLowerCase() : word.toUpperCase()).replace(/\s+/g, '')
+    case 'pascal':
+      return text.replace(/(?:^\w|[A-Z]|\b\w)/g, (word) => word.toUpperCase()).replace(/\s+/g, '')
+    case 'snake':
+      return text.replace(/([a-z])([A-Z])/g, '$1_$2').replace(/[\s-]+/g, '_').toLowerCase()
+    case 'kebab':
+      return text.replace(/([a-z])([A-Z])/g, '$1-$2').replace(/[\s_]+/g, '-').toLowerCase()
+    default:
+      return text
   }
-  return false
-}
-
-const applyTheme = (dark) => {
-  try {
-    if (typeof document === 'undefined') return
-    const root = document.documentElement
-    if (!root) return
-    if (dark) root.classList.add('dark')
-    else root.classList.remove('dark')
-  } catch (e) {
-    // ignore
-  }
-}
-
-// initialize theme on client only
-onMounted(() => {
-  const pref = readPref()
-  isDark.value = pref
-  applyTheme(pref)
 })
 
-const siteName = useRuntimeConfig().public.siteName || 'OnliTool'
-const pageTitle = computed(() => `${t('menu.uppercase') || 'Uppercase'} | ${siteName}`)
-const pageDescription = computed(() => t('uppercase.desc') || 'Convert text to uppercase online and copy to clipboard quickly.')
-const keywords = computed(() => `${t('menu.uppercase') || 'uppercase'}, text, convert, online tool, clipboard`)
+const actions = computed(() => [
+  { key: 'uppercase', label: t('caseTool.uppercase') || 'UPPERCASE' },
+  { key: 'lowercase', label: t('caseTool.lowercase') || 'lowercase' },
+  { key: 'capitalize', label: t('caseTool.capitalize') || 'Capitalize Words' },
+  { key: 'title', label: t('caseTool.titleCase') || 'Title Case' },
+  { key: 'sentence', label: t('caseTool.sentenceCase') || 'Sentence case' },
+  { key: 'alternating', label: t('caseTool.alternating') || 'aLtErNaTiNg' },
+  { key: 'inverse', label: t('caseTool.inverse') || 'InVeRsE' },
+  { key: 'camel', label: t('caseTool.camelCase') || 'camelCase' },
+  { key: 'pascal', label: t('caseTool.pascalCase') || 'PascalCase' },
+  { key: 'snake', label: t('caseTool.snakeCase') || 'snake_case' },
+  { key: 'kebab', label: t('caseTool.kebabCase') || 'kebab-case' }
+])
 
-useToolSeo({
-  title: pageTitle,
-  description: pageDescription,
-  keywords,
-  type: 'WebPage'
-})
-
-const toggleTheme = () => {
-  isDark.value = !isDark.value
-  applyTheme(isDark.value)
-  try { if (typeof window !== 'undefined' && window.localStorage) window.localStorage.setItem('site-theme', isDark.value ? 'dark' : 'light') } catch (e) {}
+const apply = (type) => {
+  transformType.value = type
 }
 
-const setStatus = (msg, type = 'success') => {
-  clearTimeout(timer)
-  status.value = msg
-  statusType.value = type
-  if (msg) {
-    timer = setTimeout(() => {
-      status.value = ''
-      statusType.value = ''
-    }, 4000)
-  }
-}
-
-const handlePaste = (e) => {
+const copyResult = async () => {
+  if (!outputText.value) return
   try {
-    // we still allow default so mobile paste works; but capture clipboard if available
-    const pasted = (e.clipboardData && e.clipboardData.getData('text')) || ''
-    if (!pasted) return
-    // set raw text (so user can still edit) — uppercase will be shown in output
-    text.value = pasted
-    // try to copy uppercase to clipboard immediately
-    const upper = pasted.toUpperCase()
-    navigator.clipboard && navigator.clipboard.writeText(upper).then(() => {
-      setStatus(t('uppercase.status.copySuccess'), 'success')
-    }).catch(() => {
-      // ignore; user can still press copy
-    })
+    await navigator.clipboard.writeText(outputText.value)
+    ElMessage.success(t('caseTool.copied') || 'Copied')
   } catch (err) {
-    console.error(err)
+    console.error('Copy failed', err)
+    ElMessage.error(t('common.copyFailed') || 'Copy failed')
   }
 }
 
-const onInput = () => {
-  // clear any existing status when user types
-  if (!text.value) setStatus('', '')
-}
-
-const copyText = async () => {
-  if (!uppercaseText.value) {
-    setStatus(t('uppercase.status.noText'), 'error')
-    return
-  }
-  try {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      await navigator.clipboard.writeText(uppercaseText.value)
-    } else {
-      // fallback for old browsers
-      const ta = document.createElement('textarea')
-      ta.value = uppercaseText.value
-      document.body.appendChild(ta)
-      ta.select()
-      document.execCommand('copy')
-      document.body.removeChild(ta)
-    }
-    setStatus(t('uppercase.status.copySuccess'), 'success')
-  } catch (err) {
-    console.error(err)
-    setStatus(t('uppercase.status.copyError'), 'error')
-  }
-}
-
-const clearText = () => {
-  text.value = ''
-  setStatus('', '')
-  area.value && area.value.focus()
+const clearAll = () => {
+  inputText.value = ''
 }
 </script>
-
-<style scoped>
-.title { font-size: 24px; font-weight: 700; color: #111827; margin-bottom: 6px; }
-.desc { color: #6b7280; margin-bottom: 18px; }
-
-.io-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.panel { display: flex; flex-direction: column; }
-.label { font-weight: 600; margin-bottom: 8px; color: #374151; }
-.input-area, .output-area { display: block; }
-
-.button-row { display:flex; align-items:center; gap:12px; margin-top:18px; }
-.btn { display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; font-weight:600; cursor:pointer; border:none; }
-.btn .icon{ width:18px; height:18px; }
-.btn.primary { background: linear-gradient(90deg,#6a11cb,#2575fc); color:#fff; box-shadow: 0 8px 20px rgba(38, 50, 150, 0.12); }
-.btn.primary:hover { transform: translateY(-2px); }
-.btn.ghost { background:#f3f4f6; color:#374151; }
-
-.status-container { margin-left:auto; }
-.status-message { padding:8px 12px; border-radius:8px; font-weight:600; }
-.status-message.success { background:#e8f5e9; color:#2e7d32; }
-.status-message.error { background:#ffebee; color:#c62828; }
-
-.instructions {
-  margin-top:20px;
-  /* do not use a white background; let it be subtle in light mode */
-  background: transparent;
-  padding:12px;
-  border-radius:10px;
-  border: 1px solid #e5e7eb;
-  color: #374151;
-  font-size:14px;
-  transition: background .15s ease, color .15s ease, border-color .15s ease;
-}
-.instructions h3 { margin-bottom:8px; }
-.instructions ul { padding-left:18px; color:#6b7280; }
-.instructions strong { color: #111827; }
-
-/* dark mode overrides when a parent (usually <html>) has .dark */
-/* removed dark gradient — keep root background controlled by app's layout/theme */
-
-/* container card removed; no page-level card background to override */
-
-:deep(.dark) .desc { color: #9ca3af; }
-:deep(.dark) .label { color: #cbd5e1; }
-:deep(.dark) .input-area, :deep(.dark) .output-area {
-  background: #071024;
-  border-color: #1f2937;
-  color: #e6eef8;
-}
-:deep(.dark) .output-area { background: #061026; }
-:deep(.dark) .btn.ghost { background: #0f1724; color: #cbd5e1; }
-:deep(.dark) .status-message.success { background:#052a10; color:#86efac; }
-:deep(.dark) .status-message.error { background:#2b0606; color:#ff9b9b; }
-
-:deep(.dark) .instructions {
-  background: rgba(255,255,255,0.03);
-  color:#cbd5e1;
-  border-color: rgba(255,255,255,0.04);
-}
-:deep(.dark) .instructions ul { color: #9ca3af; }
-:deep(.dark) .instructions strong { color: #e6eef8; }
-
-.header-row { display:flex; justify-content:space-between; align-items:center; gap:12px; }
-.theme-toggle-wrap { display:flex; align-items:center; }
-.theme-toggle { background:transparent; border:1px solid rgba(0,0,0,0.06); padding:8px; border-radius:8px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; }
-.theme-toggle .icon { width:18px; height:18px; color:#374151; }
-:deep(.dark) .theme-toggle { border-color: rgba(255,255,255,0.06); }
-:deep(.dark) .theme-toggle .icon { color:#e5e7eb; }
-
-@media (max-width: 880px) {
-  .io-grid { grid-template-columns: 1fr; }
-  /* no container card padding to adjust */
-  .button-row { flex-direction: column; align-items: stretch; }
-  .status-container { margin-left: 0; }
-}
-</style>

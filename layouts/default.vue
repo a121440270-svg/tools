@@ -3,28 +3,42 @@
   <div class="min-h-screen flex flex-col lg:flex-row" :dir="isRtl ? 'rtl' : 'ltr'">
     <!-- 移动端顶部导航栏 -->
     <header
-      class="lg:hidden border-b bg-white dark:bg-gray-800 dark:border-gray-700"
+      class="lg:hidden border-b border-slate-200 bg-white/85 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/85"
     >
-      <div class="flex items-center justify-between h-16 px-4">
-        <div class="flex items-center">
+      <div class="flex items-center justify-between h-16 px-3">
+        <div class="flex items-center gap-1">
           <button
-            class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+            class="flex h-10 w-10 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
+            aria-label="Toggle sidebar"
             @click="toggleSidebar"
           >
-            <MenuIcon class="w-5 h-5 text-gray-700 dark:text-gray-200" />
+            <MenuIcon class="w-5 h-5 text-slate-700 dark:text-slate-200" />
           </button>
-          <span class="ml-3 font-bold text-gray-800 dark:text-white"
-            >OnliTool</span
+          <button
+            class="flex items-center gap-2.5 rounded-full px-2.5 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-800"
+            @click="navigateTo(localePath('/'))"
           >
+            <span
+              class="relative flex h-8 w-8 items-center justify-center rounded-xl bg-slate-900 font-display text-sm font-bold text-white dark:bg-white dark:text-slate-900"
+            >
+              O
+              <span
+                class="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-[#ff5a2d] ring-2 ring-white dark:ring-slate-900"
+              />
+            </span>
+            <span class="font-display text-lg font-bold tracking-tight text-slate-900 dark:text-white"
+              >OnliTool</span
+            >
+          </button>
         </div>
 
         <button
-          class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+          class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 hover:border-slate-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
           @click="toggleTheme"
         >
           <component
             :is="isDark ? SunIcon : MoonIcon"
-            class="w-5 h-5 text-gray-700 dark:text-gray-200"
+            class="w-5 h-5"
           />
         </button>
       </div>
@@ -33,7 +47,7 @@
     <!-- 侧边栏   fixed left-0 top-0 h-screen w-64 bg-gray-100 -->
     <aside
       :class="[
-        'sidebar-gradient fixed top-0 bottom-0 transition-all duration-300 z-30 overflow-y-auto',
+        'sidebar-gradient fixed top-0 bottom-0 transition-all duration-300 z-30 overflow-y-auto border-r border-white/10',
         isDesktop
           ? isSidebarCollapsed
             ? 'w-0 left-0 overflow-hidden'
@@ -44,28 +58,38 @@
       ]"
     >
       <div
-        class="sidebar-brand py-8 px-6 cursor-pointer"
+        class="sidebar-brand py-7 px-6 cursor-pointer"
         @click="navigateTo(localePath('/'))"
       >
-          <span class="text-2xl font-bold text-white">OnliTool</span>
-        <p class="text-sm text-white/80">{{ $t("menu.desc") }}</p>
+        <div class="relative z-10 flex items-center gap-3">
+          <span
+            class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/10 font-display text-lg font-bold text-white ring-1 ring-white/15"
+          >
+            O
+            <span class="absolute -right-0.5 -top-0.5 h-3 w-3 rounded-full bg-[#ff5a2d]" />
+          </span>
+          <span>
+            <span class="block font-display text-xl font-bold leading-none text-white">OnliTool</span>
+            <span class="mt-1.5 block font-mono text-[10px] uppercase tracking-[0.16em] text-white/50">{{ $t("menu.desc") }}</span>
+          </span>
+        </div>
       </div>
 
       <!-- 工具分类 -->
-      <div class="mt-6">
-        <div v-for="(category, index) in categories" :key="index" class="mb-1">
+      <div class="mt-4 pb-10">
+        <div v-for="(category, index) in categories" :key="index" class="mb-2">
           <div
-            class="flex items-center px-6 py-2 text-white cursor-pointer"
+            class="sidebar-nav-label"
             @click="toggleCategory(index)"
           >
             <ChevronIcon
               v-if="null == category.path"
-              class="w-4 h-4 mr-2 transition-transform"
+              class="w-3.5 h-3.5 shrink-0 transition-transform"
               :class="category.expanded ? 'rotate-90' : ''"
             />
             <span
               v-if="null == category.path"
-              class="truncate max-w-[140px]"
+              class="truncate"
               :title="$t(category.name)"
               >{{ $t(category.name) }}</span
             >
@@ -73,15 +97,15 @@
               v-if="null != category.path"
               :key="category.path"
               :to="localePath(category.path)"
-              class="block py-2 px-6 hover:bg-white/10 rounded transition-colors flex items-center text-white"
-              :class="{ 'bg-white/10': $route.path === category.path }"
+              class="sidebar-nav-link"
+              :class="{ 'is-active': $route.path === category.path }"
               @click="isDesktop ? null : closeSidebar()"
             >
               <component
                 :is="category.icon"
-                class="w-5 h-5 mr-3 text-white/90"
+                class="w-5 h-5 shrink-0 text-white/70"
               />
-              <span class="truncate max-w-[140px]" :title="category.name">{{
+              <span class="truncate" :title="category.name">{{
                 $t(category.name)
               }}</span>
             </NuxtLink>
@@ -89,18 +113,18 @@
 
           <div
             v-if="category.expanded && null == category.path"
-            class="pl-4 mt-1"
+            class="mt-0.5"
           >
             <NuxtLink
               v-for="tool in category.tools"
               :key="tool.path"
               :to="localePath(tool.path)"
-              class="block py-2 px-6 hover:bg-white/10 rounded transition-colors flex items-center text-white"
-              :class="{ 'bg-white/10': $route.path === tool.path }"
+              class="sidebar-nav-link is-child"
+              :class="{ 'is-active': $route.path === tool.path }"
               @click="isDesktop ? null : closeSidebar()"
             >
-              <component :is="tool.icon" class="w-5 h-5 mr-3 text-white/90" />
-              <span class="truncate max-w-[140px]" :title="$t(tool.name)">{{
+              <component :is="tool.icon" class="w-5 h-5 shrink-0 text-white/60" />
+              <span class="truncate" :title="$t(tool.name)">{{
                 $t(tool.name)
               }}</span>
             </NuxtLink>
@@ -126,37 +150,40 @@
     >
       <!-- 桌面端顶部导航栏 -->
       <header
-        class="hidden lg:flex h-16 items-center px-4 border-b bg-white dark:bg-gray-800 dark:border-gray-700"
+        class="hidden lg:flex h-16 items-center gap-1 px-4 border-b border-slate-200 bg-white/85 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/85"
       >
         <button
-          class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+          class="flex h-10 w-10 items-center justify-center rounded-full text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+          aria-label="Toggle sidebar"
           @click="toggleSidebar"
         >
-          <MenuIcon class="w-5 h-5 text-gray-700 dark:text-gray-200" />
+          <MenuIcon class="w-5 h-5" />
         </button>
         <button
-          class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+          class="flex h-10 w-10 items-center justify-center rounded-full text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+          aria-label="Home"
           @click="navigateTo(localePath('/'))"
         >
-          <HomeIcon class="w-5 h-5 text-gray-700 dark:text-gray-200" />
+          <HomeIcon class="w-5 h-5" />
         </button>
-        <div class="flex items-center ml-4 relative">
-          <SearchIcon class="w-5 h-5 absolute left-3 text-gray-400" />
+        <div class="flex items-center ml-3 relative">
+          <SearchIcon class="w-4 h-4 absolute left-3.5 text-slate-400" />
           <input
             type="text"
             :placeholder="$t('search.placeholder')"
-            class="bg-gray-100 py-2 pl-10 pr-4 rounded-md w-64 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+            class="rounded-full border border-slate-200 bg-white py-2.5 pl-10 pr-4 w-72 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500"
           />
-          <span class="ml-2 text-xs text-gray-500 dark:text-gray-400"
-            >Cmd + K</span
+          <kbd
+            class="ml-2 rounded-md border border-slate-200 bg-white px-1.5 py-0.5 font-mono text-[10px] text-slate-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500"
+            >⌘K</kbd
           >
         </div>
 
-        <div class="ml-auto flex items-center gap-4">
+        <div class="ml-auto flex items-center gap-2">
           <NuxtLink
             v-if="!user?.id"
             :to="localePath('/auth/login')"
-            class="px-4 py-2 text-primary hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+            class="rounded-full px-4 py-2 text-sm font-medium text-primary transition hover:bg-primary/10"
           >
             {{ $t("login.submit") }}
           </NuxtLink>
@@ -164,28 +191,28 @@
           <NuxtLink
             v-else
             :to="localePath('/profile')"
-            class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+            class="flex items-center rounded-full px-3 py-1.5 transition hover:bg-slate-100 dark:hover:bg-slate-800"
           >
-            <img :src="user.avatar" class="w-6 h-6 rounded-full mr-2" />
-            <span class="text-primary">{{ user.name }}</span>
+            <img :src="user.avatar" class="w-6 h-6 rounded-full mr-2 ring-2 ring-primary/40" />
+            <span class="text-sm font-medium text-primary">{{ user.name }}</span>
           </NuxtLink>
           <NuxtLink
             v-if="user?.id"
             @click.prevent="handleLogout"
             to="#"
-            class="ml-2 px-4 py-2 text-primary hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
+            class="px-4 py-2 text-sm rounded-full text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
           >
             {{ $t("login.out") }}
           </NuxtLink>
           <div class="relative inline-flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="pointer-events-none absolute left-2 h-4 w-4 text-gray-500 dark:text-gray-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="pointer-events-none absolute left-2.5 h-4 w-4 text-slate-400 dark:text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="10" />
               <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
             </svg>
             <select
               @change="changeLanguage"
               :value="$i18n.locale"
-              class="bg-transparent py-1 pl-8 pr-2 rounded border text-sm dark:bg-gray-700 dark:text-white dark:border-gray-600"
+              class="appearance-none rounded-full border border-slate-200 bg-white py-2 pl-8 pr-3 font-mono text-[11px] uppercase tracking-[0.1em] text-slate-700 outline-none transition hover:border-slate-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
             >
               <option
                 v-for="locale in locales"
@@ -197,19 +224,20 @@
             </select>
           </div>
           <button
-            class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+            class="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:border-slate-400 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:text-white"
+            aria-label="Toggle theme"
             @click="toggleTheme"
           >
             <component
               :is="isDark() ? SunIcon : MoonIcon"
-              class="w-5 h-5 text-gray-700 dark:text-gray-200"
+              class="w-4 h-4"
             />
           </button>
 
           <a
             href="#"
             @click="pay"
-            class="bg-primary text-primary-foreground rounded-full px-4 py-2 text-sm hover:bg-primary/90 transition-colors"
+            class="ml-1 rounded-full bg-[#ff5a2d] px-4 py-2 text-sm font-semibold text-[#14181a] shadow-[0_10px_22px_-14px_rgba(255,90,45,1)] transition hover:-translate-y-0.5 hover:bg-[#ff6d45]"
           >
             {{ $t('layout.support') }} ❤️
           </a>
@@ -218,7 +246,7 @@
 
       <!-- 内容 -->
       <main
-        class="p-4 pt-0 md:p-6 md:pt-6 bg-background dark:bg-gray-900"
+        class="p-4 pt-0 md:p-6 md:pt-6"
         :dir="isRtl ? 'rtl' : 'ltr'"
       >
         <slot />
