@@ -1,0 +1,67 @@
+# OnliTool llms.txt
+
+This file is intended for AI assistants, crawlers, and LLM-powered tools to discover the main content and entry points of OnliTool.
+
+## Site
+- OnliTool: https://onlitools.com/
+- Description: Online tools for developers, designers, and content creators, focused on image processing, file conversion, text utilities, and productivity workflows.
+- About: https://onlitools.com/about
+- Blog: https://onlitools.com/blog
+
+## Core pages
+- Homepage: https://onlitools.com/
+- About: https://onlitools.com/about
+- Blog index: https://onlitools.com/blog
+- Blog post listing and article workflow: https://onlitools.com/blog/post
+- Prompt library: https://onlitools.com/prompts
+- User login: https://onlitools.com/auth/login
+- User register: https://onlitools.com/auth/register
+
+## Major tool categories
+
+### AI tools
+- AI Image Generator: https://onlitools.com/image-generator
+- AI Video Generator: https://onlitools.com/video-generator
+
+### Image tools
+- Image Converter: https://onlitools.com/image-converter
+- Image to WebP: https://onlitools.com/image-to-webp
+- HEIC to JPG: https://onlitools.com/heic-to-jpg
+- Image Resizer: https://onlitools.com/image-resizer
+- Image Cropper: https://onlitools.com/image-cropper
+- Image to Base64: https://onlitools.com/image-to-base64
+- Base64 to Image: https://onlitools.com/base64-to-image
+- Image Information: https://onlitools.com/image-info
+- Remove EXIF: https://onlitools.com/remove-exif
+- Metadata Analyzer: https://onlitools.com/image-metadata
+- EXIF Editor: https://onlitools.com/exif-editor
+- Image Color Picker: https://onlitools.com/image-color-picker
+- SVG Converter: https://onlitools.com/svg-converter
+- WebP to JPG: https://onlitools.com/webp-to-jpg
+- WebP to PNG: https://onlitools.com/webp-to-png
+- Image Compressor: https://onlitools.com/image-compress
+- Image Aspect Ratio: https://onlitools.com/image-aspect-ratio
+- Increase Image Size: https://onlitools.com/increase-image-size
+- ID Photo Maker: https://onlitools.com/id-photo
+
+### File and data tools
+- Font Compressor: https://onlitools.com/font-compress
+- Font Inspector: https://onlitools.com/font-inspector
+- Font Unicode Checker: https://onlitools.com/font-unicode-checker
+- Font Size Analyzer: https://onlitools.com/font-size-analyzer
+- Font Validator: https://onlitools.com/font-validator
+- Font CSS Generator: https://onlitools.com/font-css-generator
+- JSON to CSV: https://onlitools.com/json-csv-convert
+- JSON Formatter: https://onlitools.com/json-formatter
+- JSON Compare: https://onlitools.com/json-compare
+- Date Formatter: https://onlitools.com/date-format
+
+### Text and security tools
+- Case Converter: https://onlitools.com/case-converter
+- Token Generator: https://onlitools.com/token-generator
+- Hash Text: https://onlitools.com/hash-text
+
+## Notes
+- The site is multilingual and supports multiple locales, including English, Japanese, Chinese, German, French, and Arabic.
+- The primary site URL is https://onlitools.com/.
+- This site is designed for practical online utilities and rapid local processing workflows without requiring a signup for basic usage.

@@ -79,14 +79,14 @@
     </nav>
 
     <section class="mt-10 space-y-8">
-      <div class="rounded-xl border border-gray-200 bg-gray-50 p-5">
-        <h2 class="text-xl font-semibold mb-2">{{ t('font.section.subsetting_title') }}</h2>
-        <p class="text-gray-700 leading-7">{{ t('font.section.subsetting_text') }}</p>
+      <div class="rounded-xl border border-gray-200 bg-gray-50 p-5 dark:border-slate-700 dark:bg-slate-900/60">
+        <h2 class="mb-2 text-xl font-semibold dark:text-slate-100">{{ t('font.section.subsetting_title') }}</h2>
+        <p class="leading-7 text-gray-700 dark:text-slate-300">{{ t('font.section.subsetting_text') }}</p>
       </div>
 
-      <div class="rounded-xl border border-gray-200 p-5">
-        <h2 class="text-xl font-semibold mb-3">{{ t('font.section.steps_title') }}</h2>
-        <ol class="list-decimal pl-5 text-gray-700 leading-7 space-y-2">
+      <div class="rounded-xl border border-gray-200 p-5 dark:border-slate-700 dark:bg-slate-900/60">
+        <h2 class="mb-3 text-xl font-semibold dark:text-slate-100">{{ t('font.section.steps_title') }}</h2>
+        <ol class="list-decimal space-y-2 pl-5 leading-7 text-gray-700 dark:text-slate-300">
           <li>{{ t('font.section.steps_1') }}</li>
           <li>{{ t('font.section.steps_2') }}</li>
           <li>{{ t('font.section.steps_3') }}</li>
@@ -94,28 +94,28 @@
         </ol>
       </div>
 
-      <div class="rounded-xl border border-gray-200 p-5">
-        <h2 class="text-xl font-semibold mb-3">{{ t('font.section.why_title') }}</h2>
-        <p class="text-gray-700 leading-7">{{ t('font.section.why_text') }}</p>
+      <div class="rounded-xl border border-gray-200 p-5 dark:border-slate-700 dark:bg-slate-900/60">
+        <h2 class="mb-3 text-xl font-semibold dark:text-slate-100">{{ t('font.section.why_title') }}</h2>
+        <p class="leading-7 text-gray-700 dark:text-slate-300">{{ t('font.section.why_text') }}</p>
       </div>
 
-      <div class="rounded-xl border border-gray-200 p-5">
-        <h2 class="text-xl font-semibold mb-3">{{ t('font.section.faq_title') }}</h2>
-        <div class="space-y-5 text-gray-700">
+      <div class="rounded-xl border border-gray-200 p-5 dark:border-slate-700">
+        <h2 class="text-xl font-semibold mb-3 dark:text-slate-100">{{ t('font.section.faq_title') }}</h2>
+        <div class="space-y-5 text-gray-700 dark:text-slate-300">
           <div>
-            <h3 class="font-semibold text-gray-900">{{ t('font.section.faq_1_q') }}</h3>
+            <h3 class="font-semibold text-gray-900 dark:text-slate-100">{{ t('font.section.faq_1_q') }}</h3>
             <p class="mt-1 leading-7">{{ t('font.section.faq_1_a') }}</p>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900">{{ t('font.section.faq_2_q') }}</h3>
+            <h3 class="font-semibold text-gray-900 dark:text-slate-100">{{ t('font.section.faq_2_q') }}</h3>
             <p class="mt-1 leading-7">{{ t('font.section.faq_2_a') }}</p>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900">{{ t('font.section.faq_3_q') }}</h3>
+            <h3 class="font-semibold text-gray-900 dark:text-slate-100">{{ t('font.section.faq_3_q') }}</h3>
             <p class="mt-1 leading-7">{{ t('font.section.faq_3_a') }}</p>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900">{{ t('font.section.faq_4_q') }}</h3>
+            <h3 class="font-semibold text-gray-900 dark:text-slate-100">{{ t('font.section.faq_4_q') }}</h3>
             <p class="mt-1 leading-7">{{ t('font.section.faq_4_a') }}</p>
           </div>
         </div>

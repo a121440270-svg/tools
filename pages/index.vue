@@ -1,13 +1,12 @@
 <template>
   <div class="min-h-screen">
     <div class="mx-auto max-w-7xl px-3 py-3 sm:px-6 lg:px-8">
-      <header class="sticky top-0 z-40 mb-6 mt-1 rounded-3xl border border-slate-200/90 bg-white/85 p-3 shadow-[0_18px_40px_-34px_rgba(0,0,0,0.6)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/85 sm:p-4">
+      <header class="sticky top-0 z-40 mb-6 mt-1 rounded-2xl border border-slate-200/90 bg-white/90 p-3 shadow-sm backdrop-blur-md transition-all hover:shadow-md dark:border-slate-800 dark:bg-slate-900/90 sm:p-4">
         <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <NuxtLinkLocale to="/" class="group flex items-center gap-3">
-            <span class="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 font-display text-lg font-bold text-white shadow-[0_10px_30px_-18px_rgba(0,0,0,0.8)] transition-all duration-200 group-hover:-rotate-6 group-hover:shadow-[0_16px_40px_-18px_rgba(255,90,45,0.8)] dark:bg-gradient-to-br dark:from-white dark:to-slate-100 dark:text-slate-900">
+            <span class="relative flex h-8 w-8 items-center justify-center rounded-xl bg-slate-900 font-display text-sm font-bold text-white dark:bg-white dark:text-slate-900">
               O
-              <span class="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-[#ff5a2d] shadow-[0_0_0_4px_rgba(255,90,45,0.3)] ring-2 ring-white dark:ring-slate-900" />
-              <span class="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100"></span>
+              <span class="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-[#ff5a2d] ring-2 ring-white dark:ring-slate-900" />
             </span>
             <span>
               <span class="block font-display text-xl font-bold tracking-tight text-slate-900 dark:text-white">OnliTool</span>
@@ -75,11 +74,10 @@
 
       <!-- hero -->
       <section class="mb-6 grid gap-5 lg:grid-cols-[1.35fr_1fr] lg:items-end">
-        <div class="reveal relative overflow-hidden rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-[0_24px_48px_-40px_rgba(0,0,0,0.7)] backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/90 sm:p-8" style="--rd: 60ms">
-          <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(800px_400px_at_0%_0%,rgba(15,163,125,0.08),transparent_60%)] dark:bg-[radial-gradient(800px_400px_at_0%_0%,rgba(15,163,125,0.12),transparent_60%)]"></div>
+        <div class="reveal relative overflow-hidden rounded-2xl border border-slate-200 bg-white/95 p-6 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md dark:border-slate-800 dark:bg-slate-900/95 sm:p-8" style="--rd: 60ms">
           <p class="kicker">{{ t('home.eyebrow') }}</p>
           <h1 class="mt-4 font-display text-[clamp(2.4rem,5.4vw,4.2rem)] font-extrabold leading-[0.98] tracking-[-0.04em] text-slate-900 dark:text-white">
-            <span class="bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 bg-clip-text text-transparent dark:from-white dark:via-slate-200 dark:to-white">{{ t('home.title') }}</span>
+            {{ t('home.title') }}
           </h1>
           <p class="mt-4 max-w-xl text-base leading-7 text-slate-600 dark:text-slate-300">
             {{ t('home.description') }}
@@ -92,17 +90,16 @@
         </div>
 
         <!-- search console -->
-        <div class="reveal group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-4 shadow-[0_28px_56px_-40px_rgba(0,0,0,0.9)] transition-transform duration-200 hover:-translate-y-0.5 dark:border-slate-700 sm:p-5" style="--rd: 160ms">
-          <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_0%_0%,rgba(15,163,125,0.15),transparent_60%)] opacity-80 transition group-hover:opacity-100"></div>
-          <div class="mb-3 flex items-center justify-between border-b border-white/10 pb-3">
-            <span class="tool-badge">{{ t('home.searchLabel') }}</span>
+        <div class="reveal group relative overflow-hidden rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-slate-700 dark:bg-slate-900/95 sm:p-5" style="--rd: 160ms">
+          <div class="mb-3 flex items-center justify-between border-b border-slate-200 pb-3 dark:border-slate-700">
+            <span class="text-sm font-medium text-slate-700 dark:text-slate-300">{{ t('home.searchLabel') }}</span>
             <span class="flex gap-1.5" aria-hidden="true">
-              <span class="h-2 w-2 rounded-full bg-white/25 transition group-hover:bg-white/40" />
-              <span class="h-2 w-2 rounded-full bg-white/25 transition group-hover:bg-white/40" />
-              <span class="h-2 w-2 rounded-full bg-[#ff5a2d] shadow-[0_0_0_3px_rgba(255,107,61,0.25)]" />
+              <span class="h-2 w-2 rounded-full bg-slate-300 dark:bg-slate-600" />
+              <span class="h-2 w-2 rounded-full bg-slate-300 dark:bg-slate-600" />
+              <span class="h-2 w-2 rounded-full bg-[#ff5a2d]" />
             </span>
           </div>
-          <label class="mb-2 block font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400">{{ t('home.searchLabel') }}</label>
+          <label class="mb-2 block text-xs font-medium text-slate-600 dark:text-slate-400">{{ t('home.searchLabel') }}</label>
           <div class="relative">
             <span class="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-slate-400">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -115,16 +112,16 @@
               v-model="keyword"
               type="text"
               :placeholder="t('home.searchPlaceholder')"
-              class="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-11 pr-14 text-sm text-white placeholder:text-slate-400 outline-none ring-0 transition focus:border-[#ff5a2d] focus:bg-white/10 focus:ring-2 focus:ring-[#ff5a2d]/30"
+              class="w-full rounded-xl border border-slate-200 bg-white py-3 pl-11 pr-14 text-sm text-slate-900 placeholder:text-slate-400 outline-none ring-0 transition focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
             />
-            <kbd class="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded-md border border-white/15 bg-white/5 px-2 py-1 font-mono text-[10px] text-slate-400 backdrop-blur-sm sm:block">/</kbd>
+            <kbd class="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-[10px] text-slate-500 dark:border-slate-700 dark:bg-slate-700 dark:text-slate-300 sm:block">/</kbd>
           </div>
           <div class="mt-3 flex flex-wrap gap-2">
             <button
               v-for="tag in searchTags"
               :key="tag"
               type="button"
-              class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-slate-300 backdrop-blur-sm transition hover:border-[#ff5a2d] hover:bg-[#ff5a2d]/10 hover:text-white"
+              class="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-600 transition hover:border-primary hover:text-primary dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:border-primary dark:hover:text-primary"
               @click="keyword = tag"
             >
               {{ tag }}
@@ -138,7 +135,7 @@
         <section
           v-for="(group, groupIndex) in filteredGroups"
           :key="group.key"
-          class="reveal rounded-3xl border border-slate-200 bg-white/70 p-3 shadow-[0_20px_44px_-40px_rgba(0,0,0,0.7)] backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/70 sm:p-4"
+          class="reveal rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md dark:border-slate-800 dark:bg-slate-900/95 sm:p-4"
           :style="{ '--rd': `${80 + groupIndex * 60}ms` }"
         >
           <button
@@ -178,13 +175,12 @@
                 v-for="(tool, toolIndex) in group.tools"
                 :key="tool.path"
                 :to="localePath(tool.path)"
-                class="lift card-glow group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-700/70 dark:bg-slate-800/60"
+                class="lift group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-4 transition-all hover:border-primary/40 dark:border-slate-700/70 dark:bg-slate-800/60"
                 :style="{ '--rd': `${toolIndex * 30}ms` }"
               >
                 <div class="mb-3 flex items-start justify-between">
-                  <span class="relative flex h-11 w-11 items-center justify-center rounded-xl border border-slate-900/5 bg-gradient-to-br from-slate-900 to-slate-950 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] transition-all duration-200 group-hover:-translate-y-0.5 group-hover:border-transparent group-hover:bg-gradient-to-br group-hover:from-[#ff5a2d] group-hover:to-[#ff8a5d] group-hover:shadow-[0_10px_30px_-16px_rgba(255,90,45,1)] dark:border-white/10 dark:bg-slate-950 dark:group-hover:from-[#ff5a2d] dark:group-hover:to-[#ff8a5d]">
+                  <span class="relative flex h-11 w-11 items-center justify-center rounded-xl border border-primary/10 bg-primary/5 text-primary transition-all duration-200 group-hover:-translate-y-0.5 group-hover:border-primary/20 group-hover:bg-primary/10 dark:border-primary/20 dark:bg-primary/10">
                     <component :is="tool.icon" class="h-5 w-5" />
-                    <span class="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100"></span>
                   </span>
                   <span class="font-mono text-sm text-slate-300 transition-all duration-200 group-hover:translate-x-1 group-hover:text-[#ff5a2d] dark:text-slate-600">→</span>
                 </div>
@@ -577,9 +573,9 @@ const toolGroups = computed(() => [
     title: t('home.categoryTitles.text'),
     tools: [
       {
-        name: t('home.tools.uppercase.name'),
-        path: '/uppercase',
-        description: t('home.tools.uppercase.description'),
+        name: t('caseTool.title'),
+        path: '/case-converter',
+        description: t('caseTool.description'),
         icon: TextIcon
       },
       {

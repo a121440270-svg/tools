@@ -2,7 +2,7 @@
   "menu": {
     "jsoncsv": "JSON/CSV互转",
     "jsonFormatter": "JSON 格式化工具",
-    "uppercase": "大小写转换",
+    "uppercase": "大小写转换工具",
     "agnes_image": "图片生成（免费）",
     "agnes_video": "视频生成（免费）",
     "desc": "面向开发者的实用工具与文章",
@@ -41,16 +41,36 @@
     "tabTools": "关于工具",
     "tabLangs": "多语言"
   },
+  "caseTool": {
+    "category": "文本工具",
+    "title": "大小写转换工具",
+    "description": "支持大写、小写、标题格式、句首大写、camelCase、snake_case、kebab-case 等多种文本转换场景。",
+    "copy": "复制到剪贴板",
+    "placeholder": "请在此处粘贴或输入文本...",
+    "outputPlaceholder": "转换后的文本将显示在这里...",
+    "uppercase": "UPPERCASE",
+    "lowercase": "lowercase",
+    "capitalize": "首字母大写",
+    "titleCase": "标题格式",
+    "sentenceCase": "句首大写",
+    "alternating": "aLtErNaTiNg",
+    "inverse": "InVeRsE",
+    "camelCase": "camelCase",
+    "pascalCase": "PascalCase",
+    "snakeCase": "snake_case",
+    "kebabCase": "kebab-case",
+    "copied": "已复制"
+  },
   "uppercase": {
-    "desc": "粘贴文本后自动转换为大写并复制到剪贴板。",
+    "desc": "支持大写、小写、标题格式、句首大写、camelCase、snake_case、kebab-case 等多种文本转换场景。",
     "inputLabel": "输入文本",
     "placeholder": "请在此处粘贴或输入文本...",
     "copyBtn": "复制到剪贴板",
     "clearBtn": "清空",
     "tip": "粘贴后会自动转换并复制到剪贴板，也可点击复制按钮手动复制。",
-    "title": "文本转大写工具",
-    "outputLabel": "大写文本",
-    "outputPlaceholder": "转换后的大写文本将显示在这里...",
+    "title": "大小写转换工具",
+    "outputLabel": "转换后文本",
+    "outputPlaceholder": "转换后的文本将显示在这里...",
     "instructions": {
       "title": "使用说明",
       "input": "在输入框中粘贴或输入文本。",
@@ -269,8 +289,8 @@
         "description": "自动识别输入时间并转换为可选目标格式。"
       },
       "uppercase": {
-        "name": "大写转换",
-        "description": "快速把文本转成大写并复制到剪贴板。"
+        "name": "大小写转换工具",
+        "description": "一键把文本转换为大写、小写、首字母大写、驼峰、蛇形、短横线等多种格式。"
       },
       "token": {
         "name": "Token 生成",
@@ -305,12 +325,12 @@
     "desc": "支持 TTF、OTF、WOFF、WOFF2 字体子集化，仅保留项目需要的字符。"
   },
   "font": {
-    "seo_desc": "从 TTF、OTF、WOFF 和 WOFF2 字体中移除未使用的字符与字形，在线生成更小的字体子集。",
-    "seo_keywords": "字体子集化, 字体压缩, TTF压缩, OTF压缩, 减小字体体积, 移除未使用字形, WOFF2字体子集",
-    "title": "字体子集化工具 - 移除未使用字形并减小字体体积",
-    "desc": "上传 TTF、OTF、WOFF 或 WOFF2 字体，选择需要的字符，生成适用于网页的更小字体文件。",
-    "h1": "字体子集化工具",
-    "lead": "从 TTF 或 OTF 字体中移除未使用的字符与字形，减小字体文件体积。",
+    "seo_desc": "在线对子集化并压缩 TTF、OTF、WOFF 和 WOFF2 字体，移除未使用字形，生成更小的网页字体；文件仅在浏览器本地处理。",
+    "seo_keywords": "字体子集化, 字体压缩, TTF压缩, OTF压缩, WOFF2压缩, 减小字体体积, 移除未使用字形, 网页字体优化",
+    "title": "字体子集化与压缩工具 - 减小 TTF/OTF 字体体积",
+    "desc": "上传 TTF、OTF、WOFF 或 WOFF2 字体，选择要保留的字符并移除未使用字形，生成更小的网页字体。",
+    "h1": "字体子集化与压缩工具",
+    "lead": "移除 TTF、OTF、WOFF 或 WOFF2 字体中未使用的字符与字形，减小字体文件体积，优化网页加载。",
     "upload": "上传字体",
     "selected": "已选择: {name}",
     "origin_size": "原始大小: {size}",
@@ -1116,6 +1136,26 @@
       "openTool": "打开工具",
       "seoTitle": "图片元数据工具 - 查看与清除 EXIF | Onlitools",
       "seoDescription": "浏览 EXIF、GPS、IPTC 和 XMP 图片元数据查看与清理工具，所有处理均在本地完成。"
+    },
+    "exifGuide": {
+      "eyebrow": "图片元数据指南",
+      "title": "什么是 EXIF 数据？",
+      "description": "了解 EXIF 可能包含哪些信息、它与其他图片元数据有何不同，以及分享照片前如何查看或清理。",
+      "link": "了解 EXIF",
+      "whatTitle": "EXIF 简介",
+      "whatBody": "EXIF（可交换图像文件格式）是一组常由相机和手机写入照片的元数据，用来描述图像的拍摄信息；它与照片中肉眼可见的像素内容不同。",
+      "fieldsTitle": "EXIF 可能包含什么？",
+      "fieldsBody": "根据设备和应用不同，EXIF 可能包含拍摄日期和时间、相机或手机型号、曝光参数、方向以及 GPS 坐标。图片还可能包含 IPTC 或 XMP 等其他格式的元数据。",
+      "toolsTitle": "查看、编辑或清理",
+      "viewBody": "查看工具会读取文件中可访问的元数据并展示可用字段。没有显示某字段，不一定代表照片从未包含它；也可能是数据已被移除或工具不支持。",
+      "editBody": "编辑工具用于修改选定的元数据字段。支持情况取决于文件格式和工具；本站 EXIF 编辑器支持 JPEG 图片。",
+      "removeBody": "清理工具会生成一份新的图片副本。重新编码也可能改变格式或画质；如需保留原图，请先备份。",
+      "privacyTitle": "分享前注意隐私",
+      "privacyBody": "位置和拍摄信息可能暴露照片拍摄的时间或地点。清理后请检查实际输出，因为不同应用和平台在导出或分享时可能保留、移除或添加元数据。",
+      "limitsTitle": "需要了解的限制",
+      "limitsBody": "元数据是否存在取决于文件格式和软件。移除 EXIF 不会遮盖图像本身可见的信息，例如路牌或人脸。本地处理表示所选文件由浏览器处理；地址查询等外部功能可能会按工具说明发送坐标。",
+      "seoTitle": "什么是 EXIF？图片元数据与隐私指南 | Onlitools",
+      "seoDescription": "了解照片 EXIF 元数据、GPS 和相机信息等常见字段，以及如何查看、编辑或移除图片元数据。"
     },
     "colorPicker": {
       "title": "图片取色器",

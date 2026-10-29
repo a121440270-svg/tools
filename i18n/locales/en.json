@@ -30,7 +30,7 @@
     "hash": "Hash Text",
     "jsoncsv": "JSON/CSV Converter",
     "jsonFormatter": "JSON Formatter",
-    "uppercase": "text Convert upper and lower case",
+    "uppercase": "Case Converter",
     "agnes_image": "AI Image (Free)",
     "agnes_video": "AI Video (Free)",
     "desc": "Handy tools and atricles for developers",
@@ -60,16 +60,36 @@
     "tabTools": "About tools",
     "tabLangs": "Languages"
   },
+  "caseTool": {
+    "category": "Text tools",
+    "title": "Case Converter",
+    "description": "Convert text to uppercase, lowercase, title case, sentence case, camelCase, snake_case, kebab-case, and more.",
+    "copy": "Copy to clipboard",
+    "placeholder": "Paste or type text here...",
+    "outputPlaceholder": "Converted uppercase text will appear here...",
+    "uppercase": "UPPERCASE",
+    "lowercase": "lowercase",
+    "capitalize": "Capitalize Words",
+    "titleCase": "Title Case",
+    "sentenceCase": "Sentence case",
+    "alternating": "aLtErNaTiNg",
+    "inverse": "InVeRsE",
+    "camelCase": "camelCase",
+    "pascalCase": "PascalCase",
+    "snakeCase": "snake_case",
+    "kebabCase": "kebab-case",
+    "copied": "Copied"
+  },
   "uppercase": {
-    "desc": "Paste text to convert it to uppercase and copy it to the clipboard automatically.",
+    "desc": "Convert text to uppercase, lowercase, title case, sentence case, camelCase, snake_case, kebab-case, and more.",
     "inputLabel": "Input text",
     "placeholder": "Paste or type text here...",
     "copyBtn": "Copy to clipboard",
     "clearBtn": "Clear",
     "tip": "Pasting triggers automatic conversion + copy. You can also click Copy to copy the current text.",
-    "title": "Uppercase Converter",
-    "outputLabel": "Uppercase text",
-    "outputPlaceholder": "Converted uppercase text will appear here...",
+    "title": "Case Converter",
+    "outputLabel": "Converted text",
+    "outputPlaceholder": "Converted text will appear here...",
     "instructions": {
       "title": "Instructions",
       "input": "Paste or type text in the input box.",
@@ -295,8 +315,8 @@
         "description": "Detect input dates and convert them to a selected format."
       },
       "uppercase": {
-        "name": "Uppercase Converter",
-        "description": "Convert text to uppercase and copy it to the clipboard."
+        "name": "Case Converter",
+        "description": "Convert text to uppercase, lowercase, title case, sentence case, camelCase, snake_case, kebab-case, and more."
       },
       "token": {
         "name": "Token Generator",
@@ -331,12 +351,12 @@
     "desc": "Subset TTF, OTF, WOFF, or WOFF2 fonts by keeping only the characters your project needs."
   },
   "font": {
-    "seo_desc": "Reduce TTF, OTF, WOFF, and WOFF2 font size by removing unused characters and glyphs. Create browser-ready subsets locally.",
-    "seo_keywords": "font subsetter, font subsetting, font subset, subset font, font compressor, compress TTF, compress OTF, reduce font size, remove unused glyphs, web font subset, WOFF2 font subset",
-    "title": "Font Subsetter – Reduce Font Size by Removing Unused Glyphs",
-    "desc": "Upload a TTF, OTF, WOFF, or WOFF2 font, select needed characters, and generate a smaller font file for the web.",
-    "h1": "Font Subsetter",
-    "lead": "Reduce font file size by removing unused characters and glyphs from TTF or OTF fonts.",
+    "seo_desc": "Subset and compress TTF, OTF, WOFF, and WOFF2 fonts by removing unused glyphs. Create smaller, web-ready fonts locally in your browser.",
+    "seo_keywords": "font subsetter, font subsetting, font compressor, font compression, compress TTF, compress OTF, reduce font size, remove unused glyphs, web font subset, WOFF2 subset",
+    "title": "Font Subsetter & Compressor | Reduce Font Size",
+    "desc": "Upload a TTF, OTF, WOFF, or WOFF2 font, choose the characters to keep, and create a smaller web-ready font by removing unused glyphs.",
+    "h1": "Font Subsetter & Font Compressor",
+    "lead": "Remove unused characters and glyphs from TTF, OTF, WOFF, or WOFF2 fonts to reduce file size for the web.",
     "upload": "Upload Font",
     "selected": "Selected: {name}",
     "origin_size": "Original size: {size}",
@@ -858,6 +878,26 @@
       "openTool": "Open tool",
       "seoTitle": "Image Metadata Tools - View and Remove EXIF | Onlitools",
       "seoDescription": "Browse image metadata tools for EXIF, GPS, IPTC, and XMP inspection and removal. Local browser processing."
+    },
+    "exifGuide": {
+      "eyebrow": "Image metadata guide",
+      "title": "What is EXIF data?",
+      "description": "Learn what EXIF can reveal, how it differs from other image metadata, and how to inspect or remove it before sharing photos.",
+      "link": "Learn about EXIF",
+      "whatTitle": "EXIF in a nutshell",
+      "whatBody": "EXIF (Exchangeable Image File Format) is a set of metadata commonly embedded in photos by cameras and phones. It describes how an image was captured; it is separate from the visible pixels.",
+      "fieldsTitle": "What information can it contain?",
+      "fieldsBody": "Depending on the device and app, EXIF may include the capture date and time, camera or phone model, exposure settings, orientation, and GPS coordinates. Images can also contain other metadata formats such as IPTC or XMP.",
+      "toolsTitle": "View, edit, or remove",
+      "viewBody": "Viewing tools read the metadata that a file exposes and present available fields. Missing fields do not necessarily mean that a photo never had metadata; it may have been removed or unsupported.",
+      "editBody": "Editing changes selected metadata fields. Support varies by file format and tool; this site's EXIF editor works with JPEG images.",
+      "removeBody": "Removing metadata creates a new image copy. Re-encoding can also change image format or quality, so keep the original if you need it.",
+      "privacyTitle": "Privacy before sharing",
+      "privacyBody": "Location and capture details can reveal where or when a photo was taken. Check the actual output after cleanup, because apps and platforms may preserve, remove, or add metadata when exporting or sharing.",
+      "limitsTitle": "A few important limits",
+      "limitsBody": "Metadata availability varies by file format and software. Removing EXIF does not remove information visible in the image itself, such as a street sign or face. Local processing means the selected file is handled in your browser; external features such as address lookup may send coordinates as described by that tool.",
+      "seoTitle": "What Is EXIF? Image Metadata and Privacy Guide | Onlitools",
+      "seoDescription": "Understand EXIF photo metadata, common fields such as GPS and camera details, and ways to inspect, edit, or remove metadata."
     },
     "colorPicker": {
       "title": "Image Color Picker",

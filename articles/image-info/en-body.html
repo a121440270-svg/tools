@@ -1,0 +1,53 @@
+<p><img src="{{IMG:hero-en.jpg}}" alt="This photo knows where you were"></p>
+<p>We send photos all day: into group chats, onto forums, into cloud drives, as email attachments. Most people assume they are sending the picture they see. But a JPEG often carries a whole file folder of extras — GPS coordinates, device model, a timestamp accurate to the second, the author's name, and even a hidden thumbnail of the original.</p>
+<p>This article covers two things:</p>
+<ol><li>how to read an image's <strong>URL and file information</strong> (what it actually is);</li><li>what <strong>privacy data</strong> a photo carries, and how to remove it.</li></ol>
+<p>All screenshots come from <a href="https://onlitools.com/image-info" target="_blank">OnliTool's Image Info Viewer</a>. It parses files locally in the browser — your image is never uploaded.</p>
+<hr>
+<h2>1. "Image address" means two different things</h2>
+<p>People say "check the image address" and usually mean one of two things.</p>
+<p><strong>A. The image URL.</strong> Right-click an image in a browser and choose "Copy image address" (or "Open image in new tab"). You get something like:</p>
+<pre><code>https://i0.hdslb.com/bfs/new_dyn/d1361d77a78bdc96c6d72f63f41de2d81127206971.png</code></pre>
+<p>Even that string says a lot. The hostname tells you which CDN and platform serve the file. The path (<code>bfs/new_dyn</code>) hints at the upload pipeline. The filename is a hash, meaning the platform renamed it server-side. Query parameters often encode size, crop mode, or an expiry time.</p>
+<p><strong>B. The file itself.</strong> This is the local identity of the image: file name, file size, pixel dimensions, aspect ratio, format, color mode. None of it requires a network request.</p>
+<p>The Image Info Viewer handles B — and reads EXIF alongside it.</p>
+<p><img src="{{IMG:en-01-overview.png}}" alt="File info: name, size, dimensions, aspect ratio, format"></p>
+<p>The screenshot above is a 309.1 KB JPEG, 1600 × 1067 px, aspect ratio 1600:1067. Boring numbers, useful answers:</p>
+<ul><li>A forum caps uploads at 2 MB? Check the size first instead of re-compressing blindly.</li><li>Layout needs 16:9? Confirm the aspect ratio before cropping away the subject.</li><li>A <code>.jpg</code> that refuses to open? Check the real format — the extension may be lying.</li></ul>
+<hr>
+<h2>2. What privacy data is actually inside</h2>
+<p>EXIF is data the camera writes at capture time: aperture, shutter, ISO, white balance. It exists to make editing easier. But phone makers also write location, device and time into it.</p>
+<p>The viewer flags this immediately: <strong>Potentially sensitive metadata detected.</strong></p>
+<p><img src="{{IMG:en-02-privacy.png}}" alt="Sensitive metadata: location, camera model, date, author info, embedded thumbnail"></p>
+<p>It lists five categories.</p>
+<p><strong>1. Location (GPS).</strong> The most dangerous one. EXIF stores latitude and longitude as decimals precise enough to identify a single building. This demo photo reads <code>46.6863, 7.8632</code> — near Interlaken, Switzerland. Post an untouched photo taken on your balcony and you have posted your home address.</p>
+<p>Worse, GPS accumulates. Several originals from the same person, posted over time, reconstruct a movement track: when they are at the office, when they go home, where they spent the weekend.</p>
+<p><strong>2. Camera and device info.</strong> Make, model, lens, software version. Harmless on its own, but it works as a device fingerprint: a Xiaomi 14 Ultra plus Adobe Lightroom 13.2 plus a shooting style is often enough to link accounts.</p>
+<p><strong>3. Capture time.</strong> A timestamp to the second, combined with GPS, answers "who was where, and when." If the photo was taken at home, it also leaks your daily routine.</p>
+<p><strong>4. Author and copyright.</strong> Artist and Copyright fields. When a photographer fills them in, they are a license notice. When the image was re-saved from someone else, the original author's name may still be there — an accidental source leak.</p>
+<p><strong>5. Embedded thumbnail.</strong> A JPEG can contain a small preview (IFD1). You may have blurred or cropped the sensitive part, but the thumbnail can still be the untouched original. Most viewers never show it, which makes this the sneakiest category.</p>
+<hr>
+<h2>3. Technical details: 35 fields</h2>
+<p>The default view shows the common fields. Expanding "技术详情" (technical details) reveals all 35 metadata entries, grouped by IFD0, thumbnail, EXIF capture data, GPS and XMP.</p>
+<p><img src="{{IMG:en-03-technical.png}}" alt="Technical details grouped by IFD0 / thumbnail / EXIF / GPS / XMP"></p>
+<p>Group by group:</p>
+<ul><li><strong>Image information (IFD0)</strong> — dimensions, resolution units, orientation, color space;</li><li><strong>Thumbnail information</strong> — whether an embedded preview exists, and its size;</li><li><strong>Capture information (EXIF)</strong> — exposure time, f-number, ISO, focal length, metering, flash;</li><li><strong>GPS location</strong> — latitude, longitude, altitude, direction, GPS timestamp;</li><li><strong>XMP metadata</strong> — Adobe-side extras such as edit history, ratings, keywords.</li></ul>
+<p>There is also a "look up address" action that reverse-geocodes the coordinates, which helps you judge how precise a position really is.</p>
+<hr>
+<h2>4. How the data gets out</h2>
+<p>The key point: <strong>channels treat EXIF very differently.</strong></p>
+<ul><li><strong>Social platforms</strong> usually re-encode uploads server-side and strip most EXIF, including GPS. Risk is lower — but that is the platform's policy, not your control.</li><li><strong>Email attachments, cloud drives, forum attachments, "send as file"</strong> typically transfer bytes untouched. EXIF survives intact.</li><li><strong>Self-hosted image hosts, Git repos, static sites</strong> keep originals by default.</li><li><strong>Screenshots</strong> are newly generated images with no camera EXIF. The simplest reliable fix.</li></ul>
+<p>So "I only posted a photo, not my location" does not hold when the original file travels.</p>
+<hr>
+<h2>5. Check it, then clean it</h2>
+<p><strong>To check (three steps)</strong></p>
+<ol><li>Open the <a href="https://onlitools.com/image-info" target="_blank">Image Info Viewer</a>;</li><li>Drag the image in, or click "Add images";</li><li>Read name/size/dimensions, then the privacy warning, then expand technical details if needed.</li></ol>
+<p>Everything runs locally in the browser. That matters most for exactly this use case: you should not have to hand your private photo to an unknown server just to find out whether it is private.</p>
+<p><strong>To clean (most reliable first)</strong></p>
+<ol><li><strong>Screenshot instead of original</strong> — regenerates the file with no metadata;</li><li><strong>Strip on export</strong> — Lightroom's "remove location" option, Photoshop's "Export As" instead of "Save As";</li><li><strong>Batch-clear with system tools</strong> — Windows Explorer → Properties → Details → "Remove Properties and Personal Information"; macOS can use <code>exiftool -all= photo.jpg</code>;</li><li><strong>Turn off location tagging in the camera app</strong> — fix the source instead of patching every file.</li></ol>
+<p>A practical habit: <strong>look before you send.</strong> The check takes seconds; a location leak cannot be undone.</p>
+<hr>
+<h2>6. Tool details</h2>
+<ul><li>URL: <a href="https://onlitools.com/image-info" target="_blank">https://onlitools.com/image-info</a></li><li>Processing: local, in-browser; no upload</li><li>Reads: EXIF, GPS, XMP, embedded thumbnails in common formats such as JPEG, PNG and WebP</li><li>Useful for: pre-publish self-checks, debugging files that will not open, confirming dimensions and format, spotting leftover author fields</li></ul>
+<hr>
+<p><strong>Note:</strong> the photo in these screenshots is a generated demo image. Its GPS coordinates, device model, timestamp and author name are fictional and exist only to show the shape of the metadata fields.</p>
