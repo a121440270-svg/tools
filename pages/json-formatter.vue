@@ -7,12 +7,12 @@
       </div>
 
       <div class="flex flex-wrap items-center gap-2">
-        <button class="btn-primary" @click="formatJson">{{ $t('jsonFormatter.format') }}</button>
-        <button class="btn-secondary" @click="minifyJson">{{ $t('jsonFormatter.minify') }}</button>
-        <button class="btn-secondary" @click="copyJson">{{ $t('jsonFormatter.copy') }}</button>
         <button class="btn-secondary" @click="pasteJson">{{ $t('jsonFormatter.paste') }}</button>
+        <button class="btn-primary" @click="formatJson">{{ $t('jsonFormatter.format') }}</button>
+        <button class="btn-secondary" @click="copyJson">{{ $t('jsonFormatter.copy') }}</button>
         <button class="btn-secondary" @click="clearJson">{{ $t('jsonFormatter.clear') }}</button>
         <button class="btn-secondary" @click="downloadJson">{{ $t('jsonFormatter.download') }}</button>
+        <button class="btn-secondary" @click="minifyJson">{{ $t('jsonFormatter.minify') }}</button>
       </div>
     </div>
 
@@ -23,19 +23,18 @@
             <label class="text-sm font-medium text-slate-700 dark:text-slate-200">{{ $t('jsonFormatter.input') }}</label>
             <span class="rounded-full border border-slate-200 bg-slate-100 px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.14em] text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">{{ $t('jsonFormatter.localOnly') }}</span>
           </div>
+          <div v-if="errorMessage" class="min-w-0 flex-1 px-3 text-center text-sm text-red-600 dark:text-red-300">
+            {{ errorMessage }}
+          </div>
           <div class="flex items-center gap-2">
             <button class="text-xs text-blue-600 hover:text-blue-500 dark:text-blue-400" @click="loadSample">{{ $t('jsonFormatter.loadSample') }}</button>
           </div>
         </div>
         <div class="editor-fullscreen overflow-hidden rounded-xl border border-slate-200 bg-slate-950 dark:border-slate-700">
-          <div class="share-note-editor"><CodeMirrorEditor v-model="jsonText" language="json" :theme="editorTheme" :aria-label="$t('jsonFormatter.input')" /></div>
+          <div class="share-note-editor"><CodeMirrorEditor v-model="jsonText" language="json" :theme="editorTheme" :line-wrapping="true" :aria-label="$t('jsonFormatter.input')" /></div>
         </div>
       </div>
 
-    </div>
-
-    <div v-if="errorMessage" class="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900/60 dark:bg-red-500/10 dark:text-red-300">
-      {{ errorMessage }}
     </div>
 
     <section class="mt-10 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
@@ -59,14 +58,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 const { t, tm, rt } = useI18n()
 
-const jsonText = ref(`{
-  "name": "OnliTool",
-  "features": ["JSON", "Format", "Validate"],
-  "settings": {
-    "darkMode": true,
-    "autoSave": false
-  }
-}`)
+const jsonText = ref('')
 const errorMessage = ref('')
 const editorTheme = ref('light')
 let themeObserver
@@ -164,7 +156,10 @@ const downloadJson = () => {
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = 'formatted.json'
+    const now = new Date()
+    const pad = value => String(value).padStart(2, '0')
+    const timestamp = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}`
+    a.download = `formatted-${timestamp}.json`
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)

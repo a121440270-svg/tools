@@ -22,11 +22,13 @@ interface DiffRange {
   type: 'added' | 'removed' | 'modified'
 }
 
-const props = withDefaults(defineProps<{ modelValue: string; language?: string; readonly?: boolean; theme?: 'dark' | 'light'; diffRanges?: DiffRange[] }>(), {
+const props = withDefaults(defineProps<{ modelValue: string; language?: string; readonly?: boolean; theme?: 'dark' | 'light'; diffRanges?: DiffRange[]; lineWrapping?: boolean; formatJsonOnPaste?: boolean }>(), {
   language: 'text',
   readonly: false,
   theme: 'dark',
-  diffRanges: () => []
+  diffRanges: () => [],
+  lineWrapping: false,
+  formatJsonOnPaste: false
 })
 const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
 const editorHost = ref<HTMLElement | null>(null)
@@ -112,6 +114,30 @@ function editorExtensions() {
     highlightActiveLine(),
     highlightActiveLineGutter(),
     highlightSelectionMatches(),
+    ...(props.lineWrapping ? [EditorView.lineWrapping] : []),
+    ...(props.formatJsonOnPaste ? [EditorView.domEventHandlers({
+      paste(event, editorView) {
+        if (props.language !== 'json') return false
+
+        const pastedText = event.clipboardData?.getData('text/plain')
+        if (pastedText === undefined) return false
+
+        let formattedText
+        try {
+          formattedText = JSON.stringify(JSON.parse(pastedText), null, 2)
+        } catch {
+          return false
+        }
+
+        const selection = editorView.state.selection.main
+        event.preventDefault()
+        editorView.dispatch({
+          changes: { from: selection.from, to: selection.to, insert: formattedText },
+          selection: { anchor: selection.from + formattedText.length }
+        })
+        return true
+      }
+    })] : []),
     search({ top: true }),
     autocompletion(),
     syntaxHighlighting(defaultHighlightStyle, { fallback: true }),

@@ -40,8 +40,8 @@
           <label class="text-sm font-medium text-slate-700 dark:text-slate-200">{{ $t('jsonCompare.base') }}</label>
           <button class="text-xs text-blue-600 hover:text-blue-500 dark:text-blue-400" @click="leftJson = rightJson">{{ $t('jsonCompare.copyRight') }}</button>
         </div>
-        <div class="h-[560px] overflow-hidden rounded-xl border border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-950">
-          <CodeMirrorEditor v-model="leftJson" language="json" :theme="editorTheme" :diff-ranges="filteredDiffRanges.left" :aria-label="$t('jsonCompare.base')" />
+        <div class="json-compare-editor h-[720px] overflow-hidden rounded-xl border border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-950">
+          <CodeMirrorEditor v-model="leftJson" language="json" :theme="editorTheme" :diff-ranges="filteredDiffRanges.left" :format-json-on-paste="true" :aria-label="$t('jsonCompare.base')" />
         </div>
       </section>
 
@@ -50,8 +50,8 @@
           <label class="text-sm font-medium text-slate-700 dark:text-slate-200">{{ $t('jsonCompare.compared') }}</label>
           <button class="text-xs text-blue-600 hover:text-blue-500 dark:text-blue-400" @click="rightJson = leftJson">{{ $t('jsonCompare.copyLeft') }}</button>
         </div>
-        <div class="h-[560px] overflow-hidden rounded-xl border border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-950">
-          <CodeMirrorEditor v-model="rightJson" language="json" :theme="editorTheme" :diff-ranges="filteredDiffRanges.right" :aria-label="$t('jsonCompare.compared')" />
+        <div class="json-compare-editor h-[720px] overflow-hidden rounded-xl border border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-950">
+          <CodeMirrorEditor v-model="rightJson" language="json" :theme="editorTheme" :diff-ranges="filteredDiffRanges.right" :format-json-on-paste="true" :aria-label="$t('jsonCompare.compared')" />
         </div>
       </section>
     </div>
@@ -334,6 +334,10 @@ useToolSeo({
 </script>
 
 <style scoped>
+.json-compare-editor :deep(.cm-scroller) {
+  overflow-y: auto;
+}
+
 .btn-secondary {
   @apply inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700;
 }

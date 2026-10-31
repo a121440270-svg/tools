@@ -747,7 +747,6 @@
   "jsonFormatter": {
     "category": "JSONツール",
     "title": "JSON整形",
-    "format": "整形",
     "minify": "圧縮",
     "copy": "コピー",
     "paste": "貼り付け",
@@ -791,6 +790,7 @@
     "removed": "削除",
     "base": "比較元のJSON",
     "copyRight": "右側からコピー",
+    "format": "整形",
     "compared": "比較対象のJSON",
     "copyLeft": "左側からコピー",
     "identical": "2つのJSONドキュメントは同一です。",

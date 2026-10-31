@@ -567,7 +567,6 @@
   "jsonFormatter": {
     "category": "أداة JSON",
     "title": "منسّق JSON",
-    "format": "تنسيق",
     "minify": "تصغير",
     "copy": "نسخ",
     "paste": "لصق",
@@ -611,6 +610,7 @@
     "removed": "محذوف",
     "base": "JSON الأساسي",
     "copyRight": "نسخ من اليمين",
+    "format": "تنسيق",
     "compared": "JSON المقارَن",
     "copyLeft": "نسخ من اليسار",
     "identical": "مستندا JSON متطابقان.",

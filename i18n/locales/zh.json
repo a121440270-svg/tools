@@ -752,7 +752,6 @@
   "jsonFormatter": {
     "category": "JSON 工具",
     "title": "JSON 格式化工具",
-    "format": "格式化",
     "minify": "压缩",
     "copy": "复制",
     "paste": "粘贴",
@@ -796,6 +795,7 @@
     "removed": "已删除",
     "base": "基准 JSON",
     "copyRight": "从右侧复制",
+    "format": "格式化",
     "compared": "比较后的 JSON",
     "copyLeft": "从左侧复制",
     "identical": "两份 JSON 文档完全相同。",

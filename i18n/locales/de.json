@@ -714,7 +714,6 @@
   "jsonFormatter": {
     "category": "JSON-Tool",
     "title": "JSON-Formatierer",
-    "format": "Formatieren",
     "minify": "Minimieren",
     "copy": "Kopieren",
     "paste": "Einfügen",
@@ -758,6 +757,7 @@
     "removed": "Entfernt",
     "base": "Basis-JSON",
     "copyRight": "Von rechts kopieren",
+    "format": "Formatieren",
     "compared": "Verglichenes JSON",
     "copyLeft": "Von links kopieren",
     "identical": "Die beiden JSON-Dokumente sind identisch.",

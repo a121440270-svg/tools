@@ -1,4 +1,4 @@
-![This photo knows where you were](https://i0.hdslb.com/bfs/new_dyn/cb7b119aa7a6afcc405d4805987535e51127206971.jpg)
+![This photo knows where you were](https://dev-to-uploads.s3.us-east-2.amazonaws.com/uploads/articles/lvucoeisinspt0hyvqob.jpg)
 
 We send photos all day: into group chats, onto forums, into cloud drives, as email attachments. Most people assume they are sending the picture they see. But a JPEG often carries a whole file folder of extras — GPS coordinates, device model, a timestamp accurate to the second, the author's name, and even a hidden thumbnail of the original.
 
@@ -27,7 +27,7 @@ Even that string says a lot. The hostname tells you which CDN and platform serve
 
 The Image Info Viewer handles B — and reads EXIF alongside it.
 
-![File info: name, size, dimensions, aspect ratio, format](https://i0.hdslb.com/bfs/new_dyn/bf0ff88aa2e5776c2c348d78f99694801127206971.png)
+![File info: name, size, dimensions, aspect ratio, format](https://dev-to-uploads.s3.us-east-2.amazonaws.com/uploads/articles/uuntj6p1ivmbwaov6ww2.png)
 
 The screenshot above is a 309.1 KB JPEG, 1600 × 1067 px, aspect ratio 1600:1067. Boring numbers, useful answers:
 
@@ -43,7 +43,7 @@ EXIF is data the camera writes at capture time: aperture, shutter, ISO, white ba
 
 The viewer flags this immediately: **Potentially sensitive metadata detected.**
 
-![Sensitive metadata: location, camera model, date, author info, embedded thumbnail](https://i0.hdslb.com/bfs/new_dyn/7a7353d2d6cab3e3c4edbff56ec44c2b1127206971.png)
+![Sensitive metadata: location, camera model, date, author info, embedded thumbnail](https://dev-to-uploads.s3.us-east-2.amazonaws.com/uploads/articles/oqb9pg7xtxty0ixuvbk3.png)
 
 It lists five categories.
 
@@ -65,7 +65,7 @@ Worse, GPS accumulates. Several originals from the same person, posted over time
 
 The default view shows the common fields. Expanding "技术详情" (technical details) reveals all 35 metadata entries, grouped by IFD0, thumbnail, EXIF capture data, GPS and XMP.
 
-![Technical details grouped by IFD0 / thumbnail / EXIF / GPS / XMP](https://i0.hdslb.com/bfs/new_dyn/08d5455a6aaf4c06a365e2c655532e0f1127206971.png)
+![Technical details grouped by IFD0 / thumbnail / EXIF / GPS / XMP](https://dev-to-uploads.s3.us-east-2.amazonaws.com/uploads/articles/1lai3vj4dk7cqfxg3hkv.png)
 
 Group by group:
 
