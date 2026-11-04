@@ -8,9 +8,11 @@ export async function findArticles(where?: Partial<Article> & { page?: number, p
   , title?: string, content?: string, lang?: string }) {
   const query = selectCon('article')
   .select(['t.id','t.hits','t.type','t.chapter','t.posted_time',
-    't.last_mod_time','t.author_id','t.toc_id','t.status','t.fee','l.title','l.content','l.slug'])
+    't.last_mod_time','t.author_id','t.toc_id','t.status','t.fee','l.title','l.content','l.slug',
+    'u.name as author'])
   .fromAlias('t')
-  .join('article_l l', 't.id = l.article_id');
+  .join('article_l l', 't.id = l.article_id')
+  .join('users u', 't.author_id = u.id', 'LEFT');
   const { page = 1, pageSize = 10, sort = 'hits', ...filters } = where || {};
 
   query.where('l.lang_code', '=', where?.lang || 'en');
@@ -57,7 +59,15 @@ export async function findArticleByIdAndLang(id: number,lang: string) {
   const articlel = await selectCon('article_l')
                 .where('article_id', '=', id)
                 .where('lang_code', '=', lang).one<ArticleL>();
-  return { article:article,articlel:articlel };
+  let author: string | undefined;
+  if (article && (article as any).author_id) {
+    const [user] = await selectCon('users')
+      .select('name')
+      .where('id', '=', (article as any).author_id)
+      .all<{ name: string }>();
+    author = user?.name || undefined;
+  }
+  return { article: article ? { ...article, author } : article, articlel };
 }
 export async function findArticlelByIdAndLang(id: number,lang: string) {
   return await selectCon('article_l')

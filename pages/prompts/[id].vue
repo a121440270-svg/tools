@@ -38,6 +38,8 @@ const route = useRoute()
 const router = useRouter()
 const localePath = useLocalePath()
 const id = Number(route.params.id)
+
+useSeoMeta({ robots: 'noindex, nofollow' })
 const item = ref(null)
 const loading = ref(true)
 

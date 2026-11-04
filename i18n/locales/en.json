@@ -335,7 +335,7 @@
         "description": "View and use reusable prompt templates."
       },
       "shareNote": {
-        "name": "Share Note",
+        "name": "Temporary Note",
         "description": "Temporarily share commands, scripts, configurations, and technical text."
       }
     },
@@ -416,7 +416,9 @@
     "ads": "Advertising Cookies",
     "acceptAll": "Allow All",
     "save": "Save Preferences",
-    "close": "Close"
+    "close": "Close",
+    "policy": "Privacy Policy",
+    "rejectAll": "Reject optional"
   },
   "layout": {
     "support": "Buy me a coffee"
@@ -445,7 +447,8 @@
     "items": "items",
     "gotoPage": "Go to page",
     "go": "Go",
-    "totalItems": "Total {total} items"
+    "totalItems": "Total {total} items",
+    "defaultTitle": "Blog"
   },
   "common": {
     "loading": "加载中..."
@@ -953,8 +956,8 @@
   "remoteShare": {
     "eyebrow": "Remote Script Handoff",
     "title": "Send a script to a remote user in seconds",
-    "description": "Share scripts, commands and configs with a temporary link.",
-    "expiryNotice": "Links expire after 3 days. Continued visits automatically extend the link while it is being used.",
+    "description": "Share scripts, commands and configs with a share link.",
+    "expiryNotice": "Share links do not expire.",
     "loading": "Loading shared content...",
     "visitorMode": "Visitor mode · read-only shared content",
     "createOwn": "Create your own share",
@@ -967,14 +970,15 @@
     "copyTitle": "Save the link and copy it",
     "qr": "QR code",
     "qrTitle": "Save the link and generate a QR code",
-    "defaultExpiry": "Default expiry:",
-    "savedExpiry": "Saved. Expires",
-    "expiryAfterSave": "3 days after saving",
+    "noExpiry": "Link does not expire",
+    "savedNoExpiry": "Saved. Link does not expire",
     "content": "Content",
     "language": "Language",
     "contentFormat": "Content format",
     "plainText": "Plain text",
     "commands": "Commands, scripts, configs",
+    "refresh": "Refresh",
+    "refreshTitle": "Reload shared content",
     "fullscreen": "Fullscreen",
     "exitFullscreen": "Exit fullscreen",
     "shareContent": "Share content",
@@ -982,7 +986,7 @@
     "closeQr": "Close QR code",
     "qrAlt": "QR code for the share link",
     "invalid": "This shared link is invalid.",
-    "expired": "This link does not exist, or it has already expired.",
+    "expired": "This link does not exist.",
     "savingFirst": "Content is not saved yet. Saving it first...",
     "copied": "Share link copied",
     "copyFailed": "Copy failed. Please copy the link manually.",
@@ -990,11 +994,13 @@
     "qrFailed": "The QR code could not be generated. Please try again.",
     "emptyContent": "Add some script, command, or configuration before saving.",
     "invalidCode": "The link code must be 3-48 characters using lowercase letters, numbers, or hyphens.",
-    "savedMessage": "Share link saved. Expires {expiry}.",
+    "savedMessage": "Share link saved. It does not expire.",
     "createFailed": "Unable to create the share. Please try again.",
     "seoTitle": "OpsDrop | Share Scripts, Commands & Configs Instantly",
-    "seoDescription": "Send scripts, commands and configuration to remote users with a temporary share link. No signup, no installation.",
-    "seoKeywords": "send script to remote user, share script with customer, share commands with customer, share bash script, share powershell script, share config online"
+    "seoDescription": "Share scripts, commands and configuration with remote users using a link or QR code. Generate a QR code for quick scanning on another device. No signup or installation required.",
+    "seoKeywords": "temporary note, share scripts with QR code, QR code file sharing, send script to remote user, share script with customer, share commands with customer, share bash script, share powershell script, share config online",
+    "seoLinkFeature": "Create a shareable link for scripts, commands, and configuration",
+    "seoQrFeature": "Generate a QR code so another device can scan and open shared content"
   },
   "profile": {
     "accountInfo": "Account information",
@@ -1122,10 +1128,22 @@
     "loadSample": "Load sample",
     "faqTitle": "Frequently asked questions",
     "faq": [
-      { "q": "What is a JSON formatter?", "a": "A JSON formatter beautifies compact JSON into a readable, indented structure so you can inspect nested data and debug API responses faster." },
-      { "q": "Can I validate JSON before saving it?", "a": "Yes. This tool checks whether the input is valid JSON in real time and highlights invalid content before you copy or download the result." },
-      { "q": "Does this tool work locally in the browser?", "a": "Yes. All formatting and validation happen in your browser, so your JSON is not uploaded to a server." },
-      { "q": "Can I minify JSON for production use?", "a": "Yes. Use the Minify action to remove whitespace and reduce file size while preserving valid JSON syntax." }
+      {
+        "q": "What is a JSON formatter?",
+        "a": "A JSON formatter beautifies compact JSON into a readable, indented structure so you can inspect nested data and debug API responses faster."
+      },
+      {
+        "q": "Can I validate JSON before saving it?",
+        "a": "Yes. This tool checks whether the input is valid JSON in real time and highlights invalid content before you copy or download the result."
+      },
+      {
+        "q": "Does this tool work locally in the browser?",
+        "a": "Yes. All formatting and validation happen in your browser, so your JSON is not uploaded to a server."
+      },
+      {
+        "q": "Can I minify JSON for production use?",
+        "a": "Yes. Use the Minify action to remove whitespace and reduce file size while preserving valid JSON syntax."
+      }
     ],
     "invalidJson": "Invalid JSON: {message}",
     "messages": {
@@ -1165,7 +1183,21 @@
     "noChange": "No change",
     "invalidJson": "Invalid JSON: {message}",
     "seoTitle": "JSON Compare Online",
-    "seoDescription": "Compare two JSON documents with side-by-side editors, field-level highlighting, and a concise change summary."
+    "seoDescription": "Compare two JSON documents with side-by-side editors, field-level highlighting, and a concise change summary.",
+    "feedbackButton": "Suggest a feature",
+    "feedbackTitle": "What feature would you like to see?",
+    "feedbackDescription": "Your suggestion will be sent directly to us and help improve this tool.",
+    "feedbackMessageLabel": "Your suggestion",
+    "feedbackMessagePlaceholder": "Describe the feature you'd like or an issue you've encountered (at least 10 characters)",
+    "feedbackEmailLabel": "Email",
+    "feedbackOptional": "(optional, so we can reply)",
+    "feedbackEmailPlaceholder": "you{'@'}example.com",
+    "feedbackSubmit": "Send suggestion",
+    "feedbackSubmitting": "Sending…",
+    "feedbackCancel": "Cancel",
+    "feedbackClose": "Close",
+    "feedbackSuccess": "Received! Thank you for your suggestion.",
+    "feedbackError": "Could not submit your suggestion. Please try again later."
   },
   "webpTo": {
     "batch_message": "Select multiple WebP images and download batch results as a ZIP file.",
@@ -1176,5 +1208,16 @@
     "keywords": "WebP to {format}, WebP batch converter, batch image conversion, {format} online tool, local image processing, no upload",
     "seoSuffix": "Image Converter | Batch Processing",
     "intro": "Convert WebP images to multiple formats in batches, with direct downloads for single images and ZIP downloads for multiple images."
+  },
+  "footer": {
+    "about": "About",
+    "blog": "Blog",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact",
+    "rights": "All rights reserved.",
+    "navLabel": "Footer navigation",
+    "tagline": "Free, privacy-friendly tools for developers, designers and anyone who needs to finish a file or text task quickly.",
+    "localFirst": "Local-first · No sign-up required"
   }
 }

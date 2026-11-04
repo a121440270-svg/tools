@@ -5,7 +5,9 @@
     "de": "ドイツ語",
     "fr": "フランス語",
     "ar": "アラビア語",
-    "ja": "日本語"
+    "ja": "日本語",
+    "ko": "한국어",
+    "ru": "Русский"
   },
   "menu": {
     "ttf": "フォント圧縮",
@@ -168,14 +170,43 @@
         "description": "再利用できるプロンプトのテンプレートを閲覧・利用できます。"
       },
       "shareNote": {
-        "name": "ノート共有",
+        "name": "一時メモ",
         "description": "コマンド、スクリプト、設定、技術文書を一時的に共有します。"
+      },
+      "imageAspectRatio": {
+        "name": "Image Aspect Ratio Changer",
+        "description": "Change images to 16:9, 1:1, 9:16, 4:3 and custom ratios with crop, fit, blur, or stretch modes."
+      },
+      "increaseImageSize": {
+        "name": "Increase Image Size in KB",
+        "description": "Increase image file size to a target KB or MB while keeping the original image dimensions."
+      },
+      "fontInspector": {
+        "name": "Font Inspector",
+        "description": "Inspect font metadata, glyph counts, metrics, and Unicode coverage."
+      },
+      "fontUnicodeChecker": {
+        "name": "Font Unicode Checker",
+        "description": "Check font support for text, Unicode ranges, and language character sets."
+      },
+      "fontSizeAnalyzer": {
+        "name": "Font Size Analyzer",
+        "description": "Analyze font file size, glyph count, character mappings, and OpenType tables."
+      },
+      "fontValidator": {
+        "name": "Font Validator",
+        "description": "Check font parsing, core tables, glyph outlines, and Unicode mappings."
+      },
+      "fontCssGenerator": {
+        "name": "Font CSS Generator",
+        "description": "Generate CSS font-face rules and an HTML example for web fonts."
       }
     },
     "seoTitle": "OnliTool - オンラインツール一覧",
     "seoDescription": "OnliToolは画像処理、AI、フォント圧縮、テキスト変換、開発向けのオンラインツールを提供します。",
     "seoKeywords": "オンラインツール, 画像処理, AIツール, フォント圧縮, ファイル変換, 開発者ツール, OnliTool",
-    "seoOgDescription": "画像、AI、テキスト、変換、開発に便利なオンラインツールを一か所に集めました。"
+    "seoOgDescription": "画像、AI、テキスト、変換、開発に便利なオンラインツールを一か所に集めました。",
+    "seo_keywords": "Online tools, TTF font compression, TTF to WOFF, JSON & CSV conversion, token generation, hash encryption, development tools, frontend tools."
   },
   "caseTool": {
     "category": "テキストツール",
@@ -211,7 +242,9 @@
     "ads": "広告Cookie",
     "acceptAll": "すべて許可",
     "save": "設定を保存",
-    "close": "閉じる"
+    "close": "閉じる",
+    "policy": "プライバシーポリシー",
+    "rejectAll": "任意項目を拒否"
   },
   "layout": {
     "support": "コーヒーをおごる"
@@ -327,28 +360,62 @@
       "description": "JPG、PNG、WebP、AVIF、GIF、BMP、SVGなどをブラウザー内で変換。複数画像の一括処理とZIPダウンロードに対応。",
       "seoTitle": "画像形式変換ツール - 無料オンライン | Onlitools",
       "seoDescription": "画像をJPG、PNG、WebP、AVIFにブラウザー内で変換。複数ファイルをローカルで処理し、個別またはZIPでダウンロードできます。",
-      "seoKeywords": "画像変換, 画像形式変換, JPG PNG変換, WebP変換"
+      "seoKeywords": "画像変換, 画像形式変換, JPG PNG変換, WebP変換",
+      "inputAccepted": "JPG, PNG, WebP, AVIF, GIF, BMP, SVG and HEIC",
+      "convertTo": "Convert to",
+      "convertButton": "Convert images",
+      "converting": "Processing {current}/{total}...",
+      "failed": "Failed",
+      "noFiles": "No supported image files were selected.",
+      "decodeError": "Could not decode image {name} in this browser.",
+      "outputUnsupported": "This browser cannot encode {format}. Choose another output format.",
+      "imageTooLarge": "This image exceeds the 100-megapixel processing limit.",
+      "convertError": "Could not convert this image."
     },
     "heic": {
       "title": "HEICからJPGへの変換ツール",
       "description": "iPhoneのHEIC・HEIF写真をJPG、PNG、WebPにブラウザー内で変換。画像はアップロードされません。",
       "seoTitle": "HEICからJPGへの変換 - 無料オンライン | Onlitools",
       "seoDescription": "HEIC・HEIF写真をJPG、PNG、WebPにローカル変換。アップロード不要で複数ファイルを処理できます。",
-      "seoKeywords": "HEIC JPG変換, HEIC変換, HEIF変換, iPhone写真変換"
+      "seoKeywords": "HEIC JPG変換, HEIC変換, HEIF変換, iPhone写真変換",
+      "acceptedFormats": "Select one or more HEIC / HEIF photos"
     },
     "resizer": {
       "title": "画像リサイズ",
       "description": "幅と高さ、割合、最大辺を指定して画像をリサイズ。縦横比を保った一括処理とZIPダウンロードに対応。",
       "seoTitle": "画像リサイズ - オンラインで画像サイズ変更 | Onlitools",
       "seoDescription": "JPG、PNG、WebPなどを寸法、割合、最大サイズでリサイズ。ブラウザー内でプライベートに一括処理できます。",
-      "seoKeywords": "画像リサイズ, 画像サイズ変更, オンライン画像リサイズ, 画像一括リサイズ"
+      "seoKeywords": "画像リサイズ, 画像サイズ変更, オンライン画像リサイズ, 画像一括リサイズ",
+      "mode": "Resize mode",
+      "dimensionsMode": "Dimensions",
+      "percentageMode": "Percentage",
+      "maxMode": "Maximum edge",
+      "keepRatio": "Keep aspect ratio",
+      "scale": "Scale",
+      "maxDimension": "Longest edge",
+      "outputFormat": "Output format",
+      "resizeButton": "Resize images",
+      "imageTooLarge": "{name} exceeds the 100-megapixel processing limit.",
+      "invalidDimensions": "Enter valid dimensions under the 100-megapixel processing limit.",
+      "resizeError": "Could not resize this image."
     },
     "cropper": {
       "title": "画像トリミング",
       "description": "自由な範囲や1:1、4:3、16:9、9:16の比率で画像を切り抜けます。",
       "seoTitle": "画像トリミング - オンライン画像切り抜き | Onlitools",
       "seoDescription": "JPG、PNG、WebPを自由な範囲やプリセット比率でブラウザー内でトリミングできます。",
-      "seoKeywords": "画像トリミング, 画像切り抜き, オンライン画像クロップ"
+      "seoKeywords": "画像トリミング, 画像切り抜き, オンライン画像クロップ",
+      "aspectRatio": "Aspect ratio",
+      "free": "Free",
+      "square": "1:1",
+      "landscape43": "4:3",
+      "wide169": "16:9",
+      "portrait916": "9:16",
+      "chooseAnother": "Choose another image",
+      "cropButton": "Crop image",
+      "loadError": "Could not load this image.",
+      "invalidSelection": "Select an area larger than zero pixels.",
+      "cropError": "Could not crop this image."
     },
     "base64": {
       "toTitle": "画像をBase64に変換",
@@ -360,7 +427,22 @@
       "toSeoDescription": "PNG、JPG、WebP、SVGをBase64、HTML、CSSにローカル変換します。",
       "fromSeoDescription": "Base64画像をブラウザーでデコードし、PNG、JPG、WebPで保存できます。",
       "toSeoKeywords": "画像 Base64変換, Data URL変換, Base64画像ツール",
-      "fromSeoKeywords": "Base64 画像変換, Data URL画像, Base64デコード"
+      "fromSeoKeywords": "Base64 画像変換, Data URL画像, Base64デコード",
+      "changeImage": "Choose another image",
+      "outputType": "Output type",
+      "dataUrl": "Data URL",
+      "output": "Output",
+      "copy": "Copy",
+      "copied": "Copied",
+      "copyError": "Clipboard access failed. Select and copy the text manually.",
+      "readError": "Could not read this image file.",
+      "pasteLabel": "Paste Base64 or a Data URL",
+      "placeholder": "data:image/png;base64,...",
+      "previewButton": "Decode image",
+      "previewAlt": "Decoded image preview",
+      "invalidInput": "Enter a valid Base64 string or image Data URL.",
+      "tooLarge": "The decoded image exceeds the 50 MB limit.",
+      "decodeError": "Could not decode this image. Check the Base64 input and format."
     },
     "info": {
       "title": "画像情報ビューアー",
@@ -391,7 +473,21 @@
       "locationAttribution": "© OpenStreetMapの貢献者",
       "seoTitle": "画像情報・メタデータビューアー | Onlitools",
       "seoDescription": "画像サイズ、形式、縦横比、EXIF/GPS情報をブラウザーで確認できます。",
-      "seoKeywords": "画像情報, 画像メタデータ, EXIFビューアー, 画像寸法"
+      "seoKeywords": "画像情報, 画像メタデータ, EXIFビューアー, 画像寸法",
+      "fileName": "File name",
+      "fileSize": "File size",
+      "aspectRatio": "Aspect ratio",
+      "colorMode": "Color mode",
+      "decodedMode": "Browser-decoded RGBA data",
+      "metadata": "Metadata",
+      "noMetadata": "No readable EXIF metadata found.",
+      "cameraMake": "Camera make",
+      "cameraModel": "Camera model",
+      "dateTaken": "Date taken",
+      "software": "Software",
+      "latitude": "GPS latitude",
+      "longitude": "GPS longitude",
+      "readError": "Could not read {name}."
     },
     "exif": {
       "title": "画像のEXIF情報を削除",
@@ -399,7 +495,11 @@
       "animatedGifUnsupported": "アニメーションを維持するため、GIFのメタデータ削除には対応していません。",
       "seoTitle": "画像のEXIFメタデータを削除 | Onlitools",
       "seoDescription": "画像のGPS位置、カメラ情報、EXIFデータをアップロードせずに削除できます。",
-      "seoKeywords": "EXIF削除, 画像メタデータ削除, 写真GPS削除"
+      "seoKeywords": "EXIF削除, 画像メタデータ削除, 写真GPS削除",
+      "outputFormat": "Clean output format",
+      "removeButton": "Remove metadata",
+      "privacyNote": "The output is re-encoded locally and does not retain the source file's EXIF metadata.",
+      "processError": "Could not remove metadata from this image."
     },
     "exifEditor": {
       "eyebrow": "JPEGメタデータエディター",
@@ -504,14 +604,24 @@
       "description": "画像から色を取得し、主要な色をHEX、RGB、HSLで確認できます。",
       "seoTitle": "画像カラーピッカー - HEX、RGB、HSL | Onlitools",
       "seoDescription": "画像から色を取得し、カラーパレットをブラウザー内で抽出します。",
-      "seoKeywords": "画像カラーピッカー, 画像から色を取得, カラーパレット抽出"
+      "seoKeywords": "画像カラーピッカー, 画像から色を取得, カラーパレット抽出",
+      "changeImage": "Choose another image",
+      "clickHint": "Click the image to sample a pixel color.",
+      "dominantColors": "Common colors",
+      "readError": "Could not read pixel colors from this image."
     },
     "svg": {
       "title": "SVG変換ツール",
       "description": "SVGベクター画像をブラウザー内でPNGまたはWebPに変換し、サイズを調整できます。",
       "seoTitle": "SVG変換 - SVGからPNG・WebPへ | Onlitools",
       "seoDescription": "SVGをローカルでPNGまたはWebPに変換し、出力サイズを指定できます。",
-      "seoKeywords": "SVG変換, SVG PNG変換, SVG WebP変換"
+      "seoKeywords": "SVG変換, SVG PNG変換, SVG WebP変換",
+      "chooseAnother": "Choose another SVG",
+      "convertButton": "Convert SVG",
+      "invalidFile": "This is not a valid SVG file.",
+      "fileTooLarge": "SVG files must be smaller than 10 MB.",
+      "invalidDimensions": "Enter valid dimensions within the 100-megapixel limit.",
+      "convertError": "Could not convert this SVG."
     }
   },
   "blogPost": {
@@ -544,8 +654,8 @@
   "remoteShare": {
     "eyebrow": "リモートスクリプト共有",
     "title": "スクリプトをすばやくリモートユーザーに送信",
-    "description": "スクリプト、コマンド、設定を一時リンクで共有します。",
-    "expiryNotice": "リンクの有効期限は3日です。利用中にアクセスがあると、有効期限が自動的に延長されます。",
+    "description": "スクリプト、コマンド、設定を共有リンクで共有します。",
+    "expiryNotice": "共有リンクに有効期限はありません。",
     "loading": "共有コンテンツを読み込み中...",
     "visitorMode": "閲覧モード · 共有コンテンツは読み取り専用です",
     "createOwn": "自分の共有リンクを作成",
@@ -558,14 +668,15 @@
     "copyTitle": "リンクを保存してコピー",
     "qr": "QRコード",
     "qrTitle": "リンクを保存してQRコードを作成",
-    "defaultExpiry": "既定の有効期限:",
-    "savedExpiry": "保存済み。有効期限:",
-    "expiryAfterSave": "保存から3日後",
+    "noExpiry": "リンクに有効期限はありません",
+    "savedNoExpiry": "保存済み。リンクに有効期限はありません",
     "content": "コンテンツ",
     "language": "言語",
     "contentFormat": "コンテンツ形式",
     "plainText": "プレーンテキスト",
     "commands": "コマンド、スクリプト、設定",
+    "refresh": "更新",
+    "refreshTitle": "共有コンテンツを再読み込み",
     "fullscreen": "全画面表示",
     "exitFullscreen": "全画面表示を終了",
     "shareContent": "共有コンテンツ",
@@ -573,7 +684,7 @@
     "closeQr": "QRコードを閉じる",
     "qrAlt": "共有リンクのQRコード",
     "invalid": "共有リンクが無効です。",
-    "expired": "リンクが存在しないか、有効期限が切れています。",
+    "expired": "リンクが存在しません。",
     "savingFirst": "まだ保存されていません。先に保存します...",
     "copied": "共有リンクをコピーしました",
     "copyFailed": "コピーできませんでした。リンクを手動でコピーしてください。",
@@ -581,11 +692,13 @@
     "qrFailed": "QRコードを作成できませんでした。もう一度お試しください。",
     "emptyContent": "保存するスクリプト、コマンド、設定を入力してください。",
     "invalidCode": "リンクコードは小文字、数字、ハイフンを使った3～48文字で入力してください。",
-    "savedMessage": "共有リンクを保存しました。有効期限: {expiry}。",
+    "savedMessage": "共有リンクを保存しました。有効期限はありません。",
     "createFailed": "共有リンクを作成できませんでした。もう一度お試しください。",
     "seoTitle": "OpsDrop | スクリプト、コマンド、設定をすぐに共有",
-    "seoDescription": "一時的な共有リンクでリモートユーザーにスクリプトやコマンド、設定を送信できます。登録やインストールは不要です。",
-    "seoKeywords": "リモートユーザーにスクリプトを送信, コマンドを共有, Bash共有, PowerShell共有, 設定共有"
+    "seoDescription": "共有リンクまたはQRコードで、リモートユーザーにスクリプト、コマンド、設定を共有できます。QRコードを生成して別のデバイスからすばやく読み取れます。登録やインストールは不要です。",
+    "seoKeywords": "一時メモ, QRコードでスクリプト共有, QRコード共有, リモートユーザーにスクリプトを送信, コマンドを共有, Bash共有, PowerShell共有, 設定共有",
+    "seoLinkFeature": "スクリプト、コマンド、設定を共有するリンクを作成",
+    "seoQrFeature": "別のデバイスで読み取って共有内容を開けるQRコードを生成"
   },
   "profile": {
     "accountInfo": "アカウント情報",
@@ -672,6 +785,19 @@
       "faq_3_a": "はい。フォントが小さくなるとダウンロード量が減り、必要な文字を保ったままページの読み込みを速くできます。",
       "faq_4_q": "WOFFはTTFより小さいですか？",
       "faq_4_a": "WOFFはブラウザー配信用に最適化されているため、Webではより適しています。サブセット化と組み合わせる方法も一般的です。"
+    },
+    "custom_text": "Custom text",
+    "unicode_range": "Unicode range",
+    "language_preset": "Language preset",
+    "local_processing": "Fonts are processed locally in your browser and are never uploaded.",
+    "original_size": "Original size",
+    "optimized_size": "Optimized size",
+    "saved_size": "Saved size",
+    "reduction": "Reduction",
+    "glyph_count": "Glyphs",
+    "tools": {
+      "inspector": "Font Inspector",
+      "unicodeChecker": "Font Unicode Checker"
     }
   },
   "imageTarget": {
@@ -757,10 +883,22 @@
     "loadSample": "サンプルを読み込む",
     "faqTitle": "よくある質問",
     "faq": [
-      { "q": "JSONフォーマッターとは何ですか？", "a": "JSONを読みやすくインデントして表示し、入れ子データの確認やAPIレスポンスのデバッグを簡単にします。" },
-      { "q": "保存前にJSONを検証できますか？", "a": "はい。入力が有効なJSONかリアルタイムで確認し、コピーやダウンロードの前にエラーを表示します。" },
-      { "q": "ブラウザー内だけで処理されますか？", "a": "はい。整形と検証はブラウザー内で行われ、JSONがサーバーにアップロードされることはありません。" },
-      { "q": "本番環境向けにJSONを圧縮できますか？", "a": "はい。圧縮を実行すると、JSONの構文を保ったまま空白を削除してファイルサイズを小さくできます。" }
+      {
+        "q": "JSONフォーマッターとは何ですか？",
+        "a": "JSONを読みやすくインデントして表示し、入れ子データの確認やAPIレスポンスのデバッグを簡単にします。"
+      },
+      {
+        "q": "保存前にJSONを検証できますか？",
+        "a": "はい。入力が有効なJSONかリアルタイムで確認し、コピーやダウンロードの前にエラーを表示します。"
+      },
+      {
+        "q": "ブラウザー内だけで処理されますか？",
+        "a": "はい。整形と検証はブラウザー内で行われ、JSONがサーバーにアップロードされることはありません。"
+      },
+      {
+        "q": "本番環境向けにJSONを圧縮できますか？",
+        "a": "はい。圧縮を実行すると、JSONの構文を保ったまま空白を削除してファイルサイズを小さくできます。"
+      }
     ],
     "invalidJson": "無効なJSONです: {message}",
     "messages": {
@@ -777,7 +915,8 @@
     "seoTitle": "JSONオンライン整形・検証・圧縮・ダウンロード",
     "seoDescription": "ブラウザー上でJSONを整形、検証、圧縮、コピー、貼り付け、ダウンロードできる無料オンラインツールです。",
     "seoKeywords": "JSON整形, JSON検証, JSON圧縮, JSONフォーマッター, JSONオンラインツール",
-    "audience": "開発者、QAエンジニア、データアナリスト"
+    "audience": "開発者、QAエンジニア、データアナリスト",
+    "format": "Format"
   },
   "jsonCompare": {
     "category": "JSONツール",
@@ -800,6 +939,286 @@
     "noChange": "変更なし",
     "invalidJson": "無効なJSONです: {message}",
     "seoTitle": "JSONオンライン比較",
-    "seoDescription": "2つのJSONドキュメントを並べて比較し、変更箇所を強調表示して概要を確認できます。"
+    "seoDescription": "2つのJSONドキュメントを並べて比較し、変更箇所を強調表示して概要を確認できます。",
+    "feedbackButton": "機能を提案",
+    "feedbackTitle": "追加してほしい機能を教えてください",
+    "feedbackDescription": "提案は直接送信され、ツールの改善に役立てられます。",
+    "feedbackMessageLabel": "提案内容",
+    "feedbackMessagePlaceholder": "追加してほしい機能や問題を入力してください（10文字以上）",
+    "feedbackEmailLabel": "メールアドレス",
+    "feedbackOptional": "（任意・返信をご希望の場合）",
+    "feedbackEmailPlaceholder": "you{'@'}example.com",
+    "feedbackSubmit": "提案を送信",
+    "feedbackSubmitting": "送信中…",
+    "feedbackCancel": "キャンセル",
+    "feedbackClose": "閉じる",
+    "feedbackSuccess": "受け付けました。ご提案ありがとうございます。",
+    "feedbackError": "送信できませんでした。時間をおいて再度お試しください。"
+  },
+  "webp": {
+    "title": "Image to WebP",
+    "desc": "Batch convert jpg/png images to webp. Download single image directly, or multiple images as a zip file.",
+    "upload": "Upload images",
+    "selected": "{count} images selected",
+    "start": "Start conversion",
+    "clear": "Clear",
+    "success": "Conversion successful",
+    "download_img": "Download image",
+    "download_zip": "Download zip",
+    "intro": "is a modern image format developed by Google, featuring high compression and excellent quality. It supports lossy and lossless compression, transparency, and animation. Compared to JPG/PNG, WebP can significantly reduce image size, speed up website loading, and improve site performance and SEO. All major browsers support WebP. It is recommended for website use.",
+    "no_file": "Please select images first",
+    "error": "Conversion failed: {msg}",
+    "seo_title": "Batch JPG/PNG to WebP Converter Online",
+    "seo_desc": "Convert multiple JPG, JPEG, and PNG images to WebP online. Select images in bulk and download the converted files as a ZIP archive. Files are processed locally in your browser and never uploaded.",
+    "seo_keywords": "batch image converter, JPG to WebP, PNG to WebP, bulk WebP converter, online image converter",
+    "batch_message": "Select multiple JPG and PNG images to convert them to WebP in one batch.",
+    "local_message": "Files are processed locally in your browser and are never uploaded."
+  },
+  "about": {
+    "meTitle": "About me",
+    "meText1": "Hi, I'm the developer of this site. I love frontend and tool development — feedback is welcome!",
+    "contactEmail": "Contact email:",
+    "blogTitle": "About this blog",
+    "blogText": "This blog shares frontend development, tool-making and technical notes. Welcome to follow and leave comments.",
+    "toolsTitle": "About the tools",
+    "toolsText": "All tools on this site are free online, supporting batch processing, format conversion and multilingual features. Updates ongoing.",
+    "langsTitle": "Supported languages",
+    "langsList1": "Chinese (Simplified)",
+    "langsList2": "English",
+    "langsList3": "More languages coming soon...",
+    "tabMe": "About me",
+    "tabBlog": "About blog",
+    "tabTools": "About tools",
+    "tabLangs": "Languages"
+  },
+  "uppercase": {
+    "desc": "Convert text to uppercase, lowercase, title case, sentence case, camelCase, snake_case, kebab-case, and more.",
+    "inputLabel": "Input text",
+    "placeholder": "Paste or type text here...",
+    "copyBtn": "Copy to clipboard",
+    "clearBtn": "Clear",
+    "tip": "Pasting triggers automatic conversion + copy. You can also click Copy to copy the current text.",
+    "title": "Case Converter",
+    "outputLabel": "Converted text",
+    "outputPlaceholder": "Converted text will appear here...",
+    "instructions": {
+      "title": "Instructions",
+      "input": "Paste or type text in the input box.",
+      "convert": "The text is automatically converted to uppercase and shown on the right.",
+      "copy": "Click \"Copy to clipboard\" to copy the converted text.",
+      "clear": "Click \"Clear\" to remove the input text."
+    },
+    "status": {
+      "copySuccess": "Copied successfully",
+      "noText": "There is no text to copy",
+      "copyError": "Copy failed"
+    }
+  },
+  "idPhoto": {
+    "title": "ID Photo Generator",
+    "subtitle": "Upload a portrait, then adjust the background, size and crop in one click.",
+    "uploadText": "Click or drag an image here",
+    "uploadHint": "Supports JPG, PNG, WEBP images",
+    "preview": "Preview",
+    "size": "Size preset",
+    "bgColor": "Background color",
+    "custom": "Custom",
+    "download": "Download photo",
+    "reUpload": "Re-upload",
+    "cutout": "Remove background",
+    "processing": "Processing...",
+    "cleared": "Image cleared",
+    "cutoutSuccess": "Background removed",
+    "cutoutError": "Failed to remove background. Please try again.",
+    "sizes": {
+      "oneInch": "1 inch",
+      "twoInch": "2 inch",
+      "smallOneInch": "Small 1 inch",
+      "passport": "Passport",
+      "visa": "Visa",
+      "socialSecurity": "Social security"
+    },
+    "adjust": "Adjustments",
+    "brightness": "Brightness",
+    "contrast": "Contrast",
+    "saturation": "Saturation",
+    "crop": "Crop",
+    "top": "Top",
+    "left": "Left",
+    "zoom": "Zoom",
+    "resetCrop": "Reset crop",
+    "brushCutout": "Brush cleanup",
+    "brushSize": "Brush size",
+    "brushSizeValue": "{size}px",
+    "startPainting": "Start painting",
+    "stopPainting": "Exit painting",
+    "removePaintedArea": "Remove painted area",
+    "paintHint": "Paint over the area you want to remove",
+    "paintSuccess": "Painted area removed",
+    "seoDesc": "Create passport, ID, and visa photo templates online. Adjust size, crop, brightness, and color in seconds.",
+    "seoKeywords": "free ID photo, online ID photo, convert everyday photo to ID photo, passport photo, visa photo, background removal, change photo background"
+  },
+  "agnesImage": {
+    "title": "Free AI Image Generator",
+    "subtitle": "Generate high-quality images for free. Simple prompts, fast results.",
+    "seoDesc": "Free AI image generation — create photos, art, and product visuals using advanced models.",
+    "footnote": "Supported by Agnes AI"
+  },
+  "agnesVideo": {
+    "title": "Free AI Video Generator",
+    "subtitle": "Generate short AI videos for free. Configure resolution, frames and fps.",
+    "seoDesc": "Free AI video generation — produce short clips from prompts using advanced video models.",
+    "footnote": "Supported by Agnes AI"
+  },
+  "password_mismatch": "确认码和密码不一致",
+  "ttf": {
+    "desc": "Subset TTF, OTF, WOFF, or WOFF2 fonts by keeping only the characters your project needs."
+  },
+  "blog": {
+    "title": "Blog Articles",
+    "write": "Write Article",
+    "author": "Author",
+    "posted": "Posted",
+    "sort": {
+      "hits": "By Popularity",
+      "time": "By Date"
+    },
+    "fetchError": "Failed to fetch articles",
+    "needLogin": "Please login before posting",
+    "name": "Blog",
+    "seoDesc": "Java, JavaScript technical articles, and practical tutorials",
+    "seoKeywords": "JavaScript, TypeScript, Vue, React, Node.js, Python, Go, Rust, Web开发, 前端, 后端, 全栈, 云原生, Docker, Kubernetes, 微服务, 数据库, DevOps, AI, 机器学习",
+    "type": "Tag",
+    "hits": "Views",
+    "backToList": "返回列表",
+    "category": "Category",
+    "lastUpdate": "Update Time",
+    "edit": "edit",
+    "pageSize": "Per page",
+    "items": "items",
+    "gotoPage": "Go to page",
+    "go": "Go",
+    "totalItems": "Total {total} items",
+    "defaultTitle": "ブログ"
+  },
+  "jsoncsv": {
+    "title": "JSON & CSV Converter",
+    "input_placeholder": "Paste JSON or CSV content",
+    "json_to_csv": "JSON to CSV",
+    "csv_to_json": "CSV to JSON",
+    "clear": "Clear",
+    "paste": "Paste",
+    "result_title": "Conversion Result",
+    "download": "Download File",
+    "copy": "Copy Result",
+    "copy_success": "Copied to clipboard",
+    "copy_fail": "Copy failed",
+    "paste_success": "Pasted clipboard content",
+    "paste_fail": "Paste failed",
+    "paste_not_supported": "Clipboard paste not supported",
+    "json_to_csv_error": "JSON to CSV failed: {msg}",
+    "csv_to_json_error": "CSV to JSON failed: {msg}",
+    "index": "JSON and CSV format conversion tool",
+    "seo_title": "Free Online JSON to CSV Converter | CSV to JSON Tool",
+    "seo_description": "Easily convert JSON to CSV and CSV to JSON online. Free, fast, and secure conversion tool that works directly in your browser. No file upload required.",
+    "seo_keywords": "JSON to CSV, CSV to JSON, online converter, free JSON to CSV tool, convert JSON, convert CSV, JSON converter, CSV converter, batch conversion"
+  },
+  "imageConvert": {
+    "webpToPngTitle": "WebP to PNG",
+    "webpToPngDesc": "Batch convert WebP images to PNG format. Supports multiple images, direct download or zip archive.",
+    "webpToJpgTitle": "WebP to JPG",
+    "webpToJpgDesc": "Batch convert WebP images to JPG format. Supports multiple images, direct download or zip archive.",
+    "description": "Select one or more images (WebP, PNG, JPG, JPEG, BMP, GIF, TIFF) and convert to your desired format. Supports batch processing and zip download.",
+    "selectedCount": "{count} images selected",
+    "clear": "Clear",
+    "targetFormat": "Target format",
+    "start": "Start conversion",
+    "progress": "Processing {current} of {total} images...",
+    "download": "Download",
+    "seoTitlePng": "WebP to PNG Online Tool | Batch Image Converter",
+    "seoDescPng": "Online WebP to PNG converter, batch image conversion, multi-language, best SEO, safe and efficient.",
+    "seoTitleJpg": "WebP to JPG Online Tool | Batch Image Converter",
+    "seoDescJpg": "Online WebP to JPG converter, batch image conversion, multi-language, best SEO, safe and efficient."
+  },
+  "prompts": {
+    "title": "Prompts",
+    "name": "Prompt Library",
+    "write": "ADD"
+  },
+  "compress": {
+    "title": "Free online image compressor"
+  },
+  "dateFormat": {
+    "badge": "Time Decoder",
+    "title": "Time Format Decoder",
+    "description": "Paste any time string or timestamp, detect its format automatically, and convert it to your preferred fixed output format.",
+    "copyResult": "Copy Result",
+    "loadSample": "Sample Data",
+    "clear": "Clear",
+    "detectedResult": "Detected result",
+    "parsedCount": "{count} time values",
+    "inputLabel": "Input content",
+    "fillSample": "Fill sample",
+    "placeholder": "Example:\\n1788184699872\\n1717147200\\n2024-05-06T08:30:45.000Z\\n31/05/2024\\n2024年5月6日",
+    "outputFormat": "Output format",
+    "bestFormat": "Most likely format",
+    "confidence": "Confidence",
+    "noInput": "Please enter a recognizable date or time value",
+    "decodeResult": "Decoded result",
+    "copyUtc": "Copy UTC",
+    "resultPlaceholder": "Parsed time will appear here...",
+    "recognitionTitle": "Recognition notes",
+    "whyThis": "Why is it {value}?",
+    "best": "Best",
+    "alt": "Alt",
+    "scriptTitle": "Multi-language script generation",
+    "generateLanguage": "Generated language",
+    "runLocal": "Run locally",
+    "runDemo": "Remote demo",
+    "copyScript": "Copy script",
+    "runOutput": "Runtime output",
+    "supportedFormats": "Supported time formats",
+    "formatAuto": "Auto detect",
+    "support": {
+      "unixSeconds": "Unix seconds",
+      "unixMilliseconds": "Unix milliseconds",
+      "unixMicroseconds": "Unix microseconds",
+      "excelDate": "Excel date",
+      "chineseDate": "Chinese date",
+      "mixedInput": "Mixed date input"
+    },
+    "seoTitle": "Time Format Decoder - Auto-detect timestamps and date formats",
+    "seoDescription": "Auto-detect Unix seconds/milliseconds, ISO 8601, Chinese dates, and other time formats, then convert them into fixed formats such as yyyy-MM-dd.",
+    "seoKeywords": "time format decoder, timestamp recognition, Unix timestamp, ISO 8601, date format conversion, time string parsing, yyyy-MM-dd format",
+    "messages": {
+      "noScript": "There is no script content to copy",
+      "scriptCopied": "Script copied to clipboard",
+      "copyFailed": "Copy failed, please copy manually",
+      "noOutput": "There is no time result to copy",
+      "outputCopied": "Time format copied to clipboard",
+      "noUtcData": "There is no time content to convert",
+      "utcCopied": "UTC time copied"
+    }
+  },
+  "webpTo": {
+    "batch_message": "Select multiple WebP images and download batch results as a ZIP file.",
+    "local_message": "Files are processed locally in your browser and are never uploaded.",
+    "batch_success": "Batch converted {count} images",
+    "title": "WebP to {format} Online Tool",
+    "description": "Convert WebP images to {format} in batches. Process multiple images at once and download them as a ZIP file. Files are processed locally in your browser and never uploaded.",
+    "keywords": "WebP to {format}, WebP batch converter, batch image conversion, {format} online tool, local image processing, no upload",
+    "seoSuffix": "Image Converter | Batch Processing",
+    "intro": "Convert WebP images to multiple formats in batches, with direct downloads for single images and ZIP downloads for multiple images."
+  },
+  "footer": {
+    "about": "サイトについて",
+    "blog": "ブログ",
+    "privacy": "プライバシーポリシー",
+    "terms": "利用規約",
+    "contact": "お問い合わせ",
+    "rights": "All rights reserved.",
+    "navLabel": "フッターナビゲーション",
+    "tagline": "開発者やデザイナーのための、無料でプライバシーに配慮したツール。ファイルやテキストの作業をすばやく終えられます。",
+    "localFirst": "ローカル優先・登録不要"
   }
 }

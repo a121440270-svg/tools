@@ -59,6 +59,8 @@ const user = useUser()
 const router = useRouter()
 const localePath = useLocalePath()
 
+useSeoMeta({ robots: 'noindex, nofollow' })
+
 const pageSize = 5
 const currentPage = ref(1)
 const total = ref(0)

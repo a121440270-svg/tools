@@ -66,25 +66,102 @@
       "development": "تطوير"
     },
     "tools": {
-      "aiImage": { "name": "مولّد صور بالذكاء الاصطناعي", "description": "أنشئ صورًا عالية الجودة من المطالبات النصية." },
-      "aiVideo": { "name": "مولّد فيديو بالذكاء الاصطناعي", "description": "أنشئ مقاطع فيديو قصيرة ورسومًا متحركة إبداعية." },
-      "imageToWebp": { "name": "تحويل الصور إلى WebP", "description": "حوّل الصور دفعة واحدة إلى تنسيق WebP." },
-      "webpToJpg": { "name": "تحويل WebP إلى JPG", "description": "حوّل صور WebP دفعة واحدة إلى JPG." },
-      "webpToPng": { "name": "تحويل WebP إلى PNG", "description": "حوّل صور WebP دفعة واحدة إلى PNG لمعالجة الصور الشفافة." },
-      "imageCompress": { "name": "ضغط الصور", "description": "اضغط صور JPG وPNG وغيرها لتقليل حجم الملفات." },
-      "imageAspectRatio": { "name": "تغيير نسبة أبعاد الصورة", "description": "غيّر الصور إلى نسب 16:9 أو 1:1 أو 9:16 أو 4:3 أو نسبة مخصصة، مع خيارات القص والاحتواء وتمويه الخلفية والتمديد." },
-      "increaseImageSize": { "name": "زيادة حجم الصورة بالكيلوبايت", "description": "زد حجم ملف الصورة إلى قيمة مستهدفة بالكيلوبايت أو الميغابايت مع الحفاظ على أبعادها الأصلية." },
-      "idPhoto": { "name": "إنشاء صور الهوية", "description": "أنشئ مقاسات وخلفيات صور الهوية انطلاقًا من صورة مرفوعة." },
-      "fontCompress": { "name": "ضغط خطوط TTF", "description": "اضغط خطوط TTF وأنشئ مجموعات فرعية أصغر." },
-      "jsonCsv": { "name": "محول JSON وCSV", "description": "حوّل ملفات JSON وCSV بسرعة." },
-      "jsonFormatter": { "name": "منسّق JSON", "description": "نسّق بيانات JSON وصغّرها وتحقق منها وابحث فيها." },
-      "dateFormat": { "name": "أداة تنسيق التاريخ", "description": "اكتشف التواريخ المدخلة وحوّلها إلى التنسيق المطلوب." },
-      "uppercase": { "name": "محول الأحرف الكبيرة", "description": "حوّل النص إلى أحرف كبيرة وانسخه إلى الحافظة." },
-      "token": { "name": "مولّد الرموز", "description": "أنشئ رموزًا عشوائية من الأحرف والأرقام والرموز." },
-      "hash": { "name": "تجزئة النص", "description": "طبّق خوارزميات MD5 وSHA وغيرها على النصوص." },
-      "blog": { "name": "المدونة", "description": "تصفح مقالات الموقع ودروسه التعليمية." },
-      "prompts": { "name": "المطالبات", "description": "اعرض قوالب المطالبات القابلة لإعادة الاستخدام واستخدمها." },
-      "shareNote": { "name": "مشاركة ملاحظة", "description": "شارك مؤقتًا الأوامر والبرامج النصية والإعدادات والنصوص التقنية." }
+      "aiImage": {
+        "name": "مولّد صور بالذكاء الاصطناعي",
+        "description": "أنشئ صورًا عالية الجودة من المطالبات النصية."
+      },
+      "aiVideo": {
+        "name": "مولّد فيديو بالذكاء الاصطناعي",
+        "description": "أنشئ مقاطع فيديو قصيرة ورسومًا متحركة إبداعية."
+      },
+      "imageToWebp": {
+        "name": "تحويل الصور إلى WebP",
+        "description": "حوّل الصور دفعة واحدة إلى تنسيق WebP."
+      },
+      "webpToJpg": {
+        "name": "تحويل WebP إلى JPG",
+        "description": "حوّل صور WebP دفعة واحدة إلى JPG."
+      },
+      "webpToPng": {
+        "name": "تحويل WebP إلى PNG",
+        "description": "حوّل صور WebP دفعة واحدة إلى PNG لمعالجة الصور الشفافة."
+      },
+      "imageCompress": {
+        "name": "ضغط الصور",
+        "description": "اضغط صور JPG وPNG وغيرها لتقليل حجم الملفات."
+      },
+      "imageAspectRatio": {
+        "name": "تغيير نسبة أبعاد الصورة",
+        "description": "غيّر الصور إلى نسب 16:9 أو 1:1 أو 9:16 أو 4:3 أو نسبة مخصصة، مع خيارات القص والاحتواء وتمويه الخلفية والتمديد."
+      },
+      "increaseImageSize": {
+        "name": "زيادة حجم الصورة بالكيلوبايت",
+        "description": "زد حجم ملف الصورة إلى قيمة مستهدفة بالكيلوبايت أو الميغابايت مع الحفاظ على أبعادها الأصلية."
+      },
+      "idPhoto": {
+        "name": "إنشاء صور الهوية",
+        "description": "أنشئ مقاسات وخلفيات صور الهوية انطلاقًا من صورة مرفوعة."
+      },
+      "fontCompress": {
+        "name": "ضغط خطوط TTF",
+        "description": "اضغط خطوط TTF وأنشئ مجموعات فرعية أصغر."
+      },
+      "jsonCsv": {
+        "name": "محول JSON وCSV",
+        "description": "حوّل ملفات JSON وCSV بسرعة."
+      },
+      "jsonFormatter": {
+        "name": "منسّق JSON",
+        "description": "نسّق بيانات JSON وصغّرها وتحقق منها وابحث فيها."
+      },
+      "dateFormat": {
+        "name": "أداة تنسيق التاريخ",
+        "description": "اكتشف التواريخ المدخلة وحوّلها إلى التنسيق المطلوب."
+      },
+      "uppercase": {
+        "name": "محول الأحرف الكبيرة",
+        "description": "حوّل النص إلى أحرف كبيرة وانسخه إلى الحافظة."
+      },
+      "token": {
+        "name": "مولّد الرموز",
+        "description": "أنشئ رموزًا عشوائية من الأحرف والأرقام والرموز."
+      },
+      "hash": {
+        "name": "تجزئة النص",
+        "description": "طبّق خوارزميات MD5 وSHA وغيرها على النصوص."
+      },
+      "blog": {
+        "name": "المدونة",
+        "description": "تصفح مقالات الموقع ودروسه التعليمية."
+      },
+      "prompts": {
+        "name": "المطالبات",
+        "description": "اعرض قوالب المطالبات القابلة لإعادة الاستخدام واستخدمها."
+      },
+      "shareNote": {
+        "name": "ملاحظة مؤقتة",
+        "description": "شارك مؤقتًا الأوامر والبرامج النصية والإعدادات والنصوص التقنية."
+      },
+      "fontInspector": {
+        "name": "Font Inspector",
+        "description": "Inspect font metadata, glyph counts, metrics, and Unicode coverage."
+      },
+      "fontUnicodeChecker": {
+        "name": "Font Unicode Checker",
+        "description": "Check font support for text, Unicode ranges, and language character sets."
+      },
+      "fontSizeAnalyzer": {
+        "name": "Font Size Analyzer",
+        "description": "Analyze font file size, glyph count, character mappings, and OpenType tables."
+      },
+      "fontValidator": {
+        "name": "Font Validator",
+        "description": "Check font parsing, core tables, glyph outlines, and Unicode mappings."
+      },
+      "fontCssGenerator": {
+        "name": "Font CSS Generator",
+        "description": "Generate CSS font-face rules and an HTML example for web fonts."
+      }
     },
     "seoTitle": "OnliTool - دليل الأدوات عبر الإنترنت",
     "seoDescription": "يوفر OnliTool أدوات عبر الإنترنت لمعالجة الصور والذكاء الاصطناعي وضغط الخطوط وتحويل النصوص ومهام التطوير.",
@@ -141,6 +218,19 @@
       "faq_3_a": "نعم. تعني ملفات الخطوط الأصغر بيانات أقل للتنزيل وتحميلًا أسرع للصفحات مع الاحتفاظ بالأحرف المطلوبة.",
       "faq_4_q": "هل WOFF أصغر من TTF؟",
       "faq_4_a": "غالبًا ما يكون WOFF أنسب للويب لأنه محسّن للنقل إلى المتصفح. ويُعد الجمع بين WOFF وإنشاء مجموعة فرعية استراتيجية تحسين شائعة."
+    },
+    "custom_text": "Custom text",
+    "unicode_range": "Unicode range",
+    "language_preset": "Language preset",
+    "local_processing": "Fonts are processed locally in your browser and are never uploaded.",
+    "original_size": "Original size",
+    "optimized_size": "Optimized size",
+    "saved_size": "Saved size",
+    "reduction": "Reduction",
+    "glyph_count": "Glyphs",
+    "tools": {
+      "inspector": "Font Inspector",
+      "unicodeChecker": "Font Unicode Checker"
     }
   },
   "blog": {
@@ -148,7 +238,10 @@
     "write": "كتابة مقالة",
     "author": "الكاتب",
     "posted": "تاريخ النشر",
-    "sort": { "hits": "حسب الشعبية", "time": "حسب التاريخ" },
+    "sort": {
+      "hits": "حسب الشعبية",
+      "time": "حسب التاريخ"
+    },
     "fetchError": "تعذر تحميل المقالات",
     "needLogin": "يرجى تسجيل الدخول قبل النشر",
     "name": "المدونة",
@@ -164,7 +257,8 @@
     "items": "عناصر",
     "gotoPage": "الانتقال إلى الصفحة",
     "go": "انتقال",
-    "totalItems": "إجمالي العناصر: {total}"
+    "totalItems": "إجمالي العناصر: {total}",
+    "defaultTitle": "المدونة"
   },
   "jsoncsv": {
     "title": "محول JSON وCSV",
@@ -205,7 +299,9 @@
     "ads": "ملفات تعريف ارتباط الإعلانات",
     "acceptAll": "السماح بالكل",
     "save": "حفظ التفضيلات",
-    "close": "إغلاق"
+    "close": "إغلاق",
+    "policy": "سياسة الخصوصية",
+    "rejectAll": "رفض الاختياري"
   },
   "common": {
     "loading": "جارٍ التحميل..."
@@ -364,22 +460,22 @@
     "show_password": "إظهار كلمة المرور",
     "hide_password": "إخفاء كلمة المرور"
   },
-      "accountActivation": {
-        "title": "تفعيل الحساب",
-        "activating": "جارٍ تفعيل حسابك...",
-        "success": "تم تفعيل الحساب بنجاح!",
-        "redirecting": "ستتم إعادة التوجيه إلى تسجيل الدخول خلال 3 ثوانٍ...",
-        "loginNow": "تسجيل الدخول الآن",
-        "failed": "فشل التفعيل: {message}",
-        "login": "الانتقال إلى تسجيل الدخول",
-        "missingParams": "بيانات التفعيل المطلوبة غير متوفرة",
-        "failedFallback": "فشل تفعيل الحساب"
-      },
-      "password_mismatch": "رمز التأكيد وكلمة المرور غير متطابقين.",
-      "layout": {
-        "support": "ادعمني بفنجان قهوة"
-      },
-      "blogPost": {
+  "accountActivation": {
+    "title": "تفعيل الحساب",
+    "activating": "جارٍ تفعيل حسابك...",
+    "success": "تم تفعيل الحساب بنجاح!",
+    "redirecting": "ستتم إعادة التوجيه إلى تسجيل الدخول خلال 3 ثوانٍ...",
+    "loginNow": "تسجيل الدخول الآن",
+    "failed": "فشل التفعيل: {message}",
+    "login": "الانتقال إلى تسجيل الدخول",
+    "missingParams": "بيانات التفعيل المطلوبة غير متوفرة",
+    "failedFallback": "فشل تفعيل الحساب"
+  },
+  "password_mismatch": "رمز التأكيد وكلمة المرور غير متطابقين.",
+  "layout": {
+    "support": "ادعمني بفنجان قهوة"
+  },
+  "blogPost": {
     "articleTitle": "عنوان المقالة",
     "titlePlaceholder": "أدخل عنوان المقالة",
     "chooseLanguage": "اختر اللغة",
@@ -409,8 +505,8 @@
   "remoteShare": {
     "eyebrow": "إرسال البرامج النصية عن بُعد",
     "title": "أرسل برنامجًا نصيًا إلى مستخدم عن بُعد خلال ثوانٍ",
-    "description": "شارك البرامج النصية والأوامر والإعدادات عبر رابط مؤقت.",
-    "expiryNotice": "تنتهي صلاحية الروابط بعد 3 أيام. وتُمدد الصلاحية تلقائيًا عند استمرار استخدامها.",
+    "description": "شارك البرامج النصية والأوامر والإعدادات عبر رابط مشاركة.",
+    "expiryNotice": "روابط المشاركة لا تنتهي صلاحيتها.",
     "loading": "جارٍ تحميل المحتوى المشترك...",
     "visitorMode": "وضع الزائر · المحتوى المشترك للقراءة فقط",
     "createOwn": "إنشاء مشاركة خاصة بك",
@@ -423,14 +519,15 @@
     "copyTitle": "حفظ الرابط ونسخه",
     "qr": "رمز QR",
     "qrTitle": "حفظ الرابط وإنشاء رمز QR",
-    "defaultExpiry": "مدة الصلاحية الافتراضية:",
-    "savedExpiry": "تم الحفظ. تنتهي الصلاحية في",
-    "expiryAfterSave": "بعد 3 أيام من الحفظ",
+    "noExpiry": "الرابط لا تنتهي صلاحيته",
+    "savedNoExpiry": "تم الحفظ. الرابط لا تنتهي صلاحيته",
     "content": "المحتوى",
     "language": "اللغة",
     "contentFormat": "تنسيق المحتوى",
     "plainText": "نص عادي",
     "commands": "أوامر وبرامج نصية وإعدادات",
+    "refresh": "تحديث",
+    "refreshTitle": "إعادة تحميل المحتوى المشترك",
     "fullscreen": "ملء الشاشة",
     "exitFullscreen": "إنهاء ملء الشاشة",
     "shareContent": "مشاركة المحتوى",
@@ -438,7 +535,7 @@
     "closeQr": "إغلاق رمز QR",
     "qrAlt": "رمز QR لرابط المشاركة",
     "invalid": "رابط المشاركة هذا غير صالح.",
-    "expired": "هذا الرابط غير موجود أو انتهت صلاحيته.",
+    "expired": "هذا الرابط غير موجود.",
     "savingFirst": "لم يُحفظ المحتوى بعد. جارٍ حفظه أولًا...",
     "copied": "تم نسخ رابط المشاركة",
     "copyFailed": "تعذر النسخ. انسخ الرابط يدويًا من فضلك.",
@@ -446,11 +543,13 @@
     "qrFailed": "تعذر إنشاء رمز QR. حاول مرة أخرى.",
     "emptyContent": "أضف برنامجًا نصيًا أو أمرًا أو إعدادًا قبل الحفظ.",
     "invalidCode": "يجب أن يتكون رمز الرابط من 3 إلى 48 حرفًا، باستخدام الأحرف الصغيرة أو الأرقام أو الشرطات فقط.",
-    "savedMessage": "تم حفظ رابط المشاركة. تنتهي صلاحيته في {expiry}.",
+    "savedMessage": "تم حفظ رابط المشاركة. لا تنتهي صلاحيته.",
     "createFailed": "تعذر إنشاء المشاركة. حاول مرة أخرى.",
     "seoTitle": "OpsDrop | مشاركة البرامج النصية والأوامر والإعدادات فورًا",
-    "seoDescription": "أرسل البرامج النصية والأوامر والإعدادات إلى مستخدمين عن بُعد عبر رابط مؤقت، دون تسجيل أو تثبيت.",
-    "seoKeywords": "إرسال برنامج نصي عن بُعد, مشاركة برنامج نصي مع عميل, مشاركة الأوامر, مشاركة سكريبت Bash, مشاركة سكريبت PowerShell, مشاركة الإعدادات عبر الإنترنت"
+    "seoDescription": "شارك البرامج النصية والأوامر والإعدادات مع المستخدمين عن بُعد عبر رابط أو رمز QR. أنشئ رمز QR لفتح المحتوى بسرعة على جهاز آخر. لا حاجة إلى التسجيل أو التثبيت.",
+    "seoKeywords": "ملاحظة مؤقتة, مشاركة البرامج النصية برمز QR, مشاركة عبر رمز QR, إرسال برنامج نصي عن بُعد, مشاركة برنامج نصي مع عميل, مشاركة الأوامر, مشاركة سكريبت Bash, مشاركة سكريبت PowerShell, مشاركة الإعدادات عبر الإنترنت",
+    "seoLinkFeature": "إنشاء رابط لمشاركة البرامج النصية والأوامر والإعدادات",
+    "seoQrFeature": "إنشاء رمز QR لفتح المحتوى المشترك على جهاز آخر"
   },
   "profile": {
     "accountInfo": "معلومات الحساب",
@@ -577,10 +676,22 @@
     "loadSample": "تحميل مثال",
     "faqTitle": "الأسئلة الشائعة",
     "faq": [
-      { "q": "ما أداة تنسيق JSON؟", "a": "تحوّل أداة تنسيق JSON البيانات المختصرة إلى بنية واضحة ذات مسافات بادئة لتسهيل فحص البيانات المتداخلة وتصحيح استجابات API." },
-      { "q": "هل يمكن التحقق من JSON قبل حفظه؟", "a": "نعم. تتحقق الأداة من صحة JSON في الوقت الفعلي وتحدد المحتوى غير الصالح قبل نسخه أو تنزيله." },
-      { "q": "هل تعمل الأداة محليًا في المتصفح؟", "a": "نعم. تتم جميع عمليات التنسيق والتحقق في متصفحك، ولا تُرفع بيانات JSON إلى خادم." },
-      { "q": "هل يمكن تصغير JSON للاستخدام في الإنتاج؟", "a": "نعم. استخدم خيار التصغير لإزالة المسافات وتقليل حجم الملف مع الحفاظ على صياغة JSON الصحيحة." }
+      {
+        "q": "ما أداة تنسيق JSON؟",
+        "a": "تحوّل أداة تنسيق JSON البيانات المختصرة إلى بنية واضحة ذات مسافات بادئة لتسهيل فحص البيانات المتداخلة وتصحيح استجابات API."
+      },
+      {
+        "q": "هل يمكن التحقق من JSON قبل حفظه؟",
+        "a": "نعم. تتحقق الأداة من صحة JSON في الوقت الفعلي وتحدد المحتوى غير الصالح قبل نسخه أو تنزيله."
+      },
+      {
+        "q": "هل تعمل الأداة محليًا في المتصفح؟",
+        "a": "نعم. تتم جميع عمليات التنسيق والتحقق في متصفحك، ولا تُرفع بيانات JSON إلى خادم."
+      },
+      {
+        "q": "هل يمكن تصغير JSON للاستخدام في الإنتاج؟",
+        "a": "نعم. استخدم خيار التصغير لإزالة المسافات وتقليل حجم الملف مع الحفاظ على صياغة JSON الصحيحة."
+      }
     ],
     "invalidJson": "JSON غير صالح: {message}",
     "messages": {
@@ -597,7 +708,8 @@
     "seoTitle": "تنسيق JSON عبر الإنترنت - تنسيق JSON والتحقق منه وتصغيره وتنزيله",
     "seoDescription": "أداة مجانية لتنسيق JSON والتحقق منه وتصغيره. نسّق JSON وتحقق منه وانسخه والصقه ونزّله فورًا في متصفحك.",
     "seoKeywords": "منسق JSON, مدقق JSON, تصغير JSON, تنسيق JSON, تجميل JSON, أداة JSON عبر الإنترنت",
-    "audience": "المطورون ومهندسو ضمان الجودة ومحللو البيانات"
+    "audience": "المطورون ومهندسو ضمان الجودة ومحللو البيانات",
+    "format": "Format"
   },
   "jsonCompare": {
     "category": "أداة JSON",
@@ -620,7 +732,21 @@
     "noChange": "لا توجد تغييرات",
     "invalidJson": "JSON غير صالح: {message}",
     "seoTitle": "مقارنة JSON عبر الإنترنت",
-    "seoDescription": "قارن مستندي JSON باستخدام محررين جنبًا إلى جنب وإبراز الاختلافات على مستوى الحقول وملخص موجز للتغييرات."
+    "seoDescription": "قارن مستندي JSON باستخدام محررين جنبًا إلى جنب وإبراز الاختلافات على مستوى الحقول وملخص موجز للتغييرات.",
+    "feedbackButton": "اقترح ميزة",
+    "feedbackTitle": "ما الميزة التي تود إضافتها؟",
+    "feedbackDescription": "سيتم إرسال اقتراحك مباشرةً إلينا للمساعدة في تحسين هذه الأداة.",
+    "feedbackMessageLabel": "اقتراحك",
+    "feedbackMessagePlaceholder": "صف الميزة التي تريدها أو المشكلة التي واجهتها (10 أحرف على الأقل)",
+    "feedbackEmailLabel": "البريد الإلكتروني",
+    "feedbackOptional": "(اختياري، حتى نتمكن من الرد عليك)",
+    "feedbackEmailPlaceholder": "you{'@'}example.com",
+    "feedbackSubmit": "إرسال الاقتراح",
+    "feedbackSubmitting": "جارٍ الإرسال…",
+    "feedbackCancel": "إلغاء",
+    "feedbackClose": "إغلاق",
+    "feedbackSuccess": "تم الاستلام! شكرًا على اقتراحك.",
+    "feedbackError": "تعذر إرسال الاقتراح. يرجى المحاولة لاحقًا."
   },
   "imageConvert": {
     "webpToPngTitle": "تحويل WebP إلى PNG",
@@ -820,28 +946,62 @@
       "description": "حوّل صور JPG وPNG وWebP وAVIF وGIF وBMP وSVG محليًا في المتصفح، مع المعالجة المجمعة والتنزيل كملف ZIP.",
       "seoTitle": "محوّل الصور - أداة مجانية عبر الإنترنت | Onlitools",
       "seoDescription": "حوّل الصور إلى JPG أو PNG أو WebP أو AVIF في المتصفح. معالجة محلية مجمعة وتنزيل الملفات منفردة أو بصيغة ZIP.",
-      "seoKeywords": "محوّل الصور, تحويل الصور عبر الإنترنت, تحويل JPG PNG, محوّل WebP"
+      "seoKeywords": "محوّل الصور, تحويل الصور عبر الإنترنت, تحويل JPG PNG, محوّل WebP",
+      "inputAccepted": "JPG, PNG, WebP, AVIF, GIF, BMP, SVG and HEIC",
+      "convertTo": "Convert to",
+      "convertButton": "Convert images",
+      "converting": "Processing {current}/{total}...",
+      "failed": "Failed",
+      "noFiles": "No supported image files were selected.",
+      "decodeError": "Could not decode image {name} in this browser.",
+      "outputUnsupported": "This browser cannot encode {format}. Choose another output format.",
+      "imageTooLarge": "This image exceeds the 100-megapixel processing limit.",
+      "convertError": "Could not convert this image."
     },
     "heic": {
       "title": "تحويل HEIC إلى JPG",
       "description": "حوّل صور iPhone بصيغة HEIC وHEIF إلى JPG أو PNG أو WebP في المتصفح دون رفعها.",
       "seoTitle": "تحويل HEIC إلى JPG - أداة مجانية | Onlitools",
       "seoDescription": "حوّل صور HEIC وHEIF إلى JPG أو PNG أو WebP محليًا في المتصفح. تحويل مجمع دون رفع الملفات.",
-      "seoKeywords": "تحويل HEIC إلى JPG, تحويل HEIC عبر الإنترنت, محوّل HEIF, تحويل صور iPhone"
+      "seoKeywords": "تحويل HEIC إلى JPG, تحويل HEIC عبر الإنترنت, محوّل HEIF, تحويل صور iPhone",
+      "acceptedFormats": "Select one or more HEIC / HEIF photos"
     },
     "resizer": {
       "title": "تغيير حجم الصور",
       "description": "غيّر أبعاد الصور حسب العرض والارتفاع أو النسبة المئوية أو الحد الأقصى. معالجة مجمعة وتنزيل ZIP.",
       "seoTitle": "تغيير حجم الصور عبر الإنترنت | Onlitools",
       "seoDescription": "غيّر حجم صور JPG وPNG وWebP حسب الأبعاد أو النسبة المئوية أو الحد الأقصى. معالجة مجمعة وخاصة في المتصفح.",
-      "seoKeywords": "تغيير حجم الصور, تغيير أبعاد الصورة عبر الإنترنت, تعديل حجم الصورة, تغيير حجم الصور مجمعة"
+      "seoKeywords": "تغيير حجم الصور, تغيير أبعاد الصورة عبر الإنترنت, تعديل حجم الصورة, تغيير حجم الصور مجمعة",
+      "mode": "Resize mode",
+      "dimensionsMode": "Dimensions",
+      "percentageMode": "Percentage",
+      "maxMode": "Maximum edge",
+      "keepRatio": "Keep aspect ratio",
+      "scale": "Scale",
+      "maxDimension": "Longest edge",
+      "outputFormat": "Output format",
+      "resizeButton": "Resize images",
+      "imageTooLarge": "{name} exceeds the 100-megapixel processing limit.",
+      "invalidDimensions": "Enter valid dimensions under the 100-megapixel processing limit.",
+      "resizeError": "Could not resize this image."
     },
     "cropper": {
       "title": "قص الصور",
       "description": "قص الصور بحرية أو باستخدام نسب 1:1 و4:3 و16:9 و9:16.",
       "seoTitle": "قص الصور عبر الإنترنت | Onlitools",
       "seoDescription": "قص صور JPG وPNG وWebP بحرية أو بنسبة محددة في المتصفح.",
-      "seoKeywords": "قص الصور, قص صورة عبر الإنترنت, أداة قص الصور"
+      "seoKeywords": "قص الصور, قص صورة عبر الإنترنت, أداة قص الصور",
+      "aspectRatio": "Aspect ratio",
+      "free": "Free",
+      "square": "1:1",
+      "landscape43": "4:3",
+      "wide169": "16:9",
+      "portrait916": "9:16",
+      "chooseAnother": "Choose another image",
+      "cropButton": "Crop image",
+      "loadError": "Could not load this image.",
+      "invalidSelection": "Select an area larger than zero pixels.",
+      "cropError": "Could not crop this image."
     },
     "base64": {
       "toTitle": "تحويل الصورة إلى Base64",
@@ -853,7 +1013,22 @@
       "toSeoDescription": "حوّل صور PNG وJPG وWebP وSVG إلى Base64 أو HTML أو CSS محليًا.",
       "fromSeoDescription": "فك ترميز صورة Base64 في المتصفح وتنزيلها بصيغة PNG أو JPG أو WebP.",
       "toSeoKeywords": "تحويل الصورة إلى Base64, صورة Data URL, محوّل Base64 للصور",
-      "fromSeoKeywords": "تحويل Base64 إلى صورة, فك ترميز صورة Base64, Data URL إلى صورة"
+      "fromSeoKeywords": "تحويل Base64 إلى صورة, فك ترميز صورة Base64, Data URL إلى صورة",
+      "changeImage": "Choose another image",
+      "outputType": "Output type",
+      "dataUrl": "Data URL",
+      "output": "Output",
+      "copy": "Copy",
+      "copied": "Copied",
+      "copyError": "Clipboard access failed. Select and copy the text manually.",
+      "readError": "Could not read this image file.",
+      "pasteLabel": "Paste Base64 or a Data URL",
+      "placeholder": "data:image/png;base64,...",
+      "previewButton": "Decode image",
+      "previewAlt": "Decoded image preview",
+      "invalidInput": "Enter a valid Base64 string or image Data URL.",
+      "tooLarge": "The decoded image exceeds the 50 MB limit.",
+      "decodeError": "Could not decode this image. Check the Base64 input and format."
     },
     "info": {
       "title": "معلومات الصورة",
@@ -884,7 +1059,21 @@
       "locationAttribution": "© مساهمو OpenStreetMap",
       "seoTitle": "عارض معلومات وبيانات الصورة | Onlitools",
       "seoDescription": "اعرض أبعاد الصور وحجمها وصيغتها وبيانات EXIF/GPS في المتصفح.",
-      "seoKeywords": "معلومات الصورة, بيانات الصور, عارض EXIF, أبعاد الصورة"
+      "seoKeywords": "معلومات الصورة, بيانات الصور, عارض EXIF, أبعاد الصورة",
+      "fileName": "File name",
+      "fileSize": "File size",
+      "aspectRatio": "Aspect ratio",
+      "colorMode": "Color mode",
+      "decodedMode": "Browser-decoded RGBA data",
+      "metadata": "Metadata",
+      "noMetadata": "No readable EXIF metadata found.",
+      "cameraMake": "Camera make",
+      "cameraModel": "Camera model",
+      "dateTaken": "Date taken",
+      "software": "Software",
+      "latitude": "GPS latitude",
+      "longitude": "GPS longitude",
+      "readError": "Could not read {name}."
     },
     "exif": {
       "title": "إزالة بيانات EXIF",
@@ -892,7 +1081,11 @@
       "animatedGifUnsupported": "لا يدعم التنظيف ملفات GIF لتجنب تحويل الحركة إلى صورة ثابتة.",
       "seoTitle": "إزالة بيانات EXIF من الصور | Onlitools",
       "seoDescription": "أزل موقع GPS ومعلومات الكاميرا وبيانات EXIF من الصور دون رفع الملفات.",
-      "seoKeywords": "إزالة EXIF, إزالة بيانات الصورة, إزالة GPS من الصور"
+      "seoKeywords": "إزالة EXIF, إزالة بيانات الصورة, إزالة GPS من الصور",
+      "outputFormat": "Clean output format",
+      "removeButton": "Remove metadata",
+      "privacyNote": "The output is re-encoded locally and does not retain the source file's EXIF metadata.",
+      "processError": "Could not remove metadata from this image."
     },
     "exifEditor": {
       "eyebrow": "محرر بيانات JPEG الوصفية",
@@ -997,15 +1190,35 @@
       "description": "التقط لونًا من الصورة واعرض الألوان الشائعة بصيغ HEX وRGB وHSL.",
       "seoTitle": "منتقي ألوان الصور - HEX وRGB وHSL | Onlitools",
       "seoDescription": "اختر ألوانًا من صورة واستخرج لوحتها محليًا في المتصفح.",
-      "seoKeywords": "منتقي ألوان الصور, استخراج الألوان من الصورة, لوحة ألوان الصورة"
+      "seoKeywords": "منتقي ألوان الصور, استخراج الألوان من الصورة, لوحة ألوان الصورة",
+      "changeImage": "Choose another image",
+      "clickHint": "Click the image to sample a pixel color.",
+      "dominantColors": "Common colors",
+      "readError": "Could not read pixel colors from this image."
     },
     "svg": {
       "title": "محوّل SVG",
       "description": "حوّل رسومات SVG إلى PNG أو WebP في المتصفح مع ضبط أبعاد الإخراج.",
       "seoTitle": "محوّل SVG إلى PNG أو WebP | Onlitools",
       "seoDescription": "حوّل ملفات SVG محليًا إلى PNG أو WebP وحدد أبعاد الصورة الناتجة.",
-      "seoKeywords": "محوّل SVG, تحويل SVG إلى PNG, تحويل SVG إلى WebP"
+      "seoKeywords": "محوّل SVG, تحويل SVG إلى PNG, تحويل SVG إلى WebP",
+      "chooseAnother": "Choose another SVG",
+      "convertButton": "Convert SVG",
+      "invalidFile": "This is not a valid SVG file.",
+      "fileTooLarge": "SVG files must be smaller than 10 MB.",
+      "invalidDimensions": "Enter valid dimensions within the 100-megapixel limit.",
+      "convertError": "Could not convert this SVG."
     }
+  },
+  "footer": {
+    "about": "حول الموقع",
+    "blog": "المدونة",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة",
+    "contact": "اتصل بنا",
+    "rights": "جميع الحقوق محفوظة.",
+    "navLabel": "تنقل التذييل",
+    "tagline": "أدوات مجانية تحترم الخصوصية للمطورين والمصممين وكل من يحتاج إلى إنجاز مهمة على ملف أو نص بسرعة.",
+    "localFirst": "محلي أولاً · دون تسجيل"
   }
-  
 }

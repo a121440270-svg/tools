@@ -309,7 +309,7 @@
         "description": "查看和使用可复用的提示词模板。"
       },
       "shareNote": {
-        "name": "分享笔记",
+        "name": "临时笔记",
         "description": "临时分享命令、脚本、配置和技术文本。"
       }
     },
@@ -390,7 +390,9 @@
     "ads": "广告 Cookie",
     "acceptAll": "允许所有",
     "save": "保存设置",
-    "close": "关闭"
+    "close": "关闭",
+    "policy": "隐私政策",
+    "rejectAll": "拒绝可选"
   },
   "blog": {
     "title": "博客文章",
@@ -416,7 +418,8 @@
     "items": "条",
     "gotoPage": "跳转到",
     "go": "跳转",
-    "totalItems": "共 {total} 条"
+    "totalItems": "共 {total} 条",
+    "defaultTitle": "博客"
   },
   "common": {
     "loading": "加载中..."
@@ -549,22 +552,22 @@
     "seoSuffix": "图片格式转换 | 批量处理",
     "intro": "WebP 支持多种图片格式批量转换，单图直接下载，多图打包下载。"
   },
-      "accountActivation": {
-        "title": "账户激活",
-        "activating": "正在激活账户...",
-        "success": "账户激活成功！",
-        "redirecting": "3 秒后跳转到登录页...",
-        "loginNow": "立即登录",
-        "failed": "激活失败：{message}",
-        "login": "前往登录",
-        "missingParams": "缺少必要的激活信息",
-        "failedFallback": "账户激活失败"
-      },
-      "password_mismatch": "确认码和密码不一致",
-      "layout": {
-        "support": "请我喝杯咖啡"
-      },
-      "blogPost": {
+  "accountActivation": {
+    "title": "账户激活",
+    "activating": "正在激活账户...",
+    "success": "账户激活成功！",
+    "redirecting": "3 秒后跳转到登录页...",
+    "loginNow": "立即登录",
+    "failed": "激活失败：{message}",
+    "login": "前往登录",
+    "missingParams": "缺少必要的激活信息",
+    "failedFallback": "账户激活失败"
+  },
+  "password_mismatch": "确认码和密码不一致",
+  "layout": {
+    "support": "请我喝杯咖啡"
+  },
+  "blogPost": {
     "articleTitle": "文章标题",
     "titlePlaceholder": "请输入文章标题",
     "chooseLanguage": "选择语言",
@@ -594,8 +597,8 @@
   "remoteShare": {
     "eyebrow": "远程脚本交接",
     "title": "几秒钟内将脚本发送给远程用户",
-    "description": "通过临时链接分享脚本、命令和配置。",
-    "expiryNotice": "链接将在 3 天后过期。链接使用期间，访问会自动延长有效期。",
+    "description": "通过分享链接分享脚本、命令和配置。",
+    "expiryNotice": "分享链接不会过期。",
     "loading": "正在加载分享内容...",
     "visitorMode": "访客模式 · 只能查看分享内容",
     "createOwn": "创建自己的分享",
@@ -608,14 +611,15 @@
     "copyTitle": "保存链接并复制",
     "qr": "二维码",
     "qrTitle": "保存链接并生成二维码",
-    "defaultExpiry": "默认有效期：",
-    "savedExpiry": "已保存。过期时间",
-    "expiryAfterSave": "保存后 3 天",
+    "noExpiry": "链接不会过期",
+    "savedNoExpiry": "已保存。链接不会过期",
     "content": "内容",
     "language": "语言",
     "contentFormat": "内容格式",
     "plainText": "纯文本",
     "commands": "命令、脚本、配置",
+    "refresh": "刷新",
+    "refreshTitle": "重新加载分享内容",
     "fullscreen": "全屏",
     "exitFullscreen": "退出全屏",
     "shareContent": "分享内容",
@@ -623,7 +627,7 @@
     "closeQr": "关闭二维码",
     "qrAlt": "分享链接的二维码",
     "invalid": "此分享链接无效。",
-    "expired": "此链接不存在或已过期。",
+    "expired": "此链接不存在。",
     "savingFirst": "内容尚未保存，正在先行保存...",
     "copied": "分享链接已复制",
     "copyFailed": "复制失败，请手动复制链接。",
@@ -631,11 +635,13 @@
     "qrFailed": "无法生成二维码，请重试。",
     "emptyContent": "请先添加脚本、命令或配置内容。",
     "invalidCode": "链接代码须为 3–48 个字符，只能包含小写字母、数字或连字符。",
-    "savedMessage": "分享链接已保存。过期时间：{expiry}。",
+    "savedMessage": "分享链接已保存，且不会过期。",
     "createFailed": "无法创建分享，请重试。",
     "seoTitle": "OpsDrop | 即时分享脚本、命令和配置",
-    "seoDescription": "通过临时分享链接向远程用户发送脚本、命令和配置。无需注册或安装。",
-    "seoKeywords": "向远程用户发送脚本, 与客户分享脚本, 与客户分享命令, 分享 Bash 脚本, 分享 PowerShell 脚本, 在线分享配置"
+    "seoDescription": "通过分享链接或二维码向远程用户分享脚本、命令和配置。生成二维码后，可使用另一台设备快速扫码打开内容。无需注册或安装。",
+    "seoKeywords": "临时笔记, 二维码分享脚本, 二维码文件分享, 向远程用户发送脚本, 与客户分享脚本, 与客户分享命令, 分享 Bash 脚本, 分享 PowerShell 脚本, 在线分享配置",
+    "seoLinkFeature": "创建分享链接以传递脚本、命令和配置信息",
+    "seoQrFeature": "生成二维码，方便另一台设备扫码打开分享内容"
   },
   "profile": {
     "accountInfo": "账户信息",
@@ -762,10 +768,22 @@
     "loadSample": "加载示例",
     "faqTitle": "常见问题",
     "faq": [
-      { "q": "什么是 JSON 格式化工具？", "a": "JSON 格式化工具会将紧凑的 JSON 转换为带缩进的易读结构，方便检查嵌套数据并更快地调试 API 响应。" },
-      { "q": "保存前可以验证 JSON 吗？", "a": "可以。此工具会实时检查输入是否为有效 JSON，并在复制或下载结果前标出无效内容。" },
-      { "q": "此工具在浏览器本地运行吗？", "a": "是的。所有格式化和验证都在浏览器中进行，JSON 不会上传到服务器。" },
-      { "q": "可以压缩 JSON 以用于生产环境吗？", "a": "可以。使用“压缩”操作移除空白并减小文件大小，同时保留有效的 JSON 语法。" }
+      {
+        "q": "什么是 JSON 格式化工具？",
+        "a": "JSON 格式化工具会将紧凑的 JSON 转换为带缩进的易读结构，方便检查嵌套数据并更快地调试 API 响应。"
+      },
+      {
+        "q": "保存前可以验证 JSON 吗？",
+        "a": "可以。此工具会实时检查输入是否为有效 JSON，并在复制或下载结果前标出无效内容。"
+      },
+      {
+        "q": "此工具在浏览器本地运行吗？",
+        "a": "是的。所有格式化和验证都在浏览器中进行，JSON 不会上传到服务器。"
+      },
+      {
+        "q": "可以压缩 JSON 以用于生产环境吗？",
+        "a": "可以。使用“压缩”操作移除空白并减小文件大小，同时保留有效的 JSON 语法。"
+      }
     ],
     "invalidJson": "无效的 JSON：{message}",
     "messages": {
@@ -782,7 +800,8 @@
     "seoTitle": "在线 JSON 格式化 - 格式化、验证、压缩和下载 JSON",
     "seoDescription": "免费的在线 JSON 格式化、验证、压缩和美化工具。在浏览器中即时格式化、验证、复制、粘贴和下载 JSON。",
     "seoKeywords": "JSON 格式化, JSON 验证, JSON 压缩, 格式化 JSON, JSON 美化, 在线 JSON 工具",
-    "audience": "开发者、QA 工程师和数据分析师"
+    "audience": "开发者、QA 工程师和数据分析师",
+    "format": "格式化"
   },
   "jsonCompare": {
     "category": "JSON 工具",
@@ -805,7 +824,21 @@
     "noChange": "无更改",
     "invalidJson": "无效的 JSON：{message}",
     "seoTitle": "在线比较 JSON",
-    "seoDescription": "使用并排编辑器、字段级高亮和简洁的变更摘要比较两份 JSON 文档。"
+    "seoDescription": "使用并排编辑器、字段级高亮和简洁的变更摘要比较两份 JSON 文档。",
+    "feedbackButton": "提交功能需求",
+    "feedbackTitle": "告诉我们你希望增加什么功能",
+    "feedbackDescription": "你的建议会直接发送给我们，帮助改进这个工具。",
+    "feedbackMessageLabel": "需求描述",
+    "feedbackMessagePlaceholder": "请描述你希望增加的功能或遇到的问题（至少 10 个字符）",
+    "feedbackEmailLabel": "邮箱",
+    "feedbackOptional": "（选填，方便我们回复你）",
+    "feedbackEmailPlaceholder": "you{'@'}example.com",
+    "feedbackSubmit": "发送需求",
+    "feedbackSubmitting": "正在发送…",
+    "feedbackCancel": "取消",
+    "feedbackClose": "关闭",
+    "feedbackSuccess": "收到啦！感谢你的建议。",
+    "feedbackError": "提交失败，请稍后重试。"
   },
   "imageTools": {
     "uploadPrompt": "点击或将图片拖到这里",
@@ -1181,5 +1214,16 @@
       "seoDescription": "将 SVG 矢量图转换为 PNG 或 WebP，并自定义尺寸。浏览器本地净化和处理文件。",
       "seoKeywords": "SVG转换器, SVG转PNG, SVG转WebP, 在线转换SVG"
     }
+  },
+  "footer": {
+    "about": "关于",
+    "blog": "博客",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "contact": "联系我们",
+    "rights": "保留所有权利。",
+    "navLabel": "页脚导航",
+    "tagline": "免费、注重隐私的在线工具，面向开发者、设计师，以及任何需要快速处理文件或文本的人。",
+    "localFirst": "本地优先 · 无需注册"
   }
 }

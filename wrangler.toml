@@ -6,6 +6,7 @@ assets = { directory = "./.output/public/", binding = "ASSETS" }
 
 [vars]
 AGNES_API_BASE_URL = "https://apihub.agnes-ai.com"
+RESEND_FROM = "星河码客 <noreply@yy123.ink>"
 
 [observability]
 enabled = true

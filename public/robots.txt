@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /auth/
+Disallow: /profile
+Disallow: /pay/
+Disallow: /blog/post
+Disallow: /prompts/public
+Disallow: /shares/
+
+# Google AdSense crawler must be able to read every page that serves ads.
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+Sitemap: https://onlitools.com/sitemap_index.xml

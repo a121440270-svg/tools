@@ -13,6 +13,7 @@ import { autocompletion, completionKeymap } from '@codemirror/autocomplete'
 import { javascript } from '@codemirror/lang-javascript'
 import { json } from '@codemirror/lang-json'
 import { markdown } from '@codemirror/lang-markdown'
+import { sql } from '@codemirror/lang-sql'
 import { yaml } from '@codemirror/lang-yaml'
 import { oneDark } from '@codemirror/theme-one-dark'
 
@@ -74,6 +75,7 @@ function getLanguageSupport(language: string): LanguageSupport | [] {
   if (language === 'json') return json()
   if (language === 'yaml') return yaml()
   if (language === 'markdown') return markdown()
+  if (language === 'sql') return sql()
   if (language === 'javascript' || language === 'typescript') return javascript({ typescript: language === 'typescript' })
   return []
 }

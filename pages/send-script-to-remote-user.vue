@@ -28,7 +28,7 @@
             <button class="share-action-button" type="button" :disabled="creating" :title="t('remoteShare.qrTitle')" @click="generateQrCode">{{ t('remoteShare.qr') }}</button>
           </div>
         </div>
-        <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">{{ saved ? savedLabel : defaultExpiryLabel }} {{ expiryLabel }}.</p>
+        <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">{{ saved ? t('remoteShare.savedNoExpiry') : t('remoteShare.noExpiry') }}</p>
       </div>
       <div class="mb-3 flex flex-wrap items-center justify-between gap-2 px-1">
         <label class="text-sm font-medium text-slate-700 dark:text-slate-200">{{ t('remoteShare.content') }}</label>
@@ -39,12 +39,13 @@
             <option value="powershell">PowerShell</option>
             <option value="json">JSON</option>
             <option value="yaml">YAML</option>
+            <option value="sql">SQL</option>
             <option value="text">{{ t('remoteShare.plainText') }}</option>
           </select>
         </label>
         <div class="flex items-center gap-2">
           <span class="text-xs text-slate-500 dark:text-slate-400">{{ t('remoteShare.commands') }}</span>
-          <button class="editor-tool-button" type="button" @click="toggleEditorFullscreen">{{ editorFullscreen ? t('remoteShare.exitFullscreen') : t('remoteShare.fullscreen') }}</button>
+          <button class="editor-tool-button" type="button" :disabled="sharedLoading || creating" :title="t('remoteShare.refreshTitle')" @click="refreshContent">{{ t('remoteShare.refresh') }}</button>
         </div>
       </div>
       <div v-if="sharedError" class="mb-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700 dark:border-amber-900/60 dark:bg-amber-500/10 dark:text-amber-300">{{ sharedError }}</div>
@@ -72,17 +73,18 @@ import QRCode from 'qrcode'
 import { ElMessage } from 'element-plus'
 import { useToolSeo } from '~/composables/useToolSeo'
 
-const { locale, t } = useI18n()
+const { t } = useI18n()
 
 useToolSeo({
-  title: () => t('remoteShare.seoTitle'),
+  title: () => `${t('remoteShare.seoTitle')} - ${t('home.tools.shareNote.name')}`,
   description: () => t('remoteShare.seoDescription'),
   keywords: () => t('remoteShare.seoKeywords'),
   applicationCategory: 'DeveloperApplication',
-  schemaProperties: {
-    name: 'OpsDrop Remote Script Handoff',
-    description: 'Send scripts, commands and configuration to remote users with a temporary share link. Built for IT support, sysadmins and DevOps.'
-  }
+  featureList: () => [t('remoteShare.seoLinkFeature'), t('remoteShare.seoQrFeature')],
+  schemaProperties: () => ({
+    name: t('home.tools.shareNote.name'),
+    description: t('remoteShare.seoDescription')
+  })
 })
 
 const slug = ref('')
@@ -91,10 +93,9 @@ const language = ref('shell')
 const creating = ref(false)
 const errorMessage = ref('')
 const saved = ref(false)
-const expiresAt = ref<number | null>(null)
 const qrDataUrl = ref('')
 const editorTheme = ref<'dark' | 'light'>('light')
-const editorFullscreen = ref(false)
+const editorFullscreen = ref(true)
 let themeObserver: MutationObserver | null = null
 const slugStorageKey = 'opsdrop-temp-note-code'
 const savedSlugStorageKey = 'opsdrop-temp-note-saved-code'
@@ -108,9 +109,6 @@ const shareBaseUrl = computed(() => {
   return `${window.location.origin}/send-script-to-remote-user?share=`
 })
 const shareUrl = computed(() => `${shareBaseUrl.value}${slug.value}`)
-const expiryLabel = computed(() => expiresAt.value ? new Intl.DateTimeFormat(locale.value, { dateStyle: 'medium', timeStyle: 'short' }).format(expiresAt.value) : t('remoteShare.expiryAfterSave'))
-const savedLabel = computed(() => t('remoteShare.savedExpiry'))
-const defaultExpiryLabel = computed(() => t('remoteShare.defaultExpiry'))
 const shared = ref<any | null>(null)
 const sharedLoading = ref(false)
 const sharedError = ref('')
@@ -153,14 +151,12 @@ async function loadSharedShare(shareId: string) {
       id: string
       content: string
       language: string
-      expiresAt: number
     }>(`/api/shares/${shareId}`)
     shared.value = response
     slug.value = response.id
     content.value = response.content || ''
     language.value = response.language || 'shell'
-    expiresAt.value = Number(response.expiresAt) || Date.now() + 259200000
-    saved.value = false
+    saved.value = isOwnerMode.value && isSavedDraft(response.id, response.content, response.language)
   } catch (error: any) {
     shared.value = null
     sharedError.value = error?.data?.message || t('remoteShare.expired')
@@ -210,8 +206,17 @@ async function copyShareLink() {
   }
 }
 
-function toggleEditorFullscreen() {
-  editorFullscreen.value = !editorFullscreen.value
+async function refreshContent() {
+  const shareId = typeof route.query.share === 'string' && !isOwnerMode.value
+    ? route.query.share
+    : saved.value ? slug.value : ''
+
+  if (shareId) {
+    await loadSharedShare(shareId)
+    return
+  }
+
+  loadDraft(slug.value)
 }
 
 function createOwnShare() {
@@ -228,7 +233,6 @@ function createOwnShare() {
   content.value = ''
   language.value = 'shell'
   saved.value = false
-  expiresAt.value = Date.now() + 259200000
 }
 
 async function generateQrCode() {
@@ -260,19 +264,18 @@ async function createShare(): Promise<boolean> {
   }
   creating.value = true
   errorMessage.value = ''
-  const payload = { title: t('remoteShare.eyebrow'), slug: slug.value, content: content.value, language: language.value, ttl: 259200, autoExtend: true }
+  const payload = { title: t('remoteShare.eyebrow'), slug: slug.value, content: content.value, language: language.value }
   const ownsSlug = hasOwnLink(slug.value)
   try {
     await $fetch(ownsSlug ? `/api/shares/${slug.value}` : '/api/shares', { method: ownsSlug ? 'PUT' : 'POST', body: payload } as any)
     saved.value = true
-    expiresAt.value = Date.now() + 259200000
     localStorage.setItem(slugStorageKey, slug.value)
     localStorage.setItem(savedSlugStorageKey, slug.value)
     localStorage.setItem(getStorageKey(contentStorageKey, slug.value), content.value)
     localStorage.setItem(getStorageKey(languageStorageKey, slug.value), language.value)
     localStorage.setItem(getStorageKey(savedContentStorageKey, slug.value), content.value)
     localStorage.setItem(getStorageKey(savedLanguageStorageKey, slug.value), language.value)
-    ElMessage.success(t('remoteShare.savedMessage', { expiry: expiryLabel.value }))
+    ElMessage.success(t('remoteShare.savedMessage'))
     return true
   } catch (error: any) {
     const message = error?.data?.message || error?.statusMessage || t('remoteShare.createFailed')
@@ -287,7 +290,6 @@ onMounted(async () => {
   isOwnerMode.value = !shareId || hasOwnLink(shareId)
   slug.value = localStorage.getItem(slugStorageKey) || makeSlug()
   loadDraft(slug.value)
-  expiresAt.value = Date.now() + 259200000
   const syncEditorTheme = () => { editorTheme.value = document.documentElement.classList.contains('dark') ? 'dark' : 'light' }
   syncEditorTheme()
   themeObserver = new MutationObserver(syncEditorTheme)

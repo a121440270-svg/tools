@@ -1,33 +1,53 @@
-// plugins/google-analytics.client.ts
-export default defineNuxtPlugin((nuxtApp) => {
-  const id = 'G-NP4XQJQRNQ' // 替换为你的 GA ID
+// Google Analytics is only loaded after the visitor explicitly opts in to
+// analytics cookies. The consent state is shared with components/PrivacyConsent.vue
+// through the `cookie_consent` localStorage entry and the `consent-updated` event.
+const GA_ID = 'G-NP4XQJQRNQ'
+const CONSENT_KEY = 'cookie_consent'
 
-  const script1 = document.createElement('script')
-  script1.setAttribute('async', '')
-  script1.src = `https://www.googletagmanager.com/gtag/js?id=${id}`
+type Consent = {
+  necessary?: boolean
+  analytics?: boolean
+  ads?: boolean
+}
 
-  const script2 = document.createElement('script')
-  script2.innerHTML = `
+function readConsent(): Consent | null {
+  try {
+    const raw = localStorage.getItem(CONSENT_KEY)
+    return raw ? (JSON.parse(raw) as Consent) : null
+  } catch {
+    return null
+  }
+}
+
+let gaLoaded = false
+
+function loadAnalytics() {
+  if (gaLoaded) return
+  gaLoaded = true
+
+  const script = document.createElement('script')
+  script.async = true
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`
+  document.head.appendChild(script)
+
+  const inline = document.createElement('script')
+  inline.innerHTML = `
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', '${id}');
+    gtag('config', '${GA_ID}', { anonymize_ip: true });
   `
-  const script3 = document.createElement('script')
-  script3.setAttribute('async', '')
-  script3.setAttribute('data-cfasync', 'false')
-  script3.src = `https://eechicha.com/act/files/tag.min.js?z=9641647`
+  document.head.appendChild(inline)
+}
 
-  // const script4 = document.createElement('script')
-  // script4.setAttribute('async', '')
-  // script4.setAttribute('data-cfasync', 'false')
-  // script4.setAttribute('data-zone', '160318')
-  // script4.src = `https://fpyf8.com/88/tag.min.js`
+function syncConsent() {
+  const consent = readConsent()
+  if (consent?.analytics) loadAnalytics()
+}
 
-  document.head.appendChild(script1)
-  document.head.appendChild(script2)
-  document.head.appendChild(script3)
-  // document.head.appendChild(script4)
+export default defineNuxtPlugin(() => {
+  if (import.meta.server) return
+
+  syncConsent()
+  window.addEventListener('consent-updated', syncConsent)
 })
-
-

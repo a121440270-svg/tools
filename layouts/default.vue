@@ -142,7 +142,7 @@
 
     <!-- 主内容区 flex-1 transition-all duration-300 lg:ml-64 -->
     <div
-      class="flex-1 min-w-0 w-full transition-all duration-300"
+      class="flex-1 min-w-0 w-full flex flex-col transition-all duration-300"
       :style="{
         marginLeft:
           isDesktop && !isSidebarCollapsed ? '16rem' : '0',
@@ -166,18 +166,20 @@
         >
           <HomeIcon class="w-5 h-5" />
         </button>
-        <div class="flex items-center ml-3 relative">
+        <form class="flex items-center ml-3 relative" @submit.prevent="submitSearch">
           <SearchIcon class="w-4 h-4 absolute left-3.5 text-slate-400" />
           <input
-            type="text"
+            v-model="navKeyword"
+            type="search"
             :placeholder="$t('search.placeholder')"
+            :aria-label="$t('search.placeholder')"
             class="rounded-full border border-slate-200 bg-white py-2.5 pl-10 pr-4 w-72 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500"
           />
           <kbd
             class="ml-2 rounded-md border border-slate-200 bg-white px-1.5 py-0.5 font-mono text-[10px] text-slate-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-500"
             >⌘K</kbd
           >
-        </div>
+        </form>
 
         <div class="ml-auto flex items-center gap-2">
           <NuxtLink
@@ -246,12 +248,60 @@
 
       <!-- 内容 -->
       <main
-        class="p-4 pt-0 md:p-6 md:pt-6"
+        class="flex-1 p-4 pt-0 md:p-6 md:pt-6"
         :dir="isRtl ? 'rtl' : 'ltr'"
       >
         <slot />
+        <ToolContentSection />
       </main>
+
+      <footer
+        class="mt-auto border-t border-slate-200/80 bg-gradient-to-b from-white/70 to-slate-50/80 dark:border-slate-800 dark:from-slate-900/70 dark:to-slate-950/80"
+        :dir="isRtl ? 'rtl' : 'ltr'"
+      >
+        <div class="px-4 py-8 md:px-8 md:py-10">
+          <div class="flex flex-col gap-7 lg:flex-row lg:items-start lg:justify-between">
+            <div class="max-w-xs">
+              <NuxtLink
+                :to="localePath('/')"
+                class="inline-flex items-center gap-2.5"
+              >
+                <span
+                  class="relative flex h-8 w-8 items-center justify-center rounded-xl bg-slate-900 font-display text-sm font-bold text-white dark:bg-white dark:text-slate-900"
+                >
+                  O
+                  <span
+                    class="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-[#ff5a2d] ring-2 ring-white dark:ring-slate-900"
+                  />
+                </span>
+                <span class="font-display text-base font-bold tracking-tight text-slate-900 dark:text-white">OnliTool</span>
+              </NuxtLink>
+              <p class="mt-3 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+                {{ $t('footer.tagline') }}
+              </p>
+            </div>
+
+            <nav
+              class="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs font-medium lg:pt-1.5"
+              :aria-label="$t('footer.navLabel')"
+            >
+              <NuxtLink :to="localePath('/about')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ $t('footer.about') }}</NuxtLink>
+              <NuxtLink :to="localePath('/blog')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ $t('footer.blog') }}</NuxtLink>
+              <NuxtLink :to="localePath('/privacy')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ $t('footer.privacy') }}</NuxtLink>
+              <NuxtLink :to="localePath('/terms')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ $t('footer.terms') }}</NuxtLink>
+              <NuxtLink :to="localePath('/contact')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ $t('footer.contact') }}</NuxtLink>
+            </nav>
+          </div>
+
+          <div class="mt-9 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-slate-200/70 pt-5 text-[11px] text-slate-400 dark:border-slate-800/80 dark:text-slate-500 max-[500px]:pb-16">
+            <p>© {{ currentYear }} OnliTool. {{ $t('footer.rights') }}</p>
+            <span class="hidden h-3 w-px bg-slate-200 dark:bg-slate-700 sm:block" />
+            <p class="hidden sm:block">{{ $t('footer.localFirst') }}</p>
+          </div>
+        </div>
+      </footer>
     </div>
+    <FeatureRequest />
   </div>
 </template>
 
@@ -279,10 +329,28 @@ const route = useRoute();
 const localeHead = useLocaleHead({ seo: { canonicalQueries: [] } });
 const isNoIndexRoute = computed(() => {
   const path = route.path.replace(/^\/(zh|ja|de|fr|ar)(?=\/|$)/, "") || "/";
-  return ["/admin", "/auth", "/profile", "/pay/success", "/blog/post"].some(
-    (prefix) => path === prefix || path.startsWith(`${prefix}/`),
-  );
+  return [
+    "/admin",
+    "/auth",
+    "/profile",
+    "/pay",
+    "/blog/post",
+    "/prompts/public",
+    "/shares",
+  ].some((prefix) => path === prefix || path.startsWith(`${prefix}/`)) ||
+    /^\/prompts\/[^/]+$/.test(path);
 });
+
+const currentYear = new Date().getFullYear();
+const navKeyword = ref("");
+
+function submitSearch() {
+  const q = navKeyword.value.trim();
+  navigateTo({
+    path: localePath("/"),
+    query: q ? { q } : undefined,
+  });
+}
 
 useHead(() => {
   const canonicalUrl = localeHead.value.link?.find((link) => link.rel === "canonical")?.href;
@@ -773,7 +841,7 @@ const categories = ref([
       { name: "menu.fontCssGenerator", path: "/font-css-generator", icon: markRaw(FontIcon) },
       { name: "menu.jsoncsv", path: "/json-csv-convert", icon: markRaw(FontIcon) },
       { name: "home.tools.jsonFormatter.name", path: "/json-formatter", icon: markRaw(FontIcon) },
-      { name: "JSON Compare", path: "/json-compare", icon: markRaw(FontIcon) },
+      { name: "jsonCompare.title", path: "/json-compare", icon: markRaw(FontIcon) },
       { name: "home.tools.dateFormat.name", path: "/date-format", icon: markRaw(DateIcon) },
     ],
   },

@@ -330,7 +330,8 @@ const LightbulbIcon = createIcon([
   h('path', { d: 'M9.5 15.5a6 6 0 1 1 5 0l-1.3 1.5h-2.4L9.5 15.5z' })
 ])
 
-const keyword = ref('')
+const initialQuery = useRoute().query.q
+const keyword = ref(Array.isArray(initialQuery) ? String(initialQuery[0] || '') : String(initialQuery || ''))
 const selectedCategory = ref('all')
 const expandedGroups = ref(['ai', 'image', 'file', 'text', 'utility'])
 const searchInput = ref(null)

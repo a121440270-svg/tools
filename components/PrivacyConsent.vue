@@ -3,7 +3,10 @@
     <div class="toast-content">
       <button class="close-btn" @click="close" :aria-label="$t('privacy.close')">&times;</button>
       <h2>{{ $t('privacy.title') }}</h2>
-      <p>{{ $t('privacy.desc') }}</p>
+      <p>
+        {{ $t('privacy.desc') }}
+        <NuxtLink :to="localePath('/privacy')" class="policy-link">{{ $t('privacy.policy') }}</NuxtLink>
+      </p>
       <form>
         <label>
           <input type="checkbox" checked disabled />
@@ -19,6 +22,7 @@
         </label>
       </form>
       <div class="actions">
+        <button type="button" class="reject" @click="rejectAll">{{ $t('privacy.rejectAll') }}</button>
         <button type="button" @click="acceptAll">{{ $t('privacy.acceptAll') }}</button>
         <button type="button" @click="save">{{ $t('privacy.save') }}</button>
       </div>
@@ -32,6 +36,7 @@ const show = ref(false)
 const analytics = ref(false)
 const ads = ref(false)
 const theme = ref('light')
+const localePath = useLocalePath()
 
 function updateTheme() {
   theme.value = document.body.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
@@ -57,6 +62,12 @@ function acceptAll() {
   save()
 }
 
+function rejectAll() {
+  analytics.value = false
+  ads.value = false
+  save()
+}
+
 function save() {
   localStorage.setItem('cookie_consent', JSON.stringify({
     necessary: true,
@@ -64,11 +75,13 @@ function save() {
     ads: ads.value
   }))
   show.value = false
-  location.reload()
+  window.dispatchEvent(new CustomEvent('consent-updated'))
 }
 
 function close() {
-  show.value = false
+  // Closing the banner records the current (default: rejected) choice, so the
+  // banner does not keep reappearing and no optional script is loaded silently.
+  save()
 }
 </script>
 
@@ -132,6 +145,15 @@ form label {
   background: #3182ce;
   color: #fff;
   transition: background 0.2s;
+}
+.actions button.reject {
+  background: transparent;
+  border: 1px solid currentColor;
+  color: inherit;
+}
+.policy-link {
+  color: #3182ce;
+  text-decoration: underline;
 }
 .privacy-consent-toast.light .actions button {
   background: #3182ce;

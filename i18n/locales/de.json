@@ -304,8 +304,28 @@
         "description": "Zeigen Sie wiederverwendbare Prompt-Vorlagen an und nutzen Sie sie."
       },
       "shareNote": {
-        "name": "Notiz teilen",
+        "name": "Temporäre Notiz",
         "description": "Teilen Sie vorübergehend Befehle, Skripte, Konfigurationen und technische Texte."
+      },
+      "fontInspector": {
+        "name": "Font Inspector",
+        "description": "Inspect font metadata, glyph counts, metrics, and Unicode coverage."
+      },
+      "fontUnicodeChecker": {
+        "name": "Font Unicode Checker",
+        "description": "Check font support for text, Unicode ranges, and language character sets."
+      },
+      "fontSizeAnalyzer": {
+        "name": "Font Size Analyzer",
+        "description": "Analyze font file size, glyph count, character mappings, and OpenType tables."
+      },
+      "fontValidator": {
+        "name": "Font Validator",
+        "description": "Check font parsing, core tables, glyph outlines, and Unicode mappings."
+      },
+      "fontCssGenerator": {
+        "name": "Font CSS Generator",
+        "description": "Generate CSS font-face rules and an HTML example for web fonts."
       }
     },
     "seoTitle": "OnliTool - Online-Toolsammlung",
@@ -362,6 +382,19 @@
       "faq_3_a": "Ja. Kleinere Schriftarten bedeuten weniger heruntergeladene Daten und schnellere Seitenladezeiten, während die benötigten Zeichen weiter verfügbar bleiben.",
       "faq_4_q": "Ist WOFF kleiner als TTF?",
       "faq_4_a": "Für das Web ist WOFF oft besser geeignet, da es für den Browser-Transfer optimiert ist. Die Kombination aus WOFF-Ausgabe und Subsetting ist eine bewährte Optimierungsstrategie."
+    },
+    "custom_text": "Custom text",
+    "unicode_range": "Unicode range",
+    "language_preset": "Language preset",
+    "local_processing": "Fonts are processed locally in your browser and are never uploaded.",
+    "original_size": "Original size",
+    "optimized_size": "Optimized size",
+    "saved_size": "Saved size",
+    "reduction": "Reduction",
+    "glyph_count": "Glyphs",
+    "tools": {
+      "inspector": "Font Inspector",
+      "unicodeChecker": "Font Unicode Checker"
     }
   },
   "privacy": {
@@ -372,7 +405,9 @@
     "ads": "Werbe-Cookies",
     "acceptAll": "Alles erlauben",
     "save": "Einstellungen speichern",
-    "close": "Schließen"
+    "close": "Schließen",
+    "policy": "Datenschutzerklärung",
+    "rejectAll": "Optionale ablehnen"
   },
   "blog": {
     "title": "Blogartikel",
@@ -398,7 +433,8 @@
     "items": "Einträge",
     "gotoPage": "Zur Seite",
     "go": "OK",
-    "totalItems": "Insgesamt {total} Einträge"
+    "totalItems": "Insgesamt {total} Einträge",
+    "defaultTitle": "Blog"
   },
   "common": {
     "loading": "Wird geladen..."
@@ -512,21 +548,21 @@
     "seoSuffix": "Bildkonverter | Stapelverarbeitung",
     "intro": "Konvertieren Sie WebP-Bilder in mehrere Formate im Batch, mit Direktdownloads für einzelne Bilder und ZIP-Downloads für mehrere Bilder."
   },
-      "accountActivation": {
-        "title": "Kontoaktivierung",
-        "activating": "Ihr Konto wird aktiviert...",
-        "success": "Konto erfolgreich aktiviert!",
-        "redirecting": "Weiterleitung zur Anmeldung in 3 Sekunden...",
-        "loginNow": "Jetzt anmelden",
-        "failed": "Aktivierung fehlgeschlagen: {message}",
-        "login": "Zur Anmeldung",
-        "missingParams": "Erforderliche Aktivierungsdaten fehlen",
-        "failedFallback": "Kontoaktivierung fehlgeschlagen"
-      },
-      "layout": {
-        "support": "Spendieren Sie mir einen Kaffee"
-      },
-      "blogPost": {
+  "accountActivation": {
+    "title": "Kontoaktivierung",
+    "activating": "Ihr Konto wird aktiviert...",
+    "success": "Konto erfolgreich aktiviert!",
+    "redirecting": "Weiterleitung zur Anmeldung in 3 Sekunden...",
+    "loginNow": "Jetzt anmelden",
+    "failed": "Aktivierung fehlgeschlagen: {message}",
+    "login": "Zur Anmeldung",
+    "missingParams": "Erforderliche Aktivierungsdaten fehlen",
+    "failedFallback": "Kontoaktivierung fehlgeschlagen"
+  },
+  "layout": {
+    "support": "Spendieren Sie mir einen Kaffee"
+  },
+  "blogPost": {
     "articleTitle": "Artikeltitel",
     "titlePlaceholder": "Artikeltitel eingeben",
     "chooseLanguage": "Sprache auswählen",
@@ -556,8 +592,8 @@
   "remoteShare": {
     "eyebrow": "Skriptübergabe an Remote-Nutzer",
     "title": "Senden Sie ein Skript in Sekunden an einen Remote-Nutzer",
-    "description": "Teilen Sie Skripte, Befehle und Konfigurationen über einen temporären Link.",
-    "expiryNotice": "Links laufen nach 3 Tagen ab. Während der Nutzung verlängern weitere Besuche den Link automatisch.",
+    "description": "Teilen Sie Skripte, Befehle und Konfigurationen über einen Freigabelink.",
+    "expiryNotice": "Freigabelinks laufen nicht ab.",
     "loading": "Geteilte Inhalte werden geladen...",
     "visitorMode": "Besuchermodus · geteilte Inhalte nur lesbar",
     "createOwn": "Eigenen Link erstellen",
@@ -570,14 +606,15 @@
     "copyTitle": "Link speichern und kopieren",
     "qr": "QR-Code",
     "qrTitle": "Link speichern und QR-Code erstellen",
-    "defaultExpiry": "Standardgültigkeit:",
-    "savedExpiry": "Gespeichert. Läuft ab am",
-    "expiryAfterSave": "3 Tage nach dem Speichern",
+    "noExpiry": "Der Link läuft nicht ab",
+    "savedNoExpiry": "Gespeichert. Der Link läuft nicht ab",
     "content": "Inhalt",
     "language": "Sprache",
     "contentFormat": "Inhaltsformat",
     "plainText": "Klartext",
     "commands": "Befehle, Skripte, Konfigurationen",
+    "refresh": "Aktualisieren",
+    "refreshTitle": "Geteilte Inhalte neu laden",
     "fullscreen": "Vollbild",
     "exitFullscreen": "Vollbild beenden",
     "shareContent": "Inhalt teilen",
@@ -585,7 +622,7 @@
     "closeQr": "QR-Code schließen",
     "qrAlt": "QR-Code für den Freigabelink",
     "invalid": "Dieser Freigabelink ist ungültig.",
-    "expired": "Dieser Link existiert nicht mehr oder ist bereits abgelaufen.",
+    "expired": "Dieser Link existiert nicht.",
     "savingFirst": "Der Inhalt wurde noch nicht gespeichert. Wird zuerst gespeichert...",
     "copied": "Freigabelink kopiert",
     "copyFailed": "Kopieren fehlgeschlagen. Bitte kopieren Sie den Link manuell.",
@@ -593,11 +630,13 @@
     "qrFailed": "Der QR-Code konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
     "emptyContent": "Fügen Sie vor dem Speichern ein Skript, einen Befehl oder eine Konfiguration hinzu.",
     "invalidCode": "Der Linkcode muss 3–48 Zeichen umfassen und darf nur Kleinbuchstaben, Zahlen oder Bindestriche enthalten.",
-    "savedMessage": "Freigabelink gespeichert. Läuft ab am {expiry}.",
+    "savedMessage": "Freigabelink gespeichert. Er läuft nicht ab.",
     "createFailed": "Freigabe konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
     "seoTitle": "OpsDrop | Skripte, Befehle und Konfigurationen sofort teilen",
-    "seoDescription": "Senden Sie Skripte, Befehle und Konfigurationen über einen temporären Freigabelink an Remote-Nutzer. Ohne Registrierung und Installation.",
-    "seoKeywords": "Skript an Remote-Nutzer senden, Skript mit Kunden teilen, Befehle mit Kunden teilen, Bash-Skript teilen, PowerShell-Skript teilen, Konfiguration online teilen"
+    "seoDescription": "Teilen Sie Skripte, Befehle und Konfigurationen über einen Link oder QR-Code mit Remote-Nutzern. Erstellen Sie einen QR-Code, um Inhalte schnell auf einem anderen Gerät zu öffnen. Ohne Registrierung und Installation.",
+    "seoKeywords": "temporäre Notiz, Skripte per QR-Code teilen, QR-Code-Freigabe, Skript an Remote-Nutzer senden, Skript mit Kunden teilen, Befehle mit Kunden teilen, Bash-Skript teilen, PowerShell-Skript teilen, Konfiguration online teilen",
+    "seoLinkFeature": "Freigabelink für Skripte, Befehle und Konfigurationen erstellen",
+    "seoQrFeature": "QR-Code erstellen, um freigegebene Inhalte auf einem anderen Gerät zu öffnen"
   },
   "profile": {
     "accountInfo": "Kontoinformationen",
@@ -724,10 +763,22 @@
     "loadSample": "Beispiel laden",
     "faqTitle": "Häufig gestellte Fragen",
     "faq": [
-      { "q": "Was ist ein JSON-Formatierer?", "a": "Ein JSON-Formatierer wandelt kompaktes JSON in eine gut lesbare, eingerückte Struktur um, damit Sie verschachtelte Daten prüfen und API-Antworten schneller debuggen können." },
-      { "q": "Kann ich JSON vor dem Speichern validieren?", "a": "Ja. Das Tool prüft die Eingabe in Echtzeit auf gültiges JSON und markiert ungültige Inhalte, bevor Sie das Ergebnis kopieren oder herunterladen." },
-      { "q": "Funktioniert das Tool lokal im Browser?", "a": "Ja. Formatierung und Validierung erfolgen vollständig im Browser; Ihr JSON wird nicht auf einen Server hochgeladen." },
-      { "q": "Kann ich JSON für den Produktionseinsatz minimieren?", "a": "Ja. Mit der Aktion „Minimieren“ entfernen Sie Leerraum und reduzieren die Dateigröße, während die gültige JSON-Syntax erhalten bleibt." }
+      {
+        "q": "Was ist ein JSON-Formatierer?",
+        "a": "Ein JSON-Formatierer wandelt kompaktes JSON in eine gut lesbare, eingerückte Struktur um, damit Sie verschachtelte Daten prüfen und API-Antworten schneller debuggen können."
+      },
+      {
+        "q": "Kann ich JSON vor dem Speichern validieren?",
+        "a": "Ja. Das Tool prüft die Eingabe in Echtzeit auf gültiges JSON und markiert ungültige Inhalte, bevor Sie das Ergebnis kopieren oder herunterladen."
+      },
+      {
+        "q": "Funktioniert das Tool lokal im Browser?",
+        "a": "Ja. Formatierung und Validierung erfolgen vollständig im Browser; Ihr JSON wird nicht auf einen Server hochgeladen."
+      },
+      {
+        "q": "Kann ich JSON für den Produktionseinsatz minimieren?",
+        "a": "Ja. Mit der Aktion „Minimieren“ entfernen Sie Leerraum und reduzieren die Dateigröße, während die gültige JSON-Syntax erhalten bleibt."
+      }
     ],
     "invalidJson": "Ungültiges JSON: {message}",
     "messages": {
@@ -744,7 +795,8 @@
     "seoTitle": "JSON online formatieren - JSON formatieren, validieren, minimieren und herunterladen",
     "seoDescription": "Kostenloser Online-JSON-Formatierer, Validator und Minifier. Formatieren, validieren, kopieren, einfügen und laden Sie JSON sofort im Browser herunter.",
     "seoKeywords": "JSON-Formatierer, JSON-Validator, JSON-Minifier, JSON formatieren, JSON verschönern, Online-JSON-Tool",
-    "audience": "Entwickler, QA-Ingenieure und Datenanalysten"
+    "audience": "Entwickler, QA-Ingenieure und Datenanalysten",
+    "format": "Format"
   },
   "jsonCompare": {
     "category": "JSON-Tool",
@@ -767,7 +819,21 @@
     "noChange": "Keine Änderung",
     "invalidJson": "Ungültiges JSON: {message}",
     "seoTitle": "JSON online vergleichen",
-    "seoDescription": "Vergleichen Sie zwei JSON-Dokumente mit nebeneinanderliegenden Editoren, Hervorhebungen auf Feldebene und einer übersichtlichen Änderungszusammenfassung."
+    "seoDescription": "Vergleichen Sie zwei JSON-Dokumente mit nebeneinanderliegenden Editoren, Hervorhebungen auf Feldebene und einer übersichtlichen Änderungszusammenfassung.",
+    "feedbackButton": "Funktion vorschlagen",
+    "feedbackTitle": "Welche Funktion wünschen Sie sich?",
+    "feedbackDescription": "Ihr Vorschlag wird direkt an uns gesendet und hilft, dieses Tool zu verbessern.",
+    "feedbackMessageLabel": "Ihr Vorschlag",
+    "feedbackMessagePlaceholder": "Beschreiben Sie die gewünschte Funktion oder ein Problem (mindestens 10 Zeichen)",
+    "feedbackEmailLabel": "E-Mail",
+    "feedbackOptional": "(optional, damit wir antworten können)",
+    "feedbackEmailPlaceholder": "you{'@'}example.com",
+    "feedbackSubmit": "Vorschlag senden",
+    "feedbackSubmitting": "Wird gesendet…",
+    "feedbackCancel": "Abbrechen",
+    "feedbackClose": "Schließen",
+    "feedbackSuccess": "Erhalten! Vielen Dank für Ihren Vorschlag.",
+    "feedbackError": "Vorschlag konnte nicht gesendet werden. Bitte versuchen Sie es später erneut."
   },
   "imageTools": {
     "uploadPrompt": "Klicken Sie hier oder ziehen Sie Bilder hierher",
@@ -880,28 +946,62 @@
       "description": "Konvertieren Sie JPG, PNG, WebP, AVIF, GIF, BMP und SVG lokal im Browser. Stapelverarbeitung mit ZIP-Download.",
       "seoTitle": "Bildkonverter - Kostenloses Online-Tool | Onlitools",
       "seoDescription": "Bilder im Browser in JPG, PNG, WebP oder AVIF konvertieren. Dateien lokal stapelweise verarbeiten und einzeln oder als ZIP herunterladen.",
-      "seoKeywords": "Bildkonverter, Bilder online konvertieren, JPG PNG Konverter, WebP Konverter"
+      "seoKeywords": "Bildkonverter, Bilder online konvertieren, JPG PNG Konverter, WebP Konverter",
+      "inputAccepted": "JPG, PNG, WebP, AVIF, GIF, BMP, SVG and HEIC",
+      "convertTo": "Convert to",
+      "convertButton": "Convert images",
+      "converting": "Processing {current}/{total}...",
+      "failed": "Failed",
+      "noFiles": "No supported image files were selected.",
+      "decodeError": "Could not decode image {name} in this browser.",
+      "outputUnsupported": "This browser cannot encode {format}. Choose another output format.",
+      "imageTooLarge": "This image exceeds the 100-megapixel processing limit.",
+      "convertError": "Could not convert this image."
     },
     "heic": {
       "title": "HEIC zu JPG Konverter",
       "description": "Konvertieren Sie iPhone-Fotos im HEIC- oder HEIF-Format lokal im Browser in JPG, PNG oder WebP.",
       "seoTitle": "HEIC zu JPG Konverter - Kostenloses Online-Tool | Onlitools",
       "seoDescription": "HEIC- und HEIF-Fotos lokal im Browser in JPG, PNG oder WebP konvertieren. Stapelverarbeitung ohne Upload.",
-      "seoKeywords": "HEIC zu JPG, HEIC online konvertieren, HEIF Konverter, iPhone Fotos konvertieren"
+      "seoKeywords": "HEIC zu JPG, HEIC online konvertieren, HEIF Konverter, iPhone Fotos konvertieren",
+      "acceptedFormats": "Select one or more HEIC / HEIF photos"
     },
     "resizer": {
       "title": "Bildgröße ändern",
       "description": "Ändern Sie Bildmaße nach Breite und Höhe, Prozentsatz oder maximaler Kantenlänge. Stapelverarbeitung mit ZIP-Download.",
       "seoTitle": "Bildgröße ändern - Bilder online skalieren | Onlitools",
       "seoDescription": "JPG-, PNG- und WebP-Bilder nach Abmessungen, Prozentsatz oder maximaler Größe skalieren. Private Stapelverarbeitung im Browser.",
-      "seoKeywords": "Bildgröße ändern, Bilder online skalieren, Bildabmessungen ändern, Bilder stapelweise verkleinern"
+      "seoKeywords": "Bildgröße ändern, Bilder online skalieren, Bildabmessungen ändern, Bilder stapelweise verkleinern",
+      "mode": "Resize mode",
+      "dimensionsMode": "Dimensions",
+      "percentageMode": "Percentage",
+      "maxMode": "Maximum edge",
+      "keepRatio": "Keep aspect ratio",
+      "scale": "Scale",
+      "maxDimension": "Longest edge",
+      "outputFormat": "Output format",
+      "resizeButton": "Resize images",
+      "imageTooLarge": "{name} exceeds the 100-megapixel processing limit.",
+      "invalidDimensions": "Enter valid dimensions under the 100-megapixel processing limit.",
+      "resizeError": "Could not resize this image."
     },
     "cropper": {
       "title": "Bild zuschneiden",
       "description": "Bilder frei oder mit Seitenverhältnis 1:1, 4:3, 16:9 und 9:16 zuschneiden.",
       "seoTitle": "Bild zuschneiden - Online-Bildzuschnitt | Onlitools",
       "seoDescription": "JPG-, PNG- und WebP-Bilder frei oder mit festen Seitenverhältnissen direkt im Browser zuschneiden.",
-      "seoKeywords": "Bild zuschneiden, Bild online beschneiden, Foto zuschneiden"
+      "seoKeywords": "Bild zuschneiden, Bild online beschneiden, Foto zuschneiden",
+      "aspectRatio": "Aspect ratio",
+      "free": "Free",
+      "square": "1:1",
+      "landscape43": "4:3",
+      "wide169": "16:9",
+      "portrait916": "9:16",
+      "chooseAnother": "Choose another image",
+      "cropButton": "Crop image",
+      "loadError": "Could not load this image.",
+      "invalidSelection": "Select an area larger than zero pixels.",
+      "cropError": "Could not crop this image."
     },
     "base64": {
       "toTitle": "Bild zu Base64",
@@ -913,7 +1013,22 @@
       "toSeoDescription": "PNG-, JPG-, WebP- und SVG-Bilder lokal in Base64, HTML oder CSS konvertieren.",
       "fromSeoDescription": "Base64-Bilder im Browser dekodieren und als PNG, JPG oder WebP herunterladen.",
       "toSeoKeywords": "Bild zu Base64, Bild Data URL, Base64 Bildkonverter",
-      "fromSeoKeywords": "Base64 zu Bild, Data URL zu Bild, Base64 Bild dekodieren"
+      "fromSeoKeywords": "Base64 zu Bild, Data URL zu Bild, Base64 Bild dekodieren",
+      "changeImage": "Choose another image",
+      "outputType": "Output type",
+      "dataUrl": "Data URL",
+      "output": "Output",
+      "copy": "Copy",
+      "copied": "Copied",
+      "copyError": "Clipboard access failed. Select and copy the text manually.",
+      "readError": "Could not read this image file.",
+      "pasteLabel": "Paste Base64 or a Data URL",
+      "placeholder": "data:image/png;base64,...",
+      "previewButton": "Decode image",
+      "previewAlt": "Decoded image preview",
+      "invalidInput": "Enter a valid Base64 string or image Data URL.",
+      "tooLarge": "The decoded image exceeds the 50 MB limit.",
+      "decodeError": "Could not decode this image. Check the Base64 input and format."
     },
     "info": {
       "title": "Bildinformationen",
@@ -944,7 +1059,21 @@
       "locationAttribution": "© OpenStreetMap-Mitwirkende",
       "seoTitle": "Bildinformationen und Metadaten anzeigen | Onlitools",
       "seoDescription": "Bildabmessungen, Dateigröße, Format und verfügbare EXIF/GPS-Daten im Browser anzeigen.",
-      "seoKeywords": "Bildinformationen, Bildmetadaten, EXIF Viewer, Bildabmessungen"
+      "seoKeywords": "Bildinformationen, Bildmetadaten, EXIF Viewer, Bildabmessungen",
+      "fileName": "File name",
+      "fileSize": "File size",
+      "aspectRatio": "Aspect ratio",
+      "colorMode": "Color mode",
+      "decodedMode": "Browser-decoded RGBA data",
+      "metadata": "Metadata",
+      "noMetadata": "No readable EXIF metadata found.",
+      "cameraMake": "Camera make",
+      "cameraModel": "Camera model",
+      "dateTaken": "Date taken",
+      "software": "Software",
+      "latitude": "GPS latitude",
+      "longitude": "GPS longitude",
+      "readError": "Could not read {name}."
     },
     "exif": {
       "title": "EXIF-Metadaten entfernen",
@@ -952,7 +1081,11 @@
       "animatedGifUnsupported": "GIF-Dateien werden nicht bereinigt, damit ihre Animation erhalten bleibt.",
       "seoTitle": "EXIF-Metadaten aus Bildern entfernen | Onlitools",
       "seoDescription": "GPS-Standort, Kameradaten und EXIF-Metadaten direkt im Browser entfernen. Kein Upload.",
-      "seoKeywords": "EXIF entfernen, Bildmetadaten entfernen, GPS aus Fotos entfernen"
+      "seoKeywords": "EXIF entfernen, Bildmetadaten entfernen, GPS aus Fotos entfernen",
+      "outputFormat": "Clean output format",
+      "removeButton": "Remove metadata",
+      "privacyNote": "The output is re-encoded locally and does not retain the source file's EXIF metadata.",
+      "processError": "Could not remove metadata from this image."
     },
     "exifEditor": {
       "eyebrow": "JPEG-Metadateneditor",
@@ -1057,14 +1190,35 @@
       "description": "Farben aus Bildern aufnehmen und häufige Farben in HEX, RGB und HSL anzeigen.",
       "seoTitle": "Bild-Farbwähler - HEX, RGB und HSL | Onlitools",
       "seoDescription": "Farben aus Bildern auswählen und häufige Farben lokal als HEX, RGB und HSL anzeigen.",
-      "seoKeywords": "Bild Farbwähler, Farbe aus Bild, Bildpalette extrahieren"
+      "seoKeywords": "Bild Farbwähler, Farbe aus Bild, Bildpalette extrahieren",
+      "changeImage": "Choose another image",
+      "clickHint": "Click the image to sample a pixel color.",
+      "dominantColors": "Common colors",
+      "readError": "Could not read pixel colors from this image."
     },
     "svg": {
       "title": "SVG-Konverter",
       "description": "SVG-Vektorgrafiken lokal im Browser mit anpassbarer Größe in PNG oder WebP konvertieren.",
       "seoTitle": "SVG-Konverter - SVG zu PNG oder WebP | Onlitools",
       "seoDescription": "SVG-Dateien lokal in PNG oder WebP konvertieren und die Ausgabegröße festlegen.",
-      "seoKeywords": "SVG Konverter, SVG zu PNG, SVG zu WebP"
+      "seoKeywords": "SVG Konverter, SVG zu PNG, SVG zu WebP",
+      "chooseAnother": "Choose another SVG",
+      "convertButton": "Convert SVG",
+      "invalidFile": "This is not a valid SVG file.",
+      "fileTooLarge": "SVG files must be smaller than 10 MB.",
+      "invalidDimensions": "Enter valid dimensions within the 100-megapixel limit.",
+      "convertError": "Could not convert this SVG."
     }
+  },
+  "footer": {
+    "about": "Über uns",
+    "blog": "Blog",
+    "privacy": "Datenschutzerklärung",
+    "terms": "Nutzungsbedingungen",
+    "contact": "Kontakt",
+    "rights": "Alle Rechte vorbehalten.",
+    "navLabel": "Fußzeilennavigation",
+    "tagline": "Kostenlose, datenschutzfreundliche Tools für Entwickler, Designer und alle, die Datei- oder Textaufgaben schnell erledigen wollen.",
+    "localFirst": "Lokal zuerst · Keine Anmeldung nötig"
   }
 }

@@ -304,8 +304,28 @@
         "description": "Affichez et utilisez des modèles de prompts réutilisables."
       },
       "shareNote": {
-        "name": "Partager une note",
+        "name": "Note temporaire",
         "description": "Partagez temporairement des commandes, scripts, configurations et textes techniques."
+      },
+      "fontInspector": {
+        "name": "Font Inspector",
+        "description": "Inspect font metadata, glyph counts, metrics, and Unicode coverage."
+      },
+      "fontUnicodeChecker": {
+        "name": "Font Unicode Checker",
+        "description": "Check font support for text, Unicode ranges, and language character sets."
+      },
+      "fontSizeAnalyzer": {
+        "name": "Font Size Analyzer",
+        "description": "Analyze font file size, glyph count, character mappings, and OpenType tables."
+      },
+      "fontValidator": {
+        "name": "Font Validator",
+        "description": "Check font parsing, core tables, glyph outlines, and Unicode mappings."
+      },
+      "fontCssGenerator": {
+        "name": "Font CSS Generator",
+        "description": "Generate CSS font-face rules and an HTML example for web fonts."
       }
     },
     "seoTitle": "OnliTool - Répertoire d’outils en ligne",
@@ -362,6 +382,19 @@
       "faq_3_a": "Oui. Des fichiers de police plus petits signifient moins de données téléchargées et un chargement plus rapide des pages, tout en conservant les caractères requis.",
       "faq_4_q": "Le WOFF est-il plus petit que le TTF ?",
       "faq_4_a": "Pour le web, le WOFF est souvent plus adapté car il est optimisé pour le transfert dans les navigateurs. Combiner la sortie WOFF avec le sous-ensemble de police est une stratégie d'optimisation courante."
+    },
+    "custom_text": "Custom text",
+    "unicode_range": "Unicode range",
+    "language_preset": "Language preset",
+    "local_processing": "Fonts are processed locally in your browser and are never uploaded.",
+    "original_size": "Original size",
+    "optimized_size": "Optimized size",
+    "saved_size": "Saved size",
+    "reduction": "Reduction",
+    "glyph_count": "Glyphs",
+    "tools": {
+      "inspector": "Font Inspector",
+      "unicodeChecker": "Font Unicode Checker"
     }
   },
   "privacy": {
@@ -372,7 +405,9 @@
     "ads": "Cookies publicitaires",
     "acceptAll": "Tout autoriser",
     "save": "Enregistrer les préférences",
-    "close": "Fermer"
+    "close": "Fermer",
+    "policy": "Politique de confidentialité",
+    "rejectAll": "Refuser les optionnels"
   },
   "blog": {
     "title": "Articles du blog",
@@ -398,7 +433,8 @@
     "items": "éléments",
     "gotoPage": "Aller à la page",
     "go": "OK",
-    "totalItems": "{total} éléments au total"
+    "totalItems": "{total} éléments au total",
+    "defaultTitle": "Blog"
   },
   "common": {
     "loading": "Chargement..."
@@ -512,21 +548,21 @@
     "seoSuffix": "Convertisseur d’images | Traitement par lots",
     "intro": "Convertissez des images WebP vers plusieurs formats en une seule fois, avec téléchargements directs pour les images individuelles et ZIP pour plusieurs images."
   },
-      "accountActivation": {
-        "title": "Activation du compte",
-        "activating": "Activation de votre compte...",
-        "success": "Compte activé avec succès !",
-        "redirecting": "Redirection vers la connexion dans 3 secondes...",
-        "loginNow": "Se connecter maintenant",
-        "failed": "Échec de l’activation : {message}",
-        "login": "Accéder à la connexion",
-        "missingParams": "Les informations d’activation requises sont manquantes",
-        "failedFallback": "Échec de l’activation du compte"
-      },
-      "layout": {
-        "support": "Offrez-moi un café"
-      },
-      "blogPost": {
+  "accountActivation": {
+    "title": "Activation du compte",
+    "activating": "Activation de votre compte...",
+    "success": "Compte activé avec succès !",
+    "redirecting": "Redirection vers la connexion dans 3 secondes...",
+    "loginNow": "Se connecter maintenant",
+    "failed": "Échec de l’activation : {message}",
+    "login": "Accéder à la connexion",
+    "missingParams": "Les informations d’activation requises sont manquantes",
+    "failedFallback": "Échec de l’activation du compte"
+  },
+  "layout": {
+    "support": "Offrez-moi un café"
+  },
+  "blogPost": {
     "articleTitle": "Titre de l’article",
     "titlePlaceholder": "Saisissez un titre d’article",
     "chooseLanguage": "Choisir la langue",
@@ -556,8 +592,8 @@
   "remoteShare": {
     "eyebrow": "Transmission de scripts à distance",
     "title": "Envoyez un script à un utilisateur distant en quelques secondes",
-    "description": "Partagez des scripts, commandes et configurations avec un lien temporaire.",
-    "expiryNotice": "Les liens expirent après 3 jours. Les visites prolongent automatiquement leur durée de validité pendant leur utilisation.",
+    "description": "Partagez des scripts, commandes et configurations avec un lien de partage.",
+    "expiryNotice": "Les liens de partage n’expirent pas.",
     "loading": "Chargement du contenu partagé...",
     "visitorMode": "Mode visiteur · contenu partagé en lecture seule",
     "createOwn": "Créer votre propre partage",
@@ -570,14 +606,15 @@
     "copyTitle": "Enregistrer et copier le lien",
     "qr": "Code QR",
     "qrTitle": "Enregistrer le lien et générer un code QR",
-    "defaultExpiry": "Durée par défaut :",
-    "savedExpiry": "Enregistré. Expire le",
-    "expiryAfterSave": "3 jours après l’enregistrement",
+    "noExpiry": "Le lien n’expire pas",
+    "savedNoExpiry": "Enregistré. Le lien n’expire pas",
     "content": "Contenu",
     "language": "Langue",
     "contentFormat": "Format du contenu",
     "plainText": "Texte brut",
     "commands": "Commandes, scripts, configurations",
+    "refresh": "Actualiser",
+    "refreshTitle": "Recharger le contenu partagé",
     "fullscreen": "Plein écran",
     "exitFullscreen": "Quitter le plein écran",
     "shareContent": "Partager le contenu",
@@ -585,7 +622,7 @@
     "closeQr": "Fermer le code QR",
     "qrAlt": "Code QR du lien de partage",
     "invalid": "Ce lien de partage n’est pas valide.",
-    "expired": "Ce lien n’existe pas ou a déjà expiré.",
+    "expired": "Ce lien n’existe pas.",
     "savingFirst": "Le contenu n’est pas encore enregistré. Enregistrement préalable...",
     "copied": "Lien de partage copié",
     "copyFailed": "Échec de la copie. Veuillez copier le lien manuellement.",
@@ -593,11 +630,13 @@
     "qrFailed": "Impossible de générer le code QR. Veuillez réessayer.",
     "emptyContent": "Ajoutez un script, une commande ou une configuration avant l’enregistrement.",
     "invalidCode": "Le code doit comporter 3 à 48 caractères : lettres minuscules, chiffres ou traits d’union uniquement.",
-    "savedMessage": "Lien de partage enregistré. Expiration : {expiry}.",
+    "savedMessage": "Lien de partage enregistré. Il n’expire pas.",
     "createFailed": "Impossible de créer le partage. Veuillez réessayer.",
     "seoTitle": "OpsDrop | Partagez instantanément scripts, commandes et configurations",
-    "seoDescription": "Envoyez des scripts, commandes et configurations à distance avec un lien temporaire. Sans inscription ni installation.",
-    "seoKeywords": "envoyer un script à distance, partager un script avec un client, partager des commandes avec un client, partager un script Bash, partager un script PowerShell, partager une configuration en ligne"
+    "seoDescription": "Partagez des scripts, commandes et configurations avec des utilisateurs distants via un lien ou un code QR. Générez un code QR pour ouvrir rapidement le contenu depuis un autre appareil. Sans inscription ni installation.",
+    "seoKeywords": "note temporaire, partager des scripts par code QR, partage par code QR, envoyer un script à distance, partager un script avec un client, partager des commandes avec un client, partager un script Bash, partager un script PowerShell, partager une configuration en ligne",
+    "seoLinkFeature": "Créer un lien de partage pour des scripts, commandes et configurations",
+    "seoQrFeature": "Générer un code QR pour ouvrir le contenu partagé depuis un autre appareil"
   },
   "profile": {
     "accountInfo": "Informations du compte",
@@ -724,10 +763,22 @@
     "loadSample": "Charger un exemple",
     "faqTitle": "Questions fréquentes",
     "faq": [
-      { "q": "Qu’est-ce qu’un formateur JSON ?", "a": "Un formateur JSON transforme un JSON compact en structure indentée et lisible afin d’examiner les données imbriquées et de déboguer plus rapidement les réponses API." },
-      { "q": "Puis-je valider le JSON avant de l’enregistrer ?", "a": "Oui. L’outil vérifie en temps réel que l’entrée est un JSON valide et signale le contenu incorrect avant sa copie ou son téléchargement." },
-      { "q": "Cet outil fonctionne-t-il localement dans le navigateur ?", "a": "Oui. Le formatage et la validation ont lieu dans votre navigateur ; votre JSON n’est pas envoyé à un serveur." },
-      { "q": "Puis-je minifier le JSON pour la production ?", "a": "Oui. Utilisez l’action Minifier pour supprimer les espaces et réduire la taille du fichier tout en conservant une syntaxe JSON valide." }
+      {
+        "q": "Qu’est-ce qu’un formateur JSON ?",
+        "a": "Un formateur JSON transforme un JSON compact en structure indentée et lisible afin d’examiner les données imbriquées et de déboguer plus rapidement les réponses API."
+      },
+      {
+        "q": "Puis-je valider le JSON avant de l’enregistrer ?",
+        "a": "Oui. L’outil vérifie en temps réel que l’entrée est un JSON valide et signale le contenu incorrect avant sa copie ou son téléchargement."
+      },
+      {
+        "q": "Cet outil fonctionne-t-il localement dans le navigateur ?",
+        "a": "Oui. Le formatage et la validation ont lieu dans votre navigateur ; votre JSON n’est pas envoyé à un serveur."
+      },
+      {
+        "q": "Puis-je minifier le JSON pour la production ?",
+        "a": "Oui. Utilisez l’action Minifier pour supprimer les espaces et réduire la taille du fichier tout en conservant une syntaxe JSON valide."
+      }
     ],
     "invalidJson": "JSON non valide : {message}",
     "messages": {
@@ -744,7 +795,8 @@
     "seoTitle": "Formateur JSON en ligne - Formater, valider, minifier et télécharger du JSON",
     "seoDescription": "Formateur, validateur et minificateur JSON gratuit. Formatez, validez, copiez, collez et téléchargez du JSON instantanément dans votre navigateur.",
     "seoKeywords": "formateur JSON, validateur JSON, minificateur JSON, formater JSON, embellisseur JSON, outil JSON en ligne",
-    "audience": "Développeurs, ingénieurs QA et analystes de données"
+    "audience": "Développeurs, ingénieurs QA et analystes de données",
+    "format": "Format"
   },
   "jsonCompare": {
     "category": "Outil JSON",
@@ -767,7 +819,21 @@
     "noChange": "Aucune modification",
     "invalidJson": "JSON non valide : {message}",
     "seoTitle": "Comparer du JSON en ligne",
-    "seoDescription": "Comparez deux documents JSON avec des éditeurs côte à côte, des différences mises en évidence au niveau des champs et un résumé concis."
+    "seoDescription": "Comparez deux documents JSON avec des éditeurs côte à côte, des différences mises en évidence au niveau des champs et un résumé concis.",
+    "feedbackButton": "Suggérer une fonctionnalité",
+    "feedbackTitle": "Quelle fonctionnalité aimeriez-vous ?",
+    "feedbackDescription": "Votre suggestion nous sera envoyée directement pour nous aider à améliorer cet outil.",
+    "feedbackMessageLabel": "Votre suggestion",
+    "feedbackMessagePlaceholder": "Décrivez la fonctionnalité souhaitée ou le problème rencontré (10 caractères minimum)",
+    "feedbackEmailLabel": "E-mail",
+    "feedbackOptional": "(facultatif, pour que nous puissions vous répondre)",
+    "feedbackEmailPlaceholder": "you{'@'}example.com",
+    "feedbackSubmit": "Envoyer la suggestion",
+    "feedbackSubmitting": "Envoi en cours…",
+    "feedbackCancel": "Annuler",
+    "feedbackClose": "Fermer",
+    "feedbackSuccess": "Bien reçu ! Merci pour votre suggestion.",
+    "feedbackError": "Impossible d'envoyer votre suggestion. Veuillez réessayer plus tard."
   },
   "imageTools": {
     "uploadPrompt": "Cliquez ici ou glissez-déposez des images",
@@ -880,28 +946,62 @@
       "description": "Convertissez JPG, PNG, WebP, AVIF, GIF, BMP et SVG dans votre navigateur. Traitement par lots et téléchargement ZIP.",
       "seoTitle": "Convertisseur d’images - Outil gratuit | Onlitools",
       "seoDescription": "Convertissez vos images en JPG, PNG, WebP ou AVIF dans le navigateur. Traitement local par lots, téléchargement individuel ou ZIP.",
-      "seoKeywords": "convertisseur d’images, convertir image en ligne, convertisseur JPG PNG, convertisseur WebP"
+      "seoKeywords": "convertisseur d’images, convertir image en ligne, convertisseur JPG PNG, convertisseur WebP",
+      "inputAccepted": "JPG, PNG, WebP, AVIF, GIF, BMP, SVG and HEIC",
+      "convertTo": "Convert to",
+      "convertButton": "Convert images",
+      "converting": "Processing {current}/{total}...",
+      "failed": "Failed",
+      "noFiles": "No supported image files were selected.",
+      "decodeError": "Could not decode image {name} in this browser.",
+      "outputUnsupported": "This browser cannot encode {format}. Choose another output format.",
+      "imageTooLarge": "This image exceeds the 100-megapixel processing limit.",
+      "convertError": "Could not convert this image."
     },
     "heic": {
       "title": "Convertisseur HEIC en JPG",
       "description": "Convertissez les photos iPhone HEIC et HEIF en JPG, PNG ou WebP dans votre navigateur, sans envoi de fichiers.",
       "seoTitle": "Convertisseur HEIC en JPG - Outil gratuit | Onlitools",
       "seoDescription": "Convertissez les photos HEIC et HEIF en JPG, PNG ou WebP localement. Conversion par lots sans téléversement.",
-      "seoKeywords": "HEIC en JPG, convertir HEIC en ligne, convertisseur HEIF, convertir photos iPhone"
+      "seoKeywords": "HEIC en JPG, convertir HEIC en ligne, convertisseur HEIF, convertir photos iPhone",
+      "acceptedFormats": "Select one or more HEIC / HEIF photos"
     },
     "resizer": {
       "title": "Redimensionneur d’images",
       "description": "Redimensionnez par largeur et hauteur, pourcentage ou côté maximal. Traitement par lots avec téléchargement ZIP.",
       "seoTitle": "Redimensionneur d’images - Redimensionner en ligne | Onlitools",
       "seoDescription": "Redimensionnez les images JPG, PNG et WebP par dimensions, pourcentage ou taille maximale. Traitement local et privé par lots.",
-      "seoKeywords": "redimensionner image en ligne, redimensionneur d’images, modifier taille image, redimensionner images par lots"
+      "seoKeywords": "redimensionner image en ligne, redimensionneur d’images, modifier taille image, redimensionner images par lots",
+      "mode": "Resize mode",
+      "dimensionsMode": "Dimensions",
+      "percentageMode": "Percentage",
+      "maxMode": "Maximum edge",
+      "keepRatio": "Keep aspect ratio",
+      "scale": "Scale",
+      "maxDimension": "Longest edge",
+      "outputFormat": "Output format",
+      "resizeButton": "Resize images",
+      "imageTooLarge": "{name} exceeds the 100-megapixel processing limit.",
+      "invalidDimensions": "Enter valid dimensions under the 100-megapixel processing limit.",
+      "resizeError": "Could not resize this image."
     },
     "cropper": {
       "title": "Recadrer une image",
       "description": "Recadrez librement ou utilisez les formats 1:1, 4:3, 16:9 et 9:16.",
       "seoTitle": "Recadrer une image en ligne | Onlitools",
       "seoDescription": "Recadrez des images JPG, PNG et WebP librement ou avec un format prédéfini, directement dans le navigateur.",
-      "seoKeywords": "recadrer image, outil de recadrage photo, recadrage image en ligne"
+      "seoKeywords": "recadrer image, outil de recadrage photo, recadrage image en ligne",
+      "aspectRatio": "Aspect ratio",
+      "free": "Free",
+      "square": "1:1",
+      "landscape43": "4:3",
+      "wide169": "16:9",
+      "portrait916": "9:16",
+      "chooseAnother": "Choose another image",
+      "cropButton": "Crop image",
+      "loadError": "Could not load this image.",
+      "invalidSelection": "Select an area larger than zero pixels.",
+      "cropError": "Could not crop this image."
     },
     "base64": {
       "toTitle": "Image vers Base64",
@@ -913,7 +1013,22 @@
       "toSeoDescription": "Convertissez localement des images PNG, JPG, WebP et SVG en Base64, HTML ou CSS.",
       "fromSeoDescription": "Décodez une image Base64 dans le navigateur et téléchargez-la en PNG, JPG ou WebP.",
       "toSeoKeywords": "image en Base64, image Data URL, convertisseur Base64 image",
-      "fromSeoKeywords": "Base64 en image, Data URL en image, décoder image Base64"
+      "fromSeoKeywords": "Base64 en image, Data URL en image, décoder image Base64",
+      "changeImage": "Choose another image",
+      "outputType": "Output type",
+      "dataUrl": "Data URL",
+      "output": "Output",
+      "copy": "Copy",
+      "copied": "Copied",
+      "copyError": "Clipboard access failed. Select and copy the text manually.",
+      "readError": "Could not read this image file.",
+      "pasteLabel": "Paste Base64 or a Data URL",
+      "placeholder": "data:image/png;base64,...",
+      "previewButton": "Decode image",
+      "previewAlt": "Decoded image preview",
+      "invalidInput": "Enter a valid Base64 string or image Data URL.",
+      "tooLarge": "The decoded image exceeds the 50 MB limit.",
+      "decodeError": "Could not decode this image. Check the Base64 input and format."
     },
     "info": {
       "title": "Informations sur l’image",
@@ -944,7 +1059,21 @@
       "locationAttribution": "© Contributeurs OpenStreetMap",
       "seoTitle": "Informations et métadonnées d’image | Onlitools",
       "seoDescription": "Affichez les dimensions, la taille, le format et les métadonnées EXIF/GPS dans votre navigateur.",
-      "seoKeywords": "informations image, métadonnées image, lecteur EXIF, dimensions photo"
+      "seoKeywords": "informations image, métadonnées image, lecteur EXIF, dimensions photo",
+      "fileName": "File name",
+      "fileSize": "File size",
+      "aspectRatio": "Aspect ratio",
+      "colorMode": "Color mode",
+      "decodedMode": "Browser-decoded RGBA data",
+      "metadata": "Metadata",
+      "noMetadata": "No readable EXIF metadata found.",
+      "cameraMake": "Camera make",
+      "cameraModel": "Camera model",
+      "dateTaken": "Date taken",
+      "software": "Software",
+      "latitude": "GPS latitude",
+      "longitude": "GPS longitude",
+      "readError": "Could not read {name}."
     },
     "exif": {
       "title": "Supprimer les métadonnées EXIF",
@@ -952,7 +1081,11 @@
       "animatedGifUnsupported": "Le nettoyage des GIF est désactivé pour préserver leur animation.",
       "seoTitle": "Supprimer les métadonnées EXIF d’une image | Onlitools",
       "seoDescription": "Supprimez la localisation GPS, les détails de l’appareil et les métadonnées EXIF sans téléversement.",
-      "seoKeywords": "supprimer EXIF, supprimer métadonnées image, retirer GPS photo"
+      "seoKeywords": "supprimer EXIF, supprimer métadonnées image, retirer GPS photo",
+      "outputFormat": "Clean output format",
+      "removeButton": "Remove metadata",
+      "privacyNote": "The output is re-encoded locally and does not retain the source file's EXIF metadata.",
+      "processError": "Could not remove metadata from this image."
     },
     "exifEditor": {
       "eyebrow": "Éditeur de métadonnées JPEG",
@@ -1057,14 +1190,35 @@
       "description": "Prélevez une couleur et affichez les couleurs fréquentes en HEX, RGB et HSL.",
       "seoTitle": "Pipette de couleur d’image - HEX, RGB, HSL | Onlitools",
       "seoDescription": "Prélevez des couleurs d’une image et explorez sa palette localement dans le navigateur.",
-      "seoKeywords": "pipette couleur image, extraire palette image, couleur HEX RGB HSL"
+      "seoKeywords": "pipette couleur image, extraire palette image, couleur HEX RGB HSL",
+      "changeImage": "Choose another image",
+      "clickHint": "Click the image to sample a pixel color.",
+      "dominantColors": "Common colors",
+      "readError": "Could not read pixel colors from this image."
     },
     "svg": {
       "title": "Convertisseur SVG",
       "description": "Convertissez des fichiers SVG en PNG ou WebP dans votre navigateur avec dimensions réglables.",
       "seoTitle": "Convertisseur SVG vers PNG ou WebP | Onlitools",
       "seoDescription": "Convertissez localement des graphiques SVG en PNG ou WebP et choisissez les dimensions de sortie.",
-      "seoKeywords": "convertisseur SVG, SVG en PNG, SVG en WebP"
+      "seoKeywords": "convertisseur SVG, SVG en PNG, SVG en WebP",
+      "chooseAnother": "Choose another SVG",
+      "convertButton": "Convert SVG",
+      "invalidFile": "This is not a valid SVG file.",
+      "fileTooLarge": "SVG files must be smaller than 10 MB.",
+      "invalidDimensions": "Enter valid dimensions within the 100-megapixel limit.",
+      "convertError": "Could not convert this SVG."
     }
+  },
+  "footer": {
+    "about": "À propos",
+    "blog": "Blog",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "contact": "Contact",
+    "rights": "Tous droits réservés.",
+    "navLabel": "Navigation de pied de page",
+    "tagline": "Des outils gratuits et respectueux de la vie privée pour les développeurs, les designers et tous ceux qui veulent traiter un fichier ou un texte rapidement.",
+    "localFirst": "Local d'abord · Sans inscription"
   }
 }

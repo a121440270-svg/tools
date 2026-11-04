@@ -21,7 +21,7 @@
 
       <div class="mb-4 flex flex-wrap gap-4 items-center">
         <span class="px-2 py-1 bg-primary/10 text-primary rounded text-xs">{{ $t('blog.category') }}：{{ article.category }}</span>
-        <!-- <span class="text-xs text-gray-500 dark:text-gray-400">{{ $t('blog.author') }}：{{ article.author }}</span> -->
+        <span v-if="article.author" class="text-xs text-gray-500 dark:text-gray-400">{{ $t('blog.author') }}：{{ article.author }}</span>
         <!-- edit link shown only to the article author -->
       <span v-if="canEdit" class="text-xs text-gray-500 dark:text-gray-400">
         <NuxtLink :to="localePath(editLink)">

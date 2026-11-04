@@ -7,17 +7,8 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      script: [
-        {
-          src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1963722206933589",
-          async: true
-        },
-        {
-          src: "https://5gvci.com/act/files/tag.min.js?z=11885536",
-          "data-cfasync": "false",
-          async: true
-        }
-      ],
+      // AdSense is loaded conditionally per route in layouts/default.vue so that
+      // noindex pages (admin, auth, profile, pay, 404) never carry the ad script.
       meta: [
         { name: "google-adsense-account", content: "ca-pub-1963722206933589" }, // 如果需要
                 {
@@ -78,10 +69,20 @@ export default defineNuxtConfig({
     url: 'https://onlitools.com',
     name: 'OnliTool - Online Tools for Developers'
   }, sitemap: {
-    // exclude all URLs that start with /secret
-    exclude: ['/admin/**','/auth/**','/blog/post','/profile','/pay/success'],
+    // Blog articles are generated from the D1 database by this endpoint.
+    sources: ['/api/__sitemap__/articles'],
+    exclude: [
+      '/admin/**',
+      '/auth/**',
+      '/profile',
+      '/pay/**',
+      '/blog/post',
+      '/prompts/**',
+      '/shares/**',
+      '/send-script-to-remote-user/**'
+    ],
     defaults: {
-      changefreq: 'daily',
+      changefreq: 'weekly',
       priority: 0.7
     }
   }

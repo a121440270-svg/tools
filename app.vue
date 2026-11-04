@@ -9,7 +9,7 @@
 import PrivacyConsent from '~/components/PrivacyConsent.vue'
 import { ID_INJECTION_KEY } from 'element-plus'
 import { provide } from 'vue'
-import { nextTick, onMounted, onBeforeUnmount, watch } from 'vue'
+import { nextTick, onMounted, onBeforeUnmount, watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 provide(ID_INJECTION_KEY, {
@@ -19,6 +19,27 @@ provide(ID_INJECTION_KEY, {
 
 const route = useRoute()
 const nonToolRoutePrefixes = ['/about', '/admin', '/auth', '/blog', '/pay', '/profile', '/prompts']
+
+// AdSense must be present on content pages (including the homepage, which does
+// not use the default layout) but never on account, admin, payment or UGC pages.
+const noIndexPrefixes = ['/admin', '/auth', '/profile', '/pay', '/blog/post', '/prompts/public']
+const isNoIndexPage = computed(() => {
+  const path = route.path.replace(/^\/(zh|ja|de|fr|ar)(?=\/|$)/, '') || '/'
+  return noIndexPrefixes.some(prefix => path === prefix || path.startsWith(`${prefix}/`)) ||
+    /^\/prompts\/[^/]+$/.test(path)
+})
+
+useHead(() => ({
+  script: isNoIndexPage.value
+    ? []
+    : [
+        {
+          src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1963722206933589',
+          async: true,
+          crossorigin: 'anonymous'
+        }
+      ]
+}))
 const localePrefix = /^\/(zh|ja|de|fr|ar)(?=\/|$)/
 let activeToolPage: { name: string; url: string } | null = null
 
