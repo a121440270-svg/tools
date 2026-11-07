@@ -32,12 +32,22 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
+
 const { t } = useI18n()
 const size = '100KB'
+const format = computed(() => t('imageTarget.formatPng'))
+const faqItems = computed(() => [
+  { q: t('imageTarget.question1', { format: format.value, size }), a: t('imageTarget.answer1') },
+  { q: t('imageTarget.question2'), a: t('imageTarget.answer2') },
+  { q: t('imageTarget.question3'), a: t('imageTarget.answer3') }
+])
+
 useToolSeo({
-  title: () => t('imageTarget.seoTitle', { format: t('imageTarget.formatPng'), size }),
-  description: () => t('imageTarget.seoDescription', { format: t('imageTarget.formatPng'), size }),
-  keywords: () => t('imageTarget.seoKeywords', { format: t('imageTarget.formatPng'), size })
+  title: () => t('imageTarget.seoTitle', { format: format.value, size }),
+  description: () => t('imageTarget.seoDescription', { format: format.value, size }),
+  keywords: () => t('imageTarget.seoKeywords', { format: format.value, size }),
+  faqItems
 })
 </script>
 

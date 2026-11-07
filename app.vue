@@ -29,6 +29,23 @@ const isNoIndexPage = computed(() => {
     /^\/prompts\/[^/]+$/.test(path)
 })
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': 'https://onlitools.com/#organization',
+  name: 'OnliTool',
+  alternateName: 'onlitools.com',
+  url: 'https://onlitools.com/',
+  description:
+    'Free browser-based tools for image processing, file conversion and text utilities. Files are processed locally and never uploaded.',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://onlitools.com/logo.svg',
+    width: 512,
+    height: 512
+  }
+}
+
 useHead(() => ({
   script: isNoIndexPage.value
     ? []
@@ -37,6 +54,10 @@ useHead(() => ({
           src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1963722206933589',
           async: true,
           crossorigin: 'anonymous'
+        },
+        {
+          type: 'application/ld+json',
+          children: JSON.stringify(organizationSchema)
         }
       ]
 }))

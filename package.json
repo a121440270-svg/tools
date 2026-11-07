@@ -10,7 +10,8 @@
     "preview": "npm run build && wrangler dev",
     "postinstall": "nuxt prepare",
     "deploy": "npm run se && npm run build && wrangler deploy",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types",
+    "llms": "node scripts/generate-llms.mjs"
   },
   "dependencies": {
     "@codemirror/autocomplete": "^6.20.3",

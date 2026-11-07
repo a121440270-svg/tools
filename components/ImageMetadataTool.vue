@@ -184,15 +184,11 @@ watch(format, () => {
   }
 })
 
-useHead(() => {
-  const key = toolKey.value
-  return {
-    title: t(`imageTools.${key}.seoTitle`),
-    meta: [
-      { name: 'description', content: t(`imageTools.${key}.seoDescription`) },
-      { name: 'keywords', content: t(`imageTools.${key}.seoKeywords`) }
-    ]
-  }
+useToolSeo({
+  title: () => t(`imageTools.${toolKey.value}.seoTitle`),
+  description: () => t(`imageTools.${toolKey.value}.seoDescription`),
+  keywords: () => t(`imageTools.${toolKey.value}.seoKeywords`),
+  applicationCategory: 'MultimediaApplication'
 })
 
 function ratio(width, height) {

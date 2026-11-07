@@ -126,7 +126,6 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { Font } from 'fonteditor-core'
 import { ensureWoff2Support, FONT_LANGUAGE_PRESETS, getFontFormat, getMappedCodePoints, parseFontBuffer, parseUnicodeRanges, useSharedFontFile, useSharedSubsetText } from '~/composables/useFontTools'
 const { t } = useI18n()
 const sharedFontFile = useSharedFontFile()
@@ -164,6 +163,10 @@ useToolSeo({
   description: pageDescription,
   keywords: pageKeywords,
   featureList: computed(() => pageKeywords.value.split(',').map(item => item.trim()).filter(Boolean)),
+  faqItems: computed(() => [1, 2, 3, 4].map((index) => ({
+    q: t(`font.section.faq_${index}_q`),
+    a: t(`font.section.faq_${index}_a`)
+  }))),
   schemaProperties: { category: 'Font Tools' }
 })
 
@@ -306,6 +309,7 @@ async function extractFont() {
   try {
     progress.value = 25
     if (outputType.value === 'woff2') await ensureWoff2Support()
+    const { Font } = await import('fonteditor-core')
     const font = Font.create(fontBuffer.value, {
       type: sourceFormat.value,
       subset: selectedCodePoints.value,

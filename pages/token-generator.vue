@@ -69,6 +69,11 @@ import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 
 const { t } = useI18n()
+useToolSeo({
+  title: () => `${t('tokenTool.title')} | OnliTool`,
+  description: () => t('tokenTool.description'),
+  applicationCategory: 'DeveloperApplication'
+})
 const token = ref('')
 const length = ref(32)
 const type = ref('alphanumeric')

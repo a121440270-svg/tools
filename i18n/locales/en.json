@@ -19,6 +19,7 @@
     "local_message": "Files are processed locally in your browser and are never uploaded."
   },
   "menu": {
+    "alternatives": "Alternatives",
     "ttf": "Font Subsetter",
     "fontInspector": "Font Inspector",
     "fontUnicodeChecker": "Font Unicode Checker",
@@ -351,12 +352,12 @@
     "desc": "Subset TTF, OTF, WOFF, or WOFF2 fonts by keeping only the characters your project needs."
   },
   "font": {
-    "seo_desc": "Subset and compress TTF, OTF, WOFF, and WOFF2 fonts by removing unused glyphs. Create smaller, web-ready fonts locally in your browser.",
-    "seo_keywords": "font subsetter, font subsetting, font compressor, font compression, compress TTF, compress OTF, reduce font size, remove unused glyphs, web font subset, WOFF2 subset",
-    "title": "Font Subsetter & Compressor | Reduce Font Size",
+    "seo_desc": "Compress fonts for the web online: subset TTF, OTF, WOFF and WOFF2 files in your browser, remove unused glyphs and download a smaller web-ready font. No upload, no account.",
+    "seo_keywords": "compress fonts for web, font compressor, font compressor online, compress ttf, ttf compressor, web font compressor, font subsetter, font subsetting, reduce font size, WOFF2 subset",
+    "title": "Compress Fonts for Web Online — TTF/OTF/WOFF2 Font Compressor",
     "desc": "Upload a TTF, OTF, WOFF, or WOFF2 font, choose the characters to keep, and create a smaller web-ready font by removing unused glyphs.",
-    "h1": "Font Subsetter & Font Compressor",
-    "lead": "Remove unused characters and glyphs from TTF, OTF, WOFF, or WOFF2 fonts to reduce file size for the web.",
+    "h1": "Compress Fonts for Web (TTF, OTF, WOFF2)",
+    "lead": "Compress fonts for the web by keeping only the characters and glyphs your page needs. Smaller TTF, OTF, WOFF and WOFF2 files, generated locally in your browser.",
     "upload": "Upload Font",
     "selected": "Selected: {name}",
     "origin_size": "Original size: {size}",
@@ -1113,6 +1114,21 @@
     "encoding": "Digest encoding",
     "hex": "Hexadecimal (base 16)",
     "copyTitle": "Copy to clipboard"
+  },
+  "tokenTool": {
+    "category": "Security",
+    "title": "Random Token Generator",
+    "description": "Generate secure random tokens for API keys, passwords, session IDs and test data. Choose the length and character set, and everything runs in your browser.",
+    "copy": "Copy",
+    "generate": "Generate",
+    "outputLabel": "Generated token",
+    "placeholder": "Your token appears here",
+    "length": "Length",
+    "type": "Character set",
+    "alphanumeric": "Alphanumeric (A-Z, a-z, 0-9)",
+    "hex": "Hexadecimal (0-9, a-f)",
+    "base64": "Base64 (A-Z, a-z, 0-9, +, /, =)",
+    "copied": "Copied to clipboard"
   },
   "jsonFormatter": {
     "category": "JSON Tool",

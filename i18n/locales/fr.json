@@ -19,6 +19,7 @@
     "local_message": "Les fichiers sont traités localement dans votre navigateur et ne sont jamais téléversés."
   },
   "menu": {
+    "alternatives": "Alternatives",
     "ttf": "Compresser une police",
     "fontInspector": "Inspecteur de polices",
     "fontUnicodeChecker": "Vérificateur Unicode de police",
@@ -340,12 +341,12 @@
     "desc": "Saisissez des caractères ou téléversez du texte, extrayez uniquement les glyphes nécessaires du TTF et obtenez un TTF et un WOFF plus compacts."
   },
   "font": {
-    "seo_desc": "Créez un sous-ensemble et compressez vos polices TTF, OTF, WOFF ou WOFF2 en supprimant les glyphes inutilisés. Le traitement s’effectue localement dans le navigateur.",
-    "seo_keywords": "Font Subsetter, sous-ensemble de police, compression de police, compresser une police TTF, compresser une police OTF, réduire la taille d’une police, supprimer des glyphes inutilisés, sous-ensemble WOFF2",
-    "title": "Font Subsetter & compresseur de polices | Réduire la taille",
+    "seo_desc": "Compressez des polices pour le web en ligne : sous-ensemblez des fichiers TTF, OTF, WOFF et WOFF2 dans votre navigateur, supprimez les glyphes inutilisés et téléchargez une police plus légère. Aucun envoi, aucun compte.",
+    "seo_keywords": "compresser polices web, compresseur de police, compresser police en ligne, compresser TTF, sous-ensemble de police, réduire la taille d’une police, sous-ensemble WOFF2",
+    "title": "Compresser des polices web en ligne — Compresseur TTF/OTF/WOFF2",
     "desc": "Importez une police TTF, OTF, WOFF ou WOFF2, choisissez les caractères à conserver et supprimez les glyphes inutilisés pour créer une police web plus légère.",
-    "h1": "Font Subsetter et compresseur de polices",
-    "lead": "Supprimez les caractères et glyphes inutilisés des polices TTF, OTF, WOFF ou WOFF2 pour réduire leur taille et accélérer le chargement des pages web.",
+    "h1": "Compresser des polices pour le web (TTF, OTF, WOFF2)",
+    "lead": "Ne gardez que les caractères et glyphes dont votre page a besoin, et allégez les polices TTF, OTF, WOFF et WOFF2 pour le web. Le traitement se fait dans votre navigateur.",
     "upload": "Importer une police TTF",
     "selected": "Sélectionné : {name}",
     "origin_size": "Taille d’origine : {size}",
@@ -749,6 +750,21 @@
     "encoding": "Encodage du condensat",
     "hex": "Hexadécimal (base 16)",
     "copyTitle": "Copier dans le presse-papiers"
+  },
+  "tokenTool": {
+    "category": "Sécurité",
+    "title": "Générateur de jetons aléatoires",
+    "description": "Générez des jetons aléatoires sécurisés pour vos clés d’API, mots de passe, identifiants de session et données de test. Choisissez la longueur et le jeu de caractères ; tout se passe dans votre navigateur.",
+    "copy": "Copier",
+    "generate": "Générer",
+    "outputLabel": "Jeton généré",
+    "placeholder": "Votre jeton apparaît ici",
+    "length": "Longueur",
+    "type": "Jeu de caractères",
+    "alphanumeric": "Alphanumérique (A-Z, a-z, 0-9)",
+    "hex": "Hexadécimal (0-9, a-f)",
+    "base64": "Base64 (A-Z, a-z, 0-9, +, /, =)",
+    "copied": "Copié dans le presse-papiers"
   },
   "jsonFormatter": {
     "category": "Outil JSON",

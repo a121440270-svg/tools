@@ -1,3 +1,8 @@
+# OnliTool robots.txt
+# Content signals: search, AI answers and model training are all allowed.
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+
+# Default crawlers
 User-agent: *
 Allow: /
 Disallow: /admin
@@ -9,6 +14,39 @@ Disallow: /blog/post
 Disallow: /prompts/public
 Disallow: /shares/
 
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Google AI surfaces
+User-agent: Google-Extended
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Bing / Copilot
+User-agent: Bingbot
+Allow: /
+
 # Google AdSense crawler must be able to read every page that serves ads.
 User-agent: Mediapartners-Google
 Allow: /
@@ -17,3 +55,6 @@ User-agent: AdsBot-Google
 Allow: /
 
 Sitemap: https://onlitools.com/sitemap_index.xml
+
+# AI-readable summary of the site
+# https://onlitools.com/llms.txt

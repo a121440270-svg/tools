@@ -886,6 +886,12 @@ const categories = ref([
     ],
   },
   {
+    name: "menu.alternatives",
+    expanded: false,
+    path: "/alternatives",
+    icon: markRaw(BlogIcon)
+  },
+  {
     name: "menu.about",
     expanded: false,
     path: "/about",

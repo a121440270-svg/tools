@@ -86,6 +86,11 @@ import CryptoJS from 'crypto-js'
 import { ElMessage } from 'element-plus'
 
 const { t } = useI18n()
+useToolSeo({
+  title: () => `${t('hashTool.title')} | OnliTool`,
+  description: () => t('hashTool.description'),
+  applicationCategory: 'DeveloperApplication'
+})
 const textToHash = ref('')
 const encoding = ref('hex')
 

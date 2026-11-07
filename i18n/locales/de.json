@@ -19,6 +19,7 @@
     "local_message": "Die Dateien werden lokal im Browser verarbeitet und niemals hochgeladen."
   },
   "menu": {
+    "alternatives": "Alternativen",
     "ttf": "Schrift komprimieren",
     "fontInspector": "Schriftinspektor",
     "fontUnicodeChecker": "Unicode-Prüfung für Schriften",
@@ -340,12 +341,12 @@
     "desc": "Input characters or Upload text, extract needed glyphs from TTF, output smaller TTF & WOFF."
   },
   "font": {
-    "seo_desc": "Font Subsetting und Komprimierung für TTF, OTF, WOFF und WOFF2: Entfernen Sie ungenutzte Glyphen und erstellen Sie kleinere Webfonts direkt im Browser.",
-    "seo_keywords": "Font Subsetter, Font Subsetting, Schriftkomprimierung, Font Compressor, TTF komprimieren, OTF komprimieren, Schriftgröße reduzieren, ungenutzte Glyphen entfernen, WOFF2 Subset",
-    "title": "Font Subsetter & Schriftkompressor | Schriftgröße reduzieren",
+    "seo_desc": "Webfonts online komprimieren: TTF-, OTF-, WOFF- und WOFF2-Dateien im Browser subsetten, ungenutzte Glyphen entfernen und eine kleinere, webtaugliche Schrift herunterladen. Kein Upload, kein Konto.",
+    "seo_keywords": "Webfonts komprimieren, Font-Kompressor, Schrift komprimieren online, TTF komprimieren, Font-Subset, Schriftgröße reduzieren, WOFF2 Subset",
+    "title": "Webfonts online komprimieren — TTF/OTF/WOFF2 Font-Kompressor",
     "desc": "Laden Sie eine TTF-, OTF-, WOFF- oder WOFF2-Schrift hoch, wählen Sie die benötigten Zeichen und entfernen Sie ungenutzte Glyphen für eine kleinere Webfont.",
-    "h1": "Font Subsetter und Schriftkompressor",
-    "lead": "Entfernen Sie ungenutzte Zeichen und Glyphen aus TTF-, OTF-, WOFF- oder WOFF2-Schriften, um die Dateigröße für Websites zu reduzieren.",
+    "h1": "Webfonts komprimieren (TTF, OTF, WOFF2)",
+    "lead": "Behalten Sie nur die Zeichen und Glyphen, die Ihre Seite braucht, und verkleinern Sie TTF-, OTF-, WOFF- und WOFF2-Schriften für das Web. Die Verarbeitung läuft im Browser.",
     "upload": "TTF-Schrift hochladen",
     "selected": "Ausgewählt: {name}",
     "origin_size": "Originalgröße: {size}",
@@ -749,6 +750,21 @@
     "encoding": "Digest-Kodierung",
     "hex": "Hexadezimal (Basis 16)",
     "copyTitle": "In die Zwischenablage kopieren"
+  },
+  "tokenTool": {
+    "category": "Sicherheit",
+    "title": "Zufälliger Token-Generator",
+    "description": "Erzeugen Sie sichere Zufallstoken für API-Schlüssel, Passwörter, Sitzungs-IDs und Testdaten. Länge und Zeichensatz sind frei wählbar, alles läuft im Browser.",
+    "copy": "Kopieren",
+    "generate": "Erzeugen",
+    "outputLabel": "Erzeugter Token",
+    "placeholder": "Ihr Token erscheint hier",
+    "length": "Länge",
+    "type": "Zeichensatz",
+    "alphanumeric": "Alphanumerisch (A-Z, a-z, 0-9)",
+    "hex": "Hexadezimal (0-9, a-f)",
+    "base64": "Base64 (A-Z, a-z, 0-9, +, /, =)",
+    "copied": "In die Zwischenablage kopiert"
   },
   "jsonFormatter": {
     "category": "JSON-Tool",

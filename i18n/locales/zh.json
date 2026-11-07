@@ -1,5 +1,6 @@
 {
   "menu": {
+    "alternatives": "替代方案",
     "jsoncsv": "JSON/CSV互转",
     "jsonFormatter": "JSON 格式化工具",
     "uppercase": "大小写转换工具",
@@ -325,12 +326,12 @@
     "desc": "支持 TTF、OTF、WOFF、WOFF2 字体子集化，仅保留项目需要的字符。"
   },
   "font": {
-    "seo_desc": "在线对子集化并压缩 TTF、OTF、WOFF 和 WOFF2 字体，移除未使用字形，生成更小的网页字体；文件仅在浏览器本地处理。",
-    "seo_keywords": "字体子集化, 字体压缩, TTF压缩, OTF压缩, WOFF2压缩, 减小字体体积, 移除未使用字形, 网页字体优化",
-    "title": "字体子集化与压缩工具 - 减小 TTF/OTF 字体体积",
+    "seo_desc": "在线压缩网页字体：在浏览器本地对 TTF、OTF、WOFF、WOFF2 做子集化，移除未使用字形，下载更小的网页字体文件。无需上传，无需登录。",
+    "seo_keywords": "压缩网页字体, 字体压缩工具, 在线字体压缩, 压缩 TTF, TTF 压缩, 字体子集化, 减小字体体积, WOFF2 子集",
+    "title": "在线压缩网页字体 — TTF/OTF/WOFF2 字体压缩工具",
     "desc": "上传 TTF、OTF、WOFF 或 WOFF2 字体，选择要保留的字符并移除未使用字形，生成更小的网页字体。",
-    "h1": "字体子集化与压缩工具",
-    "lead": "移除 TTF、OTF、WOFF 或 WOFF2 字体中未使用的字符与字形，减小字体文件体积，优化网页加载。",
+    "h1": "在线压缩网页字体（TTF、OTF、WOFF2）",
+    "lead": "只保留页面真正需要的字符与字形，压缩用于网页的 TTF、OTF、WOFF、WOFF2 字体。文件在浏览器本地生成。",
     "upload": "上传字体",
     "selected": "已选择: {name}",
     "origin_size": "原始大小: {size}",
@@ -754,6 +755,21 @@
     "encoding": "摘要编码",
     "hex": "十六进制（基数 16）",
     "copyTitle": "复制到剪贴板"
+  },
+  "tokenTool": {
+    "category": "安全",
+    "title": "随机令牌生成器",
+    "description": "为 API 密钥、密码、会话 ID 和测试数据生成安全的随机令牌。可自选长度与字符集，全部在浏览器本地完成。",
+    "copy": "复制",
+    "generate": "生成",
+    "outputLabel": "生成的令牌",
+    "placeholder": "令牌将显示在这里",
+    "length": "长度",
+    "type": "字符集",
+    "alphanumeric": "字母数字（A-Z、a-z、0-9）",
+    "hex": "十六进制（0-9、a-f）",
+    "base64": "Base64（A-Z、a-z、0-9、+、/、=）",
+    "copied": "已复制到剪贴板"
   },
   "jsonFormatter": {
     "category": "JSON 工具",
