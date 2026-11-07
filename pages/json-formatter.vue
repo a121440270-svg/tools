@@ -54,16 +54,20 @@
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { ElMessage } from 'element-plus'
 const { t, tm, rt } = useI18n()
 
+const storageKey = 'opsdrop-json-formatter-draft'
 const jsonText = ref('')
 const errorMessage = ref('')
 const editorTheme = ref('light')
 let themeObserver
 
 onMounted(() => {
+  const savedText = localStorage.getItem(storageKey)
+  if (savedText !== null) jsonText.value = savedText
+
   const syncEditorTheme = () => {
     editorTheme.value = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
   }
@@ -71,6 +75,15 @@ onMounted(() => {
   syncEditorTheme()
   themeObserver = new MutationObserver(syncEditorTheme)
   themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+})
+
+watch(jsonText, (value) => {
+  if (typeof window === 'undefined') return
+  if (value) {
+    localStorage.setItem(storageKey, value)
+  } else {
+    localStorage.removeItem(storageKey)
+  }
 })
 
 onBeforeUnmount(() => {

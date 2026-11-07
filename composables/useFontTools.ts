@@ -1,6 +1,10 @@
-import { Font, woff2 } from 'fonteditor-core'
-
 export type FontFormat = 'ttf' | 'otf' | 'woff' | 'woff2'
+
+// fonteditor-core is browser-only (and pulls in a wasm build). Importing it
+// lazily keeps it out of the server render, so these pages can be prerendered.
+async function loadFontEditor() {
+  return import('fonteditor-core')
+}
 
 export const FONT_LANGUAGE_PRESETS = [
   { value: 'latin', label: 'Latin', range: 'U+0000-024F, U+1E00-1EFF' },
@@ -25,7 +29,7 @@ export function getFontFormat(fileName: string): FontFormat | null {
 
 export async function ensureWoff2Support() {
   if (!woff2Initialization) {
-    woff2Initialization = woff2.init('/libs/woff2.wasm')
+    woff2Initialization = loadFontEditor().then(({ woff2 }) => woff2.init('/libs/woff2.wasm'))
   }
   await woff2Initialization
 }
@@ -33,6 +37,7 @@ export async function ensureWoff2Support() {
 export async function parseFontBuffer(buffer: ArrayBuffer, format: FontFormat) {
   if (format === 'woff2') await ensureWoff2Support()
 
+  const { Font } = await loadFontEditor()
   const font = Font.create(buffer, {
     type: format,
     hinting: true,

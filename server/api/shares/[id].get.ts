@@ -6,13 +6,17 @@ export default defineEventHandler(async (event) => {
 
   const db = useDatabase('myDatabase')
   const share = await db.prepare(
-    `SELECT id, title, content, language, created_at AS createdAt, view_count AS viewCount
+    `SELECT id, title, content, language, created_at AS createdAt, expires_at AS expiresAt, view_count AS viewCount
     FROM share_note WHERE id = ?`
   ).bind(id).get() as Record<string, any> | undefined
 
   if (!share) throw createError({ statusCode: 404, statusMessage: 'Share not found' })
 
   const now = Date.now()
+  if (Number(share.expiresAt) <= now) {
+    throw createError({ statusCode: 410, statusMessage: 'Share link has expired' })
+  }
+
   await db.prepare(
     `UPDATE share_note
      SET view_count = view_count + 1, last_access_at = ?

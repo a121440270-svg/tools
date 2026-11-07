@@ -28,7 +28,23 @@
             <button class="share-action-button" type="button" :disabled="creating" :title="t('remoteShare.qrTitle')" @click="generateQrCode">{{ t('remoteShare.qr') }}</button>
           </div>
         </div>
-        <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">{{ saved ? t('remoteShare.savedNoExpiry') : t('remoteShare.noExpiry') }}</p>
+        <div class="mt-2 flex flex-wrap items-center gap-2">
+          <label for="share-expiry" class="text-xs font-medium text-slate-600 dark:text-slate-300">{{ t('remoteShare.expiry') }}</label>
+          <select v-if="!isViewingSharedContent" id="share-expiry" v-model="expiresIn" class="rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs text-slate-700 outline-none focus:border-blue-400 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200">
+            <option value="never">{{ t('remoteShare.expiryNever') }}</option>
+            <option value="1d">{{ t('remoteShare.expiryOneDay') }}</option>
+            <option value="7d">{{ t('remoteShare.expirySevenDays') }}</option>
+            <option value="30d">{{ t('remoteShare.expiryThirtyDays') }}</option>
+          </select>
+          <span v-if="isViewingSharedContent && sharedExpiresAt" class="text-xs text-slate-500 dark:text-slate-400">
+            {{ sharedExpiresAt === NEVER_EXPIRES ? t('remoteShare.noExpiry') : t('remoteShare.expiresAt', { date: formatExpiry(sharedExpiresAt) }) }}
+          </span>
+          <span v-else-if="saved && sharedExpiresAt" class="text-xs text-slate-500 dark:text-slate-400">
+            {{ sharedExpiresAt === NEVER_EXPIRES ? t('remoteShare.savedNoExpiry') : t('remoteShare.expiresAt', { date: formatExpiry(sharedExpiresAt) }) }}
+          </span>
+          <span v-else-if="!isViewingSharedContent && saved && expiresIn === 'never'" class="text-xs text-slate-500 dark:text-slate-400">{{ t('remoteShare.savedNoExpiry') }}</span>
+          <span v-else-if="!isViewingSharedContent" class="text-xs text-slate-500 dark:text-slate-400">{{ t('remoteShare.expiryAfterSave', { duration: expiryLabel(expiresIn) }) }}</span>
+        </div>
       </div>
       <div class="mb-3 flex flex-wrap items-center justify-between gap-2 px-1">
         <label class="text-sm font-medium text-slate-700 dark:text-slate-200">{{ t('remoteShare.content') }}</label>
@@ -93,16 +109,21 @@ const language = ref('shell')
 const creating = ref(false)
 const errorMessage = ref('')
 const saved = ref(false)
+const expiresIn = ref<ShareExpiry>('never')
+const sharedExpiresAt = ref<number | null>(null)
 const qrDataUrl = ref('')
 const editorTheme = ref<'dark' | 'light'>('light')
 const editorFullscreen = ref(true)
 let themeObserver: MutationObserver | null = null
-const slugStorageKey = 'opsdrop-temp-note-code'
-const savedSlugStorageKey = 'opsdrop-temp-note-saved-code'
-const contentStorageKey = 'opsdrop-temp-note-content'
-const languageStorageKey = 'opsdrop-temp-note-language'
-const savedContentStorageKey = 'opsdrop-temp-note-saved-content'
-const savedLanguageStorageKey = 'opsdrop-temp-note-saved-language'
+const storageKey = 'opsdrop-temp-note'
+const legacyStorageKeys = [
+  'opsdrop-temp-note-code',
+  'opsdrop-temp-note-saved-code',
+  'opsdrop-temp-note-content',
+  'opsdrop-temp-note-language',
+  'opsdrop-temp-note-saved-content',
+  'opsdrop-temp-note-saved-language'
+]
 const route = useRoute()
 const shareBaseUrl = computed(() => {
   if (typeof window === 'undefined') return 'https://onlitools.com/send-script-to-remote-user?share='
@@ -113,28 +134,135 @@ const shared = ref<any | null>(null)
 const sharedLoading = ref(false)
 const sharedError = ref('')
 const isOwnerMode = ref(true)
-const isViewingSharedContent = computed(() => Boolean(shared.value) && !isOwnerMode.value)
+const isViewingSharedContent = computed(() => typeof route.query.share === 'string' && Boolean(route.query.share) && !isOwnerMode.value)
+const savedSlug = ref('')
+const savedContentSnapshot = ref<string | null>(null)
+const savedLanguageSnapshot = ref<string | null>(null)
+const savedExpirySnapshot = ref<ShareExpiry | null>(null)
 
-function getStorageKey(baseKey: string, linkCode: string) {
-  return `${baseKey}:${linkCode}`
+type ShareExpiry = 'never' | '1d' | '7d' | '30d'
+const NEVER_EXPIRES = Number.MAX_SAFE_INTEGER
+const expirySeconds: Record<ShareExpiry, number> = {
+  never: 0,
+  '1d': 86400,
+  '7d': 604800,
+  '30d': 2592000
+}
+
+function isShareExpiry(value: unknown): value is ShareExpiry {
+  return value === 'never' || value === '1d' || value === '7d' || value === '30d'
+}
+
+function expiryLabel(value: ShareExpiry) {
+  return t(`remoteShare.expiry${value === 'never' ? 'Never' : value === '1d' ? 'OneDay' : value === '7d' ? 'SevenDays' : 'ThirtyDays'}`)
+}
+
+function formatExpiry(timestamp: number) {
+  return new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' }).format(timestamp)
+}
+
+function readLegacyValue(baseKey: string, linkCode: string) {
+  return linkCode ? localStorage.getItem(`${baseKey}:${linkCode}`) : null
 }
 
 function hasOwnLink(linkCode: string) {
-  return typeof window !== 'undefined' && localStorage.getItem(savedSlugStorageKey) === linkCode
+  return Boolean(linkCode) && savedSlug.value === linkCode
 }
 
 function isSavedDraft(linkCode: string, draftContent: string, draftLanguage: string) {
   if (!hasOwnLink(linkCode)) return false
-  const savedContent = localStorage.getItem(getStorageKey(savedContentStorageKey, linkCode))
-  const savedLanguage = localStorage.getItem(getStorageKey(savedLanguageStorageKey, linkCode))
-  return savedContent === null || (savedContent === draftContent && savedLanguage === draftLanguage)
+  if (savedExpirySnapshot.value !== null && savedExpirySnapshot.value !== expiresIn.value) return false
+  if (savedExpirySnapshot.value === null && expiresIn.value !== 'never') return false
+  return savedContentSnapshot.value === null ||
+    (savedContentSnapshot.value === draftContent &&
+      savedLanguageSnapshot.value === draftLanguage &&
+      savedExpirySnapshot.value === expiresIn.value)
+}
+
+function clearLegacyStorage() {
+  const keysToRemove: string[] = []
+  for (let index = 0; index < localStorage.length; index += 1) {
+    const key = localStorage.key(index)
+    if (key && key !== storageKey && (
+      key.startsWith('opsdrop-temp-note-') ||
+      legacyStorageKeys.some(baseKey => key === baseKey || key.startsWith(`${baseKey}:`))
+    )) {
+      keysToRemove.push(key)
+    }
+  }
+  keysToRemove.forEach(key => localStorage.removeItem(key))
+}
+
+function persistDraft() {
+  if (typeof window === 'undefined' || !isOwnerMode.value) return
+  clearLegacyStorage()
+  localStorage.setItem(storageKey, JSON.stringify({
+    slug: slug.value,
+    savedSlug: savedSlug.value,
+    content: content.value,
+    language: language.value,
+    expiresIn: expiresIn.value,
+    savedContent: savedContentSnapshot.value,
+    savedLanguage: savedLanguageSnapshot.value,
+    savedExpiry: savedExpirySnapshot.value
+  }))
+}
+
+function restoreDraft() {
+  const storedValue = localStorage.getItem(storageKey)
+  if (storedValue) {
+    try {
+      const state = JSON.parse(storedValue)
+      if (state && typeof state === 'object') {
+        slug.value = typeof state.slug === 'string' ? state.slug : makeSlug()
+        savedSlug.value = typeof state.savedSlug === 'string' ? state.savedSlug : ''
+        content.value = typeof state.content === 'string' ? state.content : ''
+        language.value = typeof state.language === 'string' ? state.language : 'shell'
+        expiresIn.value = isShareExpiry(state.expiresIn) ? state.expiresIn : 'never'
+        savedContentSnapshot.value = typeof state.savedContent === 'string' ? state.savedContent : null
+        savedLanguageSnapshot.value = typeof state.savedLanguage === 'string' ? state.savedLanguage : null
+        savedExpirySnapshot.value = isShareExpiry(state.savedExpiry) ? state.savedExpiry : null
+        saved.value = isSavedDraft(slug.value, content.value, language.value)
+        clearLegacyStorage()
+        return
+      }
+    } catch {
+      localStorage.removeItem(storageKey)
+    }
+  }
+
+  const legacySlug = localStorage.getItem('opsdrop-temp-note-code') || makeSlug()
+  savedSlug.value = localStorage.getItem('opsdrop-temp-note-saved-code') || ''
+  slug.value = legacySlug
+  content.value = readLegacyValue('opsdrop-temp-note-content', legacySlug)
+    ?? readLegacyValue('opsdrop-temp-note-content', savedSlug.value)
+    ?? localStorage.getItem('opsdrop-temp-note-content')
+    ?? ''
+  language.value = readLegacyValue('opsdrop-temp-note-language', legacySlug)
+    ?? readLegacyValue('opsdrop-temp-note-language', savedSlug.value)
+    ?? localStorage.getItem('opsdrop-temp-note-language')
+    ?? 'shell'
+  expiresIn.value = 'never'
+  savedContentSnapshot.value = readLegacyValue('opsdrop-temp-note-saved-content', savedSlug.value)
+  savedLanguageSnapshot.value = readLegacyValue('opsdrop-temp-note-saved-language', savedSlug.value)
+  savedExpirySnapshot.value = null
+  saved.value = isSavedDraft(slug.value, content.value, language.value)
+  persistDraft()
 }
 
 function loadDraft(linkCode: string) {
-  if (typeof window === 'undefined' || !linkCode) return
-  content.value = localStorage.getItem(getStorageKey(contentStorageKey, linkCode)) || localStorage.getItem(contentStorageKey) || ''
-  language.value = localStorage.getItem(getStorageKey(languageStorageKey, linkCode)) || localStorage.getItem(languageStorageKey) || 'shell'
-  saved.value = isSavedDraft(linkCode, content.value, language.value)
+  const storedValue = localStorage.getItem(storageKey)
+  if (!storedValue) return
+
+  try {
+    const state = JSON.parse(storedValue)
+    if (state?.slug !== linkCode) return
+    content.value = typeof state.content === 'string' ? state.content : ''
+    language.value = typeof state.language === 'string' ? state.language : 'shell'
+    saved.value = isSavedDraft(linkCode, content.value, language.value)
+  } catch {
+    localStorage.removeItem(storageKey)
+  }
 }
 
 async function loadSharedShare(shareId: string) {
@@ -151,15 +279,20 @@ async function loadSharedShare(shareId: string) {
       id: string
       content: string
       language: string
+      expiresAt: number
     }>(`/api/shares/${shareId}`)
     shared.value = response
+    sharedExpiresAt.value = response.expiresAt
     slug.value = response.id
     content.value = response.content || ''
     language.value = response.language || 'shell'
     saved.value = isOwnerMode.value && isSavedDraft(response.id, response.content, response.language)
   } catch (error: any) {
     shared.value = null
-    sharedError.value = error?.data?.message || t('remoteShare.expired')
+    sharedExpiresAt.value = null
+    sharedError.value = error?.statusCode === 410 || error?.data?.statusCode === 410
+      ? t('remoteShare.linkExpired')
+      : error?.data?.message || t('remoteShare.expired')
   } finally {
     sharedLoading.value = false
   }
@@ -233,6 +366,8 @@ function createOwnShare() {
   content.value = ''
   language.value = 'shell'
   saved.value = false
+  expiresIn.value = 'never'
+  sharedExpiresAt.value = null
 }
 
 async function generateQrCode() {
@@ -264,17 +399,20 @@ async function createShare(): Promise<boolean> {
   }
   creating.value = true
   errorMessage.value = ''
-  const payload = { title: t('remoteShare.eyebrow'), slug: slug.value, content: content.value, language: language.value }
-  const ownsSlug = hasOwnLink(slug.value)
+  const payload = { title: t('remoteShare.eyebrow'), slug: slug.value, content: content.value, language: language.value, expiresIn: expiresIn.value }
+  const existingSlug = savedSlug.value
   try {
-    await $fetch(ownsSlug ? `/api/shares/${slug.value}` : '/api/shares', { method: ownsSlug ? 'PUT' : 'POST', body: payload } as any)
+    const response = await $fetch<{ id: string; expiresAt: number }>(
+      existingSlug ? `/api/shares/${existingSlug}` : '/api/shares',
+      { method: existingSlug ? 'PUT' : 'POST', body: payload } as any
+    )
+    savedSlug.value = response.id
+    savedContentSnapshot.value = content.value
+    savedLanguageSnapshot.value = language.value
+    savedExpirySnapshot.value = expiresIn.value
+    sharedExpiresAt.value = response.expiresAt
     saved.value = true
-    localStorage.setItem(slugStorageKey, slug.value)
-    localStorage.setItem(savedSlugStorageKey, slug.value)
-    localStorage.setItem(getStorageKey(contentStorageKey, slug.value), content.value)
-    localStorage.setItem(getStorageKey(languageStorageKey, slug.value), language.value)
-    localStorage.setItem(getStorageKey(savedContentStorageKey, slug.value), content.value)
-    localStorage.setItem(getStorageKey(savedLanguageStorageKey, slug.value), language.value)
+    persistDraft()
     ElMessage.success(t('remoteShare.savedMessage'))
     return true
   } catch (error: any) {
@@ -286,10 +424,9 @@ async function createShare(): Promise<boolean> {
 }
 
 onMounted(async () => {
+  restoreDraft()
   const shareId = typeof route.query.share === 'string' ? route.query.share : ''
   isOwnerMode.value = !shareId || hasOwnLink(shareId)
-  slug.value = localStorage.getItem(slugStorageKey) || makeSlug()
-  loadDraft(slug.value)
   const syncEditorTheme = () => { editorTheme.value = document.documentElement.classList.contains('dark') ? 'dark' : 'light' }
   syncEditorTheme()
   themeObserver = new MutationObserver(syncEditorTheme)
@@ -301,31 +438,24 @@ onMounted(async () => {
 
 onBeforeUnmount(() => { themeObserver?.disconnect() })
 
-watch(slug, (value: string, previousValue: string) => {
+watch(slug, (value: string) => {
   const normalized = value.toLowerCase()
   if (normalized !== value) {
     slug.value = normalized
     return
   }
-  if (previousValue && typeof window !== 'undefined') {
-    localStorage.setItem(getStorageKey(contentStorageKey, previousValue), content.value)
-    localStorage.setItem(getStorageKey(languageStorageKey, previousValue), language.value)
-  }
-
   if (shared.value && value === shared.value.id) {
-    if (typeof window !== 'undefined' && value) localStorage.setItem(slugStorageKey, value)
     return
   }
-
-  loadDraft(value)
-  if (typeof window !== 'undefined' && value) localStorage.setItem(slugStorageKey, value)
+  saved.value = isSavedDraft(value, content.value, language.value)
+  persistDraft()
 })
 
-watch([content, language], ([contentValue, languageValue]: [string, string]) => {
-  if (typeof window !== 'undefined' && slug.value) {
-    localStorage.setItem(getStorageKey(contentStorageKey, slug.value), contentValue)
-    localStorage.setItem(getStorageKey(languageStorageKey, slug.value), languageValue)
+watch([content, language, expiresIn], ([contentValue, languageValue, expiryValue]: [string, string, ShareExpiry]) => {
+  if (typeof window !== 'undefined' && slug.value && isOwnerMode.value) {
+    expiresIn.value = expiryValue
     saved.value = isSavedDraft(slug.value, contentValue, languageValue)
+    persistDraft()
   }
 })
 
