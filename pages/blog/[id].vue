@@ -43,18 +43,74 @@
       <div class="prose dark:prose-invert blog-content max-w-none" v-html="article.content">
       </div>
     </div>
+
+    <!-- Related tools: keeps readers on-site and gives crawlers contextual internal links. -->
+    <aside class="mt-8 rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-6">
+      <h2 class="mb-2 text-lg font-medium dark:text-white">{{ related.title }}</h2>
+      <p class="mb-4 text-sm text-gray-600 dark:text-gray-300">{{ related.description }}</p>
+      <div class="grid gap-3 sm:grid-cols-3">
+        <NuxtLink
+          v-for="item in related.links"
+          :key="item.to"
+          :to="localePath(item.to)"
+          class="rounded-lg border border-gray-200 px-4 py-3 text-sm font-medium text-primary transition hover:border-primary/40 hover:bg-primary/5 dark:border-gray-700"
+        >
+          {{ item.label }}
+        </NuxtLink>
+      </div>
+    </aside>
+
+    <!-- Server-rendered links to other posts: spreads internal link equity across
+         the whole blog instead of leaving posts to be discovered one by one. -->
+    <aside v-if="moreArticles.length" class="mt-8 rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-6">
+      <h2 class="mb-4 text-lg font-medium dark:text-white">{{ $t('blog.moreArticles') }}</h2>
+      <ul class="space-y-3">
+        <li v-for="item in moreArticles" :key="item.id" class="border-b border-gray-100 pb-3 last:border-0 last:pb-0 dark:border-gray-700">
+          <NuxtLink :to="articleLink(item)" class="font-medium text-gray-800 transition hover:text-primary dark:text-gray-100 dark:hover:text-primary-foreground">
+            {{ item.title }}
+          </NuxtLink>
+          <p v-if="item.summary" class="mt-1 line-clamp-2 text-sm text-gray-500 dark:text-gray-400">{{ item.summary }}</p>
+        </li>
+      </ul>
+      <NuxtLink :to="localePath('/blog')" class="mt-4 inline-block text-sm font-medium text-primary">
+        {{ $t('blog.viewAll') }} →
+      </NuxtLink>
+    </aside>
   </div>
 </template>
 
 <script setup>
 import { useLocalePath } from '#i18n'
 const route = useRoute()
-  const parts = route.params.id.split("-");
-  const id = parts[parts.length - 1];
-const { data: articleRaw, pending } = useFetch(`/api/articles/${id}`)
-const showCatalog = ref(true)
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
+
+// Reactive so client-side navigation between posts refreshes the data instead of
+// keeping the first article on screen.
+const articleId = computed(() => {
+  const parts = String(route.params.id || '').split('-')
+  return parts[parts.length - 1]
+})
+
+const { data: articleRaw, pending, error: articleError } = await useFetch(
+  () => `/api/articles/${articleId.value}?lang=${locale.value}`
+)
+
+// `useAsyncData` requires a plain string key in Nuxt 3.16, so resolve it once
+// and refetch via `watch` when the article or locale changes.
+const { data: moreData } = await useAsyncData(
+  `blog-more:${locale.value}:${articleId.value}`,
+  () => $fetch('/api/articlepage', {
+    params: { page: 1, pageSize: 8, sort: 'posted_time', lang: locale.value, excerpt: 1 }
+  }),
+  { watch: [articleId, locale] }
+)
+
+const moreArticles = computed(() => (moreData.value?.list || [])
+  .filter((item) => String(item.id) !== String(articleId.value))
+  .slice(0, 5))
+
+const showCatalog = ref(true)
 
 // attempt to get current user from common places (project may use different auth)
 const currentUserState = useState ? useState('user') : null
@@ -78,10 +134,8 @@ const canEdit = computed(() => {
 })
 
 const editLink = computed(() => {
-  const parts = route.params.id.split("-");
-  const id = parts[parts.length - 1];
   const lang = locale?.value || ''
-  return { path: '/blog/post', query: { id, lang } }
+  return { path: '/blog/post', query: { id: articleId.value, lang } }
 })
 const article = computed(() => {
   if (!articleRaw.value) return null
@@ -93,18 +147,96 @@ const article = computed(() => {
   return { ...articleRaw.value.article,...articleRaw.value.articlel, catalog }
 })
 
+// `{...null}` is an empty object, so `article` alone is always truthy. Use the
+// raw payload to distinguish "no article" from a real one: otherwise any
+// `/blog/<garbage>` URL would answer 200 with a blank page (soft 404).
+if (articleError.value) {
+  throw createError({ statusCode: 500, statusMessage: 'Failed to load article', fatal: true })
+}
+if (!articleRaw.value?.article) {
+  throw createError({ statusCode: 404, statusMessage: 'Article not found', fatal: true })
+}
+
+const isZh = computed(() => String(locale.value || '').toLowerCase().startsWith('zh'))
+
+const related = computed(() => isZh.value
+  ? {
+      title: '相关工具',
+      description: '用这些免费工具在浏览器本地处理文件，无需上传。',
+      links: [
+        { to: '/font-compress', label: '字体压缩（TTF/OTF/WOFF2）' },
+        { to: '/image-compress', label: '图片压缩' },
+        { to: '/case-converter', label: '文本大小写转换' }
+      ]
+    }
+  : {
+      title: 'Related tools',
+      description: 'Free browser-based tools that process your files locally, with no upload.',
+      links: [
+        { to: '/font-compress', label: 'Font compressor (TTF/OTF/WOFF2)' },
+        { to: '/image-compress', label: 'Image compressor' },
+        { to: '/case-converter', label: 'Case converter' }
+      ]
+    })
+
+function articleLink(item) {
+  const slug = String(item.slug || '').trim().replace(/^\/+|\/+$/g, '')
+  return localePath(slug ? `/blog/${slug}-${item.id}` : `/blog/${item.id}`)
+}
+
+function stripHtml(value) {
+  return String(value || '')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&[a-z#0-9]+;/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+const seoDescription = computed(() => {
+  const explicit = article.value?.description || article.value?.summary
+  if (explicit) {
+    const text = stripHtml(explicit)
+    return text.length > 160 ? `${text.slice(0, 157).trim()}…` : text
+  }
+  const text = stripHtml(article.value?.content)
+  if (!text) return isZh.value ? '来自 OnliTool 博客的技术文章与实用教程。' : 'Technical articles and practical tutorials from the OnliTool blog.'
+  return text.length > 160 ? `${text.slice(0, 157).trim()}…` : text
+})
+
+// Route path without the locale prefix, so breadcrumb URLs stay correct per locale.
+const currentRelativePath = computed(
+  () => (route.path || '').replace(/^\/(zh|ja|de|fr|ar)(?=\/|$)/, '') || '/'
+)
+
+const seoTitle = computed(() => {
+  const title = article.value?.title || t('blog.defaultTitle') || 'Blog'
+  return title.includes('OnliTool') ? title : `${title} | OnliTool`
+})
+
 useToolSeo({
-  title: () => article.value?.title || t('blog.defaultTitle') || 'Blog',
-  description: () => article.value?.description || article.value?.summary || '',
+  title: seoTitle,
+  description: seoDescription,
   keywords: () => Array.isArray(article.value?.keywords)
     ? article.value.keywords.join(', ')
     : (article.value?.keywords || ''),
   type: 'BlogPosting',
+  dateModified: () => article.value?.last_mod_time || '',
+  breadcrumbs: () => article.value
+    ? [
+        { name: t('blog.name') || 'Blog', path: '/blog' },
+        { name: article.value.title, path: currentRelativePath.value }
+      ]
+    : [{ name: t('blog.name') || 'Blog', path: '/blog' }],
   schemaProperties: () => ({
     headline: article.value?.title,
+    description: seoDescription.value,
     datePublished: article.value?.posted_time,
     dateModified: article.value?.last_mod_time,
-    ...(article.value?.author ? { author: { '@type': 'Person', name: article.value.author } } : {})
+    articleSection: article.value?.category,
+    inLanguage: isZh.value ? 'zh-CN' : 'en',
+    author: article.value?.author
+      ? { '@type': 'Person', name: article.value.author }
+      : { '@type': 'Organization', name: 'OnliTool', url: 'https://onlitools.com' }
   })
 })
 

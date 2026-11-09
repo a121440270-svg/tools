@@ -441,11 +441,11 @@ useToolSeo({
   title: () =>
     isZh.value
       ? 'ToolMole 替代方案：功能对比与选择建议 | OnliTool'
-      : 'ToolMole (toolmole.com) Alternative — An Honest Comparison | OnliTool',
+      : 'ToolMole Alternative (2026): Honest Comparison | OnliTool',
   description: () =>
     isZh.value
       ? '客观对比 ToolMole（toolmole.com）与 OnliTool：本地处理、精确尺寸压缩、EXIF/GPS 移除、字体子集化的差异，以及各自适合的场景。与 ToolMole 无关联。'
-      : 'A factual comparison of ToolMole (toolmole.com) and OnliTool: local processing, exact-size compression, EXIF/GPS removal and font subsetting, plus when to pick each. Not affiliated with ToolMole.',
+      : 'Compare ToolMole and OnliTool: local processing, exact-size image compression, EXIF/GPS removal, font subsetting — plus when to pick each. Not affiliated.',
   faqItems: () => copy.value.faqs.map((item) => ({ q: item.q, a: item.a })),
   dateModified: '2026-11-07',
   schemaProperties: {

@@ -422,8 +422,10 @@
     "fetchError": "Échec du chargement des articles",
     "needLogin": "Veuillez vous connecter avant de publier",
     "name": "Blog",
-    "seoDesc": "Java, JavaScript technical articles, and practical tutorials",
-    "seoKeywords": "JavaScript, TypeScript, Vue, React, Node.js, Python, Go, Rust, Web开发, 前端, 后端, 全栈, 云原生, Docker, Kubernetes, 微服务, 数据库, DevOps, AI, 机器学习",
+    "seoDesc": "Guides gratuits dans le navigateur pour les outils d'image, de police et de texte : compresser, convertir et nettoyer sans envoi.",
+    "seoKeywords": "guide compression image, compresser police, compresseur ttf, convertisseur webp, supprimer exif, blog outils en ligne",
+    "moreArticles": "Autres articles",
+    "viewAll": "Voir tous les articles",
     "type": "Étiquette",
     "hits": "Vues",
     "backToList": "Retour à la liste",
@@ -458,7 +460,7 @@
     "json_to_csv_error": "Échec de la conversion JSON vers CSV : {msg}",
     "csv_to_json_error": "Échec de la conversion CSV vers JSON : {msg}",
     "index": "Outil de conversion de formats JSON et CSV",
-    "seo_title": "Convertisseur JSON vers CSV en ligne | CSV vers JSON",
+    "seo_title": "Convertisseur JSON vers CSV en ligne — CSV vers JSON",
     "seo_description": "Convertissez facilement JSON en CSV et CSV en JSON en ligne. Un outil gratuit, rapide et sécurisé, sans téléversement.",
     "seo_keywords": "JSON vers CSV, CSV vers JSON, convertisseur en ligne, convertisseur JSON CSV gratuit, convertir JSON, convertir CSV"
   },
@@ -474,9 +476,9 @@
     "start": "Lancer la conversion",
     "progress": "Traitement de {current} image(s) sur {total} ...",
     "download": "Télécharger",
-    "seoTitlePng": "WebP vers PNG en ligne | Convertisseur d’images par lots",
+    "seoTitlePng": "WebP vers PNG en ligne — Convertisseur d’images par lots",
     "seoDescPng": "Convertisseur WebP vers PNG en ligne pour la conversion d’images par lots. Sûr et efficace.",
-    "seoTitleJpg": "WebP vers JPG en ligne | Convertisseur d’images par lots",
+    "seoTitleJpg": "WebP vers JPG en ligne — Convertisseur d’images par lots",
     "seoDescJpg": "Convertisseur WebP vers JPG en ligne pour la conversion d’images par lots. Sûr et efficace."
   },
   "prompts": {
@@ -546,7 +548,7 @@
     "title": "Convertisseur WebP vers {format} en ligne",
     "description": "Convertissez des images WebP vers {format} par lots. Traitez plusieurs images à la fois et téléchargez-les sous forme de ZIP. Les fichiers sont traités localement dans votre navigateur et ne sont jamais téléversés.",
     "keywords": "WebP vers {format}, convertisseur WebP par lots, conversion d’images par lots, outil en ligne {format}, traitement local des images, sans téléversement",
-    "seoSuffix": "Convertisseur d’images | Traitement par lots",
+    "seoSuffix": "Convertisseur d’images — Traitement par lots",
     "intro": "Convertissez des images WebP vers plusieurs formats en une seule fois, avec téléchargements directs pour les images individuelles et ZIP pour plusieurs images."
   },
   "accountActivation": {
@@ -641,7 +643,7 @@
     "invalidCode": "Le code doit comporter 3 à 48 caractères : lettres minuscules, chiffres ou traits d’union uniquement.",
     "savedMessage": "Lien de partage enregistré. Il n’expire pas.",
     "createFailed": "Impossible de créer le partage. Veuillez réessayer.",
-    "seoTitle": "OpsDrop | Partagez instantanément scripts, commandes et configurations",
+    "seoTitle": "OpsDrop — Partagez instantanément scripts, commandes et configurations",
     "seoDescription": "Partagez des scripts, commandes et configurations avec des utilisateurs distants via un lien ou un code QR. Générez un code QR pour ouvrir rapidement le contenu depuis un autre appareil. Sans inscription ni installation.",
     "seoKeywords": "note temporaire, partager des scripts par code QR, partage par code QR, envoyer un script à distance, partager un script avec un client, partager des commandes avec un client, partager un script Bash, partager un script PowerShell, partager une configuration en ligne",
     "seoLinkFeature": "Créer un lien de partage pour des scripts, commandes et configurations",
@@ -706,7 +708,7 @@
     "answer2": "Le résultat dépend de l’image d’origine. Le compresseur équilibre la taille du fichier et la netteté pour se rapprocher au mieux de la cible.",
     "question3": "Mes images sont-elles téléversées ?",
     "answer3": "Non. Le traitement est effectué localement dans votre navigateur et vos fichiers ne sont pas envoyés à un serveur.",
-    "seoTitle": "Compresser {format} à {size} en ligne | OnliTool",
+    "seoTitle": "Compresser {format} à {size} en ligne — OnliTool",
     "seoDescription": "Compressez {format} à {size} dans votre navigateur. Réduisez la taille sans téléverser de fichier tout en préservant au mieux la qualité.",
     "seoKeywords": "compresser {format} à {size}, compresseur d’image, réduire la taille d’une image, compression d’image en ligne"
   },
@@ -904,7 +906,7 @@
       "targetSize": "Taille de fichier cible",
       "keepDimensions": "Conserver les dimensions d’origine",
       "action": "Augmenter la taille du fichier ({count})",
-      "seoTitle": "Augmenter la taille d’une image en Ko en ligne - OnliTools",
+      "seoTitle": "Augmenter la taille d’une image en Ko en ligne - OnliTool",
       "seoDescription": "Augmentez la taille des fichiers JPG, PNG et WebP jusqu’à une valeur précise tout en conservant leurs dimensions d’origine.",
       "seoKeywords": "augmenter taille image en ko, augmenter taille fichier image, augmenter taille photo sans changer dimensions, augmenter jpg à 100 ko",
       "invalidTarget": "Saisissez une taille cible valide supérieure à zéro.",
@@ -961,14 +963,14 @@
       "originalSize": "Taille d’origine",
       "saved": "Économisé",
       "savings": "Réduction",
-      "seoTitle": "Compresser des images à une taille précise | OnliTool",
+      "seoTitle": "Compresser des images à une taille précise — OnliTool",
       "seoDescription": "Compressez des images JPG, PNG et WebP jusqu’à une taille cible. Réduisez-les dans votre navigateur sans téléversement tout en préservant au mieux leur qualité.",
       "seoKeywords": "compresser image taille cible, compresseur d’image, réduire taille image, compression JPG, compression PNG, compression WebP"
     },
     "converter": {
       "title": "Convertisseur d’images",
       "description": "Convertissez JPG, PNG, WebP, AVIF, GIF, BMP et SVG dans votre navigateur. Traitement par lots et téléchargement ZIP.",
-      "seoTitle": "Convertisseur d’images - Outil gratuit | Onlitools",
+      "seoTitle": "Convertisseur d’images - Outil gratuit — OnliTool",
       "seoDescription": "Convertissez vos images en JPG, PNG, WebP ou AVIF dans le navigateur. Traitement local par lots, téléchargement individuel ou ZIP.",
       "seoKeywords": "convertisseur d’images, convertir image en ligne, convertisseur JPG PNG, convertisseur WebP",
       "inputAccepted": "JPG, PNG, WebP, AVIF, GIF, BMP, SVG and HEIC",
@@ -985,7 +987,7 @@
     "heic": {
       "title": "Convertisseur HEIC en JPG",
       "description": "Convertissez les photos iPhone HEIC et HEIF en JPG, PNG ou WebP dans votre navigateur, sans envoi de fichiers.",
-      "seoTitle": "Convertisseur HEIC en JPG - Outil gratuit | Onlitools",
+      "seoTitle": "Convertisseur HEIC en JPG - Outil gratuit — OnliTool",
       "seoDescription": "Convertissez les photos HEIC et HEIF en JPG, PNG ou WebP localement. Conversion par lots sans téléversement.",
       "seoKeywords": "HEIC en JPG, convertir HEIC en ligne, convertisseur HEIF, convertir photos iPhone",
       "acceptedFormats": "Select one or more HEIC / HEIF photos"
@@ -993,7 +995,7 @@
     "resizer": {
       "title": "Redimensionneur d’images",
       "description": "Redimensionnez par largeur et hauteur, pourcentage ou côté maximal. Traitement par lots avec téléchargement ZIP.",
-      "seoTitle": "Redimensionneur d’images - Redimensionner en ligne | Onlitools",
+      "seoTitle": "Redimensionneur d’images - Redimensionner en ligne — OnliTool",
       "seoDescription": "Redimensionnez les images JPG, PNG et WebP par dimensions, pourcentage ou taille maximale. Traitement local et privé par lots.",
       "seoKeywords": "redimensionner image en ligne, redimensionneur d’images, modifier taille image, redimensionner images par lots",
       "mode": "Resize mode",
@@ -1012,7 +1014,7 @@
     "cropper": {
       "title": "Recadrer une image",
       "description": "Recadrez librement ou utilisez les formats 1:1, 4:3, 16:9 et 9:16.",
-      "seoTitle": "Recadrer une image en ligne | Onlitools",
+      "seoTitle": "Recadrer une image en ligne — OnliTool",
       "seoDescription": "Recadrez des images JPG, PNG et WebP librement ou avec un format prédéfini, directement dans le navigateur.",
       "seoKeywords": "recadrer image, outil de recadrage photo, recadrage image en ligne",
       "aspectRatio": "Aspect ratio",
@@ -1032,8 +1034,8 @@
       "fromTitle": "Base64 vers image",
       "toDescription": "Convertissez une image en Data URL, HTML ou CSS dans votre navigateur.",
       "fromDescription": "Prévisualisez et téléchargez une image depuis du Base64 ou une Data URL.",
-      "toSeoTitle": "Image vers Base64 - Convertisseur gratuit | Onlitools",
-      "fromSeoTitle": "Base64 vers image - Convertisseur gratuit | Onlitools",
+      "toSeoTitle": "Image vers Base64 - Convertisseur gratuit — OnliTool",
+      "fromSeoTitle": "Base64 vers image - Convertisseur gratuit — OnliTool",
       "toSeoDescription": "Convertissez localement des images PNG, JPG, WebP et SVG en Base64, HTML ou CSS.",
       "fromSeoDescription": "Décodez une image Base64 dans le navigateur et téléchargez-la en PNG, JPG ou WebP.",
       "toSeoKeywords": "image en Base64, image Data URL, convertisseur Base64 image",
@@ -1081,7 +1083,7 @@
       "locationNotFound": "Aucune adresse à proximité n’a été trouvée.",
       "locationLookupError": "La recherche d’adresse a échoué. Veuillez réessayer plus tard.",
       "locationAttribution": "© Contributeurs OpenStreetMap",
-      "seoTitle": "Informations et métadonnées d’image | Onlitools",
+      "seoTitle": "Informations et métadonnées d’image — OnliTool",
       "seoDescription": "Affichez les dimensions, la taille, le format et les métadonnées EXIF/GPS dans votre navigateur.",
       "seoKeywords": "informations image, métadonnées image, lecteur EXIF, dimensions photo",
       "fileName": "File name",
@@ -1103,7 +1105,7 @@
       "title": "Supprimer les métadonnées EXIF",
       "description": "Supprimez les données GPS, appareil photo et date par traitement local dans le navigateur.",
       "animatedGifUnsupported": "Le nettoyage des GIF est désactivé pour préserver leur animation.",
-      "seoTitle": "Supprimer les métadonnées EXIF d’une image | Onlitools",
+      "seoTitle": "Supprimer les métadonnées EXIF d’une image — OnliTool",
       "seoDescription": "Supprimez la localisation GPS, les détails de l’appareil et les métadonnées EXIF sans téléversement.",
       "seoKeywords": "supprimer EXIF, supprimer métadonnées image, retirer GPS photo",
       "outputFormat": "Clean output format",
@@ -1115,7 +1117,7 @@
       "eyebrow": "Éditeur de métadonnées JPEG",
       "title": "Éditeur EXIF",
       "description": "Modifiez la date, l’appareil, l’auteur, le copyright, la description et le GPS d’un JPEG localement.",
-      "seoTitle": "Éditeur EXIF - Modifier les métadonnées JPEG localement | Onlitools",
+      "seoTitle": "Éditeur EXIF - Modifier les métadonnées JPEG localement — OnliTool",
       "seoDescription": "Modifiez la date, l’appareil, l’auteur, le copyright, la description et le GPS d’un JPEG dans le navigateur, sans téléversement.",
       "seoKeywords": "éditeur EXIF, modifier EXIF JPEG, modifier métadonnées photo, modifier GPS photo",
       "upload": "Choisir une image JPEG",
@@ -1156,28 +1158,28 @@
     "metadataAnalyzer": {
       "title": "Analyseur de métadonnées d’image",
       "description": "Examinez les métadonnées EXIF, GPS, IPTC, XMP, ICC et les en-têtes d’image dans votre navigateur.",
-      "seoTitle": "Analyseur de métadonnées d’image EXIF, GPS, IPTC et XMP | Onlitools",
+      "seoTitle": "Analyseur de métadonnées d’image EXIF, GPS, IPTC et XMP — OnliTool",
       "seoDescription": "Analysez localement les métadonnées d’une image : appareil, lieu, date, auteur et profil colorimétrique.",
       "seoKeywords": "analyseur métadonnées image, analyseur EXIF, lecteur IPTC, lecteur XMP"
     },
     "metadataRemover": {
       "title": "Supprimer les métadonnées d’image",
       "description": "Analysez les images et supprimez leurs métadonnées intégrées par réencodage local avant de les partager.",
-      "seoTitle": "Supprimer les métadonnées d’image localement | Onlitools",
+      "seoTitle": "Supprimer les métadonnées d’image localement — OnliTool",
       "seoDescription": "Supprimez les métadonnées EXIF, GPS, IPTC et autres dans le navigateur, sans téléverser les fichiers.",
       "seoKeywords": "supprimer métadonnées image, supprimer EXIF, nettoyer photo"
     },
     "gpsRemover": {
       "title": "Supprimer la localisation GPS des photos",
       "description": "Vérifiez les données de localisation et créez une copie nettoyée avant le partage. Le réencodage supprime aussi les autres métadonnées intégrées.",
-      "seoTitle": "Supprimer les métadonnées GPS des photos | Onlitools",
+      "seoTitle": "Supprimer les métadonnées GPS des photos — OnliTool",
       "seoDescription": "Détectez et supprimez localement les données GPS. La copie nettoyée ne conserve pas les autres métadonnées intégrées.",
       "seoKeywords": "supprimer GPS photo, supprimer localisation photo, métadonnées GPS"
     },
     "privacyCleaner": {
       "title": "Nettoyeur de confidentialité des images",
       "description": "Repérez les métadonnées sensibles et créez localement une copie nettoyée avant publication ou partage.",
-      "seoTitle": "Nettoyeur de confidentialité des images | Onlitools",
+      "seoTitle": "Nettoyeur de confidentialité des images — OnliTool",
       "seoDescription": "Vérifiez la localisation, l’appareil, la date et l’auteur, puis nettoyez l’image dans le navigateur sans téléversement.",
       "seoKeywords": "confidentialité image, supprimer métadonnées photo, données cachées image"
     },
@@ -1186,7 +1188,7 @@
       "title": "Outils de métadonnées d’image",
       "description": "Consultez les métadonnées, repérez les informations sensibles et créez des copies nettoyées dans le navigateur.",
       "openTool": "Ouvrir l’outil",
-      "seoTitle": "Outils de métadonnées d’image | Onlitools",
+      "seoTitle": "Outils de métadonnées d’image — OnliTool",
       "seoDescription": "Outils locaux pour consulter et supprimer les métadonnées EXIF, GPS, IPTC et XMP des images."
     },
     "exifGuide": {
@@ -1206,13 +1208,13 @@
       "privacyBody": "Les données de localisation et de prise de vue peuvent révéler où ou quand une photo a été prise. Vérifiez le fichier obtenu, car les applications et plateformes peuvent conserver, supprimer ou ajouter des métadonnées lors de l’export ou du partage.",
       "limitsTitle": "Quelques limites à connaître",
       "limitsBody": "La présence de métadonnées dépend du format et du logiciel. Supprimer les EXIF ne masque pas les éléments visibles dans l’image, comme un panneau de rue ou un visage. Le traitement local signifie que le fichier est traité dans votre navigateur ; des fonctions externes comme la recherche d’adresse peuvent envoyer des coordonnées, comme indiqué par l’outil.",
-      "seoTitle": "Que sont les EXIF ? Guide des métadonnées et de la confidentialité | Onlitools",
+      "seoTitle": "Que sont les EXIF ? Guide des métadonnées et de la confidentialité — OnliTool",
       "seoDescription": "Comprenez les métadonnées EXIF, les champs GPS et appareil photo, et comment consulter, modifier ou supprimer les métadonnées d’une image."
     },
     "colorPicker": {
       "title": "Pipette de couleur d’image",
       "description": "Prélevez une couleur et affichez les couleurs fréquentes en HEX, RGB et HSL.",
-      "seoTitle": "Pipette de couleur d’image - HEX, RGB, HSL | Onlitools",
+      "seoTitle": "Pipette de couleur d’image - HEX, RGB, HSL — OnliTool",
       "seoDescription": "Prélevez des couleurs d’une image et explorez sa palette localement dans le navigateur.",
       "seoKeywords": "pipette couleur image, extraire palette image, couleur HEX RGB HSL",
       "changeImage": "Choose another image",
@@ -1223,7 +1225,7 @@
     "svg": {
       "title": "Convertisseur SVG",
       "description": "Convertissez des fichiers SVG en PNG ou WebP dans votre navigateur avec dimensions réglables.",
-      "seoTitle": "Convertisseur SVG vers PNG ou WebP | Onlitools",
+      "seoTitle": "Convertisseur SVG vers PNG ou WebP — OnliTool",
       "seoDescription": "Convertissez localement des graphiques SVG en PNG ou WebP et choisissez les dimensions de sortie.",
       "seoKeywords": "convertisseur SVG, SVG en PNG, SVG en WebP",
       "chooseAnother": "Choose another SVG",

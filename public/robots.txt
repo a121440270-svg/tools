@@ -1,6 +1,8 @@
 # OnliTool robots.txt
-# Content signals: search, AI answers and model training are all allowed.
-Content-Signal: search=yes, ai-input=yes, ai-train=yes
+# Content signals (search / AI input / AI training) are managed at the edge by
+# Cloudflare, which prepends its own Content-Signal block to this file. Keeping a
+# second, conflicting Content-Signal here only makes the policy ambiguous, so the
+# signal is intentionally omitted and AI crawlers are allowed explicitly below.
 
 # Default crawlers
 User-agent: *

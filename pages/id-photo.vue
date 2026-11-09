@@ -178,7 +178,7 @@ import { removeBackground } from '@imgly/background-removal'
 const { t } = useI18n()
 
 useToolSeo({
-  title: () => `${t('idPhoto.title')} | OnliTool`,
+  title: () => `${t('idPhoto.title')} — ${t('idPhoto.seoDesc').split('.')[0]}`,
   description: () => t('idPhoto.seoDesc'),
   keywords: () => t('idPhoto.seoKeywords'),
   applicationCategory: 'PhotographyApplication',

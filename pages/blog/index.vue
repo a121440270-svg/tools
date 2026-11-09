@@ -1,84 +1,137 @@
 <template>
   <div>
-    <div class="flex items-center justify-between mb-6">
-      <h1 class="text-3xl font-medium dark:text-white">{{ $t('blog.title') }}</h1>
+    <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <h1 class="text-3xl font-medium dark:text-white">{{ $t('blog.title') }}</h1>
+        <p class="mt-2 max-w-2xl text-sm text-gray-600 dark:text-gray-400">
+          {{ $t('blog.seoDesc') }}
+        </p>
+      </div>
       <div class="flex items-center gap-4">
-        <div class="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-md">
+        <div class="flex rounded-md bg-gray-100 p-1 dark:bg-gray-700">
           <button
             v-for="sort in sorts"
             :key="sort.value"
-            @click="sortBy = sort.value"
-            class="px-3 py-1 rounded-md transition-colors"
+            type="button"
+            class="rounded-md px-3 py-1 transition-colors"
             :class="{
               'bg-white text-primary dark:bg-gray-800 dark:text-primary-foreground': sortBy === sort.value,
               'text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-600': sortBy !== sort.value
             }"
+            @click="handleSort(sort.value)"
           >
             {{ $t(sort.label) }}
           </button>
         </div>
         <button
+          type="button"
+          class="rounded-md bg-primary px-4 py-2 text-white transition-colors hover:bg-primary/90"
           @click="handleWriteArticle"
-          class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
         >
           {{ $t('blog.write') }}
         </button>
       </div>
     </div>
 
-    <div class="bg-white dark:bg-gray-800 p-4 sm:p-8 rounded-lg border dark:border-gray-700">
+    <div v-if="pending" class="py-12 text-center text-gray-500 dark:text-gray-400">
+      <span class="animate-spin">🔄</span> {{ $t('common.loading') }}
+    </div>
+
+    <div v-else-if="error" class="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300">
+      {{ $t('blog.fetchError') }}
+    </div>
+
+    <div v-else class="rounded-lg border bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-8">
+      <p v-if="!articles.length" class="py-8 text-center text-gray-500 dark:text-gray-400">
+        {{ $t('blog.totalItems', { total: 0 }) }}
+      </p>
       <div class="space-y-6">
-        <div 
-          v-for="article in paginatedArticles" 
+        <article
+          v-for="article in articles"
           :key="article.id"
-          class="border-b dark:border-gray-700 pb-6 last:border-0"
+          class="border-b pb-6 last:border-0 dark:border-gray-700"
         >
-          <NuxtLink 
-            :to="localePath(`/blog/${article.slug}-${article.id}`)" 
+          <NuxtLink
+            :to="articleLink(article)"
             class="block hover:text-primary dark:hover:text-primary-foreground"
           >
-            <h2 class="text-xl font-medium mb-2">{{ article.title }}</h2>
-            <p class="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">{{ article.summary }}</p>
+            <h2 class="mb-2 text-xl font-medium">{{ article.title }}</h2>
+            <p class="mb-4 line-clamp-3 text-gray-600 dark:text-gray-400">{{ excerpt(article) }}</p>
           </NuxtLink>
-          <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
-            <span class="mr-4">{{ $t('blog.author') }}：{{ article.author }}</span>
-            <span class="mr-4">{{ $t('blog.posted') }}：{{ formatDate(article.posted_time) }}</span>
-            <span class="mr-4">{{ $t('blog.type') }}：{{ article.type || '-' }}</span>
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-500 dark:text-gray-400">
+            <span v-if="article.author">{{ $t('blog.author') }}：{{ article.author }}</span>
+            <time v-if="article.posted_time" :datetime="article.posted_time">{{ $t('blog.posted') }}：{{ formatDate(article.posted_time) }}</time>
+            <span v-if="article.type">{{ $t('blog.type') }}：{{ article.type }}</span>
             <span>{{ $t('blog.hits') }}：{{ article.hits }}</span>
           </div>
-        </div>
+        </article>
       </div>
     </div>
 
-    <!-- Pagination section -->
-    <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <!-- 每页条数选择和总数 -->
-      <div class="flex items-center gap-2">
-        <span>{{$t('blog.pageSize')}}</span>
-        <select v-model.number="pageSize" @change="handlePageSizeChange" class="border rounded px-2 py-1 font-semibold bg-white text-gray-800 focus:ring-2 focus:ring-primary focus:border-primary shadow-sm">
-          <option v-for="size in [5, 10, 20, 50]" :key="size" :value="size">{{ size }}</option>
-        </select>
-        <span class="font-semibold text-gray-700">{{$t('blog.items')}}</span>
-        <span class="ml-2 text-gray-500">{{$t('blog.totalItems', { total: total })}}</span>
-      </div>
-      <!-- 分页条 -->
-      <div class="flex items-center gap-1">
-        <button :disabled="currentPage === 1" @click="changePage(1)" class="px-2 py-1 rounded" :class="currentPage === 1 ? 'bg-gray-200 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-600'">«</button>
-        <button :disabled="currentPage === 1" @click="changePage(currentPage-1)" class="px-2 py-1 rounded" :class="currentPage === 1 ? 'bg-gray-200 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-600'">‹</button>
-        <template v-for="page in paginationPages">
-          <button v-if="page === '...'" disabled class="px-2 py-1" :key="'ellipsis-'+page">...</button>
-          <button v-else @click="changePage(page)" :class="page === currentPage ? 'bg-primary text-white' : 'bg-gray-100 dark:bg-gray-700'" class="px-3 py-1 rounded-md" :key="'pagebtn-'+page">{{ page }}</button>
+    <!-- Pagination: real links so crawlers can walk every listing page. -->
+    <nav
+      v-if="totalPages > 1"
+      class="mt-6 flex flex-col items-center justify-between gap-4 sm:flex-row"
+      :aria-label="$t('blog.title')"
+    >
+      <p class="text-sm text-gray-500 dark:text-gray-400">
+        {{ $t('blog.totalItems', { total }) }}
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-1">
+        <NuxtLink
+          :to="pageLink(1)"
+          class="rounded px-2 py-1"
+          :class="currentPage === 1 ? 'pointer-events-none bg-gray-200 text-gray-400 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-600'"
+          :aria-disabled="currentPage === 1"
+          rel="first"
+        >«</NuxtLink>
+        <NuxtLink
+          :to="pageLink(currentPage - 1)"
+          class="rounded px-2 py-1"
+          :class="currentPage === 1 ? 'pointer-events-none bg-gray-200 text-gray-400 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-600'"
+          :aria-disabled="currentPage === 1"
+          rel="prev"
+        >‹</NuxtLink>
+        <template v-for="page in paginationPages" :key="'page-' + page">
+          <span v-if="page === '...'" class="px-2 py-1 text-gray-400">…</span>
+          <NuxtLink
+            v-else
+            :to="pageLink(page)"
+            class="rounded-md px-3 py-1"
+            :class="page === currentPage ? 'bg-primary text-white' : 'bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600'"
+            :aria-current="page === currentPage ? 'page' : undefined"
+          >{{ page }}</NuxtLink>
         </template>
-        <button :disabled="currentPage === totalPages" @click="changePage(currentPage+1)" class="px-2 py-1 rounded" :class="currentPage === totalPages ? 'bg-gray-200 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-600'">›</button>
-        <button :disabled="currentPage === totalPages" @click="changePage(totalPages)" class="px-2 py-1 rounded" :class="currentPage === totalPages ? 'bg-gray-200 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-600'">»</button>
+        <NuxtLink
+          :to="pageLink(currentPage + 1)"
+          class="rounded px-2 py-1"
+          :class="currentPage === totalPages ? 'pointer-events-none bg-gray-200 text-gray-400 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-600'"
+          :aria-disabled="currentPage === totalPages"
+          rel="next"
+        >›</NuxtLink>
+        <NuxtLink
+          :to="pageLink(totalPages)"
+          class="rounded px-2 py-1"
+          :class="currentPage === totalPages ? 'pointer-events-none bg-gray-200 text-gray-400 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-600'"
+          :aria-disabled="currentPage === totalPages"
+          rel="last"
+        >»</NuxtLink>
       </div>
-      <!-- 跳转到指定页 -->
-      <div class="flex items-center gap-2">
-        <span>{{$t('blog.gotoPage') || '跳转到'}}</span>
-        <input type="number" v-model.number="jumpPage" min="1" :max="totalPages" class="border rounded px-2 py-1 w-16 font-semibold bg-white text-gray-800 focus:ring-2 focus:ring-primary focus:border-primary shadow-sm" @keyup.enter="handleJumpPage" />
-        <button @click="handleJumpPage" class="px-2 py-1 bg-primary text-white rounded font-semibold">{{$t('blog.go') || 'GO'}}</button>
-      </div>
-    </div>
+
+      <form class="flex items-center gap-2" @submit.prevent="handleJumpPage">
+        <label for="blog-jump-page" class="text-sm text-gray-600 dark:text-gray-300">{{ $t('blog.gotoPage') }}</label>
+        <input
+          id="blog-jump-page"
+          v-model.number="jumpPage"
+          type="number"
+          min="1"
+          :max="totalPages"
+          class="w-16 rounded border bg-white px-2 py-1 font-semibold text-gray-800 shadow-sm focus:border-primary focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-gray-100"
+        />
+        <button type="submit" class="rounded bg-primary px-2 py-1 font-semibold text-white">{{ $t('blog.go') }}</button>
+      </form>
+    </nav>
   </div>
 </template>
 
@@ -87,97 +140,111 @@ import { ElMessage } from 'element-plus'
 import { useUser } from '~/composables/useAuth'
 import { useLocalePath } from '#i18n'
 
+const PAGE_SIZE = 12
+
+const route = useRoute()
+const router = useRouter()
 const localePath = useLocalePath()
 const { t, locale } = useI18n()
 const user = useUser()
-const router = useRouter()
 
-// 分页参数
-const pageSize = ref(5)
-const currentPage = ref(1)
-const total = ref(0)
-const articles = ref([])
-const jumpPage = ref(1)
+const sorts = [
+  { label: 'blog.sort.time', value: 'posted_time' },
+  { label: 'blog.sort.hits', value: 'hits' }
+]
 
-const totalPages = computed(() => Math.max(1, Math.ceil(total.value / pageSize.value)))
+const sortBy = computed(() => (route.query.sort === 'hits' ? 'hits' : 'posted_time'))
+const currentPage = computed(() => {
+  const raw = Number(route.query.page)
+  return Number.isInteger(raw) && raw > 0 ? raw : 1
+})
 
-// 省略号分页算法
+const jumpPage = ref(currentPage.value)
+watch(currentPage, (page) => { jumpPage.value = page })
+
+// Server-rendered so the article links exist in the initial HTML. This is what
+// lets crawlers discover every post instead of waiting for client-side JS.
+// `useAsyncData` requires a plain string key (Nuxt 3.16 throws on a getter), so
+// the key is resolved once and the `watch` option refetches on query/locale
+// changes.
+const blogKey = `blog-list:${locale.value}:${currentPage.value}:${sortBy.value}`
+const { data, pending, error } = await useAsyncData(
+  blogKey,
+  () => $fetch('/api/articlepage', {
+    params: {
+      page: currentPage.value,
+      pageSize: PAGE_SIZE,
+      sort: sortBy.value,
+      lang: locale.value,
+      excerpt: 1
+    }
+  }),
+  { watch: [currentPage, sortBy, locale] }
+)
+
+const articles = computed(() => data.value?.list || [])
+const total = computed(() => data.value?.total || 0)
+const totalPages = computed(() => Math.max(1, Math.ceil(total.value / PAGE_SIZE)))
+
+// Ellipsis pagination algorithm.
 const paginationPages = computed(() => {
   const pages = []
-  const total = totalPages.value
+  const count = totalPages.value
   const current = currentPage.value
-  if (total <= 7) {
-    for (let i = 1; i <= total; i++) pages.push(i)
+  if (count <= 7) {
+    for (let i = 1; i <= count; i++) pages.push(i)
   } else {
     pages.push(1)
     if (current > 4) pages.push('...')
-    for (let i = Math.max(2, current - 2); i <= Math.min(total - 1, current + 2); i++) {
+    for (let i = Math.max(2, current - 2); i <= Math.min(count - 1, current + 2); i++) {
       pages.push(i)
     }
-    if (current < total - 3) pages.push('...')
-    pages.push(total)
+    if (current < count - 3) pages.push('...')
+    pages.push(count)
   }
   return pages
 })
 
-function changePage(page) {
-  if (page < 1 || page > totalPages.value || page === currentPage.value) return
-  currentPage.value = page
+function pageLink(page) {
+  const query = {}
+  const target = Math.min(Math.max(1, page), totalPages.value)
+  if (target > 1) query.page = String(target)
+  if (sortBy.value === 'hits') query.sort = 'hits'
+  return localePath({ path: '/blog', query })
 }
 
-function handlePageSizeChange() {
-  currentPage.value = 1
-  fetchArticles()
+function articleLink(article) {
+  const slug = String(article.slug || '').trim().replace(/^\/+|\/+$/g, '')
+  return localePath(slug ? `/blog/${slug}-${article.id}` : `/blog/${article.id}`)
+}
+
+function handleSort(value) {
+  if (value === sortBy.value) return
+  const query = value === 'hits' ? { sort: 'hits' } : {}
+  router.push(localePath({ path: '/blog', query }))
 }
 
 function handleJumpPage() {
-  let page = Number(jumpPage.value)
-  if (!page || page < 1) page = 1
-  if (page > totalPages.value) page = totalPages.value
-  currentPage.value = page
-}
-
-// 排序
-const sortBy = ref('posted_time')
-const sorts = [
-  { label: 'blog.sort.hits', value: 'hits' },
-  { label: 'blog.sort.time', value: 'posted_time' }
-]
-
-// 获取文章列表
-const fetchArticles = async () => {
-  try {
-    const { data, error } = await useFetch('/api/articlepage', {
-      params: {
-        page: currentPage.value,
-        pageSize: pageSize.value,
-        sort: sortBy.value
-      }
-    })
-    if (error.value) {
-      if (typeof window !== 'undefined') {
-        ElMessage.error(t('blog.fetchError'))
-      } else {
-        console.error(t('blog.fetchError'))
-      }
-      return
-    }
-    articles.value = data.value?.list || []
-    total.value = data.value?.total || 0
-  } catch (e) {
-    if (typeof window !== 'undefined') {
-      ElMessage.error(t('blog.fetchError'))
-    } else {
-      console.error(t('blog.fetchError'))
-    }
+  const page = Number(jumpPage.value)
+  if (!Number.isFinite(page)) {
+    jumpPage.value = currentPage.value
+    return
   }
+  router.push(pageLink(page))
 }
 
-// 监听分页、排序、每页条数变化
-watch([currentPage, sortBy, pageSize], fetchArticles, { immediate: true })
+function excerpt(article) {
+  if (article.summary) return article.summary
+  return stripHtml(article.content).slice(0, 200)
+}
 
-const paginatedArticles = computed(() => articles.value)
-const sortedArticles = computed(() => articles.value)
+function stripHtml(value) {
+  return String(value || '')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&[a-z#0-9]+;/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
 
 const handleWriteArticle = () => {
   if (!user.value?.id) {
@@ -188,7 +255,6 @@ const handleWriteArticle = () => {
   router.push(localePath('/blog/post'))
 }
 
-// 格式化日期
 function formatDate(dateStr) {
   if (!dateStr) return ''
   const d = new Date(dateStr)
@@ -201,9 +267,19 @@ function formatDate(dateStr) {
 }
 
 useToolSeo({
-  title: () => t('blog.title'),
+  title: () => currentPage.value > 1
+    ? `${t('blog.title')} — ${currentPage.value} | OnliTool`
+    : `${t('blog.title')} | OnliTool`,
   description: () => t('blog.seoDesc'),
   keywords: () => t('blog.seoKeywords'),
-  type: 'WebPage'
+  type: 'WebPage',
+  // Paginated listings self-canonicalise so each page can be indexed on its
+  // own, while the `?sort=` view points back at the unsorted page to avoid a
+  // duplicate listing.
+  canonical: () => {
+    const query = []
+    if (currentPage.value > 1) query.push(`page=${currentPage.value}`)
+    return `${localePath('/blog')}${query.length ? `?${query.join('&')}` : ''}`
+  }
 })
 </script>

@@ -422,8 +422,10 @@
     "fetchError": "Artikel konnten nicht geladen werden",
     "needLogin": "Bitte melden Sie sich an, bevor Sie veröffentlichen",
     "name": "Blog",
-    "seoDesc": "Java, JavaScript technical articles, and practical tutorials",
-    "seoKeywords": "JavaScript, TypeScript, Vue, React, Node.js, Python, Go, Rust, Web开发, 前端, 后端, 全栈, 云原生, Docker, Kubernetes, 微服务, 数据库, DevOps, AI, 机器学习",
+    "seoDesc": "Kostenlose Browser-Anleitungen für Bild-, Schrift- und Textwerkzeuge: komprimieren, konvertieren und bereinigen ohne Upload.",
+    "seoKeywords": "bildkomprimierung anleitung, schrift komprimieren, ttf kompressor, webp konverter, exif entfernen, online tools blog",
+    "moreArticles": "Weitere Artikel",
+    "viewAll": "Alle Artikel ansehen",
     "type": "Kategorie",
     "hits": "Aufrufe",
     "backToList": "Zurück zur Liste",
@@ -458,7 +460,7 @@
     "json_to_csv_error": "JSON zu CSV fehlgeschlagen: {msg}",
     "csv_to_json_error": "CSV zu JSON fehlgeschlagen: {msg}",
     "index": "Tool zur Konvertierung von JSON- und CSV-Dateien",
-    "seo_title": "JSON zu CSV online konvertieren | CSV-zu-JSON-Konverter",
+    "seo_title": "JSON zu CSV online konvertieren — CSV-zu-JSON-Konverter",
     "seo_description": "JSON und CSV einfach online umwandeln. Kostenlos, schnell und sicher direkt im Browser, ohne Datei-Upload.",
     "seo_keywords": "JSON zu CSV, CSV zu JSON, Online-Konverter, kostenloser JSON-CSV-Konverter, JSON konvertieren, CSV konvertieren"
   },
@@ -474,9 +476,9 @@
     "start": "Konvertierung starten",
     "progress": "Verarbeitung von {current} von {total} Bildern...",
     "download": "Herunterladen",
-    "seoTitlePng": "WebP zu PNG online | Bildkonverter für Stapelverarbeitung",
+    "seoTitlePng": "WebP zu PNG online — Bildkonverter für Stapelverarbeitung",
     "seoDescPng": "WebP online in PNG umwandeln und Bilder stapelweise konvertieren. Sicher und effizient.",
-    "seoTitleJpg": "WebP zu JPG online | Bildkonverter für Stapelverarbeitung",
+    "seoTitleJpg": "WebP zu JPG online — Bildkonverter für Stapelverarbeitung",
     "seoDescJpg": "WebP online in JPG umwandeln und Bilder stapelweise konvertieren. Sicher und effizient."
   },
   "prompts": {
@@ -546,7 +548,7 @@
     "title": "WebP zu {format} online",
     "description": "Konvertieren Sie WebP-Bilder zu {format} im Batch. Verarbeiten Sie mehrere Bilder gleichzeitig und laden Sie sie als ZIP-Datei herunter. Die Dateien werden lokal im Browser verarbeitet und niemals hochgeladen.",
     "keywords": "WebP zu {format}, WebP-Batch-Konverter, Batch-Bildkonvertierung, {format}-Online-Tool, lokale Bildverarbeitung, kein Upload",
-    "seoSuffix": "Bildkonverter | Stapelverarbeitung",
+    "seoSuffix": "Bildkonverter — Stapelverarbeitung",
     "intro": "Konvertieren Sie WebP-Bilder in mehrere Formate im Batch, mit Direktdownloads für einzelne Bilder und ZIP-Downloads für mehrere Bilder."
   },
   "accountActivation": {
@@ -641,7 +643,7 @@
     "invalidCode": "Der Linkcode muss 3–48 Zeichen umfassen und darf nur Kleinbuchstaben, Zahlen oder Bindestriche enthalten.",
     "savedMessage": "Freigabelink gespeichert. Er läuft nicht ab.",
     "createFailed": "Freigabe konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
-    "seoTitle": "OpsDrop | Skripte, Befehle und Konfigurationen sofort teilen",
+    "seoTitle": "OpsDrop — Skripte, Befehle und Konfigurationen sofort teilen",
     "seoDescription": "Teilen Sie Skripte, Befehle und Konfigurationen über einen Link oder QR-Code mit Remote-Nutzern. Erstellen Sie einen QR-Code, um Inhalte schnell auf einem anderen Gerät zu öffnen. Ohne Registrierung und Installation.",
     "seoKeywords": "temporäre Notiz, Skripte per QR-Code teilen, QR-Code-Freigabe, Skript an Remote-Nutzer senden, Skript mit Kunden teilen, Befehle mit Kunden teilen, Bash-Skript teilen, PowerShell-Skript teilen, Konfiguration online teilen",
     "seoLinkFeature": "Freigabelink für Skripte, Befehle und Konfigurationen erstellen",
@@ -706,7 +708,7 @@
     "answer2": "Das Ergebnis hängt vom Original ab. Der Kompressor gleicht Dateigröße und Bildschärfe aus, um sich der Zielgröße möglichst anzunähern.",
     "question3": "Werden meine Bilder hochgeladen?",
     "answer3": "Nein. Die Bildverarbeitung erfolgt lokal im Browser; Ihre Dateien werden nicht auf einen Server hochgeladen.",
-    "seoTitle": "{format} online auf {size} komprimieren | OnliTool",
+    "seoTitle": "{format} online auf {size} komprimieren — OnliTool",
     "seoDescription": "Komprimieren Sie {format} online im Browser auf {size}. Verkleinern Sie Bilder ohne Upload und erhalten Sie möglichst hohe Qualität.",
     "seoKeywords": "{format} auf {size} komprimieren, Bildkompressor, Bildgröße reduzieren, Online-Bildkomprimierung"
   },
@@ -904,7 +906,7 @@
       "targetSize": "Zieldateigröße",
       "keepDimensions": "Originale Bildabmessungen beibehalten",
       "action": "Dateigröße erhöhen ({count})",
-      "seoTitle": "Bildgröße in KB online erhöhen - OnliTools",
+      "seoTitle": "Bildgröße in KB online erhöhen - OnliTool",
       "seoDescription": "Erhöhen Sie die Dateigröße von JPG-, PNG- und WebP-Bildern auf einen bestimmten Wert, ohne die ursprünglichen Abmessungen zu ändern.",
       "seoKeywords": "Bildgröße in KB erhöhen, Bilddateigröße erhöhen, Fotogröße ohne Dimensionsänderung erhöhen, JPG auf 100 KB erhöhen",
       "invalidTarget": "Geben Sie eine gültige Zielgröße größer als null ein.",
@@ -961,14 +963,14 @@
       "originalSize": "Originalgröße",
       "saved": "Eingespart",
       "savings": "Ersparnis",
-      "seoTitle": "Bilder auf bestimmte Dateigröße komprimieren | OnliTool",
+      "seoTitle": "Bilder auf bestimmte Dateigröße komprimieren — OnliTool",
       "seoDescription": "Komprimieren Sie JPG-, PNG- und WebP-Bilder auf eine Zielgröße. Verkleinern Sie Bilder direkt im Browser ohne Upload und erhalten Sie eine möglichst hohe Qualität.",
       "seoKeywords": "Bild auf Zielgröße komprimieren, Bildkompressor, Bildgröße reduzieren, JPG komprimieren, PNG komprimieren, WebP komprimieren"
     },
     "converter": {
       "title": "Bildkonverter",
       "description": "Konvertieren Sie JPG, PNG, WebP, AVIF, GIF, BMP und SVG lokal im Browser. Stapelverarbeitung mit ZIP-Download.",
-      "seoTitle": "Bildkonverter - Kostenloses Online-Tool | Onlitools",
+      "seoTitle": "Bildkonverter - Kostenloses Online-Tool — OnliTool",
       "seoDescription": "Bilder im Browser in JPG, PNG, WebP oder AVIF konvertieren. Dateien lokal stapelweise verarbeiten und einzeln oder als ZIP herunterladen.",
       "seoKeywords": "Bildkonverter, Bilder online konvertieren, JPG PNG Konverter, WebP Konverter",
       "inputAccepted": "JPG, PNG, WebP, AVIF, GIF, BMP, SVG and HEIC",
@@ -985,7 +987,7 @@
     "heic": {
       "title": "HEIC zu JPG Konverter",
       "description": "Konvertieren Sie iPhone-Fotos im HEIC- oder HEIF-Format lokal im Browser in JPG, PNG oder WebP.",
-      "seoTitle": "HEIC zu JPG Konverter - Kostenloses Online-Tool | Onlitools",
+      "seoTitle": "HEIC zu JPG Konverter - Kostenloses Online-Tool — OnliTool",
       "seoDescription": "HEIC- und HEIF-Fotos lokal im Browser in JPG, PNG oder WebP konvertieren. Stapelverarbeitung ohne Upload.",
       "seoKeywords": "HEIC zu JPG, HEIC online konvertieren, HEIF Konverter, iPhone Fotos konvertieren",
       "acceptedFormats": "Select one or more HEIC / HEIF photos"
@@ -993,7 +995,7 @@
     "resizer": {
       "title": "Bildgröße ändern",
       "description": "Ändern Sie Bildmaße nach Breite und Höhe, Prozentsatz oder maximaler Kantenlänge. Stapelverarbeitung mit ZIP-Download.",
-      "seoTitle": "Bildgröße ändern - Bilder online skalieren | Onlitools",
+      "seoTitle": "Bildgröße ändern - Bilder online skalieren — OnliTool",
       "seoDescription": "JPG-, PNG- und WebP-Bilder nach Abmessungen, Prozentsatz oder maximaler Größe skalieren. Private Stapelverarbeitung im Browser.",
       "seoKeywords": "Bildgröße ändern, Bilder online skalieren, Bildabmessungen ändern, Bilder stapelweise verkleinern",
       "mode": "Resize mode",
@@ -1012,7 +1014,7 @@
     "cropper": {
       "title": "Bild zuschneiden",
       "description": "Bilder frei oder mit Seitenverhältnis 1:1, 4:3, 16:9 und 9:16 zuschneiden.",
-      "seoTitle": "Bild zuschneiden - Online-Bildzuschnitt | Onlitools",
+      "seoTitle": "Bild zuschneiden - Online-Bildzuschnitt — OnliTool",
       "seoDescription": "JPG-, PNG- und WebP-Bilder frei oder mit festen Seitenverhältnissen direkt im Browser zuschneiden.",
       "seoKeywords": "Bild zuschneiden, Bild online beschneiden, Foto zuschneiden",
       "aspectRatio": "Aspect ratio",
@@ -1032,8 +1034,8 @@
       "fromTitle": "Base64 zu Bild",
       "toDescription": "Bilder im Browser in Data-URLs, HTML oder CSS konvertieren.",
       "fromDescription": "Base64-Text oder Data-URLs lokal als Bild anzeigen und herunterladen.",
-      "toSeoTitle": "Bild zu Base64 - Kostenloser Online-Konverter | Onlitools",
-      "fromSeoTitle": "Base64 zu Bild - Kostenloser Online-Konverter | Onlitools",
+      "toSeoTitle": "Bild zu Base64 - Kostenloser Online-Konverter — OnliTool",
+      "fromSeoTitle": "Base64 zu Bild - Kostenloser Online-Konverter — OnliTool",
       "toSeoDescription": "PNG-, JPG-, WebP- und SVG-Bilder lokal in Base64, HTML oder CSS konvertieren.",
       "fromSeoDescription": "Base64-Bilder im Browser dekodieren und als PNG, JPG oder WebP herunterladen.",
       "toSeoKeywords": "Bild zu Base64, Bild Data URL, Base64 Bildkonverter",
@@ -1081,7 +1083,7 @@
       "locationNotFound": "Keine Adresse in der Nähe gefunden.",
       "locationLookupError": "Die Adresssuche ist fehlgeschlagen. Bitte versuchen Sie es später erneut.",
       "locationAttribution": "© OpenStreetMap-Mitwirkende",
-      "seoTitle": "Bildinformationen und Metadaten anzeigen | Onlitools",
+      "seoTitle": "Bildinformationen und Metadaten anzeigen — OnliTool",
       "seoDescription": "Bildabmessungen, Dateigröße, Format und verfügbare EXIF/GPS-Daten im Browser anzeigen.",
       "seoKeywords": "Bildinformationen, Bildmetadaten, EXIF Viewer, Bildabmessungen",
       "fileName": "File name",
@@ -1103,7 +1105,7 @@
       "title": "EXIF-Metadaten entfernen",
       "description": "Entfernen Sie GPS-, Kamera- und Datumsangaben durch lokale Bildverarbeitung im Browser.",
       "animatedGifUnsupported": "GIF-Dateien werden nicht bereinigt, damit ihre Animation erhalten bleibt.",
-      "seoTitle": "EXIF-Metadaten aus Bildern entfernen | Onlitools",
+      "seoTitle": "EXIF-Metadaten aus Bildern entfernen — OnliTool",
       "seoDescription": "GPS-Standort, Kameradaten und EXIF-Metadaten direkt im Browser entfernen. Kein Upload.",
       "seoKeywords": "EXIF entfernen, Bildmetadaten entfernen, GPS aus Fotos entfernen",
       "outputFormat": "Clean output format",
@@ -1115,7 +1117,7 @@
       "eyebrow": "JPEG-Metadateneditor",
       "title": "EXIF-Editor",
       "description": "Aufnahmezeit, Kamera, Autor, Copyright, Beschreibung und GPS-Daten in JPEG-Dateien lokal bearbeiten.",
-      "seoTitle": "EXIF-Editor - JPEG-Fotom Metadaten lokal bearbeiten | Onlitools",
+      "seoTitle": "EXIF-Editor - JPEG-Fotom Metadaten lokal bearbeiten — OnliTool",
       "seoDescription": "JPEG-Aufnahmezeit, Kamera, Autor, Copyright, Beschreibung und GPS im Browser bearbeiten. Kein Upload.",
       "seoKeywords": "EXIF Editor, JPEG EXIF bearbeiten, Fotometadaten bearbeiten, GPS ändern",
       "upload": "JPEG-Bild auswählen",
@@ -1156,28 +1158,28 @@
     "metadataAnalyzer": {
       "title": "Bildmetadaten-Analyzer",
       "description": "EXIF-, GPS-, IPTC-, XMP-, ICC- und Bildkopf-Metadaten im Browser untersuchen.",
-      "seoTitle": "Bildmetadaten-Analyzer für EXIF, GPS, IPTC und XMP | Onlitools",
+      "seoTitle": "Bildmetadaten-Analyzer für EXIF, GPS, IPTC und XMP — OnliTool",
       "seoDescription": "Bildmetadaten lokal analysieren, darunter Kamera, Standort, Aufnahmezeit, Urheber und Farbprofil.",
       "seoKeywords": "Bildmetadaten Analyzer, EXIF Analyzer, IPTC Viewer, XMP Viewer"
     },
     "metadataRemover": {
       "title": "Bildmetadaten entfernen",
       "description": "Bilder prüfen und eingebettete Metadaten vor dem Teilen lokal durch erneutes Kodieren entfernen.",
-      "seoTitle": "Bildmetadaten lokal entfernen | Onlitools",
+      "seoTitle": "Bildmetadaten lokal entfernen — OnliTool",
       "seoDescription": "EXIF-, GPS-, IPTC- und weitere eingebettete Bildmetadaten im Browser entfernen. Kein Upload.",
       "seoKeywords": "Bildmetadaten entfernen, EXIF entfernen, Fotometadaten löschen"
     },
     "gpsRemover": {
       "title": "GPS-Standort aus Fotos entfernen",
       "description": "Standortdaten prüfen und vor dem Teilen eine bereinigte Kopie erstellen. Dabei werden auch andere eingebettete Metadaten entfernt.",
-      "seoTitle": "GPS-Metadaten aus Fotos entfernen | Onlitools",
+      "seoTitle": "GPS-Metadaten aus Fotos entfernen — OnliTool",
       "seoDescription": "GPS-Standortdaten lokal finden und entfernen. Die bereinigte Kopie enthält auch keine anderen eingebetteten Metadaten.",
       "seoKeywords": "GPS aus Fotos entfernen, Fotostandort entfernen, GPS-Metadaten entfernen"
     },
     "privacyCleaner": {
       "title": "Bild-Datenschutzbereinigung",
       "description": "Sensible Bildmetadaten prüfen und vor dem Teilen lokal eine bereinigte Kopie erstellen.",
-      "seoTitle": "Bild-Datenschutzbereinigung | Onlitools",
+      "seoTitle": "Bild-Datenschutzbereinigung — OnliTool",
       "seoDescription": "Standort-, Geräte-, Datums- und Urhebermetadaten prüfen und Bilder ohne Upload im Browser bereinigen.",
       "seoKeywords": "Bild Datenschutz, Fotometadaten entfernen, versteckte Bilddaten entfernen"
     },
@@ -1186,7 +1188,7 @@
       "title": "Bildmetadaten-Tools",
       "description": "Metadaten prüfen, sensible Angaben erkennen und bereinigte Bildkopien im Browser erstellen.",
       "openTool": "Tool öffnen",
-      "seoTitle": "Bildmetadaten-Tools: EXIF anzeigen und entfernen | Onlitools",
+      "seoTitle": "Bildmetadaten-Tools: EXIF anzeigen und entfernen — OnliTool",
       "seoDescription": "Tools zum lokalen Anzeigen und Entfernen von EXIF-, GPS-, IPTC- und XMP-Bildmetadaten."
     },
     "exifGuide": {
@@ -1206,13 +1208,13 @@
       "privacyBody": "Standort- und Aufnahmedaten können verraten, wo oder wann ein Foto aufgenommen wurde. Prüfen Sie die bereinigte Datei, denn Apps und Plattformen können Metadaten beim Exportieren oder Teilen erhalten, entfernen oder hinzufügen.",
       "limitsTitle": "Wichtige Einschränkungen",
       "limitsBody": "Welche Metadaten vorhanden sind, hängt von Format und Software ab. Das Entfernen von EXIF macht keine sichtbaren Bildinhalte wie Straßenschilder oder Gesichter unkenntlich. Bei lokaler Verarbeitung wird die ausgewählte Datei im Browser verarbeitet; externe Funktionen wie die Adresssuche können gemäß Tool-Hinweis Koordinaten senden.",
-      "seoTitle": "Was ist EXIF? Leitfaden zu Bildmetadaten und Datenschutz | Onlitools",
+      "seoTitle": "Was ist EXIF? Leitfaden zu Bildmetadaten und Datenschutz — OnliTool",
       "seoDescription": "Erfahren Sie mehr über EXIF-Fotometadaten, GPS- und Kameradaten sowie das Anzeigen, Bearbeiten und Entfernen von Bildmetadaten."
     },
     "colorPicker": {
       "title": "Bild-Farbwähler",
       "description": "Farben aus Bildern aufnehmen und häufige Farben in HEX, RGB und HSL anzeigen.",
-      "seoTitle": "Bild-Farbwähler - HEX, RGB und HSL | Onlitools",
+      "seoTitle": "Bild-Farbwähler - HEX, RGB und HSL — OnliTool",
       "seoDescription": "Farben aus Bildern auswählen und häufige Farben lokal als HEX, RGB und HSL anzeigen.",
       "seoKeywords": "Bild Farbwähler, Farbe aus Bild, Bildpalette extrahieren",
       "changeImage": "Choose another image",
@@ -1223,7 +1225,7 @@
     "svg": {
       "title": "SVG-Konverter",
       "description": "SVG-Vektorgrafiken lokal im Browser mit anpassbarer Größe in PNG oder WebP konvertieren.",
-      "seoTitle": "SVG-Konverter - SVG zu PNG oder WebP | Onlitools",
+      "seoTitle": "SVG-Konverter - SVG zu PNG oder WebP — OnliTool",
       "seoDescription": "SVG-Dateien lokal in PNG oder WebP konvertieren und die Ausgabegröße festlegen.",
       "seoKeywords": "SVG Konverter, SVG zu PNG, SVG zu WebP",
       "chooseAnother": "Choose another SVG",

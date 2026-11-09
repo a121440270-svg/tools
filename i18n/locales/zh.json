@@ -44,8 +44,8 @@
   },
   "caseTool": {
     "category": "文本工具",
-    "title": "大小写转换工具",
-    "description": "支持大写、小写、标题格式、句首大写、camelCase、snake_case、kebab-case 等多种文本转换场景。",
+    "title": "大小写转换器 — 大写转小写、小写转大写",
+    "description": "在线转换大写、小写、标题格式、句首大写、camelCase、snake_case、kebab-case。免费大小写转换工具，文本只在浏览器本地处理，无需上传。",
     "copy": "复制到剪贴板",
     "placeholder": "请在此处粘贴或输入文本...",
     "outputPlaceholder": "转换后的文本将显示在这里...",
@@ -314,10 +314,10 @@
         "description": "临时分享命令、脚本、配置和技术文本。"
       }
     },
-    "seoTitle": "OnliTool - 全站工具导航",
-    "seoDescription": "OnliTool 提供图片处理、AI 工具、字体压缩、文本转换、开发辅助等在线工具，一站式工具导航。",
-    "seoKeywords": "在线工具, 图片处理, AI工具, 字体压缩, 文件转换, 开发工具, OnliTool",
-    "seoOgDescription": "一站式在线工具导航，快速找到图片、AI、文本、转换和开发辅助工具。"
+    "seoTitle": "免费在线工具：图片压缩、字体压缩、文本转换 — OnliTool",
+    "seoDescription": "在浏览器本地压缩图片和字体：支持 JPG、PNG、WebP 图片压缩，TTF/OTF/WOFF2 字体子集化，大小写转换和 EXIF/GPS 移除。无需上传文件，无需登录，免费使用。",
+    "seoKeywords": "免费在线工具, 图片压缩, 字体压缩, ttf 压缩, 字体子集化, 大小写转换, exif 移除, 图片缩放, 本地处理, OnliTool",
+    "seoOgDescription": "文件只在你的设备上处理：图片压缩、字体子集化、文本转换与元数据移除，免费且无需上传。"
   },
   "search": {
     "placeholder": "搜索"
@@ -407,8 +407,10 @@
     "fetchError": "获取文章失败",
     "needLogin": "请先登录后再发布文章",
     "name": "博客",
-    "seoDesc": "java，js技文章、实战教程等",
-    "seoKeywords": "JavaScript, TypeScript, Vue, React, Node.js, Python, Go, Rust, Web开发, 前端, 后端, 全栈, 云原生, Docker, Kubernetes, 微服务, 数据库, DevOps, AI, 机器学习",
+    "seoDesc": "图片、字体、文本工具的免费浏览器教程：在本地压缩、转换与清理文件，无需上传。",
+    "seoKeywords": "图片压缩教程, 字体压缩教程, ttf 压缩, webp 转换, exif 移除, 在线工具博客",
+    "moreArticles": "更多文章",
+    "viewAll": "查看全部文章",
     "type": "标签",
     "hits": "查看",
     "backToList": "返回列表",
@@ -478,9 +480,9 @@
     "start": "开始处理",
     "progress": "正在处理第{current}/{total}张图片...",
     "download": "下载",
-    "seoTitlePng": "WebP转PNG在线工具 | 图片格式转换 | 批量处理",
+    "seoTitlePng": "WebP转PNG在线工具 — 图片格式转换 — 批量处理",
     "seoDescPng": "在线WebP转PNG工具，支持批量图片转换，支持多语言，最佳SEO，安全高效。",
-    "seoTitleJpg": "WebP转JPG在线工具 | 图片格式转换 | 批量处理",
+    "seoTitleJpg": "WebP转JPG在线工具 — 图片格式转换 — 批量处理",
     "seoDescJpg": "在线WebP转JPG工具，支持批量图片转换，支持多语言，最佳SEO，安全高效。"
   },
   "prompts": {
@@ -550,7 +552,7 @@
     "title": "WebP转{format}在线工具",
     "description": "在线批量将 WebP 图片转换为 {format}，支持一次处理多张图片并打包下载 ZIP，文件仅在浏览器本地处理，不上传服务器。",
     "keywords": "WebP转{format},WebP批量转换,批量图片转换,{format}在线工具,本地图片处理,不上传文件",
-    "seoSuffix": "图片格式转换 | 批量处理",
+    "seoSuffix": "图片格式转换 — 批量处理",
     "intro": "WebP 支持多种图片格式批量转换，单图直接下载，多图打包下载。"
   },
   "accountActivation": {
@@ -646,7 +648,7 @@
     "invalidCode": "链接代码须为 3–48 个字符，只能包含小写字母、数字或连字符。",
     "savedMessage": "分享链接已保存，且不会过期。",
     "createFailed": "无法创建分享，请重试。",
-    "seoTitle": "OpsDrop | 即时分享脚本、命令和配置",
+    "seoTitle": "OpsDrop — 即时分享脚本、命令和配置",
     "seoDescription": "通过分享链接或二维码向远程用户分享脚本、命令和配置。生成二维码后，可使用另一台设备快速扫码打开内容。无需注册或安装。",
     "seoKeywords": "临时笔记, 二维码分享脚本, 二维码文件分享, 向远程用户发送脚本, 与客户分享脚本, 与客户分享命令, 分享 Bash 脚本, 分享 PowerShell 脚本, 在线分享配置",
     "seoLinkFeature": "创建分享链接以传递脚本、命令和配置信息",
@@ -711,7 +713,7 @@
     "answer2": "结果取决于原图。压缩工具会平衡文件大小和视觉清晰度，尽可能接近目标。",
     "question3": "图片会被上传吗？",
     "answer3": "不会。图片在浏览器本地处理，不会上传到服务器。",
-    "seoTitle": "在线将 {format} 压缩至 {size} | OnliTool",
+    "seoTitle": "在线将 {format} 压缩至 {size} — OnliTool",
     "seoDescription": "在浏览器中在线将 {format} 压缩至 {size}。无需上传文件即可缩小图片，并尽量保持最佳画质。",
     "seoKeywords": "压缩{format}至{size}, 图片压缩工具, 缩小图片, 在线图片压缩"
   },
@@ -909,7 +911,7 @@
       "targetSize": "目标文件大小",
       "keepDimensions": "保持原始图片尺寸",
       "action": "增大文件大小（{count}）",
-      "seoTitle": "在线增大图片 KB 大小 - OnliTools",
+      "seoTitle": "在线增大图片 KB 大小 - OnliTool",
       "seoDescription": "在保持原始图片尺寸的同时，将 JPG、PNG 和 WebP 图片文件大小增至指定值。",
       "seoKeywords": "增大图片KB大小, 增大图片文件大小, 不改变尺寸增大照片大小, JPG增大到100KB",
       "invalidTarget": "请输入大于零的有效目标大小。",
@@ -966,7 +968,7 @@
       "originalSize": "原始大小",
       "saved": "已节省",
       "savings": "压缩率",
-      "seoTitle": "将图片压缩到指定文件大小 | OnliTool",
+      "seoTitle": "将图片压缩到指定文件大小 — OnliTool",
       "seoDescription": "将 JPG、PNG 和 WebP 图片压缩到目标文件大小。在浏览器中直接缩小图片，无需上传并尽量保持画质。",
       "seoKeywords": "图片压缩到目标大小, 图片压缩工具, 缩小图片, JPG压缩, PNG压缩, WebP压缩"
     },
@@ -983,7 +985,7 @@
       "outputUnsupported": "当前浏览器无法编码为 {format}，请尝试其他格式。",
       "imageTooLarge": "图片超过 1 亿像素的处理上限。",
       "convertError": "图片转换失败。",
-      "seoTitle": "图片格式转换器 - 免费在线工具 | Onlitools",
+      "seoTitle": "图片格式转换器 - 免费在线工具 — OnliTool",
       "seoDescription": "在浏览器中将图片转换为 JPG、PNG、WebP 或 AVIF。支持本地批量处理，可单独下载或打包为 ZIP。",
       "seoKeywords": "图片格式转换, 在线图片转换, JPG PNG转换, WebP转换, 批量图片转换"
     },
@@ -991,7 +993,7 @@
       "title": "HEIC 转 JPG 转换器",
       "description": "在浏览器中将 iPhone HEIC 和 HEIF 照片转换为 JPG、PNG 或 WebP。图片不会上传。",
       "acceptedFormats": "选择一张或多张 HEIC / HEIF 照片",
-      "seoTitle": "HEIC 转 JPG 转换器 - 免费在线工具 | Onlitools",
+      "seoTitle": "HEIC 转 JPG 转换器 - 免费在线工具 — OnliTool",
       "seoDescription": "在浏览器本地将 HEIC 和 HEIF 照片转换为 JPG、PNG 或 WebP。支持批量转换，无需上传。",
       "seoKeywords": "HEIC转JPG, HEIC在线转换, HEIF转换器, iPhone照片转换"
     },
@@ -1010,7 +1012,7 @@
       "imageTooLarge": "{name} 超过 1 亿像素的处理上限。",
       "invalidDimensions": "请输入有效尺寸，且总像素不能超过 1 亿。",
       "resizeError": "图片尺寸调整失败。",
-      "seoTitle": "图片尺寸调整器 - 在线调整图片大小 | Onlitools",
+      "seoTitle": "图片尺寸调整器 - 在线调整图片大小 — OnliTool",
       "seoDescription": "按宽度、高度、百分比或最大尺寸调整 JPG、PNG、WebP 等图片。在浏览器本地批量处理，保护隐私。",
       "seoKeywords": "图片尺寸调整, 在线调整图片大小, 更改图片尺寸, 批量调整图片"
     },
@@ -1028,7 +1030,7 @@
       "loadError": "无法加载此图片。",
       "invalidSelection": "请选择大于零像素的区域。",
       "cropError": "图片裁剪失败。",
-      "seoTitle": "图片裁剪工具 - 在线裁剪图片 | Onlitools",
+      "seoTitle": "图片裁剪工具 - 在线裁剪图片 — OnliTool",
       "seoDescription": "在线裁剪 JPG、PNG、WebP 等图片，支持自由选区和 1:1、4:3、16:9、9:16 比例，文件仅在浏览器本地处理。",
       "seoKeywords": "图片裁剪, 在线裁剪图片, 照片裁剪, 16:9裁剪, 正方形裁剪"
     },
@@ -1037,8 +1039,8 @@
       "fromTitle": "Base64 转图片",
       "toDescription": "在浏览器中将图片转换为 Data URL、HTML 图片标签或 CSS 背景字符串。",
       "fromDescription": "粘贴 Base64 字符串或 Data URL，在本地预览并下载图片。",
-      "toSeoTitle": "图片转 Base64 - 免费在线工具 | Onlitools",
-      "fromSeoTitle": "Base64 转图片 - 免费在线工具 | Onlitools",
+      "toSeoTitle": "图片转 Base64 - 免费在线工具 — OnliTool",
+      "fromSeoTitle": "Base64 转图片 - 免费在线工具 — OnliTool",
       "toSeoDescription": "在浏览器本地将 PNG、JPG、WebP 和 SVG 图片转换为 Base64 Data URL、HTML 或 CSS。",
       "fromSeoDescription": "解码 Base64 图片或 Data URL，并下载为 PNG、JPG 或 WebP，无需上传。",
       "toSeoKeywords": "图片转Base64, 图片转Data URL, Base64图片转换器, 图片Base64在线转换",
@@ -1100,7 +1102,7 @@
       "locationLookupError": "地址查询失败，请稍后重试。",
       "locationAttribution": "© OpenStreetMap 贡献者",
       "readError": "无法读取 {name}。",
-      "seoTitle": "图片信息查看器 - 查看图片元数据 | Onlitools",
+      "seoTitle": "图片信息查看器 - 查看图片元数据 — OnliTool",
       "seoDescription": "在浏览器中查看图片尺寸、文件大小、格式、宽高比以及可读取的 EXIF/GPS 元数据。",
       "seoKeywords": "图片信息, 图片元数据查看器, 照片尺寸, EXIF查看器, 图片属性"
     },
@@ -1112,7 +1114,7 @@
       "privacyNote": "输出文件在本地重新编码，不会保留原文件中的 EXIF 元数据。",
       "animatedGifUnsupported": "为避免丢失动画，清理工具暂不支持 GIF。",
       "processError": "无法移除此图片的元数据。",
-      "seoTitle": "移除图片 EXIF 元数据 - Onlitools",
+      "seoTitle": "移除图片 EXIF 元数据 - OnliTool",
       "seoDescription": "在浏览器中移除图片 GPS 位置、相机信息和其他 EXIF 元数据，文件不会上传。",
       "seoKeywords": "移除EXIF, 移除图片元数据, 移除照片GPS, 在线清除EXIF"
     },
@@ -1120,7 +1122,7 @@
       "eyebrow": "JPEG 元数据编辑器",
       "title": "EXIF 编辑器",
       "description": "编辑 JPEG 的拍摄时间、相机、作者、版权、描述和 GPS 字段。所有处理均在浏览器本地完成。",
-      "seoTitle": "EXIF 编辑器 - 本地修改 JPEG 照片元数据 | Onlitools",
+      "seoTitle": "EXIF 编辑器 - 本地修改 JPEG 照片元数据 — OnliTool",
       "seoDescription": "在浏览器中修改 JPEG 拍摄时间、相机、作者、版权、描述和 GPS 信息，不上传图片。",
       "seoKeywords": "EXIF编辑器, 修改JPEG EXIF, 编辑照片元数据, 修改照片GPS",
       "upload": "选择 JPEG 图片",
@@ -1161,28 +1163,28 @@
     "metadataAnalyzer": {
       "title": "图片元数据分析器",
       "description": "在浏览器中检查图片可读取的 EXIF、GPS、IPTC、XMP、ICC 和图像头信息。",
-      "seoTitle": "图片元数据分析器 - EXIF、GPS、IPTC 和 XMP | Onlitools",
+      "seoTitle": "图片元数据分析器 - EXIF、GPS、IPTC 和 XMP — OnliTool",
       "seoDescription": "在本地分析图片元数据，包括相机、位置、拍摄时间、作者和色彩配置文件。",
       "seoKeywords": "图片元数据分析器, EXIF分析, IPTC查看器, XMP查看器, 图片元数据检查"
     },
     "metadataRemover": {
       "title": "图片元数据清理器",
       "description": "扫描图片并在本地重新编码，清除嵌入式元数据后再分享。",
-      "seoTitle": "图片元数据清理器 - 本地清理照片元数据 | Onlitools",
+      "seoTitle": "图片元数据清理器 - 本地清理照片元数据 — OnliTool",
       "seoDescription": "在浏览器中移除图片 EXIF、GPS、IPTC 等嵌入式元数据，文件不会上传。",
       "seoKeywords": "图片元数据清理, 删除照片元数据, 清除EXIF IPTC XMP"
     },
     "gpsRemover": {
       "title": "移除照片 GPS 位置信息",
       "description": "检查照片中的位置信息并生成清理副本。重新编码也会移除其他嵌入式元数据。",
-      "seoTitle": "GPS 元数据清理器 - 移除照片位置数据 | Onlitools",
+      "seoTitle": "GPS 元数据清理器 - 移除照片位置数据 — OnliTool",
       "seoDescription": "在本地查找并移除照片 GPS 位置数据；生成的副本也会移除其他嵌入式元数据。",
       "seoKeywords": "GPS元数据清理, 删除照片GPS, 移除图片位置数据"
     },
     "privacyCleaner": {
       "title": "图片隐私清理器",
       "description": "扫描可能敏感的图片元数据，并在发布或分享前于本地生成清理副本。",
-      "seoTitle": "图片隐私清理器 - 扫描并移除照片元数据 | Onlitools",
+      "seoTitle": "图片隐私清理器 - 扫描并移除照片元数据 — OnliTool",
       "seoDescription": "检查位置、设备、日期和作者信息，然后在浏览器中清理图片，不上传文件。",
       "seoKeywords": "图片隐私清理, 照片隐私, 移除图片隐藏信息"
     },
@@ -1191,7 +1193,7 @@
       "title": "图片元数据工具",
       "description": "查看图片元数据、识别隐私信息，并在浏览器中生成清理后的图片。",
       "openTool": "打开工具",
-      "seoTitle": "图片元数据工具 - 查看与清除 EXIF | Onlitools",
+      "seoTitle": "图片元数据工具 - 查看与清除 EXIF — OnliTool",
       "seoDescription": "浏览 EXIF、GPS、IPTC 和 XMP 图片元数据查看与清理工具，所有处理均在本地完成。"
     },
     "exifGuide": {
@@ -1211,7 +1213,7 @@
       "privacyBody": "位置和拍摄信息可能暴露照片拍摄的时间或地点。清理后请检查实际输出，因为不同应用和平台在导出或分享时可能保留、移除或添加元数据。",
       "limitsTitle": "需要了解的限制",
       "limitsBody": "元数据是否存在取决于文件格式和软件。移除 EXIF 不会遮盖图像本身可见的信息，例如路牌或人脸。本地处理表示所选文件由浏览器处理；地址查询等外部功能可能会按工具说明发送坐标。",
-      "seoTitle": "什么是 EXIF？图片元数据与隐私指南 | Onlitools",
+      "seoTitle": "什么是 EXIF？图片元数据与隐私指南 — OnliTool",
       "seoDescription": "了解照片 EXIF 元数据、GPS 和相机信息等常见字段，以及如何查看、编辑或移除图片元数据。"
     },
     "colorPicker": {
@@ -1221,7 +1223,7 @@
       "clickHint": "点击图片采样像素颜色。",
       "dominantColors": "常见颜色",
       "readError": "无法读取此图片的像素颜色。",
-      "seoTitle": "图片取色器 - HEX、RGB 和 HSL | Onlitools",
+      "seoTitle": "图片取色器 - HEX、RGB 和 HSL — OnliTool",
       "seoDescription": "从图片中拾取颜色并提取常见颜色，显示 HEX、RGB 和 HSL。图片仅在浏览器本地处理。",
       "seoKeywords": "图片取色器, 图片取色, 图片调色板提取, HEX RGB HSL取色"
     },
@@ -1234,7 +1236,7 @@
       "fileTooLarge": "SVG 文件必须小于 10 MB。",
       "invalidDimensions": "请输入有效尺寸，且总像素不能超过 1 亿。",
       "convertError": "SVG 转换失败。",
-      "seoTitle": "SVG 转换器 - SVG 转 PNG 或 WebP | Onlitools",
+      "seoTitle": "SVG 转换器 - SVG 转 PNG 或 WebP — OnliTool",
       "seoDescription": "将 SVG 矢量图转换为 PNG 或 WebP，并自定义尺寸。浏览器本地净化和处理文件。",
       "seoKeywords": "SVG转换器, SVG转PNG, SVG转WebP, 在线转换SVG"
     }

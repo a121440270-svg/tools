@@ -295,7 +295,7 @@
       "targetSize": "目標ファイルサイズ",
       "keepDimensions": "元の画像寸法を維持",
       "action": "ファイルサイズを増やす（{count}枚）",
-      "seoTitle": "画像のファイルサイズをKB単位で増やす - OnliTools",
+      "seoTitle": "画像のファイルサイズをKB単位で増やす - OnliTool",
       "seoDescription": "画像の寸法を維持したまま、JPG、PNG、WebPのファイルサイズを指定したKBまたはMBまで増やします。",
       "seoKeywords": "画像サイズをKB単位で増やす, 画像ファイルサイズを増やす, 寸法を変えずに写真サイズを増やす",
       "invalidTarget": "0より大きい有効な目標サイズを入力してください。",
@@ -359,7 +359,7 @@
     "converter": {
       "title": "画像形式変換ツール",
       "description": "JPG、PNG、WebP、AVIF、GIF、BMP、SVGなどをブラウザー内で変換。複数画像の一括処理とZIPダウンロードに対応。",
-      "seoTitle": "画像形式変換ツール - 無料オンライン | Onlitools",
+      "seoTitle": "画像形式変換ツール - 無料オンライン — OnliTool",
       "seoDescription": "画像をJPG、PNG、WebP、AVIFにブラウザー内で変換。複数ファイルをローカルで処理し、個別またはZIPでダウンロードできます。",
       "seoKeywords": "画像変換, 画像形式変換, JPG PNG変換, WebP変換",
       "inputAccepted": "JPG, PNG, WebP, AVIF, GIF, BMP, SVG and HEIC",
@@ -376,7 +376,7 @@
     "heic": {
       "title": "HEICからJPGへの変換ツール",
       "description": "iPhoneのHEIC・HEIF写真をJPG、PNG、WebPにブラウザー内で変換。画像はアップロードされません。",
-      "seoTitle": "HEICからJPGへの変換 - 無料オンライン | Onlitools",
+      "seoTitle": "HEICからJPGへの変換 - 無料オンライン — OnliTool",
       "seoDescription": "HEIC・HEIF写真をJPG、PNG、WebPにローカル変換。アップロード不要で複数ファイルを処理できます。",
       "seoKeywords": "HEIC JPG変換, HEIC変換, HEIF変換, iPhone写真変換",
       "acceptedFormats": "Select one or more HEIC / HEIF photos"
@@ -384,7 +384,7 @@
     "resizer": {
       "title": "画像リサイズ",
       "description": "幅と高さ、割合、最大辺を指定して画像をリサイズ。縦横比を保った一括処理とZIPダウンロードに対応。",
-      "seoTitle": "画像リサイズ - オンラインで画像サイズ変更 | Onlitools",
+      "seoTitle": "画像リサイズ - オンラインで画像サイズ変更 — OnliTool",
       "seoDescription": "JPG、PNG、WebPなどを寸法、割合、最大サイズでリサイズ。ブラウザー内でプライベートに一括処理できます。",
       "seoKeywords": "画像リサイズ, 画像サイズ変更, オンライン画像リサイズ, 画像一括リサイズ",
       "mode": "Resize mode",
@@ -403,7 +403,7 @@
     "cropper": {
       "title": "画像トリミング",
       "description": "自由な範囲や1:1、4:3、16:9、9:16の比率で画像を切り抜けます。",
-      "seoTitle": "画像トリミング - オンライン画像切り抜き | Onlitools",
+      "seoTitle": "画像トリミング - オンライン画像切り抜き — OnliTool",
       "seoDescription": "JPG、PNG、WebPを自由な範囲やプリセット比率でブラウザー内でトリミングできます。",
       "seoKeywords": "画像トリミング, 画像切り抜き, オンライン画像クロップ",
       "aspectRatio": "Aspect ratio",
@@ -423,8 +423,8 @@
       "fromTitle": "Base64を画像に変換",
       "toDescription": "画像をData URL、HTML、CSSにブラウザー内で変換します。",
       "fromDescription": "Base64文字列やData URLから画像をプレビューしてダウンロードできます。",
-      "toSeoTitle": "画像をBase64に変換 - 無料オンライン | Onlitools",
-      "fromSeoTitle": "Base64を画像に変換 - 無料オンライン | Onlitools",
+      "toSeoTitle": "画像をBase64に変換 - 無料オンライン — OnliTool",
+      "fromSeoTitle": "Base64を画像に変換 - 無料オンライン — OnliTool",
       "toSeoDescription": "PNG、JPG、WebP、SVGをBase64、HTML、CSSにローカル変換します。",
       "fromSeoDescription": "Base64画像をブラウザーでデコードし、PNG、JPG、WebPで保存できます。",
       "toSeoKeywords": "画像 Base64変換, Data URL変換, Base64画像ツール",
@@ -472,7 +472,7 @@
       "locationNotFound": "近くの住所が見つかりませんでした。",
       "locationLookupError": "住所を検索できませんでした。しばらくしてからもう一度お試しください。",
       "locationAttribution": "© OpenStreetMapの貢献者",
-      "seoTitle": "画像情報・メタデータビューアー | Onlitools",
+      "seoTitle": "画像情報・メタデータビューアー — OnliTool",
       "seoDescription": "画像サイズ、形式、縦横比、EXIF/GPS情報をブラウザーで確認できます。",
       "seoKeywords": "画像情報, 画像メタデータ, EXIFビューアー, 画像寸法",
       "fileName": "File name",
@@ -494,7 +494,7 @@
       "title": "画像のEXIF情報を削除",
       "description": "GPS、カメラ、撮影日時などのメタデータをブラウザー内で削除します。",
       "animatedGifUnsupported": "アニメーションを維持するため、GIFのメタデータ削除には対応していません。",
-      "seoTitle": "画像のEXIFメタデータを削除 | Onlitools",
+      "seoTitle": "画像のEXIFメタデータを削除 — OnliTool",
       "seoDescription": "画像のGPS位置、カメラ情報、EXIFデータをアップロードせずに削除できます。",
       "seoKeywords": "EXIF削除, 画像メタデータ削除, 写真GPS削除",
       "outputFormat": "Clean output format",
@@ -506,7 +506,7 @@
       "eyebrow": "JPEGメタデータエディター",
       "title": "EXIFエディター",
       "description": "JPEGの撮影日時、カメラ、作者、著作権、説明、GPS情報をブラウザー内で編集できます。",
-      "seoTitle": "EXIFエディター - JPEG写真のメタデータをローカル編集 | Onlitools",
+      "seoTitle": "EXIFエディター - JPEG写真のメタデータをローカル編集 — OnliTool",
       "seoDescription": "JPEGの撮影日時、カメラ、作者、著作権、説明、GPS情報をアップロードせずに編集できます。",
       "seoKeywords": "EXIFエディター, JPEG EXIF編集, 写真メタデータ編集, GPS変更",
       "upload": "JPEG画像を選択",
@@ -547,28 +547,28 @@
     "metadataAnalyzer": {
       "title": "画像メタデータ分析ツール",
       "description": "EXIF、GPS、IPTC、XMP、ICC、画像ヘッダーのメタデータをブラウザー内で確認できます。",
-      "seoTitle": "画像メタデータ分析 - EXIF・GPS・IPTC・XMP | Onlitools",
+      "seoTitle": "画像メタデータ分析 - EXIF・GPS・IPTC・XMP — OnliTool",
       "seoDescription": "カメラ、位置情報、撮影日時、作者、カラープロファイルなどをローカルで分析します。",
       "seoKeywords": "画像メタデータ分析, EXIF分析, IPTCビューアー, XMPビューアー"
     },
     "metadataRemover": {
       "title": "画像メタデータ削除ツール",
       "description": "画像をスキャンし、共有前にブラウザー内で再エンコードして埋め込みメタデータを削除します。",
-      "seoTitle": "画像メタデータをローカルで削除 | Onlitools",
+      "seoTitle": "画像メタデータをローカルで削除 — OnliTool",
       "seoDescription": "EXIF、GPS、IPTCなどの画像メタデータをブラウザーで削除します。ファイルはアップロードされません。",
       "seoKeywords": "画像メタデータ削除, 写真メタデータ削除, EXIF削除"
     },
     "gpsRemover": {
       "title": "写真のGPS位置情報を削除",
       "description": "位置情報を確認し、共有前にクリーンなコピーを作成します。再エンコードにより他の埋め込みメタデータも削除されます。",
-      "seoTitle": "写真のGPSメタデータを削除 | Onlitools",
+      "seoTitle": "写真のGPSメタデータを削除 — OnliTool",
       "seoDescription": "写真のGPS位置情報をローカルで検出して削除します。クリーンなコピーでは他の埋め込みメタデータも削除されます。",
       "seoKeywords": "写真 GPS削除, 画像位置情報削除, GPSメタデータ削除"
     },
     "privacyCleaner": {
       "title": "画像プライバシークリーナー",
       "description": "画像の機密性があるメタデータを確認し、公開や共有の前にローカルでクリーンなコピーを作成します。",
-      "seoTitle": "画像プライバシークリーナー | Onlitools",
+      "seoTitle": "画像プライバシークリーナー — OnliTool",
       "seoDescription": "位置、デバイス、日時、作者情報を確認し、アップロードせずにブラウザー内で画像をクリーニングします。",
       "seoKeywords": "画像プライバシー, 写真メタデータ削除, 画像の隠し情報削除"
     },
@@ -577,7 +577,7 @@
       "title": "画像メタデータツール",
       "description": "画像のメタデータを確認し、プライバシー情報を見つけ、ブラウザー内でクリーンなコピーを作成できます。",
       "openTool": "ツールを開く",
-      "seoTitle": "画像メタデータツール - EXIFの確認と削除 | Onlitools",
+      "seoTitle": "画像メタデータツール - EXIFの確認と削除 — OnliTool",
       "seoDescription": "EXIF、GPS、IPTC、XMPメタデータの確認と削除をブラウザー内で行えます。"
     },
     "exifGuide": {
@@ -597,13 +597,13 @@
       "privacyBody": "位置情報や撮影情報から、写真を撮った場所や時刻が分かることがあります。アプリやプラットフォームは書き出し・共有時にメタデータを保持、削除、追加する場合があるため、処理後のファイルを確認してください。",
       "limitsTitle": "知っておきたい制限",
       "limitsBody": "メタデータの有無はファイル形式やソフトウェアによって異なります。EXIFを削除しても、道路標識や顔など画像に見える情報は隠せません。ローカル処理では選択したファイルをブラウザー内で扱いますが、住所検索などの外部機能ではツールの説明に従って座標を送信する場合があります。",
-      "seoTitle": "EXIFとは？画像メタデータとプライバシーガイド | Onlitools",
+      "seoTitle": "EXIFとは？画像メタデータとプライバシーガイド — OnliTool",
       "seoDescription": "写真のEXIFメタデータ、GPSやカメラ情報などの項目、画像メタデータの確認・編集・削除方法を解説します。"
     },
     "colorPicker": {
       "title": "画像カラーピッカー",
       "description": "画像から色を取得し、主要な色をHEX、RGB、HSLで確認できます。",
-      "seoTitle": "画像カラーピッカー - HEX、RGB、HSL | Onlitools",
+      "seoTitle": "画像カラーピッカー - HEX、RGB、HSL — OnliTool",
       "seoDescription": "画像から色を取得し、カラーパレットをブラウザー内で抽出します。",
       "seoKeywords": "画像カラーピッカー, 画像から色を取得, カラーパレット抽出",
       "changeImage": "Choose another image",
@@ -614,7 +614,7 @@
     "svg": {
       "title": "SVG変換ツール",
       "description": "SVGベクター画像をブラウザー内でPNGまたはWebPに変換し、サイズを調整できます。",
-      "seoTitle": "SVG変換 - SVGからPNG・WebPへ | Onlitools",
+      "seoTitle": "SVG変換 - SVGからPNG・WebPへ — OnliTool",
       "seoDescription": "SVGをローカルでPNGまたはWebPに変換し、出力サイズを指定できます。",
       "seoKeywords": "SVG変換, SVG PNG変換, SVG WebP変換",
       "chooseAnother": "Choose another SVG",
@@ -703,7 +703,7 @@
     "invalidCode": "リンクコードは小文字、数字、ハイフンを使った3～48文字で入力してください。",
     "savedMessage": "共有リンクを保存しました。有効期限はありません。",
     "createFailed": "共有リンクを作成できませんでした。もう一度お試しください。",
-    "seoTitle": "OpsDrop | スクリプト、コマンド、設定をすぐに共有",
+    "seoTitle": "OpsDrop — スクリプト、コマンド、設定をすぐに共有",
     "seoDescription": "共有リンクまたはQRコードで、リモートユーザーにスクリプト、コマンド、設定を共有できます。QRコードを生成して別のデバイスからすばやく読み取れます。登録やインストールは不要です。",
     "seoKeywords": "一時メモ, QRコードでスクリプト共有, QRコード共有, リモートユーザーにスクリプトを送信, コマンドを共有, Bash共有, PowerShell共有, 設定共有",
     "seoLinkFeature": "スクリプト、コマンド、設定を共有するリンクを作成",
@@ -1099,7 +1099,7 @@
     "desc": "Subset TTF, OTF, WOFF, or WOFF2 fonts by keeping only the characters your project needs."
   },
   "blog": {
-    "title": "Blog Articles",
+    "title": "ブログ記事",
     "write": "Write Article",
     "author": "Author",
     "posted": "Posted",
@@ -1110,11 +1110,13 @@
     "fetchError": "Failed to fetch articles",
     "needLogin": "Please login before posting",
     "name": "Blog",
-    "seoDesc": "Java, JavaScript technical articles, and practical tutorials",
-    "seoKeywords": "JavaScript, TypeScript, Vue, React, Node.js, Python, Go, Rust, Web开发, 前端, 后端, 全栈, 云原生, Docker, Kubernetes, 微服务, 数据库, DevOps, AI, 机器学习",
+    "seoDesc": "画像・フォント・テキストツールの無料ブラウザガイド。アップロードせずに圧縮・変換・整理できます。",
+    "seoKeywords": "画像圧縮ガイド, フォント圧縮, ttf 圧縮, webp 変換, exif 削除, オンラインツール ブログ",
+    "moreArticles": "他の記事",
+    "viewAll": "すべての記事を見る",
     "type": "Tag",
     "hits": "Views",
-    "backToList": "返回列表",
+    "backToList": "一覧に戻る",
     "category": "Category",
     "lastUpdate": "Update Time",
     "edit": "edit",
@@ -1143,7 +1145,7 @@
     "json_to_csv_error": "JSON to CSV failed: {msg}",
     "csv_to_json_error": "CSV to JSON failed: {msg}",
     "index": "JSON and CSV format conversion tool",
-    "seo_title": "Free Online JSON to CSV Converter | CSV to JSON Tool",
+    "seo_title": "Free Online JSON to CSV Converter — CSV to JSON Tool",
     "seo_description": "Easily convert JSON to CSV and CSV to JSON online. Free, fast, and secure conversion tool that works directly in your browser. No file upload required.",
     "seo_keywords": "JSON to CSV, CSV to JSON, online converter, free JSON to CSV tool, convert JSON, convert CSV, JSON converter, CSV converter, batch conversion"
   },
@@ -1159,9 +1161,9 @@
     "start": "Start conversion",
     "progress": "Processing {current} of {total} images...",
     "download": "Download",
-    "seoTitlePng": "WebP to PNG Online Tool | Batch Image Converter",
+    "seoTitlePng": "WebP to PNG Online Tool — Batch Image Converter",
     "seoDescPng": "Online WebP to PNG converter, batch image conversion, multi-language, best SEO, safe and efficient.",
-    "seoTitleJpg": "WebP to JPG Online Tool | Batch Image Converter",
+    "seoTitleJpg": "WebP to JPG Online Tool — Batch Image Converter",
     "seoDescJpg": "Online WebP to JPG converter, batch image conversion, multi-language, best SEO, safe and efficient."
   },
   "prompts": {
@@ -1231,7 +1233,7 @@
     "title": "WebP to {format} Online Tool",
     "description": "Convert WebP images to {format} in batches. Process multiple images at once and download them as a ZIP file. Files are processed locally in your browser and never uploaded.",
     "keywords": "WebP to {format}, WebP batch converter, batch image conversion, {format} online tool, local image processing, no upload",
-    "seoSuffix": "Image Converter | Batch Processing",
+    "seoSuffix": "Image Converter — Batch Processing",
     "intro": "Convert WebP images to multiple formats in batches, with direct downloads for single images and ZIP downloads for multiple images."
   },
   "footer": {

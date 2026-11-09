@@ -45,6 +45,12 @@ const SEGMENT_LABELS: Record<string, string> = {
   toolmole: 'ToolMole'
 }
 
+/** Site-wide social/AI preview image (1200x630). */
+const DEFAULT_OG_IMAGE_PATH = '/og/onlitool-og.png'
+
+/** Schema.org types that should be treated as articles rather than apps. */
+const ARTICLE_TYPES = new Set(['Article', 'BlogPosting', 'NewsArticle', 'TechArticle'])
+
 export function useToolSeo(options: {
   title: MaybeRefOrGetter<string>
   description: MaybeRefOrGetter<string>
@@ -59,19 +65,35 @@ export function useToolSeo(options: {
   breadcrumbs?: MaybeRefOrGetter<ToolBreadcrumbItem[] | false>
   /** ISO date shown as `dateModified` on the page schema. */
   dateModified?: MaybeRefOrGetter<string>
+  /**
+   * Absolute URL or root-relative path to use as the canonical URL. Useful for
+   * paginated listings where `?page=N` should self-canonicalise instead of
+   * pointing every page at the bare route.
+   */
+  canonical?: MaybeRefOrGetter<string>
 }) {
   const route = useRoute()
   const { locale, locales } = useI18n()
   const switchLocalePath = useSwitchLocalePath()
   const runtimeConfig = useRuntimeConfig()
   const baseUrl = runtimeConfig.public?.siteUrl || 'https://onlitools.com'
+  // BCP 47 code (e.g. `zh-CN`). Cloudflare/i18n exposes it as `language`; the
+  // short `code` is only the routing prefix.
+  const localeObjects = computed(() => locales.value as Array<{ code: string; language?: string }>)
+  const languageCode = computed(
+    () => localeObjects.value.find((item) => item.code === locale.value)?.language || locale.value
+  )
   const localizedPath = computed(() => switchLocalePath(locale.value) || route.path)
-  const canonicalUrl = computed(() => `${baseUrl}${localizedPath.value}`)
+  const canonicalUrl = computed(() => {
+    const explicit = options.canonical ? toValue(options.canonical) : ''
+    if (explicit) return explicit.startsWith('http') ? explicit : `${baseUrl}${explicit}`
+    return `${baseUrl}${localizedPath.value}`
+  })
   const localePrefix = computed(() => (locale.value === 'en' ? '' : `/${locale.value}`))
   const alternateLinks = computed(() => [
-    ...locales.value.map((item) => ({
+    ...localeObjects.value.map((item) => ({
       rel: 'alternate',
-      hreflang: item.code,
+      hreflang: item.language || item.code,
       href: `${baseUrl}${switchLocalePath(item.code) || route.path}`
     })),
     {
@@ -120,6 +142,10 @@ export function useToolSeo(options: {
     const audience = options.audience ? toValue(options.audience) : ''
     const dateModified = options.dateModified ? toValue(options.dateModified) : ''
     const crumbs = breadcrumbItems.value
+    const isArticle = ARTICLE_TYPES.has(options.type || '')
+    const ogImage = `${baseUrl}${DEFAULT_OG_IMAGE_PATH}`
+    const ogLocale = languageCode.value.replace('-', '_')
+    const ogType = isArticle ? 'article' : 'website'
     const faqSchema = faqItems.length
       ? {
           '@context': 'https://schema.org',
@@ -162,7 +188,8 @@ export function useToolSeo(options: {
       name: title,
       description,
       url: canonicalUrl.value,
-      inLanguage: locale.value,
+      inLanguage: languageCode.value,
+      image: ogImage,
       ...(dateModified ? { dateModified } : {}),
       ...(keywords ? { keywords } : {}),
     }
@@ -177,22 +204,37 @@ export function useToolSeo(options: {
         ...(audience ? { audience: { '@type': 'Audience', audienceType: audience } } : {})
       })
     }
+    if (isArticle) {
+      Object.assign(applicationSchema, {
+        headline: title,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl.value },
+        publisher: { '@id': `${baseUrl}/#organization` }
+      })
+    }
     Object.assign(applicationSchema, schemaProperties)
 
     return {
-      htmlAttrs: { lang: locale.value },
+      htmlAttrs: { lang: languageCode.value, dir: locale.value === 'ar' ? 'rtl' : 'ltr' },
       title,
       meta: [
         { name: 'description', content: description },
         ...(keywords ? [{ name: 'keywords', content: keywords }] : []),
+        { property: 'og:site_name', content: 'OnliTool' },
+        { property: 'og:locale', content: ogLocale },
         { property: 'og:title', content: title },
         { property: 'og:description', content: description },
-        { property: 'og:type', content: 'website' },
+        { property: 'og:type', content: ogType },
         { property: 'og:url', content: canonicalUrl.value },
+        { property: 'og:image', content: ogImage },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:image:alt', content: title },
         ...(dateModified ? [{ property: 'article:modified_time', content: dateModified }] : []),
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: title },
-        { name: 'twitter:description', content: description }
+        { name: 'twitter:description', content: description },
+        { name: 'twitter:image', content: ogImage },
+        { name: 'twitter:image:alt', content: title }
       ],
       link: [{ rel: 'canonical', href: canonicalUrl.value }, ...alternateLinks.value],
       script: [

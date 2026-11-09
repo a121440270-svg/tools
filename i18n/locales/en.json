@@ -63,8 +63,8 @@
   },
   "caseTool": {
     "category": "Text tools",
-    "title": "Case Converter",
-    "description": "Convert text to uppercase, lowercase, title case, sentence case, camelCase, snake_case, kebab-case, and more.",
+    "title": "Case Converter — Uppercase to Lowercase",
+    "description": "Convert uppercase to lowercase, lowercase to uppercase, title case, sentence case, camelCase, snake_case and kebab-case instantly. Free online case converter that runs in your browser.",
     "copy": "Copy to clipboard",
     "placeholder": "Paste or type text here...",
     "outputPlaceholder": "Converted uppercase text will appear here...",
@@ -340,10 +340,10 @@
         "description": "Temporarily share commands, scripts, configurations, and technical text."
       }
     },
-    "seoTitle": "OnliTool - Online Tool Directory",
-    "seoDescription": "OnliTool provides online tools for image processing, AI, font compression, text conversion, and development.",
-    "seoKeywords": "online tools, image processing, AI tools, font compression, file conversion, developer tools, OnliTool",
-    "seoOgDescription": "A one-stop online tool directory for image, AI, text, conversion, and developer utilities."
+    "seoTitle": "Free Online Tools: Compress Images, Fonts & Text — OnliTool",
+    "seoDescription": "Compress images, fonts and text right in your browser. Free tools for JPG, PNG and WebP compression, TTF/OTF/WOFF2 font subsetting, case conversion and EXIF/GPS removal — no upload, no account.",
+    "seoKeywords": "free online tools, image compressor, compress fonts, ttf compressor, font subsetter, text case converter, exif remover, image resizer, no upload tools, OnliTool",
+    "seoOgDescription": "Browser-based tools that keep your files on your device: image compression, font subsetting, text conversion and metadata removal."
   },
   "search": {
     "placeholder": "Search"
@@ -436,11 +436,13 @@
     "fetchError": "Failed to fetch articles",
     "needLogin": "Please login before posting",
     "name": "Blog",
-    "seoDesc": "Java, JavaScript technical articles, and practical tutorials",
-    "seoKeywords": "JavaScript, TypeScript, Vue, React, Node.js, Python, Go, Rust, Web开发, 前端, 后端, 全栈, 云原生, Docker, Kubernetes, 微服务, 数据库, DevOps, AI, 机器学习",
+    "seoDesc": "Free, browser-based guides and tutorials for image, font and text tools: compress, convert and clean files without uploading them.",
+    "seoKeywords": "image compression guide, font compression tutorial, ttf compressor, webp converter, exif remover, online tools blog",
+    "moreArticles": "More articles",
+    "viewAll": "View all articles",
     "type": "Tag",
     "hits": "Views",
-    "backToList": "返回列表",
+    "backToList": "Back to list",
     "category": "Category",
     "lastUpdate": "Update Time",
     "edit": "edit",
@@ -472,7 +474,7 @@
     "json_to_csv_error": "JSON to CSV failed: {msg}",
     "csv_to_json_error": "CSV to JSON failed: {msg}",
     "index": "JSON and CSV format conversion tool",
-    "seo_title": "Free Online JSON to CSV Converter | CSV to JSON Tool",
+    "seo_title": "Free Online JSON to CSV Converter — CSV to JSON Tool",
     "seo_description": "Easily convert JSON to CSV and CSV to JSON online. Free, fast, and secure conversion tool that works directly in your browser. No file upload required.",
     "seo_keywords": "JSON to CSV, CSV to JSON, online converter, free JSON to CSV tool, convert JSON, convert CSV, JSON converter, CSV converter, batch conversion"
   },
@@ -488,9 +490,9 @@
     "start": "Start conversion",
     "progress": "Processing {current} of {total} images...",
     "download": "Download",
-    "seoTitlePng": "WebP to PNG Online Tool | Batch Image Converter",
+    "seoTitlePng": "WebP to PNG Online Tool — Batch Image Converter",
     "seoDescPng": "Online WebP to PNG converter, batch image conversion, multi-language, best SEO, safe and efficient.",
-    "seoTitleJpg": "WebP to JPG Online Tool | Batch Image Converter",
+    "seoTitleJpg": "WebP to JPG Online Tool — Batch Image Converter",
     "seoDescJpg": "Online WebP to JPG converter, batch image conversion, multi-language, best SEO, safe and efficient."
   },
   "prompts": {
@@ -540,7 +542,7 @@
       "chineseDate": "Chinese date",
       "mixedInput": "Mixed date input"
     },
-    "seoTitle": "Time Format Decoder - Auto-detect timestamps and date formats",
+    "seoTitle": "Time Format Decoder - Auto-detect timestamps, Unix and ISO 8601 — OnliTool",
     "seoDescription": "Auto-detect Unix seconds/milliseconds, ISO 8601, Chinese dates, and other time formats, then convert them into fixed formats such as yyyy-MM-dd.",
     "seoKeywords": "time format decoder, timestamp recognition, Unix timestamp, ISO 8601, date format conversion, time string parsing, yyyy-MM-dd format",
     "messages": {
@@ -597,7 +599,7 @@
       "targetSize": "Target file size",
       "keepDimensions": "Keep original image dimensions",
       "action": "Increase file size ({count})",
-      "seoTitle": "Increase Image Size in KB Online - OnliTools",
+      "seoTitle": "Increase Image Size in KB Online - OnliTool",
       "seoDescription": "Increase JPG, PNG, and WebP file size to a specific KB or MB while keeping the original image dimensions.",
       "seoKeywords": "increase image size in kb, increase image file size, increase photo size without changing dimensions, increase jpg size to 100kb",
       "invalidTarget": "Please enter a valid target size greater than zero.",
@@ -654,7 +656,7 @@
       "originalSize": "Original size",
       "saved": "Saved",
       "savings": "Savings",
-      "seoTitle": "Compress Images to a Specific File Size | OnliTool",
+      "seoTitle": "Compress Images to a Specific File Size — OnliTool",
       "seoDescription": "Compress JPG, PNG and WebP images to a target file size. Reduce image size directly in your browser without upload and keep the best possible quality.",
       "seoKeywords": "compress image to target size, image compressor, reduce image size, jpg compress, png compress, webp compress"
     },
@@ -671,7 +673,7 @@
       "outputUnsupported": "This browser cannot encode {format}. Choose another output format.",
       "imageTooLarge": "This image exceeds the 100-megapixel processing limit.",
       "convertError": "Could not convert this image.",
-      "seoTitle": "Image Converter - Free Online Tool | Onlitools",
+      "seoTitle": "Image Converter — JPG, PNG, WebP & HEIC — OnliTool",
       "seoDescription": "Convert images to JPG, PNG, WebP or AVIF in your browser. Batch process files locally and download individually or as ZIP.",
       "seoKeywords": "image converter, convert image online, JPG PNG converter, WebP converter, batch image converter"
     },
@@ -679,7 +681,7 @@
       "title": "HEIC to JPG Converter",
       "description": "Convert iPhone HEIC and HEIF photos to JPG, PNG or WebP in your browser. Files stay on your device.",
       "acceptedFormats": "Select one or more HEIC / HEIF photos",
-      "seoTitle": "HEIC to JPG Converter - Free Online Tool | Onlitools",
+      "seoTitle": "HEIC to JPG Converter - Convert iPhone Photos — OnliTool",
       "seoDescription": "Convert HEIC and HEIF photos to JPG, PNG or WebP locally in your browser. Batch conversion, no upload required.",
       "seoKeywords": "HEIC to JPG, convert HEIC online, HEIF converter, iPhone photo converter"
     },
@@ -698,7 +700,7 @@
       "imageTooLarge": "{name} exceeds the 100-megapixel processing limit.",
       "invalidDimensions": "Enter valid dimensions under the 100-megapixel processing limit.",
       "resizeError": "Could not resize this image.",
-      "seoTitle": "Image Resizer - Resize Images Online | Onlitools",
+      "seoTitle": "Image Resizer — Resize Photos Online for Free — OnliTool",
       "seoDescription": "Resize JPG, PNG, WebP and other images by width, height, percentage or maximum dimensions. Private browser-based batch processing.",
       "seoKeywords": "image resizer, resize image online, change image size, batch image resizer"
     },
@@ -716,7 +718,7 @@
       "loadError": "Could not load this image.",
       "invalidSelection": "Select an area larger than zero pixels.",
       "cropError": "Could not crop this image.",
-      "seoTitle": "Image Cropper - Crop Images Online | Onlitools",
+      "seoTitle": "Crop Image Online — Free Photo Cropper — OnliTool",
       "seoDescription": "Crop JPG, PNG, WebP and other images with freeform selection or 1:1, 4:3, 16:9 and 9:16 presets. Files stay in your browser.",
       "seoKeywords": "image cropper, crop image online, photo crop, 16:9 crop, square image crop"
     },
@@ -725,8 +727,8 @@
       "fromTitle": "Base64 to Image Converter",
       "toDescription": "Convert an image to a Data URL, HTML image element or CSS background string in your browser.",
       "fromDescription": "Preview and download an image from a Base64 string or Data URL without uploading it.",
-      "toSeoTitle": "Image to Base64 - Free Online Converter | Onlitools",
-      "fromSeoTitle": "Base64 to Image - Free Online Converter | Onlitools",
+      "toSeoTitle": "Image to Base64 Converter — Data URL & CSS — OnliTool",
+      "fromSeoTitle": "Base64 to Image Decoder — Convert Data URL — OnliTool",
       "toSeoDescription": "Convert PNG, JPG, WebP and SVG images to Base64 Data URLs, HTML or CSS locally in your browser.",
       "fromSeoDescription": "Decode a Base64 image or Data URL and download it as PNG, JPG or WebP. No upload required.",
       "toSeoKeywords": "image to base64, image to data URL, base64 image converter, image base64 online",
@@ -788,7 +790,7 @@
       "locationLookupError": "Address lookup failed. Please try again later.",
       "locationAttribution": "© OpenStreetMap contributors",
       "readError": "Could not read {name}.",
-      "seoTitle": "Image Info Viewer - Inspect Image Metadata | Onlitools",
+      "seoTitle": "Image Info Viewer — Dimensions, Format & EXIF — OnliTool",
       "seoDescription": "View image dimensions, file size, format, aspect ratio and available EXIF/GPS metadata in your browser.",
       "seoKeywords": "image info, image metadata viewer, photo dimensions, EXIF viewer, image properties"
     },
@@ -800,7 +802,7 @@
       "privacyNote": "The output is re-encoded locally and does not retain the source file's EXIF metadata.",
       "animatedGifUnsupported": "GIF cleanup is not supported to avoid flattening animation.",
       "processError": "Could not remove metadata from this image.",
-      "seoTitle": "Remove EXIF Metadata from Images - Onlitools",
+      "seoTitle": "Remove EXIF Data from Photos — GPS & Camera — OnliTool",
       "seoDescription": "Remove GPS location, camera details and other EXIF metadata from images in your browser. Files are never uploaded.",
       "seoKeywords": "remove EXIF, remove image metadata, remove GPS from photo, strip EXIF online"
     },
@@ -808,7 +810,7 @@
       "eyebrow": "JPEG metadata editor",
       "title": "EXIF Editor",
       "description": "Edit common capture, camera, author, copyright, description, and GPS fields in a JPEG. Processing stays in your browser.",
-      "seoTitle": "EXIF Editor - Edit JPEG Photo Metadata Locally | Onlitools",
+      "seoTitle": "EXIF Editor - Edit JPEG Photo Metadata Locally — OnliTool",
       "seoDescription": "Edit JPEG EXIF date, camera, author, copyright, description, and GPS fields in your browser. Your image is not uploaded.",
       "seoKeywords": "EXIF editor, edit JPEG EXIF, edit photo metadata, change photo GPS",
       "upload": "Choose a JPEG image",
@@ -849,28 +851,28 @@
     "metadataAnalyzer": {
       "title": "Image Metadata Analyzer",
       "description": "Inspect EXIF, GPS, IPTC, XMP, ICC, and image-header metadata in your browser.",
-      "seoTitle": "Image Metadata Analyzer - EXIF, GPS, IPTC and XMP | Onlitools",
+      "seoTitle": "Image Metadata Analyzer - EXIF, GPS, IPTC and XMP — OnliTool",
       "seoDescription": "Analyze readable image metadata locally, including camera, location, capture time, authorship, and color profile fields.",
       "seoKeywords": "image metadata analyzer, EXIF analyzer, IPTC viewer, XMP viewer, image metadata checker"
     },
     "metadataRemover": {
       "title": "Image Metadata Remover",
       "description": "Scan images and remove embedded metadata by re-encoding them locally before sharing.",
-      "seoTitle": "Image Metadata Remover - Clean Photo Metadata Locally | Onlitools",
+      "seoTitle": "Image Metadata Remover - Clean Photo Metadata Locally — OnliTool",
       "seoDescription": "Remove EXIF, GPS, IPTC, and other embedded metadata from images in your browser. Files are not uploaded.",
       "seoKeywords": "image metadata remover, remove photo metadata, strip EXIF IPTC XMP"
     },
     "gpsRemover": {
       "title": "Remove GPS Location from Photos",
       "description": "Check for location data and create a clean copy before sharing. Re-encoding removes other embedded metadata too.",
-      "seoTitle": "GPS Metadata Remover - Remove Photo Location Data | Onlitools",
+      "seoTitle": "GPS Metadata Remover - Remove Photo Location Data — OnliTool",
       "seoDescription": "Find and remove GPS location data from photos locally. The clean copy also removes other embedded metadata.",
       "seoKeywords": "GPS metadata remover, remove GPS from photo, remove location data from image"
     },
     "privacyCleaner": {
       "title": "Image Privacy Cleaner",
       "description": "Scan for sensitive image metadata, then create a clean copy locally before publishing or sharing.",
-      "seoTitle": "Image Privacy Cleaner - Scan and Remove Photo Metadata | Onlitools",
+      "seoTitle": "Image Privacy Cleaner - Scan and Remove Photo Metadata — OnliTool",
       "seoDescription": "Review location, device, date, and authorship metadata, then clean images in your browser without uploading them.",
       "seoKeywords": "image privacy cleaner, photo privacy, remove hidden image data"
     },
@@ -879,7 +881,7 @@
       "title": "Image Metadata Tools",
       "description": "Inspect metadata, identify privacy-sensitive details, and create clean image copies in your browser.",
       "openTool": "Open tool",
-      "seoTitle": "Image Metadata Tools - View and Remove EXIF | Onlitools",
+      "seoTitle": "Image Metadata Tools - View and Remove EXIF — OnliTool",
       "seoDescription": "Browse image metadata tools for EXIF, GPS, IPTC, and XMP inspection and removal. Local browser processing."
     },
     "exifGuide": {
@@ -899,7 +901,7 @@
       "privacyBody": "Location and capture details can reveal where or when a photo was taken. Check the actual output after cleanup, because apps and platforms may preserve, remove, or add metadata when exporting or sharing.",
       "limitsTitle": "A few important limits",
       "limitsBody": "Metadata availability varies by file format and software. Removing EXIF does not remove information visible in the image itself, such as a street sign or face. Local processing means the selected file is handled in your browser; external features such as address lookup may send coordinates as described by that tool.",
-      "seoTitle": "What Is EXIF? Image Metadata and Privacy Guide | Onlitools",
+      "seoTitle": "What Is EXIF? Image Metadata and Privacy Guide — OnliTool",
       "seoDescription": "Understand EXIF photo metadata, common fields such as GPS and camera details, and ways to inspect, edit, or remove metadata."
     },
     "colorPicker": {
@@ -909,7 +911,7 @@
       "clickHint": "Click the image to sample a pixel color.",
       "dominantColors": "Common colors",
       "readError": "Could not read pixel colors from this image.",
-      "seoTitle": "Image Color Picker - HEX, RGB and HSL | Onlitools",
+      "seoTitle": "Image Color Picker — HEX, RGB & HSL from Photo — OnliTool",
       "seoDescription": "Pick colors from an image and inspect common colors in HEX, RGB and HSL. Image processing stays in your browser.",
       "seoKeywords": "image color picker, pick color from image, image palette extractor, HEX RGB HSL picker"
     },
@@ -922,7 +924,7 @@
       "fileTooLarge": "SVG files must be smaller than 10 MB.",
       "invalidDimensions": "Enter valid dimensions within the 100-megapixel limit.",
       "convertError": "Could not convert this SVG.",
-      "seoTitle": "SVG Converter - Convert SVG to PNG or WebP | Onlitools",
+      "seoTitle": "SVG to PNG Converter — Convert SVG Online Free — OnliTool",
       "seoDescription": "Convert SVG vector graphics to PNG or WebP with custom dimensions. Sanitized and processed locally in your browser.",
       "seoKeywords": "SVG converter, SVG to PNG, SVG to WebP, convert SVG online"
     }
@@ -1005,7 +1007,7 @@
     "invalidCode": "The link code must be 3-48 characters using lowercase letters, numbers, or hyphens.",
     "savedMessage": "Share link saved. It does not expire.",
     "createFailed": "Unable to create the share. Please try again.",
-    "seoTitle": "OpsDrop | Share Scripts, Commands & Configs Instantly",
+    "seoTitle": "OpsDrop — Share Scripts, Commands & Configs Instantly",
     "seoDescription": "Share scripts, commands and configuration with remote users using a link or QR code. Generate a QR code for quick scanning on another device. No signup or installation required.",
     "seoKeywords": "temporary note, share scripts with QR code, QR code file sharing, send script to remote user, share script with customer, share commands with customer, share bash script, share powershell script, share config online",
     "seoLinkFeature": "Create a shareable link for scripts, commands, and configuration",
@@ -1070,7 +1072,7 @@
     "answer2": "The result depends on the original image. The compressor balances file size and visual clarity to get as close to the target as possible.",
     "question3": "Are my images uploaded?",
     "answer3": "No. Image processing happens locally in your browser, and your files are not uploaded to a server.",
-    "seoTitle": "Compress {format} to {size} Online | OnliTool",
+    "seoTitle": "Compress {format} to {size} Online — OnliTool",
     "seoDescription": "Compress {format} to {size} online in your browser. Reduce image size without uploading files while keeping the best possible quality.",
     "seoKeywords": "compress {format} to {size}, image compressor, reduce image size, online image compression"
   },
@@ -1230,7 +1232,7 @@
     "title": "WebP to {format} Online Tool",
     "description": "Convert WebP images to {format} in batches. Process multiple images at once and download them as a ZIP file. Files are processed locally in your browser and never uploaded.",
     "keywords": "WebP to {format}, WebP batch converter, batch image conversion, {format} online tool, local image processing, no upload",
-    "seoSuffix": "Image Converter | Batch Processing",
+    "seoSuffix": "Image Converter — Batch Processing",
     "intro": "Convert WebP images to multiple formats in batches, with direct downloads for single images and ZIP downloads for multiple images."
   },
   "footer": {

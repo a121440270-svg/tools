@@ -47,6 +47,10 @@ const organizationSchema = {
 }
 
 useHead(() => ({
+  link: [
+    // Machine-readable site summary for AI assistants and answer engines.
+    { rel: 'alternate', type: 'text/plain', href: '/llms.txt', title: 'LLM site summary' }
+  ],
   script: isNoIndexPage.value
     ? []
     : [
@@ -59,6 +63,13 @@ useHead(() => ({
           type: 'application/ld+json',
           children: JSON.stringify(organizationSchema)
         }
+      ],
+  meta: isNoIndexPage.value
+    ? []
+    : [
+        // Let Google show full snippets and large image previews in Search and
+        // AI Overviews instead of truncating descriptions.
+        { name: 'robots', content: 'max-snippet:-1, max-image-preview:large, max-video-preview:-1' }
       ]
 }))
 const localePrefix = /^\/(zh|ja|de|fr|ar)(?=\/|$)/

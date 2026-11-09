@@ -59,12 +59,24 @@ const props = defineProps({
   secondaryHref: { type: String, default: '/image-converter' },
   secondaryText: { type: String, default: 'Browse more image tools' },
   points: { type: Array, default: () => [] },
-  features: { type: Array, default: () => [] }
+  features: { type: Array, default: () => [] },
+  /** Optional <title> override; falls back to `title` plus a brand suffix. */
+  seoTitle: { type: String, default: '' },
+  /** Optional meta description override; falls back to `description`. */
+  seoDescription: { type: String, default: '' },
+  seoKeywords: { type: String, default: '' }
+})
+
+const resolvedSeoTitle = computed(() => {
+  const value = (props.seoTitle || props.title || '').trim()
+  if (!value) return 'OnliTool'
+  return value.includes('OnliTool') ? value : `${value} | OnliTool`
 })
 
 useToolSeo({
-  title: computed(() => props.title),
-  description: computed(() => props.description),
+  title: resolvedSeoTitle,
+  description: computed(() => props.seoDescription || props.description),
+  keywords: computed(() => props.seoKeywords),
   featureList: computed(() => props.points)
 })
 </script>

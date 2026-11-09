@@ -4,7 +4,7 @@ import { join } from 'node:path'
 
 // Pages that only make sense for a signed-in request (admin/auth/pay) or that
 // render data from D1 at request time (blog/prompts) are NOT prerendered.
-const PRERENDER_EXCLUDE = ['/admin', '/auth', '/profile', '/pay', '/blog', '/prompts']
+const PRERENDER_EXCLUDE = ['/admin', '/auth', '/profile', '/pay', '/blog', '/prompts', '/uppercase']
 
 // Locales other than the default one are served under a path prefix
 // (strategy: 'prefix_except_default').
@@ -48,7 +48,43 @@ export default defineNuxtConfig({
   features: {
     inlineStyles: false
   },
+  experimental: {
+    // Nitro writes `_payload.json` under the raw route key when prerendering.
+    // For the root route that key is "/", which unstorage rejects, so the whole
+    // homepage render failed and `/` fell back to runtime SSR. Inlining the
+    // payload keeps the homepage prerendered like every other page.
+    payloadExtraction: false
+  },
+  vite: {
+    plugins: [
+      {
+        name: 'drop-unused-ort-wasm',
+        apply: 'build',
+        enforce: 'post',
+        generateBundle(_options, bundle) {
+          // `@imgly/background-removal` (used only on /id-photo) loads the
+          // ONNX runtime wasm from its own CDN via `config.publicPath`, so the
+          // copies Vite emits while bundling `onnxruntime-web` are never
+          // requested. They weigh ~28 MB each and Cloudflare Workers rejects
+          // any asset over 25 MiB, which made `wrangler deploy` fail.
+          for (const fileName of Object.keys(bundle)) {
+            if (/_nuxt\/ort-wasm-[^/]*\.wasm$/.test(fileName)) {
+              delete bundle[fileName]
+            }
+          }
+        }
+      }
+    ]
+  },
   routeRules: {
+    // `/uppercase` used to render a 200 page containing only a meta refresh,
+    // which Google treats as a soft 404. Make it a real 301 instead.
+    '/uppercase': { redirect: { to: '/case-converter', statusCode: 301 } },
+    '/zh/uppercase': { redirect: { to: '/zh/case-converter', statusCode: 301 } },
+    '/ja/uppercase': { redirect: { to: '/ja/case-converter', statusCode: 301 } },
+    '/de/uppercase': { redirect: { to: '/de/case-converter', statusCode: 301 } },
+    '/fr/uppercase': { redirect: { to: '/fr/case-converter', statusCode: 301 } },
+    '/ar/uppercase': { redirect: { to: '/ar/case-converter', statusCode: 301 } },
     // These pages are noindex, user specific and heavy (Element Plus), so there
     // is no SEO value in server rendering them.
     '/admin/**': { ssr: false },
@@ -137,6 +173,16 @@ export default defineNuxtConfig({
   }, sitemap: {
     // Blog articles are generated from the D1 database by this endpoint.
     sources: ['/api/__sitemap__/articles'],
+    // `@nuxtjs/sitemap` normally lists prerendered pages through its
+    // `nuxt:prerender` source, but it only builds that source when sitemaps
+    // themselves are prerendered (`crawlLinks` or a static target). This site
+    // serves sitemaps from the Worker so new D1 articles show up without a
+    // rebuild, so the module drops every prerendered page from `nuxt:pages`
+    // (dedupe) and never adds it back — which left the sitemaps with only
+    // runtime pages such as `/blog`. Feed the prerender list back in
+    // explicitly; the module still derives hreflang groups and per-locale
+    // sitemap membership from the locale prefixes.
+    urls: prerenderRoutes,
     exclude: [
       '/admin/**',
       '/auth/**',
