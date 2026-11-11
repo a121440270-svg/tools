@@ -32,10 +32,26 @@
 </template>
 
 <script setup>
+import { useRoute } from '#imports'
 import { computed, ref } from 'vue'
 const { t } = useI18n()
 // 需安装 jszip: npm i jszip
 import JSZip from 'jszip'
+
+// /png-to-webp and /jpg-to-webp used to share one title, which made them
+// duplicate content in Google's eyes. Derive the format from the route so
+// each page gets an exact-match H1/title ("PNG to WebP Converter ...").
+const route = useRoute()
+const routeFormat = String(route.params.format || '').toLowerCase()
+const isKnownFormat = ['png', 'jpg', 'jpeg'].includes(routeFormat)
+const formatLabel = isKnownFormat ? routeFormat.toUpperCase() : 'JPG/PNG'
+
+const pageTitle = computed(() => t('webp.seo_title_f', { format: formatLabel }))
+const pageDescription = computed(() => t('webp.seo_desc') || t('webp.desc') || 'Batch convert JPG and PNG images to WebP online. Convert multiple images at once and download them as a ZIP file.')
+const pageKeywords = computed(() => t('webp.seo_keywords') || 'batch image converter, JPG to WebP, PNG to WebP, bulk WebP converter, online image converter')
+const batchMessage = computed(() => t('webp.batch_message') || 'Batch convert multiple JPG and PNG images to WebP in one go.')
+const localMessage = computed(() => t('webp.local_message') || 'Files are processed locally in your browser and are never uploaded.')
+const batchDownloadMessage = computed(() => t('webp.download_zip') || 'Download converted images as ZIP')
 
 const files = ref([])
 const fileNames = ref([])
@@ -46,13 +62,6 @@ const errorMsg = ref('')
 const loading = ref(false)
 const progress = ref(0)
 const isZip = ref(false)
-
-const pageTitle = computed(() => t('webp.seo_title') || t('webp.title') || 'Batch JPG/PNG to WebP Converter')
-const pageDescription = computed(() => t('webp.seo_desc') || t('webp.desc') || 'Batch convert JPG and PNG images to WebP online. Convert multiple images at once and download them as a ZIP file.')
-const pageKeywords = computed(() => t('webp.seo_keywords') || 'batch image converter, JPG to WebP, PNG to WebP, bulk WebP converter, online image converter')
-const batchMessage = computed(() => t('webp.batch_message') || 'Batch convert multiple JPG and PNG images to WebP in one go.')
-const localMessage = computed(() => t('webp.local_message') || 'Files are processed locally in your browser and are never uploaded.')
-const batchDownloadMessage = computed(() => t('webp.download_zip') || 'Download converted images as ZIP')
 
 useToolSeo({
   title: pageTitle,

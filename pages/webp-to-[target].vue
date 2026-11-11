@@ -65,7 +65,7 @@ const resultsCount = ref(0)
 const batchSuccessMessage = computed(() => t('webpTo.batch_success', { count: resultsCount.value }) || `Batch converted ${resultsCount.value} images`)
 
 useToolSeo({
-  title: () => `${pageTitle.value} | ${t('webpTo.seoSuffix')}`,
+  title: pageTitle,
   description: pageDescription,
   keywords: pageKeywords,
   featureList: () => [

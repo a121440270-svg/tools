@@ -7,31 +7,50 @@ export interface ToolContent {
   bullets?: string[]
 }
 
-const compressTargets: Array<{ path: string; format: 'JPG' | 'PNG'; size: string }> = [
+const compressTargets: Array<{ path: string; format: 'JPG' | 'PNG' | 'Images'; size: string; verb?: 'compress' | 'reduce' }> = [
+  { path: '/compress-jpg-to-50kb', format: 'JPG', size: '50 KB' },
   { path: '/compress-jpg-to-100kb', format: 'JPG', size: '100 KB' },
+  { path: '/compress-jpg-to-150kb', format: 'JPG', size: '150 KB' },
   { path: '/compress-jpg-to-200kb', format: 'JPG', size: '200 KB' },
   { path: '/compress-jpg-to-500kb', format: 'JPG', size: '500 KB' },
+  { path: '/compress-jpg-to-2mb', format: 'JPG', size: '2 MB' },
+  { path: '/compress-jpg-to-5mb', format: 'JPG', size: '5 MB' },
   { path: '/compress-png-to-100kb', format: 'PNG', size: '100 KB' },
+  { path: '/compress-png-to-200kb', format: 'PNG', size: '200 KB' },
+  { path: '/compress-png-to-500kb', format: 'PNG', size: '500 KB' },
+  { path: '/compress-png-to-1mb', format: 'PNG', size: '1 MB' },
+  { path: '/compress-png-to-2mb', format: 'PNG', size: '2 MB' },
+  { path: '/compress-png-to-5mb', format: 'PNG', size: '5 MB' },
   { path: '/image-compress-to-20kb', format: 'JPG', size: '20 KB' },
   { path: '/image-compress-to-50kb', format: 'JPG', size: '50 KB' },
   { path: '/image-compress-to-100kb', format: 'JPG', size: '100 KB' },
   { path: '/image-compress-to-200kb', format: 'JPG', size: '200 KB' },
   { path: '/image-compress-to-500kb', format: 'JPG', size: '500 KB' },
   { path: '/image-compress-to-1mb', format: 'JPG', size: '1 MB' },
+  { path: '/compress-image-to-250kb', format: 'Images', size: '250 KB' },
+  { path: '/compress-image-to-2mb', format: 'Images', size: '2 MB' },
+  { path: '/compress-image-to-5mb', format: 'Images', size: '5 MB' },
+  { path: '/reduce-image-size-to-250kb', format: 'Images', size: '250 KB', verb: 'reduce' },
+  { path: '/reduce-image-size-to-2mb', format: 'Images', size: '2 MB', verb: 'reduce' },
+  { path: '/reduce-image-size-to-5mb', format: 'Images', size: '5 MB', verb: 'reduce' },
 ]
 
-function compressContent(format: 'JPG' | 'PNG', size: string): ToolContent {
+function compressContent(format: 'JPG' | 'PNG' | 'Images', size: string, verb: 'compress' | 'reduce' = 'compress'): ToolContent {
   const losslessNote = format === 'PNG'
     ? 'PNG is lossless, so the compressor reduces colour depth and strips ancillary chunks rather than throwing away pixels. Screenshots and flat graphics usually shrink the most.'
-    : 'JPG uses lossy compression, so the tool lowers quality in small steps until the file fits your target while keeping the image visually acceptable.'
+    : format === 'Images'
+      ? 'Each file stays in its original format: PNG images are reduced losslessly through colour quantisation, while JPG and WebP photos use stepped quality reduction until they fit the target.'
+      : 'JPG uses lossy compression, so the tool lowers quality in small steps until the file fits your target while keeping the image visually acceptable.'
   const useCase = format === 'PNG'
     ? 'This is the right page when a portal, CMS or email template rejects uploads above the stated PNG limit.'
-    : 'Use this page when a job application, ID portal, marketplace listing or email attachment enforces a hard size limit.'
+    : format === 'Images'
+      ? 'Use this page when a form, portal or attachment enforces a hard size limit on any image format you upload.'
+      : 'Use this page when a job application, ID portal, marketplace listing or email attachment enforces a hard size limit.'
 
   return {
-    heading: `Compress ${format} images to ${size}`,
+    heading: verb === 'reduce' ? `Reduce image size to ${size}` : `Compress ${format === 'Images' ? 'images' : format + ' images'} to ${size}`,
     paragraphs: [
-      `This page opens the OnliTool image compressor with a ${size} target preset for ${format} files. ${useCase} Everything runs in your browser, so the picture is never uploaded to a server.`,
+      `This page opens the OnliTool image compressor with a ${size} target preset for ${format === 'Images' ? 'any image format' : format + ' files'}. ${useCase} Everything runs in your browser, so the picture is never uploaded to a server.`,
       `${losslessNote} After compression the tool shows the original and final size so you can confirm the file really fits the limit before downloading it.`,
     ],
     bullets: [
@@ -113,6 +132,54 @@ const toolContent: Record<string, ToolContent> = {
       'Include Latin letters, digits and punctuation if the page mixes languages.',
       'Keep the original font file for future edits — subsets cannot regain glyphs.',
       'WOFF2 is the best default for modern browsers.',
+    ],
+  },
+  '/ttf-to-woff2': {
+    heading: 'Convert TTF, OTF and WOFF fonts to WOFF2',
+    paragraphs: [
+      'WOFF2 is the format every modern browser downloads first: it wraps the same glyph data in Brotli compression and typically lands 30–50% smaller than an equivalent WOFF file. This converter rebuilds TrueType, OpenType and WOFF fonts as WOFF2, or unpacks WOFF2 back into a standard TTF for desktop use.',
+      'Conversion runs entirely in your browser through WebAssembly. The font is never uploaded, which matters for licensed and in-house typefaces. The tool reports the original and converted size so you can see the exact saving.',
+    ],
+    bullets: [
+      'Serve WOFF2 with a WOFF fallback only if you support pre-2016 browsers.',
+      'Convert first, then subset — subsetting a WOFF2 file directly is also supported.',
+      'Keep the original TTF: it is the editable master for future revisions.',
+    ],
+  },
+  '/font-subsetter': {
+    heading: 'Create font subsets with only the glyphs you need',
+    paragraphs: [
+      'Subsetting removes every glyph your project does not reference. A full Chinese, Japanese or Korean font commonly weighs 3–10 MB, while the subset an actual page needs is often under 100 KB — the single largest optimisation available to web typography.',
+      'Paste the text your site renders, pick a language preset, or enter explicit Unicode ranges, then download the trimmed font as TTF, WOFF or WOFF2. The tool shows how many glyphs remain out of the original set before you download.',
+    ],
+    bullets: [
+      'Include every text node the font will style, including numbers and punctuation.',
+      'Test the subset on real pages — missing glyphs fall back to system fonts.',
+      'Re-run the subset whenever copy changes; add new characters, not the whole alphabet.',
+    ],
+  },
+  '/compress-woff2': {
+    heading: 'Compress WOFF2 files by removing unused glyphs',
+    paragraphs: [
+      'A WOFF2 file is already Brotli-compressed, so the only way to make it meaningfully smaller is to remove glyphs it does not need. This page opens the OnliTool font compressor with a WOFF2 output preset: paste your page text, keep just those characters, and export a leaner WOFF2.',
+      'Everything happens locally in the browser. Licensed fonts never leave your machine, and the tool reports the original size, the subset size and the remaining glyph count before download.',
+    ],
+    bullets: [
+      'Icon fonts shrink the most — a 40-glyph subset can be 95% smaller than the full set.',
+      'Do not merge subsets of the same family; rebuild from the original instead.',
+      'Keep the original file: a subset cannot restore the glyphs it dropped.',
+    ],
+  },
+  '/compress-woff': {
+    heading: 'Compress WOFF files for legacy browser support',
+    paragraphs: [
+      'WOFF is the fallback format for browsers released before 2016. It compresses with zlib instead of Brotli, so it is larger than an equivalent WOFF2 — but the biggest saving still comes from subsetting. This page opens the OnliTool font compressor with a WOFF output preset.',
+      'Paste the text your pages render, choose WOFF as the output, and download a trimmed fallback font that pairs with your WOFF2 file in the same @font-face rule. Processing stays in the browser.',
+    ],
+    bullets: [
+      'Ship WOFF2 first and WOFF second in the src list — modern browsers pick WOFF2.',
+      'Subset both formats from the same original font so they cover the same glyphs.',
+      'Audit your audience before shipping WOFF at all — it is rarely needed today.',
     ],
   },
   '/font-css-generator': {
@@ -550,7 +617,7 @@ const toolContent: Record<string, ToolContent> = {
 }
 
 for (const target of compressTargets) {
-  toolContent[target.path] = compressContent(target.format, target.size)
+  toolContent[target.path] = compressContent(target.format, target.size, target.verb)
 }
 
 export default toolContent

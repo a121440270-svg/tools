@@ -448,6 +448,8 @@ useToolSeo({
       : 'Compare ToolMole and OnliTool: local processing, exact-size image compression, EXIF/GPS removal, font subsetting — plus when to pick each. Not affiliated.',
   faqItems: () => copy.value.faqs.map((item) => ({ q: item.q, a: item.a })),
   dateModified: '2026-11-07',
+  // Body copy is authored inline in English and Chinese only.
+  translatedLocales: ['en', 'zh'],
   schemaProperties: {
     about: [
       { '@type': 'Thing', name: 'ToolMole', sameAs: 'https://toolmole.com/' },

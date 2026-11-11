@@ -16,9 +16,19 @@
     "seo_desc": "Convert multiple JPG, JPEG, and PNG images to WebP online. Select images in bulk and download the converted files as a ZIP archive. Files are processed locally in your browser and never uploaded.",
     "seo_keywords": "batch image converter, JPG to WebP, PNG to WebP, bulk WebP converter, online image converter",
     "batch_message": "Select multiple JPG and PNG images to convert them to WebP in one batch.",
-    "local_message": "Files are processed locally in your browser and are never uploaded."
+    "local_message": "Files are processed locally in your browser and are never uploaded.",
+    "seo_title_f": "{format} to WebP Converter — Free & Bulk"
   },
   "menu": {
+    "recent": "Recent",
+    "recentClose": "Close recent menu",
+    "recentCollapse": "Collapse/expand recent menu",
+    "recentEdgeHide": "Hide recent menu at screen edge",
+    "recentOpen": "Show recent menu",
+    "recentFrequency": "{count} in 24h",
+    "recentDelete": "Remove from recent menu",
+    "recentEdit": "Edit recent menu",
+    "recentEditDone": "Done editing recent menu",
     "alternatives": "Alternatives",
     "ttf": "Font Subsetter",
     "fontInspector": "Font Inspector",
@@ -42,7 +52,10 @@
     "webpToPng": "webp to png",
     "imageCompress": "Image Compress",
     "idPhoto": "ID photo maker",
-    "image": "image tools"
+    "image": "image tools",
+    "ttfToWoff2": "TTF to WOFF2 Converter",
+    "fontSubsetter": "Font Subsetter",
+    "compressWoff2": "Compress WOFF2"
   },
   "about": {
     "meTitle": "About me",
@@ -63,7 +76,7 @@
   },
   "caseTool": {
     "category": "Text tools",
-    "title": "Case Converter — Uppercase to Lowercase",
+    "title": "Uppercase to Lowercase Converter — Free Online Case Converter",
     "description": "Convert uppercase to lowercase, lowercase to uppercase, title case, sentence case, camelCase, snake_case and kebab-case instantly. Free online case converter that runs in your browser.",
     "copy": "Copy to clipboard",
     "placeholder": "Paste or type text here...",
@@ -79,7 +92,17 @@
     "pascalCase": "PascalCase",
     "snakeCase": "snake_case",
     "kebabCase": "kebab-case",
-    "copied": "Copied"
+    "copied": "Copied",
+    "faqTitle": "Frequently asked questions",
+    "faq1_q": "How do I convert text to uppercase?",
+    "faq1_a": "Paste your text and click the uppercase button. Every letter is converted to capital letters instantly, and the conversion runs entirely in your browser.",
+    "faq2_q": "How do I change uppercase to lowercase?",
+    "faq2_a": "Paste the text and click the lowercase button. You can switch between all case styles without re-pasting the text.",
+    "faq3_q": "What is the difference between title case and sentence case?",
+    "faq3_a": "Title case capitalizes the first letter of every word. Sentence case capitalizes only the first letter of each sentence.",
+    "faq4_q": "Is my text uploaded to a server?",
+    "faq4_a": "No. All conversions run locally in your browser, so your text never leaves your device.",
+    "copyError": "Copy failed"
   },
   "uppercase": {
     "desc": "Convert text to uppercase, lowercase, title case, sentence case, camelCase, snake_case, kebab-case, and more.",
@@ -196,7 +219,8 @@
     "register_success": "Registration successful. Please sign in.",
     "register_failed": "Registration failed. Please try again.",
     "show_password": "Show password",
-    "hide_password": "Hide password"
+    "hide_password": "Hide password",
+    "password_mismatch": "Passwords do not match"
   },
   "accountActivation": {
     "title": "Account activation",
@@ -210,6 +234,47 @@
     "failedFallback": "Account activation failed"
   },
   "password_mismatch": "确认码和密码不一致",
+  "textDedup": {
+    "category": "Text tools",
+    "title": "Text Deduplicator",
+    "seoTitle": "Remove Duplicate Lines Online — Free Text Deduplicator",
+    "seoDescription": "Deduplicate text online by line, whitespace, comma, or semicolon. Combine delimiters, ignore letter case, and remove empty items. Text is processed locally in your browser.",
+    "seoKeywords": "online text deduplicator, remove duplicate lines, text deduplication tool, remove duplicate items, deduplicate text by delimiter, string deduplicator",
+    "description": "Split and deduplicate text using the selected delimiters. New lines, whitespace, commas, and semicolons are selected by default, and multiple delimiters can be combined.",
+    "seoFeatureDelimiters": "Deduplicate items separated by line breaks, whitespace, commas, semicolons, and other symbols",
+    "seoFeatureCase": "Optionally ignore letter case",
+    "seoFeatureEmpty": "Optionally remove empty lines or items",
+    "seoFeatureLocal": "Process text locally in the browser without uploading it",
+    "faqTitle": "Frequently Asked Questions",
+    "faq1Question": "How do I remove duplicate items from text?",
+    "faq1Answer": "Paste your text into the input, choose the delimiters that match its format, and the tool keeps the first occurrence of each item in the result.",
+    "faq2Question": "Can I use more than one delimiter at a time?",
+    "faq2Answer": "Yes. Line breaks, whitespace, commas, and semicolons are selected by default. You can also select other symbols or reset the selection to the defaults.",
+    "faq3Question": "Is my text uploaded to a server?",
+    "faq3Answer": "No. Deduplication runs in the current browser page, and the input text is not uploaded to a server.",
+    "inputLabel": "Input text",
+    "outputLabel": "Deduplicated result",
+    "placeholder": "Enter text to deduplicate...",
+    "outputPlaceholder": "Deduplicated text will appear here...",
+    "delimiterLabel": "Delimiters (select multiple)",
+    "delimiterReset": "Reset selection",
+    "delimiterLine": "New lines",
+    "delimiterWhitespace": "Whitespace",
+    "delimiterComma": "Commas",
+    "delimiterSemicolon": "Semicolons",
+    "delimiterCommon": "Other symbols (| / :)",
+    "ignoreCase": "Ignore case",
+    "removeEmptyLines": "Remove empty items",
+    "totalItems": "Total: {count}",
+    "uniqueItems": "Kept: {count}",
+    "removedItems": "Removed: {count}",
+    "copy": "Copy result",
+    "sample": "Load sample",
+    "clear": "Clear",
+    "copied": "Copied to clipboard",
+    "copyFailed": "Copy failed. Please copy manually.",
+    "sampleText": "apple\nbanana\napple\nOrange\norange\nbanana"
+  },
   "home": {
     "title": "Find the right online tool quickly",
     "seo_desc": "Online tool collection: TTF font compression, JSON & CSV conversion, image to WebP, token generation, hash encryption, and other practical tools to boost development efficiency.",
@@ -327,6 +392,10 @@
         "name": "Hash Text",
         "description": "Apply common MD5, SHA, and other hash algorithms to text."
       },
+      "textDedup": {
+        "name": "Text Deduplicator",
+        "description": "Remove duplicate lines while keeping the first occurrence."
+      },
       "blog": {
         "name": "Blog",
         "description": "Browse articles and tutorials on the site."
@@ -352,9 +421,9 @@
     "desc": "Subset TTF, OTF, WOFF, or WOFF2 fonts by keeping only the characters your project needs."
   },
   "font": {
-    "seo_desc": "Compress fonts for the web online: subset TTF, OTF, WOFF and WOFF2 files in your browser, remove unused glyphs and download a smaller web-ready font. No upload, no account.",
+    "seo_desc": "Font compressor and subsetter that runs in your browser. Shrink TTF, OTF, WOFF and WOFF2 files by keeping only the glyphs you use — no upload, no account, download a web-ready font.",
     "seo_keywords": "compress fonts for web, font compressor, font compressor online, compress ttf, ttf compressor, web font compressor, font subsetter, font subsetting, reduce font size, WOFF2 subset",
-    "title": "Compress Fonts for Web Online — TTF/OTF/WOFF2 Font Compressor",
+    "title": "Font Compressor — Compress TTF, OTF, WOFF & WOFF2 Online",
     "desc": "Upload a TTF, OTF, WOFF, or WOFF2 font, choose the characters to keep, and create a smaller web-ready font by removing unused glyphs.",
     "h1": "Compress Fonts for Web (TTF, OTF, WOFF2)",
     "lead": "Compress fonts for the web by keeping only the characters and glyphs your page needs. Smaller TTF, OTF, WOFF and WOFF2 files, generated locally in your browser.",
@@ -406,7 +475,9 @@
       "faq_3_q": "Does font subsetting improve web performance?",
       "faq_3_a": "Yes. Smaller font files mean less downloaded data and faster page loading while keeping the required characters available.",
       "faq_4_q": "Is WOFF smaller than TTF?",
-      "faq_4_a": "WOFF2 is usually the most compact web font output supported here."
+      "faq_4_a": "WOFF2 is usually the most compact web font output supported here.",
+      "related_title": "Related font tools",
+      "related_desc": "Check which characters a font covers, validate a font file, or generate the {'@'}font-face CSS for your subset."
     }
   },
   "privacy": {
@@ -451,10 +522,16 @@
     "gotoPage": "Go to page",
     "go": "Go",
     "totalItems": "Total {total} items",
-    "defaultTitle": "Blog"
+    "defaultTitle": "Blog",
+    "collapseCatalog": "Collapse table of contents",
+    "expandCatalog": "Expand table of contents"
   },
   "common": {
-    "loading": "加载中..."
+    "clear": "Clear",
+    "loading": "加载中...",
+    "copyFailed": "Copy failed",
+    "copy": "Copy",
+    "copySuccess": "Copied successfully"
   },
   "jsoncsv": {
     "title": "JSON & CSV Converter",
@@ -474,7 +551,7 @@
     "json_to_csv_error": "JSON to CSV failed: {msg}",
     "csv_to_json_error": "CSV to JSON failed: {msg}",
     "index": "JSON and CSV format conversion tool",
-    "seo_title": "Free Online JSON to CSV Converter — CSV to JSON Tool",
+    "seo_title": "JSON to CSV Converter — Online & Free (CSV to JSON Too)",
     "seo_description": "Easily convert JSON to CSV and CSV to JSON online. Free, fast, and secure conversion tool that works directly in your browser. No file upload required.",
     "seo_keywords": "JSON to CSV, CSV to JSON, online converter, free JSON to CSV tool, convert JSON, convert CSV, JSON converter, CSV converter, batch conversion"
   },
@@ -493,12 +570,15 @@
     "seoTitlePng": "WebP to PNG Online Tool — Batch Image Converter",
     "seoDescPng": "Online WebP to PNG converter, batch image conversion, multi-language, best SEO, safe and efficient.",
     "seoTitleJpg": "WebP to JPG Online Tool — Batch Image Converter",
-    "seoDescJpg": "Online WebP to JPG converter, batch image conversion, multi-language, best SEO, safe and efficient."
+    "seoDescJpg": "Online WebP to JPG converter, batch image conversion, multi-language, best SEO, safe and efficient.",
+    "success": "Conversion successful"
   },
   "prompts": {
     "title": "Prompts",
     "name": "Prompt Library",
-    "write": "ADD"
+    "write": "ADD",
+    "fetchError": "Failed to load prompts. Please try again later.",
+    "needLogin": "Please sign in first"
   },
   "compress": {
     "title": "Free online image compressor"
@@ -507,6 +587,7 @@
     "badge": "Time Decoder",
     "title": "Time Format Decoder",
     "description": "Paste any time string or timestamp, detect its format automatically, and convert it to your preferred fixed output format.",
+    "insertCurrentTimestamp": "Insert Current Timestamp",
     "copyResult": "Copy Result",
     "loadSample": "Sample Data",
     "clear": "Clear",
@@ -542,9 +623,9 @@
       "chineseDate": "Chinese date",
       "mixedInput": "Mixed date input"
     },
-    "seoTitle": "Time Format Decoder - Auto-detect timestamps, Unix and ISO 8601 — OnliTool",
-    "seoDescription": "Auto-detect Unix seconds/milliseconds, ISO 8601, Chinese dates, and other time formats, then convert them into fixed formats such as yyyy-MM-dd.",
-    "seoKeywords": "time format decoder, timestamp recognition, Unix timestamp, ISO 8601, date format conversion, time string parsing, yyyy-MM-dd format",
+    "seoTitle": "Time Format Decoder & Current Timestamp Tool — OnliTool",
+    "seoDescription": "Insert the current Unix timestamp into the input with one click. Detect Unix timestamps, ISO 8601, and other date strings, then convert them to formats such as yyyy-MM-dd.",
+    "seoKeywords": "current timestamp, insert current timestamp, time format decoder, timestamp recognition, Unix timestamp, ISO 8601, date format conversion, time string parsing, yyyy-MM-dd format",
     "messages": {
       "noScript": "There is no script content to copy",
       "scriptCopied": "Script copied to clipboard",
@@ -553,7 +634,8 @@
       "outputCopied": "Time format copied to clipboard",
       "noUtcData": "There is no time content to convert",
       "utcCopied": "UTC time copied"
-    }
+    },
+    "faqTitle": "Frequently asked questions"
   },
   "imageTools": {
     "uploadPrompt": "Click or drag images here",
@@ -851,7 +933,7 @@
     "metadataAnalyzer": {
       "title": "Image Metadata Analyzer",
       "description": "Inspect EXIF, GPS, IPTC, XMP, ICC, and image-header metadata in your browser.",
-      "seoTitle": "Image Metadata Analyzer - EXIF, GPS, IPTC and XMP — OnliTool",
+      "seoTitle": "Photo Metadata Viewer — EXIF, GPS & Hidden Info",
       "seoDescription": "Analyze readable image metadata locally, including camera, location, capture time, authorship, and color profile fields.",
       "seoKeywords": "image metadata analyzer, EXIF analyzer, IPTC viewer, XMP viewer, image metadata checker"
     },
@@ -927,7 +1009,9 @@
       "seoTitle": "SVG to PNG Converter — Convert SVG Online Free — OnliTool",
       "seoDescription": "Convert SVG vector graphics to PNG or WebP with custom dimensions. Sanitized and processed locally in your browser.",
       "seoKeywords": "SVG converter, SVG to PNG, SVG to WebP, convert SVG online"
-    }
+    },
+    "format": "Format",
+    "processing": "Processing..."
   },
   "blogPost": {
     "articleTitle": "Article title",
@@ -960,7 +1044,7 @@
     "eyebrow": "Remote Script Handoff",
     "title": "Send a script to a remote user in seconds",
     "description": "Share scripts, commands and configs with a share link.",
-    "expiryNotice": "Choose how long a share link stays available. Links never expire by default.",
+    "expiryNotice": "Choose how long a share link stays available. After it expires, the link stops working and others can no longer view its content. Links never expire by default.",
     "loading": "Loading shared content...",
     "visitorMode": "Visitor mode · read-only shared content",
     "createOwn": "Create your own share",
@@ -969,6 +1053,13 @@
     "save": "Save",
     "saving": "Saving...",
     "saveTitle": "Save the link and content",
+    "delete": "Delete",
+    "deleting": "Deleting...",
+    "deleteTitle": "Delete this note and invalidate its share link",
+    "deleteConfirm": "Delete this note? Its saved share link will stop working and the note content will be cleared.",
+    "cancel": "Cancel",
+    "deleted": "The note was deleted and its share link is no longer available.",
+    "deleteFailed": "Unable to delete the note. Please try again.",
     "copy": "Copy",
     "copyTitle": "Save the link and copy it",
     "qr": "QR code",
@@ -987,6 +1078,8 @@
     "contentFormat": "Content format",
     "plainText": "Plain text",
     "commands": "Commands, scripts, configs",
+    "download": "Download",
+    "downloadTitle": "Download the current content",
     "refresh": "Refresh",
     "refreshTitle": "Reload shared content",
     "fullscreen": "Fullscreen",
@@ -1123,7 +1216,10 @@
     "placeholder": "Your string to hash...",
     "encoding": "Digest encoding",
     "hex": "Hexadecimal (base 16)",
-    "copyTitle": "Copy to clipboard"
+    "copyTitle": "Copy to clipboard",
+    "category": "Text Tools",
+    "copied": "Copied",
+    "seoTitle": "Hash Text Generator — MD5, SHA-1, SHA-256 Online"
   },
   "tokenTool": {
     "category": "Security",
@@ -1138,7 +1234,8 @@
     "alphanumeric": "Alphanumeric (A-Z, a-z, 0-9)",
     "hex": "Hexadecimal (0-9, a-f)",
     "base64": "Base64 (A-Z, a-z, 0-9, +, /, =)",
-    "copied": "Copied to clipboard"
+    "copied": "Copied to clipboard",
+    "seoTitle": "Random Token Generator — Secure, Online, Free"
   },
   "jsonFormatter": {
     "category": "JSON Tool",
@@ -1229,7 +1326,7 @@
     "batch_message": "Select multiple WebP images and download batch results as a ZIP file.",
     "local_message": "Files are processed locally in your browser and are never uploaded.",
     "batch_success": "Batch converted {count} images",
-    "title": "WebP to {format} Online Tool",
+    "title": "WebP to {format} Converter — Free & Batch",
     "description": "Convert WebP images to {format} in batches. Process multiple images at once and download them as a ZIP file. Files are processed locally in your browser and never uploaded.",
     "keywords": "WebP to {format}, WebP batch converter, batch image conversion, {format} online tool, local image processing, no upload",
     "seoSuffix": "Image Converter — Batch Processing",
@@ -1245,5 +1342,91 @@
     "navLabel": "Footer navigation",
     "tagline": "Free, privacy-friendly tools for developers, designers and anyone who needs to finish a file or text task quickly.",
     "localFirst": "Local-first · No sign-up required"
+  },
+  "reduceImage": {
+    "eyebrow": "Reduce image size",
+    "title": "Reduce Image Size to {size} Online",
+    "description": "Shrink photos and graphics to {size} without uploading files. Keep the best possible quality while staying under the target file size.",
+    "compressNow": "Reduce image size now",
+    "whyTitle": "Why reduce to {size}?",
+    "whyDescription": "This target keeps images lightweight for websites, forms, email attachments, and other upload limits while preserving as much visual detail as possible.",
+    "faqTitle": "Frequently asked questions",
+    "question1": "Can I reduce image size to {size}?",
+    "answer1": "Yes. Adjust image dimensions and output quality in your browser to reach the target without uploading files.",
+    "question2": "Will image quality be preserved?",
+    "answer2": "The result depends on the original image. The compressor lowers quality in small steps and stops as soon as the file fits your target size.",
+    "question3": "What image formats are supported?",
+    "answer3": "JPG, PNG, WebP and other common formats. The output keeps the original format unless you choose otherwise.",
+    "seoTitle": "Reduce Image Size to {size} Online — OnliTool",
+    "seoDescription": "Reduce image size to {size} online in your browser. Make photos smaller without uploading files while keeping the best possible quality.",
+    "seoKeywords": "reduce image size to {size}, make image smaller, image size reducer, reduce photo size to {size}, online image reducer"
+  },
+  "compressFontTarget": {
+    "eyebrow": "{format} compression",
+    "title": "Compress {format} Online",
+    "description": "Shrink {format} files by subsetting the glyphs you do not use and exporting an efficient web format. Everything runs locally in your browser.",
+    "compressNow": "Compress {format} now",
+    "whyTitle": "Why compress {format}?",
+    "whyDescription": "Smaller font files mean faster page loads and better Core Web Vitals. Subset a font to the characters your site actually uses and ship a fraction of the original size.",
+    "faqTitle": "Frequently asked questions",
+    "question1": "How do I compress a {format} file?",
+    "answer1": "Open the font compressor, upload your {format} file, keep the characters you need and download a smaller web font. No file is uploaded to a server — it runs in your browser.",
+    "question2": "Is compressing {format} lossless?",
+    "answer2": "The glyphs you keep are untouched. The size saving comes from dropping the glyphs, ligatures and OpenType features your text never uses.",
+    "question3": "Which output format should I choose?",
+    "answer3": "WOFF2 is the best default for modern browsers; WOFF covers older ones. Always keep the original file for future edits.",
+    "seoTitle": "Compress {format} Online — Free {format} Compressor",
+    "seoDescription": "Compress {format} files online by subsetting unused glyphs. Reduce font file size for the web without uploading — runs locally in your browser.",
+    "seoKeywords": "compress {format}, {format} compressor, reduce {format} file size, {format} file compressor online, web font compression"
+  },
+  "fontSubset": {
+    "eyebrow": "Font subsetting",
+    "title": "Font Subsetter Online",
+    "description": "Create a subset of any TTF, OTF, WOFF or WOFF2 font by keeping only the characters your project needs. Runs locally in your browser.",
+    "compressNow": "Subset a font now",
+    "whyTitle": "Why subset a font?",
+    "whyDescription": "A full CJK or icon font can weigh several megabytes; a subset containing the glyphs you actually use often lands in the low tens of kilobytes.",
+    "faqTitle": "Frequently asked questions",
+    "question1": "How do I subset a font?",
+    "answer1": "Paste the text your page renders (or pick a language preset), upload the font, and download the subset. Everything runs in your browser.",
+    "question2": "Which formats can be subset?",
+    "answer2": "TTF, OTF, WOFF and WOFF2 inputs, with TTF, WOFF or WOFF2 output.",
+    "question3": "Can a subset regain removed glyphs?",
+    "answer3": "No. Keep the original font file — subsets permanently drop the characters that were not selected.",
+    "seoTitle": "Font Subsetter — Reduce Font File Size Online",
+    "seoDescription": "Subset TTF, OTF, WOFF and WOFF2 fonts online. Keep only the glyphs you need and cut font file size by 90% or more — no upload, runs in your browser.",
+    "seoKeywords": "font subsetter, font subsetting, subset font online, reduce font file size, web font subset generator"
+  },
+  "fontConvert": {
+    "title": "TTF to WOFF2 Converter",
+    "lead": "Convert TTF, OTF and WOFF fonts to WOFF2 — or WOFF2 back to TTF — right in your browser. No upload, no account.",
+    "upload": "Upload font",
+    "selected": "Selected: {name}",
+    "direction": "Convert to",
+    "toWoff2": "WOFF2 (web)",
+    "toTtf": "TTF (desktop)",
+    "start": "Convert",
+    "clear": "Clear",
+    "success": "Conversion successful",
+    "download": "Download the converted font",
+    "original": "Original size",
+    "converted": "Converted size",
+    "saving": "Size change",
+    "error": "Conversion failed. The font may use unsupported tables or contain invalid data.",
+    "noFile": "Choose a TTF, OTF, WOFF or WOFF2 font file first.",
+    "localProcessing": "The font never leaves your browser — conversion runs locally via WebAssembly.",
+    "faqTitle": "Frequently asked questions",
+    "q1": "How do I convert TTF to WOFF2?",
+    "a1": "Upload the TTF file, choose WOFF2 as the output and click Convert. The download starts immediately and nothing is sent to a server.",
+    "q2": "Can I convert WOFF2 back to TTF?",
+    "a2": "Yes. Pick TTF as the output format — the tool decompresses WOFF2 and rebuilds a standard TrueType font.",
+    "q3": "Why is WOFF2 smaller than TTF?",
+    "a3": "WOFF2 applies Brotli compression and a transform that packs glyph data more efficiently, typically cutting file size by another 30–50% compared with WOFF.",
+    "q4": "Do all browsers support WOFF2?",
+    "a4": "Every modern browser since 2016 supports WOFF2. Serve TTF as a fallback only for very old devices.",
+    "seoTitle": "TTF to WOFF2 Converter — Free & Online (WOFF2 to TTF)",
+    "seoDescription": "Convert TTF, OTF or WOFF fonts to WOFF2 online, or WOFF2 back to TTF. Free, no upload, no signup — conversion runs locally in your browser.",
+    "seoKeywords": "ttf to woff2, ttf to woff2 converter, woff2 to ttf, otf to woff2, convert font to woff2, online font converter",
+    "related": "Related font tools"
   }
 }

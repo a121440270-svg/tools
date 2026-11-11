@@ -23,9 +23,10 @@
             <input v-model="slug" :readonly="isViewingSharedContent" class="min-w-0 flex-1 border-0 bg-transparent px-1 py-1.5 text-sm text-slate-800 outline-none dark:text-slate-100" type="text" maxlength="48" pattern="[a-z0-9][a-z0-9-]{2,47}" :aria-label="t('remoteShare.shareCodeLabel')" />
           </div>
           <div v-if="!isViewingSharedContent" class="flex flex-wrap gap-2">
-            <button class="share-action-button share-action-primary" type="submit" :disabled="creating" :title="t('remoteShare.saveTitle')">{{ creating ? t('remoteShare.saving') : t('remoteShare.save') }}</button>
-            <button class="share-action-button" type="button" :disabled="creating" :title="t('remoteShare.copyTitle')" @click="copyShareLink">{{ t('remoteShare.copy') }}</button>
-            <button class="share-action-button" type="button" :disabled="creating" :title="t('remoteShare.qrTitle')" @click="generateQrCode">{{ t('remoteShare.qr') }}</button>
+            <button class="share-action-button share-action-primary" type="submit" :disabled="creating || deleting" :title="t('remoteShare.saveTitle')">{{ creating ? t('remoteShare.saving') : t('remoteShare.save') }}</button>
+            <button class="share-action-button" type="button" :disabled="creating || deleting" :title="t('remoteShare.copyTitle')" @click="copyShareLink">{{ t('remoteShare.copy') }}</button>
+            <button class="share-action-button" type="button" :disabled="creating || deleting" :title="t('remoteShare.qrTitle')" @click="generateQrCode">{{ t('remoteShare.qr') }}</button>
+            <button class="share-action-button text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300" type="button" :disabled="creating || deleting" :title="t('remoteShare.deleteTitle')" @click="deleteCurrentNote">{{ deleting ? t('remoteShare.deleting') : t('remoteShare.delete') }}</button>
           </div>
         </div>
         <div class="mt-2 flex flex-wrap items-center gap-2">
@@ -61,6 +62,7 @@
         </label>
         <div class="flex items-center gap-2">
           <span class="text-xs text-slate-500 dark:text-slate-400">{{ t('remoteShare.commands') }}</span>
+          <button class="editor-tool-button" type="button" :disabled="sharedLoading || !content.trim()" :title="t('remoteShare.downloadTitle')" @click="downloadContent">{{ t('remoteShare.download') }}</button>
           <button class="editor-tool-button" type="button" :disabled="sharedLoading || creating" :title="t('remoteShare.refreshTitle')" @click="refreshContent">{{ t('remoteShare.refresh') }}</button>
         </div>
       </div>
@@ -86,7 +88,7 @@
 
 <script setup lang="ts">
 import QRCode from 'qrcode'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { useToolSeo } from '~/composables/useToolSeo'
 
 const { t } = useI18n()
@@ -107,6 +109,7 @@ const slug = ref('')
 const content = ref('')
 const language = ref('shell')
 const creating = ref(false)
+const deleting = ref(false)
 const errorMessage = ref('')
 const saved = ref(false)
 const expiresIn = ref<ShareExpiry>('never')
@@ -304,6 +307,30 @@ function makeSlug() {
   return Array.from(values, value => alphabet[value % alphabet.length]).join('')
 }
 
+function downloadContent() {
+  if (!content.value.trim()) return
+
+  const extensions: Record<string, string> = {
+    shell: 'sh',
+    powershell: 'ps1',
+    json: 'json',
+    yaml: 'yaml',
+    sql: 'sql',
+    text: 'txt'
+  }
+  const extension = extensions[language.value] || 'txt'
+  const filename = `${/^[a-z0-9][a-z0-9-]{2,47}$/.test(slug.value) ? slug.value : 'script'}.${extension}`
+  const blob = new Blob([content.value], { type: 'text/plain;charset=utf-8' })
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = filename
+  document.body.appendChild(link)
+  link.click()
+  link.remove()
+  setTimeout(() => URL.revokeObjectURL(url), 0)
+}
+
 async function copyText(text: string) {
   if (navigator.clipboard?.writeText) {
     await navigator.clipboard.writeText(text)
@@ -387,6 +414,7 @@ async function generateQrCode() {
 }
 
 async function createShare(): Promise<boolean> {
+  if (creating.value || deleting.value) return false
   if (!content.value.trim()) {
     ElMessage.error(t('remoteShare.emptyContent'))
     return false
@@ -421,6 +449,55 @@ async function createShare(): Promise<boolean> {
     ElMessage.error(message)
     return false
   } finally { creating.value = false }
+}
+
+async function deleteCurrentNote() {
+  try {
+    await ElMessageBox.confirm(
+      t('remoteShare.deleteConfirm'),
+      t('remoteShare.delete'),
+      {
+        type: 'warning',
+        confirmButtonText: t('remoteShare.delete'),
+        cancelButtonText: t('remoteShare.cancel')
+      }
+    )
+  } catch {
+    return
+  }
+
+  deleting.value = true
+  errorMessage.value = ''
+  try {
+    if (savedSlug.value) {
+      await $fetch(`/api/shares/${savedSlug.value}`, { method: 'DELETE' })
+    }
+
+    const nextUrl = new URL(window.location.href)
+    nextUrl.searchParams.delete('share')
+    window.history.replaceState(window.history.state, '', nextUrl)
+    isOwnerMode.value = true
+    shared.value = null
+    sharedError.value = ''
+    sharedExpiresAt.value = null
+    qrDataUrl.value = ''
+    content.value = ''
+    language.value = 'shell'
+    expiresIn.value = 'never'
+    saved.value = false
+    savedSlug.value = ''
+    savedContentSnapshot.value = null
+    savedLanguageSnapshot.value = null
+    savedExpirySnapshot.value = null
+    persistDraft()
+    ElMessage.success(t('remoteShare.deleted'))
+  } catch (error: any) {
+    const message = error?.data?.message || error?.statusMessage || t('remoteShare.deleteFailed')
+    errorMessage.value = message
+    ElMessage.error(message)
+  } finally {
+    deleting.value = false
+  }
 }
 
 onMounted(async () => {

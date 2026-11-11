@@ -71,6 +71,14 @@ export function useToolSeo(options: {
    * pointing every page at the bare route.
    */
   canonical?: MaybeRefOrGetter<string>
+  /**
+   * Locale codes this page's body copy is actually authored in. Locales that
+   * are not listed get their canonical folded onto the default (English) URL
+   * and are dropped from the hreflang cluster, so Google does not keep them
+   * as untranslated duplicates. Use for pages whose copy is inline English /
+   * Chinese only (legal and alternatives pages).
+   */
+  translatedLocales?: MaybeRefOrGetter<string[]>
 }) {
   const route = useRoute()
   const { locale, locales } = useI18n()
@@ -84,22 +92,34 @@ export function useToolSeo(options: {
     () => localeObjects.value.find((item) => item.code === locale.value)?.language || locale.value
   )
   const localizedPath = computed(() => switchLocalePath(locale.value) || route.path)
+  // Locales the page body copy is actually authored in. Anything outside this
+  // set canonicalises onto the default (English) URL instead of itself.
+  const translatedCodes = computed(() => {
+    if (options.translatedLocales === undefined) return localeObjects.value.map((item) => item.code)
+    return toValue(options.translatedLocales)
+  })
+  const defaultLocalePath = computed(() => switchLocalePath('en') || route.path)
   const canonicalUrl = computed(() => {
     const explicit = options.canonical ? toValue(options.canonical) : ''
     if (explicit) return explicit.startsWith('http') ? explicit : `${baseUrl}${explicit}`
+    if (!translatedCodes.value.includes(locale.value)) {
+      return `${baseUrl}${defaultLocalePath.value}`
+    }
     return `${baseUrl}${localizedPath.value}`
   })
   const localePrefix = computed(() => (locale.value === 'en' ? '' : `/${locale.value}`))
   const alternateLinks = computed(() => [
-    ...localeObjects.value.map((item) => ({
-      rel: 'alternate',
-      hreflang: item.language || item.code,
-      href: `${baseUrl}${switchLocalePath(item.code) || route.path}`
-    })),
+    ...localeObjects.value
+      .filter((item) => translatedCodes.value.includes(item.code))
+      .map((item) => ({
+        rel: 'alternate',
+        hreflang: item.language || item.code,
+        href: `${baseUrl}${switchLocalePath(item.code) || route.path}`
+      })),
     {
       rel: 'alternate',
       hreflang: 'x-default',
-      href: `${baseUrl}${switchLocalePath('en') || route.path}`
+      href: `${baseUrl}${defaultLocalePath.value}`
     }
   ])
 

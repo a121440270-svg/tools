@@ -16,9 +16,19 @@
     "seo_desc": "JPG-, JPEG- und PNG-Bilder online in WebP umwandeln. Bilder gesammelt auswählen und die Ergebnisse als ZIP-Archiv herunterladen. Die Verarbeitung erfolgt lokal im Browser, ohne Upload.",
     "seo_keywords": "Bildkonverter online, JPG zu WebP, PNG zu WebP, WebP-Konverter, Bilder stapelweise konvertieren",
     "batch_message": "Wählen Sie mehrere JPG- und PNG-Bilder aus, um sie in einem Batch in WebP umzuwandeln.",
-    "local_message": "Die Dateien werden lokal im Browser verarbeitet und niemals hochgeladen."
+    "local_message": "Die Dateien werden lokal im Browser verarbeitet und niemals hochgeladen.",
+    "seo_title_f": "{format}-zu-WebP-Konverter — kostenlos & Stapelverarbeitung"
   },
   "menu": {
+    "recent": "Zuletzt besucht",
+    "recentClose": "Zuletzt-besucht-Menü schließen",
+    "recentCollapse": "Menü zuletzt besuchter Seiten ein-/ausklappen",
+    "recentEdgeHide": "Menü am Bildschirmrand ausblenden",
+    "recentOpen": "Menü zuletzt besuchter Seiten anzeigen",
+    "recentFrequency": "{count} in 24 Std.",
+    "recentDelete": "Aus dem zuletzt besuchten Menü entfernen",
+    "recentEdit": "Zuletzt besuchtes Menü bearbeiten",
+    "recentEditDone": "Bearbeitung des zuletzt besuchten Menüs beenden",
     "alternatives": "Alternativen",
     "ttf": "Schrift komprimieren",
     "fontInspector": "Schriftinspektor",
@@ -42,7 +52,10 @@
     "webpToPng": "WebP zu PNG",
     "imageCompress": "Bilder komprimieren",
     "idPhoto": "Passfoto erstellen",
-    "image": "Bild-Tools"
+    "image": "Bild-Tools",
+    "ttfToWoff2": "TTF-zu-WOFF2-Konverter",
+    "fontSubsetter": "Font-Subsetter",
+    "compressWoff2": "WOFF2 komprimieren"
   },
   "about": {
     "meTitle": "Über mich",
@@ -63,7 +76,7 @@
   },
   "caseTool": {
     "category": "Text-Tools",
-    "title": "Großschreibungs-Converter",
+    "title": "Groß-/Kleinschreibung-Konverter — Text online umwandeln",
     "description": "Fügen Sie Text ein, um ihn automatisch in Großbuchstaben umzuwandeln und direkt zu kopieren.",
     "copy": "In die Zwischenablage kopieren",
     "placeholder": "Text hier einfügen oder eingeben...",
@@ -79,7 +92,17 @@
     "pascalCase": "PascalCase",
     "snakeCase": "snake_case",
     "kebabCase": "kebab-case",
-    "copied": "Kopiert"
+    "copied": "Kopiert",
+    "faqTitle": "Häufige Fragen",
+    "faq1_q": "Wie wandle ich Text in Großbuchstaben um?",
+    "faq1_a": "Text einfügen und auf die Großbuchstaben-Schaltfläche klicken. Alle Buchstaben werden sofort umgewandelt — direkt im Browser.",
+    "faq2_q": "Wie ändere ich Großbuchstaben in Kleinbuchstaben?",
+    "faq2_a": "Text einfügen und auf die Kleinbuchstaben-Schaltfläche klicken. Sie können beliebig zwischen allen Schreibweisen wechseln, ohne neu einzufügen.",
+    "faq3_q": "Was ist der Unterschied zwischen Title Case und Sentence Case?",
+    "faq3_a": "Title Case schreibt den ersten Buchstaben jedes Wortes groß. Sentence Case nur den ersten Buchstaben jedes Satzes.",
+    "faq4_q": "Wird mein Text auf einen Server geladen?",
+    "faq4_a": "Nein. Alle Umwandlungen laufen lokal im Browser, Ihr Text verlässt Ihr Gerät nicht.",
+    "copyError": "Kopieren fehlgeschlagen"
   },
   "uppercase": {
     "desc": "Fügen Sie Text ein, um ihn automatisch in Großbuchstaben umzuwandeln und direkt zu kopieren.",
@@ -196,9 +219,51 @@
     "register_success": "Registrierung erfolgreich. Bitte melden Sie sich an.",
     "register_failed": "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.",
     "show_password": "Passwort anzeigen",
-    "hide_password": "Passwort ausblenden"
+    "hide_password": "Passwort ausblenden",
+    "password_mismatch": "Die Passwörter stimmen nicht überein"
   },
   "password_mismatch": "Der Bestätigungscode und das Passwort stimmen nicht überein.",
+  "textDedup": {
+    "category": "Textwerkzeuge",
+    "title": "Text-Deduplizierer",
+    "seoTitle": "Kostenloser Online-Text-Deduplizierer – Doppelte Zeilen und Einträge entfernen | OnliTool",
+    "seoDescription": "Text online nach Zeilen, Leerzeichen, Kommas oder Semikolons deduplizieren. Trennzeichen kombinieren, Groß-/Kleinschreibung ignorieren und leere Einträge entfernen. Die Verarbeitung erfolgt lokal im Browser.",
+    "seoKeywords": "Text online deduplizieren, doppelte Zeilen entfernen, Text-Deduplizierer, doppelte Einträge entfernen, Text nach Trennzeichen deduplizieren",
+    "description": "Teilt Text anhand der gewählten Trennzeichen und entfernt Duplikate. Zeilenumbrüche, Leerzeichen, Kommas und Semikolons sind standardmäßig ausgewählt; mehrere Trennzeichen können kombiniert werden.",
+    "seoFeatureDelimiters": "Einträge anhand von Zeilenumbrüchen, Leerzeichen, Kommas, Semikolons und weiteren Zeichen deduplizieren",
+    "seoFeatureCase": "Groß-/Kleinschreibung optional ignorieren",
+    "seoFeatureEmpty": "Leere Zeilen oder Einträge optional entfernen",
+    "seoFeatureLocal": "Text lokal im Browser ohne Upload verarbeiten",
+    "faqTitle": "Häufig gestellte Fragen",
+    "faq1Question": "Wie entferne ich doppelte Einträge aus einem Text?",
+    "faq1Answer": "Fügen Sie den Text ein, wählen Sie passende Trennzeichen aus und das Tool behält das erste Vorkommen jedes Eintrags im Ergebnis.",
+    "faq2Question": "Kann ich mehrere Trennzeichen gleichzeitig verwenden?",
+    "faq2Answer": "Ja. Zeilenumbrüche, Leerzeichen, Kommas und Semikolons sind standardmäßig ausgewählt. Weitere Zeichen können aktiviert oder die Auswahl auf die Standardwerte zurückgesetzt werden.",
+    "faq3Question": "Wird mein Text auf einen Server hochgeladen?",
+    "faq3Answer": "Nein. Die Deduplizierung erfolgt direkt auf der aktuellen Browserseite. Der eingegebene Text wird nicht hochgeladen.",
+    "inputLabel": "Eingabetext",
+    "outputLabel": "Dedupliziertes Ergebnis",
+    "placeholder": "Geben Sie den zu bereinigenden Text ein...",
+    "outputPlaceholder": "Der bereinigte Text wird hier angezeigt...",
+    "delimiterLabel": "Trennzeichen (Mehrfachauswahl)",
+    "delimiterReset": "Auswahl zurücksetzen",
+    "delimiterLine": "Zeilenumbrüche",
+    "delimiterWhitespace": "Leerzeichen",
+    "delimiterComma": "Kommas",
+    "delimiterSemicolon": "Semikolons",
+    "delimiterCommon": "Weitere Zeichen (| / :)",
+    "ignoreCase": "Groß-/Kleinschreibung ignorieren",
+    "removeEmptyLines": "Leere Einträge entfernen",
+    "totalItems": "Gesamt: {count}",
+    "uniqueItems": "Behalten: {count}",
+    "removedItems": "Entfernt: {count}",
+    "copy": "Ergebnis kopieren",
+    "sample": "Beispiel laden",
+    "clear": "Leeren",
+    "copied": "In die Zwischenablage kopiert",
+    "copyFailed": "Kopieren fehlgeschlagen. Bitte manuell kopieren.",
+    "sampleText": "Apfel\nBanane\nApfel\nOrange\norange\nBanane"
+  },
   "home": {
     "title": "Das passende Online-Tool schnell finden",
     "seo_desc": "Online-Toolsammlung: TTF-Schriftkomprimierung, JSON- und CSV-Konvertierung, Bildkonvertierung zu WebP, Token-Erstellung, Hash-Verschlüsselung und weitere praktische Entwickler-Tools.",
@@ -296,6 +361,10 @@
         "name": "Text hashen",
         "description": "Wenden Sie häufige MD5-, SHA- und andere Hash-Algorithmen auf Text an."
       },
+      "textDedup": {
+        "name": "Text-Deduplizierer",
+        "description": "Entfernt doppelte Zeilen und behält das erste Vorkommen."
+      },
       "blog": {
         "name": "Blog",
         "description": "Durchsuchen Sie Artikel und Tutorials auf der Website."
@@ -309,24 +378,24 @@
         "description": "Teilen Sie vorübergehend Befehle, Skripte, Konfigurationen und technische Texte."
       },
       "fontInspector": {
-        "name": "Font Inspector",
-        "description": "Inspect font metadata, glyph counts, metrics, and Unicode coverage."
+        "name": "Schriftinspektor",
+        "description": "Untersuchen Sie Schrift-Metadaten, Glyphenzahlen, Metriken und die Unicode-Abdeckung."
       },
       "fontUnicodeChecker": {
-        "name": "Font Unicode Checker",
-        "description": "Check font support for text, Unicode ranges, and language character sets."
+        "name": "Unicode-Prüfung für Schriften",
+        "description": "Prüfen Sie die Schriftunterstützung für Text, Unicode-Bereiche und Sprach-Zeichensätze."
       },
       "fontSizeAnalyzer": {
-        "name": "Font Size Analyzer",
-        "description": "Analyze font file size, glyph count, character mappings, and OpenType tables."
+        "name": "Schriftgrößenanalyse",
+        "description": "Analysieren Sie Schriftdateigröße, Glyphenzahl, Zeichenzuordnungen und OpenType-Tabellen."
       },
       "fontValidator": {
-        "name": "Font Validator",
-        "description": "Check font parsing, core tables, glyph outlines, and Unicode mappings."
+        "name": "Schriftvalidator",
+        "description": "Prüfen Sie Schrift-Parsing, Kerntabellen, Glyphenkonturen und Unicode-Zuordnungen."
       },
       "fontCssGenerator": {
-        "name": "Font CSS Generator",
-        "description": "Generate CSS font-face rules and an HTML example for web fonts."
+        "name": "Schrift-CSS-Generator",
+        "description": "Erstellen Sie CSS-font-face-Regeln und ein HTML-Beispiel für Webfonts."
       }
     },
     "seoTitle": "OnliTool - Online-Toolsammlung",
@@ -341,9 +410,9 @@
     "desc": "Input characters or Upload text, extract needed glyphs from TTF, output smaller TTF & WOFF."
   },
   "font": {
-    "seo_desc": "Webfonts online komprimieren: TTF-, OTF-, WOFF- und WOFF2-Dateien im Browser subsetten, ungenutzte Glyphen entfernen und eine kleinere, webtaugliche Schrift herunterladen. Kein Upload, kein Konto.",
+    "seo_desc": "Font-Kompressor und Subsetter direkt im Browser: TTF-, OTF-, WOFF- und WOFF2-Dateien verkleinern, indem Sie nur benötigte Glyphen behalten — ohne Upload, ohne Konto.",
     "seo_keywords": "Webfonts komprimieren, Font-Kompressor, Schrift komprimieren online, TTF komprimieren, Font-Subset, Schriftgröße reduzieren, WOFF2 Subset",
-    "title": "Webfonts online komprimieren — TTF/OTF/WOFF2 Font-Kompressor",
+    "title": "Font-Kompressor — TTF, OTF, WOFF & WOFF2 online komprimieren",
     "desc": "Laden Sie eine TTF-, OTF-, WOFF- oder WOFF2-Schrift hoch, wählen Sie die benötigten Zeichen und entfernen Sie ungenutzte Glyphen für eine kleinere Webfont.",
     "h1": "Webfonts komprimieren (TTF, OTF, WOFF2)",
     "lead": "Behalten Sie nur die Zeichen und Glyphen, die Ihre Seite braucht, und verkleinern Sie TTF-, OTF-, WOFF- und WOFF2-Schriften für das Web. Die Verarbeitung läuft im Browser.",
@@ -382,20 +451,22 @@
       "faq_3_q": "Verbessert Subsetting die Web-Performance?",
       "faq_3_a": "Ja. Kleinere Schriftarten bedeuten weniger heruntergeladene Daten und schnellere Seitenladezeiten, während die benötigten Zeichen weiter verfügbar bleiben.",
       "faq_4_q": "Ist WOFF kleiner als TTF?",
-      "faq_4_a": "Für das Web ist WOFF oft besser geeignet, da es für den Browser-Transfer optimiert ist. Die Kombination aus WOFF-Ausgabe und Subsetting ist eine bewährte Optimierungsstrategie."
+      "faq_4_a": "Für das Web ist WOFF oft besser geeignet, da es für den Browser-Transfer optimiert ist. Die Kombination aus WOFF-Ausgabe und Subsetting ist eine bewährte Optimierungsstrategie.",
+      "related_title": "Verwandte Font-Tools",
+      "related_desc": "Zeichenabdeckung prüfen, Font-Dateien validieren oder das {'@'}font-face CSS für Ihren Subset erstellen."
     },
-    "custom_text": "Custom text",
-    "unicode_range": "Unicode range",
-    "language_preset": "Language preset",
-    "local_processing": "Fonts are processed locally in your browser and are never uploaded.",
-    "original_size": "Original size",
-    "optimized_size": "Optimized size",
-    "saved_size": "Saved size",
+    "custom_text": "Benutzerdefinierter Text",
+    "unicode_range": "Unicode-Bereich",
+    "language_preset": "Sprachvoreinstellung",
+    "local_processing": "Schriftarten werden lokal in Ihrem Browser verarbeitet und niemals hochgeladen.",
+    "original_size": "Originalgröße",
+    "optimized_size": "Optimierte Größe",
+    "saved_size": "Eingesparte Größe",
     "reduction": "Reduction",
     "glyph_count": "Glyphs",
     "tools": {
-      "inspector": "Font Inspector",
-      "unicodeChecker": "Font Unicode Checker"
+      "inspector": "Schriftinspektor",
+      "unicodeChecker": "Unicode-Prüfung für Schriften"
     }
   },
   "privacy": {
@@ -437,10 +508,16 @@
     "gotoPage": "Zur Seite",
     "go": "OK",
     "totalItems": "Insgesamt {total} Einträge",
-    "defaultTitle": "Blog"
+    "defaultTitle": "Blog",
+    "collapseCatalog": "Inhaltsverzeichnis einklappen",
+    "expandCatalog": "Inhaltsverzeichnis ausklappen"
   },
   "common": {
-    "loading": "Wird geladen..."
+    "clear": "Leeren",
+    "loading": "Wird geladen...",
+    "copyFailed": "Kopieren fehlgeschlagen",
+    "copy": "Kopieren",
+    "copySuccess": "Erfolgreich kopiert"
   },
   "jsoncsv": {
     "title": "JSON- und CSV-Konverter",
@@ -479,12 +556,15 @@
     "seoTitlePng": "WebP zu PNG online — Bildkonverter für Stapelverarbeitung",
     "seoDescPng": "WebP online in PNG umwandeln und Bilder stapelweise konvertieren. Sicher und effizient.",
     "seoTitleJpg": "WebP zu JPG online — Bildkonverter für Stapelverarbeitung",
-    "seoDescJpg": "WebP online in JPG umwandeln und Bilder stapelweise konvertieren. Sicher und effizient."
+    "seoDescJpg": "WebP online in JPG umwandeln und Bilder stapelweise konvertieren. Sicher und effizient.",
+    "success": "Konvertierung erfolgreich"
   },
   "prompts": {
     "title": "Prompts",
     "name": "Prompt-Bibliothek",
-    "write": "HINZUFÜGEN"
+    "write": "HINZUFÜGEN",
+    "fetchError": "Prompts konnten nicht geladen werden. Bitte später erneut versuchen.",
+    "needLogin": "Bitte zuerst anmelden"
   },
   "compress": {
     "title": "Kostenloser Online-Bildkompressor"
@@ -493,6 +573,7 @@
     "badge": "Zeit-Decoder",
     "title": "Zeitformat-Decoder",
     "description": "Fügen Sie eine beliebige Zeitzeichenfolge oder einen Zeitstempel ein, erkennen Sie das Format automatisch und wandeln Sie es in das gewünschte feste Ausgabeformat um.",
+    "insertCurrentTimestamp": "Aktuellen Zeitstempel einfügen",
     "copyResult": "Ergebnis kopieren",
     "loadSample": "Beispieldaten",
     "clear": "Leeren",
@@ -528,9 +609,9 @@
       "chineseDate": "Chinesisches Datum",
       "mixedInput": "Gemischte Datumsangaben"
     },
-    "seoTitle": "Zeitformat-Decoder – Zeitstempel und Datumsformate automatisch erkennen",
-    "seoDescription": "Erkennen Sie Unix-Sekunden/Millisekunden, ISO 8601, chinesische Datumsangaben und andere Zeitformate automatisch und wandeln Sie sie in feste Formate wie yyyy-MM-dd um.",
-    "seoKeywords": "Zeitformat-Decoder, Zeitstempel-Erkennung, Unix-Zeitstempel, ISO 8601, Datumsformat-Konvertierung, Zeitzeichenfolgenanalyse, yyyy-MM-dd-Format",
+    "seoTitle": "Zeitformat-Decoder und aktueller Zeitstempel",
+    "seoDescription": "Fügen Sie den aktuellen Unix-Zeitstempel mit einem Klick in das Eingabefeld ein. Erkennen und konvertieren Sie außerdem ISO 8601 und weitere Datumsformate.",
+    "seoKeywords": "aktueller Zeitstempel, Zeitstempel einfügen, Zeitformat-Decoder, Zeitstempel-Erkennung, Unix-Zeitstempel, ISO 8601, Datumsformat-Konvertierung",
     "messages": {
       "noScript": "Es gibt keinen Skripttext zum Kopieren",
       "scriptCopied": "Skript in die Zwischenablage kopiert",
@@ -539,7 +620,8 @@
       "outputCopied": "Zeitformat in die Zwischenablage kopiert",
       "noUtcData": "Es gibt keinen Zeitinhalt zum Konvertieren",
       "utcCopied": "UTC-Zeit kopiert"
-    }
+    },
+    "faqTitle": "Häufige Fragen"
   },
   "webpTo": {
     "batch_message": "Wählen Sie mehrere WebP-Bilder aus und laden Sie die Batch-Ergebnisse als ZIP-Datei herunter.",
@@ -596,7 +678,7 @@
     "eyebrow": "Skriptübergabe an Remote-Nutzer",
     "title": "Senden Sie ein Skript in Sekunden an einen Remote-Nutzer",
     "description": "Teilen Sie Skripte, Befehle und Konfigurationen über einen Freigabelink.",
-    "expiryNotice": "Wählen Sie, wie lange der Freigabelink verfügbar bleibt. Standardmäßig läuft er nie ab.",
+    "expiryNotice": "Legen Sie fest, wie lange der Freigabelink verfügbar ist. Nach Ablauf funktioniert er nicht mehr und andere können den Inhalt nicht ansehen. Standardmäßig läuft er nie ab.",
     "loading": "Geteilte Inhalte werden geladen...",
     "visitorMode": "Besuchermodus · geteilte Inhalte nur lesbar",
     "createOwn": "Eigenen Link erstellen",
@@ -605,6 +687,13 @@
     "save": "Speichern",
     "saving": "Wird gespeichert...",
     "saveTitle": "Link und Inhalt speichern",
+    "delete": "Löschen",
+    "deleting": "Wird gelöscht...",
+    "deleteTitle": "Diese Notiz löschen und den Freigabelink deaktivieren",
+    "deleteConfirm": "Möchten Sie diese Notiz löschen? Der gespeicherte Freigabelink wird deaktiviert und der Inhalt gelöscht.",
+    "cancel": "Abbrechen",
+    "deleted": "Die Notiz wurde gelöscht und der Freigabelink deaktiviert.",
+    "deleteFailed": "Die Notiz konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
     "copy": "Kopieren",
     "copyTitle": "Link speichern und kopieren",
     "qr": "QR-Code",
@@ -623,6 +712,8 @@
     "contentFormat": "Inhaltsformat",
     "plainText": "Klartext",
     "commands": "Befehle, Skripte, Konfigurationen",
+    "download": "Herunterladen",
+    "downloadTitle": "Aktuellen Inhalt herunterladen",
     "refresh": "Aktualisieren",
     "refreshTitle": "Geteilte Inhalte neu laden",
     "fullscreen": "Vollbild",
@@ -759,7 +850,10 @@
     "placeholder": "Zu hashende Zeichenfolge...",
     "encoding": "Digest-Kodierung",
     "hex": "Hexadezimal (Basis 16)",
-    "copyTitle": "In die Zwischenablage kopieren"
+    "copyTitle": "In die Zwischenablage kopieren",
+    "category": "Text-Tools",
+    "copied": "Kopiert",
+    "seoTitle": "Hash-Text-Generator — MD5, SHA-1, SHA-256 online"
   },
   "tokenTool": {
     "category": "Sicherheit",
@@ -774,7 +868,8 @@
     "alphanumeric": "Alphanumerisch (A-Z, a-z, 0-9)",
     "hex": "Hexadezimal (0-9, a-f)",
     "base64": "Base64 (A-Z, a-z, 0-9, +, /, =)",
-    "copied": "In die Zwischenablage kopiert"
+    "copied": "In die Zwischenablage kopiert",
+    "seoTitle": "Zufalls-Token-Generator — sicher, online, kostenlos"
   },
   "jsonFormatter": {
     "category": "JSON-Tool",
@@ -973,16 +1068,16 @@
       "seoTitle": "Bildkonverter - Kostenloses Online-Tool — OnliTool",
       "seoDescription": "Bilder im Browser in JPG, PNG, WebP oder AVIF konvertieren. Dateien lokal stapelweise verarbeiten und einzeln oder als ZIP herunterladen.",
       "seoKeywords": "Bildkonverter, Bilder online konvertieren, JPG PNG Konverter, WebP Konverter",
-      "inputAccepted": "JPG, PNG, WebP, AVIF, GIF, BMP, SVG and HEIC",
+      "inputAccepted": "JPG, PNG, WebP, AVIF, GIF, BMP, SVG und HEIC",
       "convertTo": "Convert to",
-      "convertButton": "Convert images",
+      "convertButton": "Bilder konvertieren",
       "converting": "Processing {current}/{total}...",
       "failed": "Failed",
-      "noFiles": "No supported image files were selected.",
-      "decodeError": "Could not decode image {name} in this browser.",
-      "outputUnsupported": "This browser cannot encode {format}. Choose another output format.",
-      "imageTooLarge": "This image exceeds the 100-megapixel processing limit.",
-      "convertError": "Could not convert this image."
+      "noFiles": "Es wurden keine unterstützten Bilddateien ausgewählt.",
+      "decodeError": "Bild {name} konnte in diesem Browser nicht dekodiert werden.",
+      "outputUnsupported": "Dieser Browser kann {format} nicht kodieren. Wählen Sie ein anderes Ausgabeformat.",
+      "imageTooLarge": "Dieses Bild überschreitet die Verarbeitungsgrenze von 100 Megapixeln.",
+      "convertError": "Dieses Bild konnte nicht konvertiert werden."
     },
     "heic": {
       "title": "HEIC zu JPG Konverter",
@@ -990,7 +1085,7 @@
       "seoTitle": "HEIC zu JPG Konverter - Kostenloses Online-Tool — OnliTool",
       "seoDescription": "HEIC- und HEIF-Fotos lokal im Browser in JPG, PNG oder WebP konvertieren. Stapelverarbeitung ohne Upload.",
       "seoKeywords": "HEIC zu JPG, HEIC online konvertieren, HEIF Konverter, iPhone Fotos konvertieren",
-      "acceptedFormats": "Select one or more HEIC / HEIF photos"
+      "acceptedFormats": "Wählen Sie ein oder mehrere HEIC-/HEIF-Fotos aus"
     },
     "resizer": {
       "title": "Bildgröße ändern",
@@ -998,18 +1093,18 @@
       "seoTitle": "Bildgröße ändern - Bilder online skalieren — OnliTool",
       "seoDescription": "JPG-, PNG- und WebP-Bilder nach Abmessungen, Prozentsatz oder maximaler Größe skalieren. Private Stapelverarbeitung im Browser.",
       "seoKeywords": "Bildgröße ändern, Bilder online skalieren, Bildabmessungen ändern, Bilder stapelweise verkleinern",
-      "mode": "Resize mode",
+      "mode": "Skalierungsmodus",
       "dimensionsMode": "Dimensions",
       "percentageMode": "Percentage",
-      "maxMode": "Maximum edge",
-      "keepRatio": "Keep aspect ratio",
+      "maxMode": "Maximale Kante",
+      "keepRatio": "Seitenverhältnis beibehalten",
       "scale": "Scale",
-      "maxDimension": "Longest edge",
-      "outputFormat": "Output format",
-      "resizeButton": "Resize images",
-      "imageTooLarge": "{name} exceeds the 100-megapixel processing limit.",
-      "invalidDimensions": "Enter valid dimensions under the 100-megapixel processing limit.",
-      "resizeError": "Could not resize this image."
+      "maxDimension": "Längste Seite",
+      "outputFormat": "Ausgabeformat",
+      "resizeButton": "Bilder skalieren",
+      "imageTooLarge": "{name} überschreitet die Verarbeitungsgrenze von 100 Megapixeln.",
+      "invalidDimensions": "Geben Sie gültige Maße unterhalb der Verarbeitungsgrenze von 100 Megapixeln ein.",
+      "resizeError": "Dieses Bild konnte nicht skaliert werden."
     },
     "cropper": {
       "title": "Bild zuschneiden",
@@ -1017,17 +1112,17 @@
       "seoTitle": "Bild zuschneiden - Online-Bildzuschnitt — OnliTool",
       "seoDescription": "JPG-, PNG- und WebP-Bilder frei oder mit festen Seitenverhältnissen direkt im Browser zuschneiden.",
       "seoKeywords": "Bild zuschneiden, Bild online beschneiden, Foto zuschneiden",
-      "aspectRatio": "Aspect ratio",
+      "aspectRatio": "Seitenverhältnis",
       "free": "Free",
       "square": "1:1",
       "landscape43": "4:3",
       "wide169": "16:9",
       "portrait916": "9:16",
-      "chooseAnother": "Choose another image",
-      "cropButton": "Crop image",
-      "loadError": "Could not load this image.",
-      "invalidSelection": "Select an area larger than zero pixels.",
-      "cropError": "Could not crop this image."
+      "chooseAnother": "Anderes Bild wählen",
+      "cropButton": "Bild zuschneiden",
+      "loadError": "Dieses Bild konnte nicht geladen werden.",
+      "invalidSelection": "Wählen Sie einen Bereich größer als null Pixel aus.",
+      "cropError": "Dieses Bild konnte nicht zugeschnitten werden."
     },
     "base64": {
       "toTitle": "Bild zu Base64",
@@ -1040,21 +1135,21 @@
       "fromSeoDescription": "Base64-Bilder im Browser dekodieren und als PNG, JPG oder WebP herunterladen.",
       "toSeoKeywords": "Bild zu Base64, Bild Data URL, Base64 Bildkonverter",
       "fromSeoKeywords": "Base64 zu Bild, Data URL zu Bild, Base64 Bild dekodieren",
-      "changeImage": "Choose another image",
-      "outputType": "Output type",
-      "dataUrl": "Data URL",
+      "changeImage": "Anderes Bild wählen",
+      "outputType": "Ausgabetyp",
+      "dataUrl": "Data-URL",
       "output": "Output",
       "copy": "Copy",
       "copied": "Copied",
-      "copyError": "Clipboard access failed. Select and copy the text manually.",
-      "readError": "Could not read this image file.",
-      "pasteLabel": "Paste Base64 or a Data URL",
+      "copyError": "Zugriff auf die Zwischenablage fehlgeschlagen. Markieren und kopieren Sie den Text manuell.",
+      "readError": "Diese Bilddatei konnte nicht gelesen werden.",
+      "pasteLabel": "Base64 oder Data-URL einfügen",
       "placeholder": "data:image/png;base64,...",
-      "previewButton": "Decode image",
-      "previewAlt": "Decoded image preview",
-      "invalidInput": "Enter a valid Base64 string or image Data URL.",
-      "tooLarge": "The decoded image exceeds the 50 MB limit.",
-      "decodeError": "Could not decode this image. Check the Base64 input and format."
+      "previewButton": "Bild dekodieren",
+      "previewAlt": "Vorschau des dekodierten Bildes",
+      "invalidInput": "Geben Sie einen gültigen Base64-String oder eine Bild-Data-URL ein.",
+      "tooLarge": "Das dekodierte Bild überschreitet die Grenze von 50 MB.",
+      "decodeError": "Dieses Bild konnte nicht dekodiert werden. Prüfen Sie die Base64-Eingabe und das Format."
     },
     "info": {
       "title": "Bildinformationen",
@@ -1086,20 +1181,20 @@
       "seoTitle": "Bildinformationen und Metadaten anzeigen — OnliTool",
       "seoDescription": "Bildabmessungen, Dateigröße, Format und verfügbare EXIF/GPS-Daten im Browser anzeigen.",
       "seoKeywords": "Bildinformationen, Bildmetadaten, EXIF Viewer, Bildabmessungen",
-      "fileName": "File name",
-      "fileSize": "File size",
-      "aspectRatio": "Aspect ratio",
-      "colorMode": "Color mode",
-      "decodedMode": "Browser-decoded RGBA data",
+      "fileName": "Dateiname",
+      "fileSize": "Dateigröße",
+      "aspectRatio": "Seitenverhältnis",
+      "colorMode": "Farbmodus",
+      "decodedMode": "Im Browser dekodierte RGBA-Daten",
       "metadata": "Metadata",
-      "noMetadata": "No readable EXIF metadata found.",
-      "cameraMake": "Camera make",
-      "cameraModel": "Camera model",
-      "dateTaken": "Date taken",
+      "noMetadata": "Keine lesbaren EXIF-Metadaten gefunden.",
+      "cameraMake": "Kamerahersteller",
+      "cameraModel": "Kameramodell",
+      "dateTaken": "Aufnahmedatum",
       "software": "Software",
-      "latitude": "GPS latitude",
-      "longitude": "GPS longitude",
-      "readError": "Could not read {name}."
+      "latitude": "GPS-Breitengrad",
+      "longitude": "GPS-Längengrad",
+      "readError": "{name} konnte nicht gelesen werden."
     },
     "exif": {
       "title": "EXIF-Metadaten entfernen",
@@ -1108,10 +1203,10 @@
       "seoTitle": "EXIF-Metadaten aus Bildern entfernen — OnliTool",
       "seoDescription": "GPS-Standort, Kameradaten und EXIF-Metadaten direkt im Browser entfernen. Kein Upload.",
       "seoKeywords": "EXIF entfernen, Bildmetadaten entfernen, GPS aus Fotos entfernen",
-      "outputFormat": "Clean output format",
-      "removeButton": "Remove metadata",
-      "privacyNote": "The output is re-encoded locally and does not retain the source file's EXIF metadata.",
-      "processError": "Could not remove metadata from this image."
+      "outputFormat": "Bereinigtes Ausgabeformat",
+      "removeButton": "Metadaten entfernen",
+      "privacyNote": "Die Ausgabe wird lokal neu kodiert und behält die EXIF-Metadaten der Quelldatei nicht bei.",
+      "processError": "Metadaten konnten aus diesem Bild nicht entfernt werden."
     },
     "exifEditor": {
       "eyebrow": "JPEG-Metadateneditor",
@@ -1217,10 +1312,10 @@
       "seoTitle": "Bild-Farbwähler - HEX, RGB und HSL — OnliTool",
       "seoDescription": "Farben aus Bildern auswählen und häufige Farben lokal als HEX, RGB und HSL anzeigen.",
       "seoKeywords": "Bild Farbwähler, Farbe aus Bild, Bildpalette extrahieren",
-      "changeImage": "Choose another image",
-      "clickHint": "Click the image to sample a pixel color.",
-      "dominantColors": "Common colors",
-      "readError": "Could not read pixel colors from this image."
+      "changeImage": "Anderes Bild wählen",
+      "clickHint": "Klicken Sie auf das Bild, um eine Pixelfarbe zu übernehmen.",
+      "dominantColors": "Häufige Farben",
+      "readError": "Pixelfarben konnten aus diesem Bild nicht gelesen werden."
     },
     "svg": {
       "title": "SVG-Konverter",
@@ -1228,13 +1323,14 @@
       "seoTitle": "SVG-Konverter - SVG zu PNG oder WebP — OnliTool",
       "seoDescription": "SVG-Dateien lokal in PNG oder WebP konvertieren und die Ausgabegröße festlegen.",
       "seoKeywords": "SVG Konverter, SVG zu PNG, SVG zu WebP",
-      "chooseAnother": "Choose another SVG",
-      "convertButton": "Convert SVG",
-      "invalidFile": "This is not a valid SVG file.",
-      "fileTooLarge": "SVG files must be smaller than 10 MB.",
-      "invalidDimensions": "Enter valid dimensions within the 100-megapixel limit.",
-      "convertError": "Could not convert this SVG."
-    }
+      "chooseAnother": "Anderes SVG wählen",
+      "convertButton": "SVG konvertieren",
+      "invalidFile": "Dies ist keine gültige SVG-Datei.",
+      "fileTooLarge": "SVG-Dateien müssen kleiner als 10 MB sein.",
+      "invalidDimensions": "Geben Sie gültige Maße innerhalb der 100-Megapixel-Grenze ein.",
+      "convertError": "Dieses SVG konnte nicht konvertiert werden."
+    },
+    "processing": "Verarbeitung…"
   },
   "footer": {
     "about": "Über uns",
@@ -1246,5 +1342,91 @@
     "navLabel": "Fußzeilennavigation",
     "tagline": "Kostenlose, datenschutzfreundliche Tools für Entwickler, Designer und alle, die Datei- oder Textaufgaben schnell erledigen wollen.",
     "localFirst": "Lokal zuerst · Keine Anmeldung nötig"
+  },
+  "reduceImage": {
+    "eyebrow": "Bildgröße reduzieren",
+    "title": "Bildgröße online auf {size} reduzieren",
+    "description": "Verkleinern Sie Fotos und Grafiken auf {size}, ohne Dateien hochzuladen. Beste mögliche Qualität, während die Zieldateigröße eingehalten wird.",
+    "compressNow": "Bild jetzt verkleinern",
+    "whyTitle": "Warum auf {size} reduzieren?",
+    "whyDescription": "Dieses Ziel hält Bilder leicht genug für Websites, Formulare, E-Mail-Anhänge und andere Upload-Limits, ohne unnötig viel Bilddetail zu verlieren.",
+    "faqTitle": "Häufige Fragen",
+    "question1": "Kann ich die Bildgröße auf {size} reduzieren?",
+    "answer1": "Ja. Passen Sie Bildmaße und Ausgabequalität direkt im Browser an, um das Ziel zu erreichen – ganz ohne Upload.",
+    "question2": "Bleibt die Bildqualität erhalten?",
+    "answer2": "Das hängt vom Originalbild ab. Der Kompressor senkt die Qualität in kleinen Schritten und stoppt, sobald die Datei ins Ziel passt.",
+    "question3": "Welche Bildformate werden unterstützt?",
+    "answer3": "JPG, PNG, WebP und andere gängige Formate. Die Ausgabe behält das Originalformat, sofern Sie nichts anderes wählen.",
+    "seoTitle": "Bildgröße online auf {size} reduzieren — OnliTool",
+    "seoDescription": "Reduzieren Sie die Bildgröße online auf {size} direkt im Browser. Fotos verkleinern ohne Upload – bei bestmöglicher Qualität.",
+    "seoKeywords": "bildgröße auf {size} reduzieren, bild verkleinern, bildgröße reduzieren, foto auf {size} verkleinern, online bild verkleinern"
+  },
+  "compressFontTarget": {
+    "eyebrow": "{format}-Komprimierung",
+    "title": "{format} online komprimieren",
+    "description": "Verkleinern Sie {format}-Dateien, indem Sie ungenutzte Glyphen entfernen und ein effizientes Webformat exportieren. Alles läuft lokal im Browser.",
+    "compressNow": "{format} jetzt komprimieren",
+    "whyTitle": "Warum {format} komprimieren?",
+    "whyDescription": "Kleinere Schriftdateien bedeuten schnellere Ladezeiten und bessere Core Web Vitals. Ein Subset mit nur den tatsächlich genutzten Zeichen ist oft nur ein Bruchteil der Originalgröße.",
+    "faqTitle": "Häufige Fragen",
+    "question1": "Wie komprimiere ich eine {format}-Datei?",
+    "answer1": "Öffnen Sie den Font-Kompressor, laden Sie Ihre {format}-Datei, behalten Sie die benötigten Zeichen und laden Sie eine kleinere Web-Schrift herunter. Nichts wird auf einen Server hochgeladen.",
+    "question2": "Ist die {format}-Komprimierung verlustfrei?",
+    "answer2": "Die behaltenen Glyphen bleiben unberührt. Die Ersparnis entsteht durch das Entfernen von Glyphen, Ligaturen und OpenType-Features, die Ihr Text nie nutzt.",
+    "question3": "Welches Ausgabeformat soll ich wählen?",
+    "answer3": "WOFF2 ist die beste Vorgabe für moderne Browser; WOFF deckt ältere ab. Bewahren Sie immer die Originaldatei für spätere Bearbeitungen auf.",
+    "seoTitle": "{format} online komprimieren — kostenloser {format}-Kompressor",
+    "seoDescription": "Komprimieren Sie {format}-Dateien online durch Subsetting ungenutzter Glyphen. Schriftdateigröße fürs Web reduzieren ohne Upload – lokal im Browser.",
+    "seoKeywords": "{format} komprimieren, {format} kompressor, {format} dateigröße reduzieren, {format} online komprimieren, web font komprimierung"
+  },
+  "fontSubset": {
+    "eyebrow": "Font-Subsetting",
+    "title": "Font-Subsetter online",
+    "description": "Erstellen Sie ein Subset aus jeder TTF-, OTF-, WOFF- oder WOFF2-Schrift, indem Sie nur die für Ihr Projekt benötigten Zeichen behalten. Läuft lokal im Browser.",
+    "compressNow": "Schrift jetzt subsetten",
+    "whyTitle": "Warum eine Schrift subsetten?",
+    "whyDescription": "Eine vollständige CJK- oder Icon-Schrift kann mehrere MB wiegen; ein Subset mit den tatsächlich genutzten Glyphen liegt oft bei wenigen zehn Kilobyte.",
+    "faqTitle": "Häufige Fragen",
+    "question1": "Wie subsette ich eine Schrift?",
+    "answer1": "Fügen Sie den Text Ihrer Seite ein (oder wählen Sie ein Sprach-Preset), laden Sie die Schrift hoch und laden Sie das Subset herunter. Alles im Browser.",
+    "question2": "Welche Formate können gesubsettet werden?",
+    "answer2": "Eingaben: TTF, OTF, WOFF und WOFF2; Ausgaben: TTF, WOFF oder WOFF2.",
+    "question3": "Kann ein Subset entfernte Glyphen zurückholen?",
+    "answer3": "Nein. Bewahren Sie die Original-Schriftdatei auf – Subsets entfernen nicht ausgewählte Zeichen dauerhaft.",
+    "seoTitle": "Font-Subsetter — Schriftgröße online reduzieren",
+    "seoDescription": "TTF-, OTF-, WOFF- und WOFF2-Schriften online subsetten. Nur benötigte Glyphen behalten und die Schriftgröße um über 90 % reduzieren – ohne Upload, direkt im Browser.",
+    "seoKeywords": "font subsetter, font subsetting, schrift subsetten online, schriftgröße reduzieren, web font subset"
+  },
+  "fontConvert": {
+    "title": "TTF-zu-WOFF2-Konverter",
+    "lead": "Konvertieren Sie TTF-, OTF- und WOFF-Schriften in WOFF2 – oder WOFF2 zurück in TTF – direkt im Browser. Kein Upload, kein Konto.",
+    "upload": "Schrift hochladen",
+    "selected": "Ausgewählt: {name}",
+    "direction": "Konvertieren zu",
+    "toWoff2": "WOFF2 (Web)",
+    "toTtf": "TTF (Desktop)",
+    "start": "Konvertieren",
+    "clear": "Leeren",
+    "success": "Konvertierung erfolgreich",
+    "download": "Konvertierte Schrift herunterladen",
+    "original": "Originalgröße",
+    "converted": "Konvertierte Größe",
+    "saving": "Größenänderung",
+    "error": "Konvertierung fehlgeschlagen. Die Schrift nutzt möglicherweise nicht unterstützte Tabellen oder enthält ungültige Daten.",
+    "noFile": "Wählen Sie zuerst eine TTF-, OTF-, WOFF- oder WOFF2-Schriftdatei.",
+    "localProcessing": "Die Schrift verlässt Ihren Browser nie – die Konvertierung läuft lokal über WebAssembly.",
+    "faqTitle": "Häufige Fragen",
+    "q1": "Wie konvertiere ich TTF in WOFF2?",
+    "a1": "Laden Sie die TTF-Datei hoch, wählen Sie WOFF2 als Ausgabe und klicken Sie auf Konvertieren. Der Download beginnt sofort; nichts wird an einen Server gesendet.",
+    "q2": "Kann ich WOFF2 zurück in TTF konvertieren?",
+    "a2": "Ja. Wählen Sie TTF als Ausgabeformat – das Tool dekomprimiert WOFF2 und erstellt eine Standard-TrueType-Schrift.",
+    "q3": "Warum ist WOFF2 kleiner als TTF?",
+    "a3": "WOFF2 nutzt Brotli-Komprimierung und eine effizientere Glyphen-Packung und schneidet gegenüber WOFF typischerweise weitere 30–50 % der Größe ab.",
+    "q4": "Unterstützen alle Browser WOFF2?",
+    "a4": "Jeder moderne Browser seit 2016 unterstützt WOFF2. TTF nur noch als Fallback für sehr alte Geräte anbieten.",
+    "seoTitle": "TTF-zu-WOFF2-Konverter — kostenlos & online (WOFF2 zu TTF)",
+    "seoDescription": "Konvertieren Sie TTF-, OTF- oder WOFF-Schriften online in WOFF2 oder WOFF2 zurück in TTF. Kostenlos, kein Upload, keine Registrierung – läuft lokal im Browser.",
+    "seoKeywords": "ttf zu woff2, ttf woff2 konverter, woff2 zu ttf, otf zu woff2, schrift in woff2 konvertieren, online font konverter",
+    "related": "Verwandte Font-Tools"
   }
 }

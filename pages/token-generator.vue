@@ -70,7 +70,7 @@ import { ElMessage } from 'element-plus'
 
 const { t } = useI18n()
 useToolSeo({
-  title: () => `${t('tokenTool.title')} | OnliTool`,
+  title: () => t('tokenTool.seoTitle'),
   description: () => t('tokenTool.description'),
   applicationCategory: 'DeveloperApplication'
 })

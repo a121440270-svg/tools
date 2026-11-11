@@ -39,24 +39,50 @@
         />
       </div>
     </section>
+
+    <!-- FAQ: matches the queries this page ranks for (to uppercase, uppercase
+         to lowercase online, ...) and feeds the FAQPage schema. -->
+    <section class="reveal mt-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900 sm:p-6" style="--rd: 240ms">
+      <h2 class="mb-4 font-display text-xl font-bold tracking-tight dark:text-white">{{ $t('caseTool.faqTitle') }}</h2>
+      <div class="space-y-5">
+        <div v-for="n in 4" :key="n">
+          <h3 class="font-semibold text-slate-900 dark:text-slate-100">{{ $t(`caseTool.faq${n}_q`) }}</h3>
+          <p class="mt-1 leading-7 text-slate-600 dark:text-slate-300">{{ $t(`caseTool.faq${n}_a`) }}</p>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script setup>
-definePageMeta({
-  alias: ['/uppercase', '/upper-case']
-})
+// `/uppercase` is a permanent 301 to this page via `routeRules` in nuxt.config.
+// Do not re-add page aliases: an aliased path renders with a self-canonical
+// URL, which Google treats as a duplicate page instead of a redirect.
 
 import { ref, computed } from 'vue'
 import { ElMessage } from 'element-plus'
 
 const { t } = useI18n()
+
+const faqItems = computed(() => [1, 2, 3, 4].map((n) => ({
+  q: t(`caseTool.faq${n}_q`),
+  a: t(`caseTool.faq${n}_a`)
+})))
+
 useToolSeo({
   title: computed(() => t('caseTool.title') || 'Text Case Converter'),
   description: computed(() => t('caseTool.description') || 'Convert text between uppercase, lowercase, title case, sentence case, camelCase, snake_case, kebab-case, and other case styles in one tool.'),
   keywords: computed(() => 'text case converter, case converter, uppercase converter, lowercase converter, title case, sentence case, camelCase, snake_case, kebab-case, online text tools'),
+  featureList: computed(() => [
+    'Convert text to UPPERCASE, lowercase, Title Case, Sentence case, camelCase, snake_case and kebab-case',
+    'Alternating and inverse case modes',
+    'One-click copy of the converted result',
+    'Runs locally in the browser — no upload'
+  ]),
+  faqItems,
   type: 'WebApplication',
-  applicationCategory: 'UtilitiesApplication'
+  applicationCategory: 'UtilitiesApplication',
+  dateModified: '2026-11-10'
 })
 
 const inputText = ref('')

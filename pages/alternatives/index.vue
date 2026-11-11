@@ -177,6 +177,8 @@ useToolSeo({
       ? 'OnliTool 的工具替代方案与横向对比：先确认对比对象，再按具体任务说明差异。无付费排名，无编造评分。'
       : 'Honest tool alternatives and side-by-side comparisons from OnliTool. No paid placements, no fabricated scores, and a clear note when OnliTool itself is one of the products compared.',
   faqItems: () => copy.value.faqs.map((item) => ({ q: item.q, a: item.a })),
-  dateModified: '2026-11-07'
+  dateModified: '2026-11-07',
+  // Body copy is authored inline in English and Chinese only.
+  translatedLocales: ['en', 'zh']
 })
 </script>

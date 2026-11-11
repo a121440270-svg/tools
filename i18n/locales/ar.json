@@ -10,6 +10,15 @@
     "ru": "الروسية"
   },
   "menu": {
+    "recent": "الأخيرة",
+    "recentClose": "إغلاق قائمة الصفحات الأخيرة",
+    "recentCollapse": "طي/توسيع قائمة الصفحات الأخيرة",
+    "recentEdgeHide": "إخفاء القائمة عند حافة الشاشة",
+    "recentOpen": "إظهار قائمة الصفحات الأخيرة",
+    "recentFrequency": "{count} خلال 24 ساعة",
+    "recentDelete": "إزالة من قائمة الصفحات الأخيرة",
+    "recentEdit": "تعديل قائمة الصفحات الأخيرة",
+    "recentEditDone": "إنهاء تعديل قائمة الصفحات الأخيرة",
     "alternatives": "بدائل",
     "ttf": "ضغط الخطوط",
     "fontInspector": "فاحص الخطوط",
@@ -33,18 +42,62 @@
     "webpToPng": "تحويل WebP إلى PNG",
     "imageCompress": "ضغط الصور",
     "idPhoto": "إنشاء صور الهوية",
-    "image": "أدوات الصور"
+    "image": "أدوات الصور",
+    "ttfToWoff2": "محول TTF إلى WOFF2",
+    "fontSubsetter": "أداة تقسيم الخطوط",
+    "compressWoff2": "ضغط WOFF2"
+  },
+  "textDedup": {
+    "category": "أدوات النصوص",
+    "title": "إزالة تكرار النصوص",
+    "seoTitle": "أداة مجانية لإزالة تكرار النصوص عبر الإنترنت | OnliTool",
+    "seoDescription": "أزل العناصر المكررة من النص عبر الإنترنت حسب الأسطر أو المسافات أو الفواصل أو الفواصل المنقوطة. ادمج الفواصل، وتجاهل حالة الأحرف، واحذف العناصر الفارغة. تتم المعالجة محليًا في المتصفح.",
+    "seoKeywords": "إزالة تكرار النصوص, حذف الأسطر المكررة, أداة إزالة التكرار, تنظيف النصوص عبر الإنترنت, إزالة التكرار حسب الفاصل",
+    "description": "قسّم النص باستخدام الفواصل المحددة وأزل التكرارات. يتم تحديد الأسطر الجديدة والمسافات والفواصل والفواصل المنقوطة افتراضيًا، ويمكن دمج عدة فواصل.",
+    "seoFeatureDelimiters": "إزالة التكرار حسب الأسطر والمسافات والفواصل والفواصل المنقوطة والرموز الأخرى",
+    "seoFeatureCase": "إمكانية تجاهل حالة الأحرف",
+    "seoFeatureEmpty": "إمكانية حذف الأسطر أو العناصر الفارغة",
+    "seoFeatureLocal": "معالجة النص محليًا في المتصفح دون رفعه",
+    "faqTitle": "الأسئلة الشائعة",
+    "faq1Question": "كيف أزيل العناصر المكررة من النص؟",
+    "faq1Answer": "الصق النص في حقل الإدخال واختر الفواصل المناسبة لتنسيقه؛ ستحتفظ الأداة بأول ظهور لكل عنصر في النتيجة.",
+    "faq2Question": "هل يمكن استخدام عدة فواصل في الوقت نفسه؟",
+    "faq2Answer": "نعم. يتم تحديد الأسطر الجديدة والمسافات والفواصل والفواصل المنقوطة افتراضيًا. يمكنك تحديد رموز أخرى أو إعادة الاختيار إلى الإعدادات الافتراضية.",
+    "faq3Question": "هل يتم رفع النص إلى خادم؟",
+    "faq3Answer": "لا. تتم إزالة التكرار داخل صفحة المتصفح الحالية ولا يتم رفع النص المُدخل إلى خادم.",
+    "inputLabel": "النص المُدخل",
+    "outputLabel": "النص بعد إزالة التكرار",
+    "placeholder": "أدخل النص لإزالة التكرارات...",
+    "outputPlaceholder": "سيظهر النص بعد إزالة التكرار هنا...",
+    "delimiterLabel": "الفواصل (يمكن تحديد عدة خيارات)",
+    "delimiterReset": "إعادة ضبط التحديد",
+    "delimiterLine": "أسطر جديدة",
+    "delimiterWhitespace": "مسافات",
+    "delimiterComma": "فواصل",
+    "delimiterSemicolon": "فواصل منقوطة",
+    "delimiterCommon": "رموز أخرى (| / :)",
+    "ignoreCase": "تجاهل حالة الأحرف",
+    "removeEmptyLines": "حذف العناصر الفارغة",
+    "totalItems": "الإجمالي: {count}",
+    "uniqueItems": "المتبقي: {count}",
+    "removedItems": "المحذوف: {count}",
+    "copy": "نسخ النتيجة",
+    "sample": "تحميل مثال",
+    "clear": "مسح",
+    "copied": "تم النسخ إلى الحافظة",
+    "copyFailed": "تعذر النسخ. يُرجى النسخ يدويًا.",
+    "sampleText": "تفاح\nموز\nتفاح\nبرتقال\nبرتقال\nموز"
   },
   "home": {
-    "title": "اعثر بسرعة على الأداة المناسبة عبر الإنترنت",
-    "seo_desc": "مجموعة من الأدوات عبر الإنترنت لمعالجة الصور وضغط الخطوط وتحويل النصوص واحتياجات المطورين.",
+    "title": "اعثر على الأداة المناسبة عبر الإنترنت بسرعة",
+    "seo_desc": "مجموعة أدوات عبر الإنترنت: ضغط خطوط TTF، تحويل JSON وCSV، تحويل الصور إلى WebP، توليد الرموز، تشفير التجزئة، وأدوات عملية أخرى لتعزيز كفاءة التطوير.",
     "all": "الكل",
     "eyebrow": "دليل الأدوات",
-    "description": "أدوات لمعالجة الصور والخطوط والنصوص والذكاء الاصطناعي والمطورين في مكان واحد.",
+    "description": "معالجة الصور، وضغط الخطوط، وتحويل النصوص، وأدوات الذكاء الاصطناعي، ومرافق المطورين في مكان واحد، مع بحث بالكلمات المفتاحية وفلاتر للفئات.",
     "searchLabel": "بحث",
     "searchPlaceholder": "ابحث في جميع الأدوات...",
     "toolBadge": "أداة",
-    "empty": "لم يتم العثور على أدوات مطابقة. جرّب كلمة أخرى.",
+    "empty": "لم يتم العثور على أدوات مطابقة. جرّب كلمة مفتاحية أخرى.",
     "categories": {
       "ai": "أدوات الذكاء الاصطناعي",
       "image": "معالجة الصور",
@@ -53,11 +106,11 @@
       "utility": "أدوات مساعدة"
     },
     "categoryTitles": {
-      "ai": "أدوات إبداعية بالذكاء الاصطناعي",
+      "ai": "أدوات الذكاء الاصطناعي الإبداعية",
       "image": "أدوات الصور",
-      "file": "أدوات الملفات والتنسيقات",
+      "file": "أدوات الملفات والصيغ",
       "text": "أدوات النصوص والمحتوى",
-      "utility": "أدوات المطورين والمساعدة"
+      "utility": "أدوات المطورين والمرافق"
     },
     "tags": {
       "image": "صور",
@@ -68,107 +121,111 @@
     },
     "tools": {
       "aiImage": {
-        "name": "مولّد صور بالذكاء الاصطناعي",
-        "description": "أنشئ صورًا عالية الجودة من المطالبات النصية."
+        "name": "مولّد الصور بالذكاء الاصطناعي",
+        "description": "أنشئ صورًا عالية الجودة من الأوامر النصية."
       },
       "aiVideo": {
-        "name": "مولّد فيديو بالذكاء الاصطناعي",
+        "name": "مولّد الفيديو بالذكاء الاصطناعي",
         "description": "أنشئ مقاطع فيديو قصيرة ورسومًا متحركة إبداعية."
       },
       "imageToWebp": {
         "name": "تحويل الصور إلى WebP",
-        "description": "حوّل الصور دفعة واحدة إلى تنسيق WebP."
+        "description": "حوّل الصور دفعة واحدة إلى صيغة WebP."
       },
       "webpToJpg": {
         "name": "تحويل WebP إلى JPG",
-        "description": "حوّل صور WebP دفعة واحدة إلى JPG."
+        "description": "حوّل صور WebP إلى JPG دفعة واحدة."
       },
       "webpToPng": {
         "name": "تحويل WebP إلى PNG",
-        "description": "حوّل صور WebP دفعة واحدة إلى PNG لمعالجة الصور الشفافة."
+        "description": "حوّل صور WebP إلى PNG دفعة واحدة لمعالجة الصور الشفافة."
       },
       "imageCompress": {
         "name": "ضغط الصور",
-        "description": "اضغط صور JPG وPNG وغيرها لتقليل حجم الملفات."
+        "description": "اضغط صور JPG وPNG وغيرها لتقليل حجم الملف."
       },
       "imageAspectRatio": {
-        "name": "تغيير نسبة أبعاد الصورة",
-        "description": "غيّر الصور إلى نسب 16:9 أو 1:1 أو 9:16 أو 4:3 أو نسبة مخصصة، مع خيارات القص والاحتواء وتمويه الخلفية والتمديد."
+        "name": "أداة تغيير نسبة أبعاد الصورة",
+        "description": "غيّر الصور إلى 16:9 و1:1 و9:16 و4:3 ونسب مخصصة مع أوضاع القص أو الاحتواء أو التمويه أو التمدد."
       },
       "increaseImageSize": {
         "name": "زيادة حجم الصورة بالكيلوبايت",
-        "description": "زد حجم ملف الصورة إلى قيمة مستهدفة بالكيلوبايت أو الميغابايت مع الحفاظ على أبعادها الأصلية."
+        "description": "زد حجم ملف الصورة إلى هدف بالكيلوبايت أو الميغابايت مع الحفاظ على أبعاد الصورة الأصلية."
       },
       "idPhoto": {
-        "name": "إنشاء صور الهوية",
-        "description": "أنشئ مقاسات وخلفيات صور الهوية انطلاقًا من صورة مرفوعة."
+        "name": "منشئ صور الهوية",
+        "description": "أنشئ مقاسات وخلفيات صور الهوية من صورة مرفوعة."
       },
       "fontCompress": {
-        "name": "ضغط خطوط TTF",
-        "description": "اضغط خطوط TTF وأنشئ مجموعات فرعية أصغر."
+        "name": "أداة تقسيم الخطوط",
+        "description": "أزل الرموز غير المستخدمة من خطوط TTF وOTF وWOFF وWOFF2."
       },
       "jsonCsv": {
-        "name": "محول JSON وCSV",
-        "description": "حوّل ملفات JSON وCSV بسرعة."
+        "name": "محوّل JSON/CSV",
+        "description": "حوّل ملفات بيانات JSON وCSV بسرعة."
       },
       "jsonFormatter": {
         "name": "منسّق JSON",
-        "description": "نسّق بيانات JSON وصغّرها وتحقق منها وابحث فيها."
+        "description": "نسّق وضغطم وافحص بيانات JSON وابحث فيها."
       },
       "dateFormat": {
         "name": "أداة تنسيق التاريخ",
-        "description": "اكتشف التواريخ المدخلة وحوّلها إلى التنسيق المطلوب."
+        "description": "اكتشف تواريخ الإدخال وحوّلها إلى الصيغة المحددة."
       },
       "uppercase": {
-        "name": "محول الأحرف الكبيرة",
-        "description": "حوّل النص إلى أحرف كبيرة وانسخه إلى الحافظة."
+        "name": "محوّل حالة الأحرف",
+        "description": "حوّل النص إلى أحرف كبيرة أو صغيرة أو حالة العنوان أو حالة الجملة أو camelCase أو snake_case أو kebab-case والمزيد."
       },
       "token": {
         "name": "مولّد الرموز",
-        "description": "أنشئ رموزًا عشوائية من الأحرف والأرقام والرموز."
+        "description": "أنشئ رموزًا عشوائية بأحرف وأرقام ورموز خاصة."
       },
       "hash": {
         "name": "تجزئة النص",
-        "description": "طبّق خوارزميات MD5 وSHA وغيرها على النصوص."
+        "description": "طبّق خوارزميات التجزئة الشائعة مثل MD5 وSHA على النص."
+      },
+      "textDedup": {
+        "name": "أداة إزالة تكرار النص",
+        "description": "أزل الأسطر المكررة مع الاحتفاظ بأول ظهور."
       },
       "blog": {
         "name": "المدونة",
-        "description": "تصفح مقالات الموقع ودروسه التعليمية."
+        "description": "تصفح المقالات والدروس على الموقع."
       },
       "prompts": {
-        "name": "المطالبات",
-        "description": "اعرض قوالب المطالبات القابلة لإعادة الاستخدام واستخدمها."
+        "name": "مكتبة الأوامر",
+        "description": "اعرض قوالب الأوامر الجاهزة واستخدمها."
       },
       "shareNote": {
         "name": "ملاحظة مؤقتة",
         "description": "شارك مؤقتًا الأوامر والبرامج النصية والإعدادات والنصوص التقنية."
       },
       "fontInspector": {
-        "name": "Font Inspector",
-        "description": "Inspect font metadata, glyph counts, metrics, and Unicode coverage."
+        "name": "فاحص الخطوط",
+        "description": "افحص البيانات الوصفية للخط وعدد الرموز والمقاييس وتغطية Unicode."
       },
       "fontUnicodeChecker": {
-        "name": "Font Unicode Checker",
-        "description": "Check font support for text, Unicode ranges, and language character sets."
+        "name": "فاحص Unicode للخطوط",
+        "description": "تحقق من دعم الخط للنصوص ونطاقات Unicode ومجموعات أحرف اللغات."
       },
       "fontSizeAnalyzer": {
-        "name": "Font Size Analyzer",
-        "description": "Analyze font file size, glyph count, character mappings, and OpenType tables."
+        "name": "محلل حجم الخط",
+        "description": "حلّل حجم ملف الخط وعدد الرموز وخرائط الأحرف وجداول OpenType."
       },
       "fontValidator": {
-        "name": "Font Validator",
-        "description": "Check font parsing, core tables, glyph outlines, and Unicode mappings."
+        "name": "مدقق الخطوط",
+        "description": "تحقق من تحليل الخط والجداول الأساسية ومخططات الرموز وخرائط Unicode."
       },
       "fontCssGenerator": {
-        "name": "Font CSS Generator",
-        "description": "Generate CSS font-face rules and an HTML example for web fonts."
+        "name": "مولّد CSS للخطوط",
+        "description": "أنشئ قواعد CSS للخطوط ومثال HTML لخطوط الويب."
       }
     },
-    "seoTitle": "OnliTool - دليل الأدوات عبر الإنترنت",
-    "seoDescription": "يوفر OnliTool أدوات عبر الإنترنت لمعالجة الصور والذكاء الاصطناعي وضغط الخطوط وتحويل النصوص ومهام التطوير.",
-    "seoKeywords": "أدوات عبر الإنترنت, معالجة الصور, أدوات الذكاء الاصطناعي, ضغط الخطوط, تحويل الملفات, أدوات المطورين, OnliTool",
-    "seo_keywords": "أدوات عبر الإنترنت, معالجة الصور, أدوات الذكاء الاصطناعي, ضغط الخطوط, تحويل الملفات, أدوات المطورين, OnliTool",
-    "seoOgDescription": "دليل شامل لأدوات الصور والذكاء الاصطناعي والنصوص والتحويل وأدوات المطورين."
+    "seoTitle": "أدوات مجانية عبر الإنترنت: اضغط الصور والخطوط والنصوص — OnliTool",
+    "seoDescription": "اضغط الصور والخطوط والنصوص داخل متصفحك مباشرة. أدوات مجانية لضغط JPG وPNG وWebP، وتقسيم خطوط TTF/OTF/WOFF2، وتحويل حالة الأحرف، وإزالة EXIF/GPS — دون رفع ملفات ودون حساب.",
+    "seoKeywords": "أدوات مجانية عبر الإنترنت, ضاغط الصور, ضغط الخطوط, ضاغط ttf, أداة تقسيم الخطوط, محوّل حالة النص, أداة إزالة exif, أداة تغيير حجم الصور, أدوات دون رفع, OnliTool",
+    "seo_keywords": "أدوات عبر الإنترنت, ضغط خطوط TTF, تحويل TTF إلى WOFF, تحويل JSON وCSV, توليد الرموز, تشفير التجزئة, أدوات التطوير, أدوات الواجهة الأمامية",
+    "seoOgDescription": "أدوات تعمل في المتصفح وتحافظ على ملفاتك على جهازك: ضغط الصور وتقسيم الخطوط وتحويل النصوص وإزالة البيانات الوصفية."
   },
   "search": {
     "placeholder": "بحث"
@@ -177,61 +234,63 @@
     "desc": "أدخل الأحرف أو ارفع نصًا لاستخراج المحارف المطلوبة من خط TTF وإنشاء ملفات TTF وWOFF أصغر."
   },
   "font": {
-    "seo_desc": "اضغط خطوط الويب عبر الإنترنت: أنشئ مجموعة فرعية من ملفات TTF وOTF وWOFF وWOFF2 داخل متصفحك، واحذف الحروف غير المستخدمة ونزّل خطًا أصغر جاهزًا للويب. دون رفع الملفات أو إنشاء حساب.",
-    "seo_keywords": "ضغط خطوط الويب, ضاغط الخطوط, ضغط الخطوط عبر الإنترنت, ضغط TTF, مجموعة فرعية للخطوط, تقليل حجم الخط, WOFF2",
-    "title": "ضغط خطوط الويب عبر الإنترنت — أداة ضغط TTF/OTF/WOFF2",
-    "desc": "ارفع خط TTF أو OTF أو WOFF أو WOFF2، واختر الأحرف المطلوبة لإزالة المحارف غير المستخدمة وإنشاء خط ويب أصغر.",
-    "h1": "ضغط خطوط الويب (TTF، OTF، WOFF2)",
-    "lead": "احتفظ فقط بالأحرف والرموز التي تحتاجها صفحتك، وقلّل حجم خطوط TTF وOTF وWOFF وWOFF2 للويب. تتم المعالجة داخل متصفحك.",
-    "upload": "رفع خط TTF",
-    "selected": "تم التحديد: {name}",
+    "seo_desc": "ضاغط ومقسّم خطوط يعمل داخل متصفحك. قلّص ملفات TTF وOTF وWOFF وWOFF2 بالاحتفاظ بالرموز التي تستخدمها فقط — دون رفع ودون حساب، ونزّل خطًا جاهزًا للويب.",
+    "seo_keywords": "ضغط الخطوط للويب, ضاغط الخطوط, ضاغط الخطوط عبر الإنترنت, ضغط ttf, ضاغط ttf, ضاغط خطوط الويب, أداة تقسيم الخطوط, تقسيم الخط, تقليل حجم الخط, تقسيم WOFF2",
+    "title": "ضاغط الخطوط — اضغط TTF وOTF وWOFF وWOFF2 عبر الإنترنت",
+    "desc": "ارفع خط TTF أو OTF أو WOFF أو WOFF2، واختر الأحرف التي تريد الاحتفاظ بها، وأنشئ خطًا أصغر جاهزًا للويب بإزالة الرموز غير المستخدمة.",
+    "h1": "اضغط الخطوط لاستخدام الويب (TTF, OTF, WOFF2)",
+    "lead": "اضغط الخطوط للويب بالاحتفاظ بالأحرف والرموز التي تحتاجها صفحتك فقط. ملفات TTF وOTF وWOFF وWOFF2 أصغر حجمًا، تُنشأ محليًا داخل متصفحك.",
+    "upload": "رفع خط",
+    "selected": "المحدد: {name}",
     "origin_size": "الحجم الأصلي: {size}",
-    "input_chars": "الأحرف المدخلة",
+    "input_chars": "إدخال الأحرف",
     "input_placeholder": "أدخل الأحرف التي تريد الاحتفاظ بها",
     "char_count": "بعد إزالة التكرار: {count}",
-    "upload_text": "أو ارفع نصًا",
-    "text_selected": "تم التحديد: {name}",
-    "output_type": "تنسيق الإخراج",
+    "upload_text": "أو ارفع ملف نص",
+    "text_selected": "المحدد: {name}",
+    "output_type": "صيغة الإخراج",
     "start": "بدء الضغط",
     "clear": "مسح الكل",
     "success": "اكتمل الضغط",
-    "download": "انقر لتنزيل الخط المضغوط",
-    "only_glyphs": "(يتضمن المحارف المطلوبة فقط)",
-    "compressed_size": "الحجم بعد الضغط: {size}",
+    "download": "اضغط لتنزيل الخط المضغوط",
+    "only_glyphs": "(يحتوي فقط على الرموز المطلوبة)",
+    "compressed_size": "بعد الضغط: {size}",
     "error": "فشل ضغط الخط: {msg}",
     "preview_generating": "جارٍ إنشاء معاينة الخط...",
     "section": {
-      "subsetting_title": "ما المقصود بإنشاء مجموعة فرعية من الخط؟",
-      "subsetting_text": "تزيل العملية المحارف غير المستخدمة وتحتفظ بما يحتاجه مشروعك فقط لتقليل حجم ملف الخط بشكل ملحوظ.",
-      "steps_title": "كيفية ضغط خط TTF",
-      "steps_1": "ارفع ملف خط TTF.",
+      "subsetting_title": "ما هو تقسيم الخطوط؟",
+      "subsetting_text": "يقسّم الخطُّ بإزالة الرموز والأحرف غير المستخدمة، والاحتفاظ فقط بما يحتاجه مشروعك فعليًا، لتقليل حجم ملف الخط بشكل كبير.",
+      "steps_title": "كيف تضغط خط TTF",
+      "steps_1": "ارفع ملف خط TTF أو OTF أو WOFF أو WOFF2.",
       "steps_2": "أدخل الأحرف أو النص الذي تريد الاحتفاظ به.",
-      "steps_3": "اختر تنسيق الإخراج مثل TTF أو WOFF.",
-      "steps_4": "انقر على بدء الضغط ثم نزّل الخط المحسّن.",
-      "why_title": "لماذا تستخدم أداة ضغط الخطوط؟",
-      "why_text": "تزيد الخطوط الكبيرة وقت تحميل الصفحات، خصوصًا على الهواتف أو عند استخدام عدة ملفات خطوط. يساعد الضغط وإنشاء المجموعات الفرعية على تحسين الأداء وتقليل حجم التنزيل.",
+      "steps_3": "اختر مخرجات TTF أو WOFF أو WOFF2.",
+      "steps_4": "اضغط بدء الضغط ونزّل الخط المحسّن.",
+      "why_title": "لماذا تستخدم ضاغط الخطوط؟",
+      "why_text": "الخطوط الكبيرة تزيد زمن تحميل الصفحة، خاصة على الأجهزة المحمولة أو عند استخدام عدة ملفات خطوط. يمكن لضغط الخطوط وتقسيمها أن يحسّن أداء الويب بشكل كبير ويقلل حجم التنزيل.",
       "faq_title": "الأسئلة الشائعة",
-      "faq_1_q": "ما أداة إنشاء مجموعة فرعية من الخط؟",
-      "faq_1_a": "تحتفظ هذه الأداة بالأحرف التي تحتاجها وتحذف البقية لإنشاء ملف خط أصغر.",
-      "faq_2_q": "كيف أقلل حجم ملف TTF؟",
-      "faq_2_a": "ارفع ملف TTF وأدخل الأحرف المطلوبة وأنشئ مجموعة فرعية لإزالة المحارف غير المستخدمة وتقليل حجم الملف.",
-      "faq_3_q": "هل يحسن إنشاء مجموعة فرعية أداء الويب؟",
-      "faq_3_a": "نعم. تعني ملفات الخطوط الأصغر بيانات أقل للتنزيل وتحميلًا أسرع للصفحات مع الاحتفاظ بالأحرف المطلوبة.",
+      "faq_1_q": "ما هي أداة تقسيم الخطوط؟",
+      "faq_1_a": "تحتفظ أداة تقسيم الخطوط بالأحرف التي تحتاجها فعليًا وتزيل الباقي لإنشاء ملف خط أصغر.",
+      "faq_2_q": "كيف أقلّل حجم ملف TTF؟",
+      "faq_2_a": "ارفع ملف TTF، وأدخل الأحرف المطلوبة، وأنشئ خطًا مقسّمًا لإزالة الرموز غير المستخدمة وتقليص حجم الملف.",
+      "faq_3_q": "هل يحسّن تقسيم الخطوط أداء الويب؟",
+      "faq_3_a": "نعم. ملفات الخطوط الأصغر تعني تنزيل بيانات أقل وتحميل صفحات أسرع مع بقاء الأحرف المطلوبة متاحة.",
       "faq_4_q": "هل WOFF أصغر من TTF؟",
-      "faq_4_a": "غالبًا ما يكون WOFF أنسب للويب لأنه محسّن للنقل إلى المتصفح. ويُعد الجمع بين WOFF وإنشاء مجموعة فرعية استراتيجية تحسين شائعة."
+      "faq_4_a": "WOFF2 هي عادةً أصغر صيغة إخراج لخطوط الويب مدعومة هنا.",
+      "related_title": "أدوات الخطوط ذات الصلة",
+      "related_desc": "تحقق من الأحرف التي يغطيها الخط، أو تحقق من سلامة ملف الخط، أو أنشئ CSS الخاص بـ {'@'}font-face للخط المقسّم."
     },
-    "custom_text": "Custom text",
-    "unicode_range": "Unicode range",
-    "language_preset": "Language preset",
-    "local_processing": "Fonts are processed locally in your browser and are never uploaded.",
-    "original_size": "Original size",
-    "optimized_size": "Optimized size",
-    "saved_size": "Saved size",
-    "reduction": "Reduction",
-    "glyph_count": "Glyphs",
+    "custom_text": "نص مخصص",
+    "unicode_range": "نطاق Unicode",
+    "language_preset": "إعداد لغوي مسبق",
+    "local_processing": "تتم معالجة الخطوط محليًا داخل متصفحك ولا تُرفع أبدًا.",
+    "original_size": "الحجم الأصلي",
+    "optimized_size": "الحجم المحسّن",
+    "saved_size": "الحجم الموفّر",
+    "reduction": "نسبة التقليل",
+    "glyph_count": "الرموز",
     "tools": {
-      "inspector": "Font Inspector",
-      "unicodeChecker": "Font Unicode Checker"
+      "inspector": "فاحص الخطوط",
+      "unicodeChecker": "فاحص Unicode للخطوط"
     }
   },
   "blog": {
@@ -261,7 +320,9 @@
     "gotoPage": "الانتقال إلى الصفحة",
     "go": "انتقال",
     "totalItems": "إجمالي العناصر: {total}",
-    "defaultTitle": "المدونة"
+    "defaultTitle": "المدونة",
+    "collapseCatalog": "طي جدول المحتويات",
+    "expandCatalog": "توسيع جدول المحتويات"
   },
   "jsoncsv": {
     "title": "محول JSON وCSV",
@@ -307,7 +368,11 @@
     "rejectAll": "رفض الاختياري"
   },
   "common": {
-    "loading": "جارٍ التحميل..."
+    "clear": "مسح",
+    "loading": "جارٍ التحميل...",
+    "copyFailed": "تعذر النسخ",
+    "copy": "نسخ",
+    "copySuccess": "تم النسخ بنجاح"
   },
   "webp": {
     "title": "تحويل الصور إلى WebP",
@@ -326,7 +391,8 @@
     "seo_desc": "حوّل صور JPG وJPEG وPNG إلى WebP عبر الإنترنت. حدد عدة صور ونزّلها في أرشيف ZIP. تتم المعالجة محليًا في المتصفح ولا تُرفع الملفات.",
     "seo_keywords": "محول صور جماعي, JPG إلى WebP, PNG إلى WebP, تحويل WebP دفعة واحدة, محول صور عبر الإنترنت",
     "batch_message": "حدد عدة صور JPG وPNG لتحويلها إلى WebP دفعة واحدة.",
-    "local_message": "تتم معالجة الملفات محليًا في متصفحك ولا تُرفع إلى أي خادم."
+    "local_message": "تتم معالجة الملفات محليًا في متصفحك ولا تُرفع إلى أي خادم.",
+    "seo_title_f": "محول {format} إلى WebP — مجاني وبكميات كبيرة"
   },
   "about": {
     "meTitle": "نبذة عني",
@@ -347,23 +413,33 @@
   },
   "caseTool": {
     "category": "أدوات النصوص",
-    "title": "أداة تحويل حالة الأحرف",
-    "description": "ألصق النص لتحويله تلقائيًا إلى أحرف كبيرة ثم نسخه إلى الحافظة.",
+    "title": "أداة تحويل حالة الأحرف — تحويل الأحرف الكبيرة إلى الصغيرة عبر الإنترنت",
+    "description": "حوّل الأحرف الكبيرة إلى صغيرة والعكس، وكذلك حالة العنوان وحالة الجملة وcamelCase وsnake_case وkebab-case فورًا. محوّل حالات مجاني يعمل بالكامل داخل متصفحك.",
     "copy": "نسخ إلى الحافظة",
     "placeholder": "ألصق أو اكتب النص هنا...",
-    "outputPlaceholder": "سيظهر النص المحول هنا...",
+    "outputPlaceholder": "سيظهر النص المحوّل هنا...",
     "uppercase": "UPPERCASE",
     "lowercase": "lowercase",
-    "capitalize": "تكبير الحروف الأولية",
-    "titleCase": "Title Case",
-    "sentenceCase": "Sentence case",
+    "capitalize": "تكبير أول حرف من كل كلمة",
+    "titleCase": "حالة العنوان",
+    "sentenceCase": "حالة الجملة",
     "alternating": "aLtErNaTiNg",
     "inverse": "InVeRsE",
     "camelCase": "camelCase",
     "pascalCase": "PascalCase",
     "snakeCase": "snake_case",
     "kebabCase": "kebab-case",
-    "copied": "تم النسخ"
+    "copied": "تم النسخ",
+    "faqTitle": "الأسئلة الشائعة",
+    "faq1_q": "كيف أحوّل النص إلى أحرف كبيرة؟",
+    "faq1_a": "ألصق نصك ثم اضغط زر الأحرف الكبيرة. تتحول كل الأحرف إلى كبيرة فورًا، وتتم عملية التحويل بالكامل داخل متصفحك.",
+    "faq2_q": "كيف أغيّر الأحرف الكبيرة إلى صغيرة؟",
+    "faq2_a": "ألصق النص واضغط زر الأحرف الصغيرة. يمكنك التنقل بين جميع أنماط الحالات دون إعادة لصق النص.",
+    "faq3_q": "ما الفرق بين حالة العنوان وحالة الجملة؟",
+    "faq3_a": "حالة العنوان تكبّر الحرف الأول من كل كلمة، بينما حالة الجملة تكبّر الحرف الأول من كل جملة فقط.",
+    "faq4_q": "هل يُرفع نصي إلى خادم؟",
+    "faq4_a": "لا. تتم جميع التحويلات محليًا داخل متصفحك، لذا لا يغادر نصك جهازك أبدًا.",
+    "copyError": "فشل النسخ"
   },
   "uppercase": {
     "desc": "الصق نصًا لتحويله تلقائيًا إلى أحرف كبيرة ونسخه إلى الحافظة.",
@@ -461,7 +537,8 @@
     "register_success": "تم التسجيل بنجاح. يرجى تسجيل الدخول.",
     "register_failed": "فشل التسجيل. حاول مرة أخرى.",
     "show_password": "إظهار كلمة المرور",
-    "hide_password": "إخفاء كلمة المرور"
+    "hide_password": "إخفاء كلمة المرور",
+    "password_mismatch": "كلمتا المرور غير متطابقتين"
   },
   "accountActivation": {
     "title": "تفعيل الحساب",
@@ -509,7 +586,7 @@
     "eyebrow": "إرسال البرامج النصية عن بُعد",
     "title": "أرسل برنامجًا نصيًا إلى مستخدم عن بُعد خلال ثوانٍ",
     "description": "شارك البرامج النصية والأوامر والإعدادات عبر رابط مشاركة.",
-    "expiryNotice": "اختر مدة توفر رابط المشاركة. الروابط لا تنتهي صلاحيتها افتراضيًا.",
+    "expiryNotice": "حدد مدة صلاحية رابط المشاركة. بعد انتهائها، يصبح الرابط غير صالح ولا يتمكن الآخرون من عرض المحتوى. لا تنتهي صلاحية الروابط افتراضيًا.",
     "loading": "جارٍ تحميل المحتوى المشترك...",
     "visitorMode": "وضع الزائر · المحتوى المشترك للقراءة فقط",
     "createOwn": "إنشاء مشاركة خاصة بك",
@@ -518,6 +595,13 @@
     "save": "حفظ",
     "saving": "جارٍ الحفظ...",
     "saveTitle": "حفظ الرابط والمحتوى",
+    "delete": "حذف",
+    "deleting": "جارٍ الحذف...",
+    "deleteTitle": "حذف هذه الملاحظة وإبطال رابط المشاركة",
+    "deleteConfirm": "هل تريد حذف هذه الملاحظة؟ سيتوقف رابط المشاركة المحفوظ عن العمل وسيُمسح المحتوى.",
+    "cancel": "إلغاء",
+    "deleted": "تم حذف الملاحظة وأصبح رابط المشاركة غير متاح.",
+    "deleteFailed": "تعذر حذف الملاحظة. حاول مرة أخرى.",
     "copy": "نسخ",
     "copyTitle": "حفظ الرابط ونسخه",
     "qr": "رمز QR",
@@ -536,6 +620,8 @@
     "contentFormat": "تنسيق المحتوى",
     "plainText": "نص عادي",
     "commands": "أوامر وبرامج نصية وإعدادات",
+    "download": "تنزيل",
+    "downloadTitle": "تنزيل المحتوى الحالي",
     "refresh": "تحديث",
     "refreshTitle": "إعادة تحميل المحتوى المشترك",
     "fullscreen": "ملء الشاشة",
@@ -672,7 +758,10 @@
     "placeholder": "أدخل النص المراد تجزئته...",
     "encoding": "ترميز الملخص",
     "hex": "سداسي عشري (الأساس 16)",
-    "copyTitle": "نسخ إلى الحافظة"
+    "copyTitle": "نسخ إلى الحافظة",
+    "category": "أدوات النصوص",
+    "copied": "تم النسخ",
+    "seoTitle": "مولّد تجزئة النص — MD5 و SHA-1 و SHA-256 عبر الإنترنت"
   },
   "tokenTool": {
     "category": "الأمان",
@@ -687,7 +776,8 @@
     "alphanumeric": "أبجدي رقمي (A-Z، a-z، 0-9)",
     "hex": "سداسي عشري (0-9، a-f)",
     "base64": "Base64 (A-Z، a-z، 0-9، +، /، =)",
-    "copied": "تم النسخ إلى الحافظة"
+    "copied": "تم النسخ إلى الحافظة",
+    "seoTitle": "مولّد الرموز العشوائية — آمن ومجاني عبر الإنترنت"
   },
   "jsonFormatter": {
     "category": "أداة JSON",
@@ -789,12 +879,15 @@
     "seoTitlePng": "تحويل WebP إلى PNG عبر الإنترنت — محول صور جماعي",
     "seoDescPng": "أداة عبر الإنترنت لتحويل WebP إلى PNG ومعالجة الصور دفعة واحدة بأمان وكفاءة.",
     "seoTitleJpg": "تحويل WebP إلى JPG عبر الإنترنت — محول صور جماعي",
-    "seoDescJpg": "أداة عبر الإنترنت لتحويل WebP إلى JPG ومعالجة الصور دفعة واحدة بأمان وكفاءة."
+    "seoDescJpg": "أداة عبر الإنترنت لتحويل WebP إلى JPG ومعالجة الصور دفعة واحدة بأمان وكفاءة.",
+    "success": "تم التحويل بنجاح"
   },
   "prompts": {
     "title": "المطالبات",
     "name": "مكتبة المطالبات",
-    "write": "إضافة"
+    "write": "إضافة",
+    "fetchError": "تعذر تحميل المطالبات. يُرجى المحاولة لاحقًا.",
+    "needLogin": "يُرجى تسجيل الدخول أولاً"
   },
   "compress": {
     "title": "أداة مجانية لضغط الصور عبر الإنترنت"
@@ -803,6 +896,7 @@
     "badge": "أداة تحليل الوقت",
     "title": "محلل تنسيقات الوقت",
     "description": "الصق أي سلسلة زمنية أو طابع زمني لاكتشاف تنسيقه تلقائيًا وتحويله إلى التنسيق الثابت الذي تفضله.",
+    "insertCurrentTimestamp": "إدراج الطابع الزمني الحالي",
     "copyResult": "نسخ النتيجة",
     "loadSample": "بيانات تجريبية",
     "clear": "مسح",
@@ -838,9 +932,9 @@
       "chineseDate": "تاريخ صيني",
       "mixedInput": "مدخلات تواريخ متنوعة"
     },
-    "seoTitle": "محلل تنسيقات الوقت - اكتشاف الطوابع الزمنية والتواريخ تلقائيًا",
-    "seoDescription": "اكتشف تلقائيًا الثواني والمللي ثانية بتنسيق Unix وISO 8601 والتواريخ الصينية وغيرها، ثم حوّلها إلى تنسيقات ثابتة مثل yyyy-MM-dd.",
-    "seoKeywords": "محلل تنسيقات الوقت, التعرف على الطابع الزمني, طابع Unix الزمني, ISO 8601, تحويل تنسيق التاريخ, تحليل السلاسل الزمنية, تنسيق yyyy-MM-dd",
+    "seoTitle": "محلل تنسيقات الوقت والطابع الزمني الحالي",
+    "seoDescription": "أدرج طابع Unix الزمني الحالي في حقل الإدخال بنقرة واحدة. اكتشف وحوّل أيضًا الطوابع الزمنية وتنسيقات Unix وISO 8601 وغيرها.",
+    "seoKeywords": "الطابع الزمني الحالي, إدراج الطابع الزمني, محلل تنسيقات الوقت, التعرف على الطابع الزمني, طابع Unix الزمني, ISO 8601",
     "messages": {
       "noScript": "لا يوجد محتوى سكريبت لنسخه",
       "scriptCopied": "تم نسخ السكريبت إلى الحافظة",
@@ -849,7 +943,8 @@
       "outputCopied": "تم نسخ تنسيق الوقت إلى الحافظة",
       "noUtcData": "لا يوجد محتوى زمني لتحويله",
       "utcCopied": "تم نسخ وقت UTC"
-    }
+    },
+    "faqTitle": "الأسئلة الشائعة"
   },
   "webpTo": {
     "batch_message": "حدد عدة صور WebP لتنزيل النتائج المجمعة في ملف ZIP.",
@@ -973,16 +1068,16 @@
       "seoTitle": "محوّل الصور - أداة مجانية عبر الإنترنت — OnliTool",
       "seoDescription": "حوّل الصور إلى JPG أو PNG أو WebP أو AVIF في المتصفح. معالجة محلية مجمعة وتنزيل الملفات منفردة أو بصيغة ZIP.",
       "seoKeywords": "محوّل الصور, تحويل الصور عبر الإنترنت, تحويل JPG PNG, محوّل WebP",
-      "inputAccepted": "JPG, PNG, WebP, AVIF, GIF, BMP, SVG and HEIC",
+      "inputAccepted": "JPG وPNG وWebP وAVIF وGIF وBMP وSVG وHEIC",
       "convertTo": "Convert to",
-      "convertButton": "Convert images",
+      "convertButton": "تحويل الصور",
       "converting": "Processing {current}/{total}...",
       "failed": "Failed",
-      "noFiles": "No supported image files were selected.",
-      "decodeError": "Could not decode image {name} in this browser.",
-      "outputUnsupported": "This browser cannot encode {format}. Choose another output format.",
-      "imageTooLarge": "This image exceeds the 100-megapixel processing limit.",
-      "convertError": "Could not convert this image."
+      "noFiles": "لم يتم تحديد أي ملفات صور مدعومة.",
+      "decodeError": "تعذّر فك ترميز الصورة {name} في هذا المتصفح.",
+      "outputUnsupported": "لا يستطيع هذا المتصفح ترميز {format}. اختر صيغة إخراج أخرى.",
+      "imageTooLarge": "تتجاوز هذه الصورة حد المعالجة البالغ 100 ميغابكسل.",
+      "convertError": "تعذّر تحويل هذه الصورة."
     },
     "heic": {
       "title": "تحويل HEIC إلى JPG",
@@ -990,7 +1085,7 @@
       "seoTitle": "تحويل HEIC إلى JPG - أداة مجانية — OnliTool",
       "seoDescription": "حوّل صور HEIC وHEIF إلى JPG أو PNG أو WebP محليًا في المتصفح. تحويل مجمع دون رفع الملفات.",
       "seoKeywords": "تحويل HEIC إلى JPG, تحويل HEIC عبر الإنترنت, محوّل HEIF, تحويل صور iPhone",
-      "acceptedFormats": "Select one or more HEIC / HEIF photos"
+      "acceptedFormats": "حدد صورة أو أكثر بصيغة HEIC / HEIF"
     },
     "resizer": {
       "title": "تغيير حجم الصور",
@@ -998,18 +1093,18 @@
       "seoTitle": "تغيير حجم الصور عبر الإنترنت — OnliTool",
       "seoDescription": "غيّر حجم صور JPG وPNG وWebP حسب الأبعاد أو النسبة المئوية أو الحد الأقصى. معالجة مجمعة وخاصة في المتصفح.",
       "seoKeywords": "تغيير حجم الصور, تغيير أبعاد الصورة عبر الإنترنت, تعديل حجم الصورة, تغيير حجم الصور مجمعة",
-      "mode": "Resize mode",
+      "mode": "وضع تغيير الحجم",
       "dimensionsMode": "Dimensions",
       "percentageMode": "Percentage",
-      "maxMode": "Maximum edge",
-      "keepRatio": "Keep aspect ratio",
+      "maxMode": "أقصى حافة",
+      "keepRatio": "الحفاظ على نسبة الأبعاد",
       "scale": "Scale",
-      "maxDimension": "Longest edge",
-      "outputFormat": "Output format",
-      "resizeButton": "Resize images",
-      "imageTooLarge": "{name} exceeds the 100-megapixel processing limit.",
-      "invalidDimensions": "Enter valid dimensions under the 100-megapixel processing limit.",
-      "resizeError": "Could not resize this image."
+      "maxDimension": "أطول حافة",
+      "outputFormat": "صيغة الإخراج",
+      "resizeButton": "تغيير حجم الصور",
+      "imageTooLarge": "تتجاوز {name} حد المعالجة البالغ 100 ميغابكسل.",
+      "invalidDimensions": "أدخل أبعادًا صالحة تحت حد المعالجة البالغ 100 ميغابكسل.",
+      "resizeError": "تعذّر تغيير حجم هذه الصورة."
     },
     "cropper": {
       "title": "قص الصور",
@@ -1017,17 +1112,17 @@
       "seoTitle": "قص الصور عبر الإنترنت — OnliTool",
       "seoDescription": "قص صور JPG وPNG وWebP بحرية أو بنسبة محددة في المتصفح.",
       "seoKeywords": "قص الصور, قص صورة عبر الإنترنت, أداة قص الصور",
-      "aspectRatio": "Aspect ratio",
+      "aspectRatio": "نسبة الأبعاد",
       "free": "Free",
       "square": "1:1",
       "landscape43": "4:3",
       "wide169": "16:9",
       "portrait916": "9:16",
-      "chooseAnother": "Choose another image",
-      "cropButton": "Crop image",
-      "loadError": "Could not load this image.",
-      "invalidSelection": "Select an area larger than zero pixels.",
-      "cropError": "Could not crop this image."
+      "chooseAnother": "اختر صورة أخرى",
+      "cropButton": "قص الصورة",
+      "loadError": "تعذّر تحميل هذه الصورة.",
+      "invalidSelection": "حدد منطقة أكبر من صفر بكسل.",
+      "cropError": "تعذّر قص هذه الصورة."
     },
     "base64": {
       "toTitle": "تحويل الصورة إلى Base64",
@@ -1040,21 +1135,21 @@
       "fromSeoDescription": "فك ترميز صورة Base64 في المتصفح وتنزيلها بصيغة PNG أو JPG أو WebP.",
       "toSeoKeywords": "تحويل الصورة إلى Base64, صورة Data URL, محوّل Base64 للصور",
       "fromSeoKeywords": "تحويل Base64 إلى صورة, فك ترميز صورة Base64, Data URL إلى صورة",
-      "changeImage": "Choose another image",
-      "outputType": "Output type",
-      "dataUrl": "Data URL",
+      "changeImage": "اختر صورة أخرى",
+      "outputType": "نوع الإخراج",
+      "dataUrl": "رابط بيانات (Data URL)",
       "output": "Output",
       "copy": "Copy",
       "copied": "Copied",
-      "copyError": "Clipboard access failed. Select and copy the text manually.",
-      "readError": "Could not read this image file.",
-      "pasteLabel": "Paste Base64 or a Data URL",
+      "copyError": "فشل الوصول إلى الحافظة. حدد النص وانسخه يدويًا.",
+      "readError": "تعذّرت قراءة ملف الصورة هذا.",
+      "pasteLabel": "ألصق Base64 أو رابط بيانات (Data URL)",
       "placeholder": "data:image/png;base64,...",
-      "previewButton": "Decode image",
-      "previewAlt": "Decoded image preview",
-      "invalidInput": "Enter a valid Base64 string or image Data URL.",
-      "tooLarge": "The decoded image exceeds the 50 MB limit.",
-      "decodeError": "Could not decode this image. Check the Base64 input and format."
+      "previewButton": "فك ترميز الصورة",
+      "previewAlt": "معاينة الصورة بعد فك الترميز",
+      "invalidInput": "أدخل سلسلة Base64 صالحة أو رابط بيانات (Data URL) لصورة.",
+      "tooLarge": "تتجاوز الصورة بعد فك الترميز حد 50 ميغابايت.",
+      "decodeError": "تعذّر فك ترميز هذه الصورة. تحقق من مدخل Base64 والصيغة."
     },
     "info": {
       "title": "معلومات الصورة",
@@ -1086,20 +1181,20 @@
       "seoTitle": "عارض معلومات وبيانات الصورة — OnliTool",
       "seoDescription": "اعرض أبعاد الصور وحجمها وصيغتها وبيانات EXIF/GPS في المتصفح.",
       "seoKeywords": "معلومات الصورة, بيانات الصور, عارض EXIF, أبعاد الصورة",
-      "fileName": "File name",
-      "fileSize": "File size",
-      "aspectRatio": "Aspect ratio",
-      "colorMode": "Color mode",
-      "decodedMode": "Browser-decoded RGBA data",
+      "fileName": "اسم الملف",
+      "fileSize": "حجم الملف",
+      "aspectRatio": "نسبة الأبعاد",
+      "colorMode": "وضع الألوان",
+      "decodedMode": "بيانات RGBA بعد فك الترميز في المتصفح",
       "metadata": "Metadata",
-      "noMetadata": "No readable EXIF metadata found.",
-      "cameraMake": "Camera make",
-      "cameraModel": "Camera model",
-      "dateTaken": "Date taken",
+      "noMetadata": "لم يتم العثور على بيانات EXIF وصفية قابلة للقراءة.",
+      "cameraMake": "ماركة الكاميرا",
+      "cameraModel": "طراز الكاميرا",
+      "dateTaken": "تاريخ الالتقاط",
       "software": "Software",
-      "latitude": "GPS latitude",
-      "longitude": "GPS longitude",
-      "readError": "Could not read {name}."
+      "latitude": "خط العرض GPS",
+      "longitude": "خط الطول GPS",
+      "readError": "تعذّرت قراءة {name}."
     },
     "exif": {
       "title": "إزالة بيانات EXIF",
@@ -1108,10 +1203,10 @@
       "seoTitle": "إزالة بيانات EXIF من الصور — OnliTool",
       "seoDescription": "أزل موقع GPS ومعلومات الكاميرا وبيانات EXIF من الصور دون رفع الملفات.",
       "seoKeywords": "إزالة EXIF, إزالة بيانات الصورة, إزالة GPS من الصور",
-      "outputFormat": "Clean output format",
-      "removeButton": "Remove metadata",
-      "privacyNote": "The output is re-encoded locally and does not retain the source file's EXIF metadata.",
-      "processError": "Could not remove metadata from this image."
+      "outputFormat": "صيغة الإخراج النظيفة",
+      "removeButton": "إزالة البيانات الوصفية",
+      "privacyNote": "يُعاد ترميز المخرجات محليًا ولا يحتفظ ببيانات EXIF الوصفية الخاصة بالملف الأصلي.",
+      "processError": "تعذّرت إزالة البيانات الوصفية من هذه الصورة."
     },
     "exifEditor": {
       "eyebrow": "محرر بيانات JPEG الوصفية",
@@ -1217,10 +1312,10 @@
       "seoTitle": "منتقي ألوان الصور - HEX وRGB وHSL — OnliTool",
       "seoDescription": "اختر ألوانًا من صورة واستخرج لوحتها محليًا في المتصفح.",
       "seoKeywords": "منتقي ألوان الصور, استخراج الألوان من الصورة, لوحة ألوان الصورة",
-      "changeImage": "Choose another image",
-      "clickHint": "Click the image to sample a pixel color.",
-      "dominantColors": "Common colors",
-      "readError": "Could not read pixel colors from this image."
+      "changeImage": "اختر صورة أخرى",
+      "clickHint": "انقر على الصورة لأخذ لون البكسل.",
+      "dominantColors": "الألوان الشائعة",
+      "readError": "تعذّرت قراءة ألوان البكسلات من هذه الصورة."
     },
     "svg": {
       "title": "محوّل SVG",
@@ -1228,13 +1323,14 @@
       "seoTitle": "محوّل SVG إلى PNG أو WebP — OnliTool",
       "seoDescription": "حوّل ملفات SVG محليًا إلى PNG أو WebP وحدد أبعاد الصورة الناتجة.",
       "seoKeywords": "محوّل SVG, تحويل SVG إلى PNG, تحويل SVG إلى WebP",
-      "chooseAnother": "Choose another SVG",
-      "convertButton": "Convert SVG",
-      "invalidFile": "This is not a valid SVG file.",
-      "fileTooLarge": "SVG files must be smaller than 10 MB.",
-      "invalidDimensions": "Enter valid dimensions within the 100-megapixel limit.",
-      "convertError": "Could not convert this SVG."
-    }
+      "chooseAnother": "اختر SVG آخر",
+      "convertButton": "تحويل SVG",
+      "invalidFile": "هذا ليس ملف SVG صالحًا.",
+      "fileTooLarge": "يجب أن تكون ملفات SVG أصغر من 10 ميغابايت.",
+      "invalidDimensions": "أدخل أبعادًا صالحة ضمن حد 100 ميغابكسل.",
+      "convertError": "تعذّر تحويل ملف SVG هذا."
+    },
+    "processing": "جارٍ المعالجة…"
   },
   "footer": {
     "about": "حول الموقع",
@@ -1246,5 +1342,91 @@
     "navLabel": "تنقل التذييل",
     "tagline": "أدوات مجانية تحترم الخصوصية للمطورين والمصممين وكل من يحتاج إلى إنجاز مهمة على ملف أو نص بسرعة.",
     "localFirst": "محلي أولاً · دون تسجيل"
+  },
+  "reduceImage": {
+    "eyebrow": "تقليل حجم الصورة",
+    "title": "تقليل حجم الصورة إلى {size} عبر الإنترنت",
+    "description": "قلّص حجم الصور والرسوم إلى {size} دون رفع الملفات. حافظ على أفضل جودة ممكنة مع البقاء تحت الحجم المستهدف.",
+    "compressNow": "قلّص حجم الصورة الآن",
+    "whyTitle": "لماذا التقليل إلى {size}؟",
+    "whyDescription": "هذا الهدف يحافظ على خفة الصور للمواقع والنماذج ومرفقات البريد وحدود الرفع الأخرى، مع الحفاظ على أكبر قدر ممكن من التفاصيل البصرية.",
+    "faqTitle": "الأسئلة الشائعة",
+    "question1": "هل يمكنني تقليل حجم الصورة إلى {size}؟",
+    "answer1": "نعم. اضبط أبعاد الصورة وجودة الإخراج داخل متصفحك للوصول إلى الهدف دون رفع أي ملفات.",
+    "question2": "هل تُحفظ جودة الصورة؟",
+    "answer2": "تعتمد النتيجة على الصورة الأصلية. يخفّض الضاغط الجودة تدريجيًا ويتوقف بمجرد أن يحقق الملف الحجم المستهدف.",
+    "question3": "ما هي صيغ الصور المدعومة؟",
+    "answer3": "JPG وPNG وWebP وغيرها من الصيغ الشائعة. يبقى الإخراج بالصيغة الأصلية ما لم تختر غير ذلك.",
+    "seoTitle": "تقليل حجم الصورة إلى {size} عبر الإنترنت — OnliTool",
+    "seoDescription": "قلّص حجم الصورة إلى {size} عبر الإنترنت داخل متصفحك. اجعل الصور أصغر دون رفع ملفات مع أفضل جودة ممكنة.",
+    "seoKeywords": "تقليل حجم الصورة إلى {size}, تصغير الصورة, تقليل حجم الصور, تصغير الصورة إلى {size}, تقليل حجم الصور عبر الإنترنت"
+  },
+  "compressFontTarget": {
+    "eyebrow": "ضغط {format}",
+    "title": "ضغط {format} عبر الإنترنت",
+    "description": "قلّص حجم ملفات {format} بإزالة المحارف غير المستخدمة وتصدير صيغة ويب فعّالة. كل شيء يعمل محليًا في متصفحك.",
+    "compressNow": "اضغط {format} الآن",
+    "whyTitle": "لماذا ضغط {format}؟",
+    "whyDescription": "ملفات الخطوط الأصغر تعني تحميلًا أسرع للصفحات ونتائج أفضل في Core Web Vitals. مجموعة جزئية بالأحرف التي يستخدمها موقعك فعلًا لا تزن سوى جزء يسير من الحجم الأصلي.",
+    "faqTitle": "الأسئلة الشائعة",
+    "question1": "كيف أضغط ملف {format}؟",
+    "answer1": "افتح ضاغط الخطوط، ارفع ملف {format}، احتفظ بالأحرف التي تحتاجها ونزّل خط ويب أصغر. لا يُرفع أي ملف إلى أي خادم — كل شيء يعمل في متصفحك.",
+    "question2": "هل ضغط {format} دون فقدان؟",
+    "answer2": "المحارف التي تحتفظ بها لا تُمس. التوفير في الحجم يأتي من إسقاط المحارف والأحرف المركبة وميزات OpenType التي لا يستخدمها نصك أبدًا.",
+    "question3": "أي صيغة إخراج يجب أن أختار؟",
+    "answer3": "WOFF2 هو الخيار الأمثل للمتصفحات الحديثة؛ وWOFF يدعم الأقدم. احتفظ دائمًا بالملف الأصلي للتعديلات المستقبلية.",
+    "seoTitle": "ضغط {format} عبر الإنترنت — ضاغط {format} مجاني",
+    "seoDescription": "اضغط ملفات {format} عبر الإنترنت بإزالة المحارف غير المستخدمة. قلّص حجم خطوط الويب دون رفع ملفات — يعمل محليًا في متصفحك.",
+    "seoKeywords": "ضغط {format}, ضاغط {format}, تقليل حجم ملف {format}, ضغط {format} عبر الإنترنت, ضغط خطوط الويب"
+  },
+  "fontSubset": {
+    "eyebrow": "تقسيم الخطوط",
+    "title": "أداة تقسيم الخطوط عبر الإنترنت",
+    "description": "أنشئ نسخة جزئية من أي خط TTF أو OTF أو WOFF أو WOFF2 بالاحتفاظ بالأحرف التي يحتاجها مشروعك فقط. يعمل محليًا في متصفحك.",
+    "compressNow": "أنشئ نسخة جزئية الآن",
+    "whyTitle": "لماذا تقسيم الخط؟",
+    "whyDescription": "الخط الكامل للغات CJK أو خطوط الأيقونات قد يزن عدة ميغابايت؛ نسخة جزئية بالمحارف المستخدمة فعلًا غالبًا ما تكون بعشرات الكيلوبايتات فقط.",
+    "faqTitle": "الأسئلة الشائعة",
+    "question1": "كيف أنشئ نسخة جزئية من خط؟",
+    "answer1": "الصق النص الذي تعرضه صفحتك (أو اختر إعداد لغة جاهزًا)، ارفع الخط ونزّل النسخة الجزئية. كل ذلك داخل متصفحك.",
+    "question2": "ما الصيغ المدعومة؟",
+    "answer2": "الإدخال: TTF وOTF وWOFF وWOFF2؛ والإخراج: TTF أو WOFF أو WOFF2.",
+    "question3": "هل يمكن استرجاع المحارف المحذوفة؟",
+    "answer3": "لا. احتفظ بملف الخط الأصلي — النسخ الجزئية تحذف الأحرف غير المحددة نهائيًا.",
+    "seoTitle": "أداة تقسيم الخطوط — قلّص حجم الخط عبر الإنترنت",
+    "seoDescription": "قسّم خطوط TTF وOTF وWOFF وWOFF2 عبر الإنترنت. احتفظ بالمحارف التي تحتاجها فقط وقلّص حجم الخط بأكثر من 90% — دون رفع، في متصفحك.",
+    "seoKeywords": "تقسيم الخطوط, أداة تقسيم الخط, تقسيم الخط عبر الإنترنت, تقليل حجم الخط, مولّد نسخ خطوط الويب"
+  },
+  "fontConvert": {
+    "title": "محول TTF إلى WOFF2",
+    "lead": "حوّل خطوط TTF وOTF وWOFF إلى WOFF2 — أو WOFF2 إلى TTF — مباشرة في متصفحك. دون رفع وبدون حساب.",
+    "upload": "رفع الخط",
+    "selected": "المحدد: {name}",
+    "direction": "التحويل إلى",
+    "toWoff2": "WOFF2 (للويب)",
+    "toTtf": "TTF (للأجهزة المكتبية)",
+    "start": "تحويل",
+    "clear": "مسح",
+    "success": "تم التحويل بنجاح",
+    "download": "تنزيل الخط المحوّل",
+    "original": "الحجم الأصلي",
+    "converted": "الحجم بعد التحويل",
+    "saving": "فرق الحجم",
+    "error": "فشل التحويل. قد يستخدم الخط جداول غير مدعومة أو يحتوي بيانات غير صالحة.",
+    "noFile": "اختر أولًا ملف خط بصيغة TTF أو OTF أو WOFF أو WOFF2.",
+    "localProcessing": "لا يخرج الخط من متصفحك أبدًا — يتم التحويل محليًا عبر WebAssembly.",
+    "faqTitle": "الأسئلة الشائعة",
+    "q1": "كيف أحول TTF إلى WOFF2؟",
+    "a1": "ارفع ملف TTF، اختر WOFF2 كمخرج واضغط تحويل. يبدأ التنزيل فورًا ولا يُرسل أي شيء إلى خادم.",
+    "q2": "هل يمكن التحويل من WOFF2 إلى TTF؟",
+    "a2": "نعم. اختر TTF كصيغة إخراج — تفك الأداة ضغط WOFF2 وتبني خط TrueType قياسيًا.",
+    "q3": "لماذا WOFF2 أصغر من TTF؟",
+    "a3": "يستخدم WOFF2 ضغط Brotli وتحويلًا يحزم بيانات المحارف بكفاءة أعلى، فيقلل الحجم عادة بنسبة 30–50% إضافية مقارنة بـ WOFF.",
+    "q4": "هل تدعم كل المتصفحات WOFF2؟",
+    "a4": "كل المتصفحات الحديثة منذ 2016 تدعم WOFF2. قدّم TTF كبديل فقط للأجهزة القديمة جدًا.",
+    "seoTitle": "محول TTF إلى WOFF2 — مجاني عبر الإنترنت (WOFF2 إلى TTF)",
+    "seoDescription": "حوّل خطوط TTF وOTF وWOFF إلى WOFF2 عبر الإنترنت، أو WOFF2 إلى TTF. مجاني، دون رفع، دون تسجيل — التحويل يعمل محليًا في متصفحك.",
+    "seoKeywords": "ttf إلى woff2, محول ttf إلى woff2, woff2 إلى ttf, otf إلى woff2, تحويل الخطوط إلى woff2, محول خطوط عبر الإنترنت",
+    "related": "أدوات الخطوط ذات الصلة"
   }
 }

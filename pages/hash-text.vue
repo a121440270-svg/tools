@@ -87,7 +87,7 @@ import { ElMessage } from 'element-plus'
 
 const { t } = useI18n()
 useToolSeo({
-  title: () => `${t('hashTool.title')} | OnliTool`,
+  title: () => t('hashTool.seoTitle'),
   description: () => t('hashTool.description'),
   applicationCategory: 'DeveloperApplication'
 })

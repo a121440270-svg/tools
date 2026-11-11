@@ -32,15 +32,27 @@
           </button>
         </div>
 
-        <button
-          class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 hover:border-slate-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
-          @click="toggleTheme"
-        >
-          <component
-            :is="isDark ? SunIcon : MoonIcon"
-            class="w-5 h-5"
-          />
-        </button>
+        <div class="flex items-center gap-1">
+          <button
+            type="button"
+            class="flex h-10 items-center justify-center gap-1 rounded-full px-2 text-xs font-medium text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+            :aria-label="$t('menu.recent')"
+            @click="openRecentMenu"
+          >
+            <RecentIcon class="h-4 w-4" />
+            <span>{{ $t('menu.recent') }}</span>
+          </button>
+          <button
+            class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 hover:border-slate-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
+            aria-label="Toggle theme"
+            @click="toggleTheme"
+          >
+            <component
+              :is="isDark ? SunIcon : MoonIcon"
+              class="w-5 h-5"
+            />
+          </button>
+        </div>
       </div>
     </header>
 
@@ -166,6 +178,15 @@
         >
           <HomeIcon class="w-5 h-5" />
         </button>
+        <button
+          type="button"
+          class="flex h-10 items-center justify-center gap-1 rounded-full px-2 text-xs font-medium text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+          :aria-label="$t('menu.recent')"
+          @click="openRecentMenu"
+        >
+          <RecentIcon class="h-4 w-4" />
+          <span>{{ $t('menu.recent') }}</span>
+        </button>
         <form class="flex items-center ml-3 relative" @submit.prevent="submitSearch">
           <SearchIcon class="w-4 h-4 absolute left-3.5 text-slate-400" />
           <input
@@ -287,6 +308,7 @@
             >
               <NuxtLink :to="localePath('/about')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ $t('footer.about') }}</NuxtLink>
               <NuxtLink :to="localePath('/blog')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ $t('footer.blog') }}</NuxtLink>
+              <NuxtLink :to="localePath('/alternatives')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ $t('menu.alternatives') }}</NuxtLink>
               <NuxtLink :to="localePath('/privacy')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ $t('footer.privacy') }}</NuxtLink>
               <NuxtLink :to="localePath('/terms')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ $t('footer.terms') }}</NuxtLink>
               <NuxtLink :to="localePath('/contact')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ $t('footer.contact') }}</NuxtLink>
@@ -301,6 +323,122 @@
         </div>
       </footer>
     </div>
+    <div
+      v-if="recentPages.length && recentMenuMode !== 'closed' && (recentMenuMode !== 'edge-hidden' || recentMenuPeek)"
+      class="fixed z-50 w-72 max-w-[calc(100vw-3.5rem)] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl dark:border-slate-700 dark:bg-slate-900"
+      :style="{ left: `${recentMenuPosition.left}px`, top: `${recentMenuPosition.top}px` }"
+      :aria-label="$t('menu.recent')"
+      @pointerenter="handleRecentMenuPointerEnter"
+      @pointerleave="handleRecentMenuPointerLeave"
+    >
+      <div
+        class="flex cursor-move select-none items-center justify-between border-b border-slate-200 px-3 py-2.5 touch-none dark:border-slate-700"
+        @pointerdown="startRecentMenuDrag"
+        @pointermove="moveRecentMenu"
+        @pointerup="stopRecentMenuDrag"
+        @pointercancel="stopRecentMenuDrag"
+      >
+        <h2 class="flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-slate-100">
+          <RecentIcon class="h-4 w-4" />
+          {{ $t('menu.recent') }}
+        </h2>
+        <div class="flex items-center gap-1">
+          <button
+            type="button"
+            class="flex h-7 w-7 items-center justify-center rounded-full transition hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-white"
+            :class="recentMenuEditing ? 'bg-slate-100 text-primary dark:bg-slate-800 dark:text-primary' : 'text-slate-500'"
+            :aria-label="$t(recentMenuEditing ? 'menu.recentEditDone' : 'menu.recentEdit')"
+            @pointerdown.stop
+            @click="recentMenuEditing = !recentMenuEditing"
+          >
+            <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m16 4 4 4" />
+              <path d="M4 20h4l11-11a2.83 2.83 0 0 0-4-4L4 16v4Z" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="flex h-7 w-7 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-white"
+            :aria-label="$t('menu.recentCollapse')"
+            :title="$t('menu.recentCollapse')"
+            @pointerdown.stop
+            @click="toggleRecentMenuCollapse"
+          >
+            <span aria-hidden="true">{{ recentMenuMode === 'collapsed' ? '⌄' : '⌃' }}</span>
+          </button>
+          <button
+            type="button"
+            class="flex h-7 w-7 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-white"
+            :aria-label="$t('menu.recentEdgeHide')"
+            :title="$t('menu.recentEdgeHide')"
+            @pointerdown.stop
+            @click="hideRecentMenuAtEdge"
+          >
+            <span aria-hidden="true">→</span>
+          </button>
+          <button
+            type="button"
+            class="flex h-7 w-7 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-white"
+            :aria-label="$t('menu.recentClose')"
+            :title="$t('menu.recentClose')"
+            @pointerdown.stop
+            @click="closeRecentMenu"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <nav
+        v-if="recentMenuMode !== 'collapsed'"
+        class="max-h-[60vh] overflow-y-auto p-2"
+        :aria-label="$t('menu.recent')"
+      >
+        <div
+          v-for="page in recentPages"
+          :key="page.path"
+          class="group relative"
+        >
+          <NuxtLink
+            :to="page.path"
+            class="block rounded-xl px-3 py-2 transition hover:bg-slate-100 dark:hover:bg-slate-800"
+            :class="recentMenuEditing ? 'pr-10' : 'pr-3'"
+          >
+            <span class="block truncate text-sm font-medium text-slate-700 dark:text-slate-200">{{ page.title }}</span>
+            <span class="mt-0.5 flex items-center justify-between gap-2 text-xs text-slate-400">
+              <span class="min-w-0 truncate">{{ page.path }}</span>
+              <span class="shrink-0">{{ $t('menu.recentFrequency', { count: page.count }) }}</span>
+            </span>
+          </NuxtLink>
+          <button
+            v-if="recentMenuEditing"
+            type="button"
+            class="absolute right-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full text-slate-400 transition hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/40 dark:hover:text-red-400"
+            :aria-label="$t('menu.recentDelete')"
+            @click="removeRecentPage(page.path)"
+          >
+            <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 6h18" />
+              <path d="M8 6V4h8v2" />
+              <path d="m19 6-1 14H6L5 6" />
+              <path d="M10 11v5m4-5v5" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+    <button
+      v-if="recentPages.length && recentMenuMode === 'edge-hidden'"
+      type="button"
+      class="fixed right-0 z-[51] flex h-12 w-9 items-center justify-center rounded-l-xl border border-r-0 border-slate-200 bg-white text-slate-600 shadow-lg transition hover:w-11 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-white"
+      :style="{ top: `${recentMenuPosition.top}px` }"
+      :aria-label="$t('menu.recentOpen')"
+      :title="$t('menu.recentOpen')"
+      @pointerenter="recentMenuPeek = true"
+      @pointerleave="handleRecentMenuPointerLeave"
+      @click="openRecentMenu"
+    >
+      <RecentIcon class="h-5 w-5" />
+    </button>
     <FeatureRequest />
   </div>
 </template>
@@ -317,6 +455,7 @@ import {
   computed,
   onMounted,
   onUnmounted,
+  nextTick,
   watch,
 } from "vue";
 import { useTheme } from "~/composables/useTheme";
@@ -327,8 +466,10 @@ const localePath = useLocalePath();
 const isRtl = computed(() => locale.value === "ar");
 const route = useRoute();
 const localeHead = useLocaleHead({ seo: { canonicalQueries: [] } });
+// Route path without the locale prefix, e.g. `/de/privacy` -> `/privacy`.
+const normalizeLocalePath = (path) => path.replace(/^\/(zh|ja|de|fr|ar)(?=\/|$)/, "") || "/";
 const isNoIndexRoute = computed(() => {
-  const path = route.path.replace(/^\/(zh|ja|de|fr|ar)(?=\/|$)/, "") || "/";
+  const path = normalizeLocalePath(route.path);
   return [
     "/admin",
     "/auth",
@@ -341,8 +482,287 @@ const isNoIndexRoute = computed(() => {
     /^\/prompts\/[^/]+$/.test(path);
 });
 
+// Legal pages (privacy/terms/about/contact) and alternatives pages are authored
+// inline in English and Chinese only. Locales without real translations should
+// not self-canonicalise or broadcast hreflang entries.
+const isLegalRoute = computed(() =>
+  /^\/(privacy|terms|about|contact)(\/|$)/.test(normalizeLocalePath(route.path))
+);
+const isAlternativesRoute = computed(() =>
+  /^\/alternatives(\/|$)/.test(normalizeLocalePath(route.path))
+);
+// Fold the legal-page link cluster onto the EN canonical and keep hreflang only
+// for the languages the copy actually exists in (EN + ZH).
+const legalLinkCluster = (links) => {
+  if (!Array.isArray(links) || links.length === 0) return links;
+  const alt = (hreflang) =>
+    links.find((link) => link.rel === "alternate" && link.hreflang === hreflang)?.href;
+  const enHref = alt("en");
+  const zhHref = alt("zh-CN") || alt("zh");
+  if (!enHref || !zhHref) return links;
+  const canonicalHref = locale.value === "zh" ? zhHref : enHref;
+  return [
+    { rel: "canonical", href: canonicalHref },
+    { rel: "alternate", hreflang: "en", href: enHref },
+    { rel: "alternate", hreflang: "zh-CN", href: zhHref },
+    { rel: "alternate", hreflang: "zh", href: zhHref },
+    { rel: "alternate", hreflang: "x-default", href: enHref },
+  ];
+};
+
 const currentYear = new Date().getFullYear();
 const navKeyword = ref("");
+const recentPages = ref([]);
+const recentMenuMode = ref("closed");
+const recentMenuEditing = ref(false);
+const recentMenuPeek = ref(false);
+const recentMenuPosition = ref({ left: 0, top: 76 });
+const recentMenuDrag = ref(null);
+const recentPagesStorageKey = "onlitool-recent-pages";
+const pageUsageStorageKey = "onlitool-page-usage-v1";
+const recentMenuUiStorageKey = "onlitool-recent-menu-ui";
+const PAGE_USAGE_WINDOW_MS = 24 * 60 * 60 * 1000;
+const MAX_RECENT_PAGES = 5;
+let recentMenuPeekTimer;
+let recentUsageRefreshTimer;
+let pageUsage = {};
+let recentPageOrder = [];
+
+function openRecentMenu() {
+  recentMenuMode.value = "open";
+  recentMenuPeek.value = false;
+  saveRecentMenuUi();
+}
+
+function closeRecentMenu() {
+  recentMenuMode.value = "closed";
+  recentMenuPeek.value = false;
+  saveRecentMenuUi();
+}
+
+function toggleRecentMenuCollapse() {
+  recentMenuMode.value = recentMenuMode.value === "collapsed" ? "open" : "collapsed";
+  saveRecentMenuUi();
+}
+
+function hideRecentMenuAtEdge() {
+  recentMenuMode.value = "edge-hidden";
+  recentMenuPeek.value = false;
+  saveRecentMenuUi();
+}
+
+function handleRecentMenuPointerEnter() {
+  if (recentMenuMode.value !== "edge-hidden") return;
+  clearTimeout(recentMenuPeekTimer);
+  recentMenuPeek.value = true;
+}
+
+function handleRecentMenuPointerLeave() {
+  if (recentMenuMode.value !== "edge-hidden") return;
+  clearTimeout(recentMenuPeekTimer);
+  recentMenuPeekTimer = window.setTimeout(() => {
+    recentMenuPeek.value = false;
+  }, 180);
+}
+
+function clampRecentMenuPosition(left, top) {
+  const maxLeft = Math.max(8, window.innerWidth - 304);
+  const maxTop = Math.max(72, window.innerHeight - 80);
+  return {
+    left: Math.min(Math.max(8, left), maxLeft),
+    top: Math.min(Math.max(72, top), maxTop),
+  };
+}
+
+function saveRecentMenuUi() {
+  try {
+    localStorage.setItem(recentMenuUiStorageKey, JSON.stringify({
+      mode: recentMenuMode.value,
+      position: recentMenuPosition.value,
+    }));
+  } catch (error) {
+    console.warn("Unable to save recent menu settings to local storage.", error);
+  }
+}
+
+function restoreRecentMenuUi() {
+  recentMenuPosition.value = clampRecentMenuPosition(window.innerWidth - 304, 76);
+  try {
+    const stored = JSON.parse(localStorage.getItem(recentMenuUiStorageKey) || "null");
+    if (!stored || typeof stored !== "object") return;
+    if (["open", "collapsed", "closed", "edge-hidden"].includes(stored.mode)) {
+      recentMenuMode.value = stored.mode;
+    }
+    if (
+      Number.isFinite(stored.position?.left) &&
+      Number.isFinite(stored.position?.top)
+    ) {
+      recentMenuPosition.value = clampRecentMenuPosition(
+        stored.position.left,
+        stored.position.top
+      );
+    } else {
+      recentMenuPosition.value = clampRecentMenuPosition(
+        window.innerWidth - 304,
+        76
+      );
+    }
+  } catch (error) {
+    console.warn("Unable to restore recent menu settings from local storage.", error);
+  }
+}
+
+function startRecentMenuDrag(event) {
+  if (event.target.closest("button")) return;
+  recentMenuDrag.value = {
+    pointerId: event.pointerId,
+    offsetX: event.clientX - recentMenuPosition.value.left,
+    offsetY: event.clientY - recentMenuPosition.value.top,
+  };
+  event.currentTarget.setPointerCapture(event.pointerId);
+}
+
+function moveRecentMenu(event) {
+  if (!recentMenuDrag.value || recentMenuDrag.value.pointerId !== event.pointerId) return;
+  recentMenuPosition.value = clampRecentMenuPosition(
+    event.clientX - recentMenuDrag.value.offsetX,
+    event.clientY - recentMenuDrag.value.offsetY
+  );
+}
+
+function stopRecentMenuDrag(event) {
+  if (!recentMenuDrag.value || recentMenuDrag.value.pointerId !== event.pointerId) return;
+  recentMenuDrag.value = null;
+  saveRecentMenuUi();
+}
+
+function restoreRecentPages() {
+  try {
+    const storedPages = JSON.parse(localStorage.getItem(recentPagesStorageKey) || "[]");
+    if (Array.isArray(storedPages)) {
+      recentPageOrder = storedPages
+        .filter((page) => isValidRecentPage(page))
+        .slice(0, MAX_RECENT_PAGES)
+        .map((page) => page.path);
+    }
+  } catch (error) {
+    console.warn("Unable to restore recent pages from local storage.", error);
+  }
+
+  try {
+    const storedUsage = JSON.parse(localStorage.getItem(pageUsageStorageKey) || "null");
+    if (storedUsage && typeof storedUsage === "object" && storedUsage.pages && typeof storedUsage.pages === "object") {
+      pageUsage = storedUsage.pages;
+      if (Array.isArray(storedUsage.order)) {
+        recentPageOrder = storedUsage.order.filter((path) => typeof path === "string");
+      }
+    } else {
+      const now = Date.now();
+      const legacyPages = JSON.parse(localStorage.getItem(recentPagesStorageKey) || "[]");
+      if (Array.isArray(legacyPages)) {
+        pageUsage = Object.fromEntries(
+          legacyPages
+            .filter((page) => isValidRecentPage(page))
+            .map((page) => [page.path, { title: page.title, visits: [now] }])
+        );
+      }
+    }
+  } catch (error) {
+    console.warn("Unable to restore page usage from local storage.", error);
+  }
+  refreshRecentPages(Date.now(), false);
+}
+
+function isValidRecentPage(page) {
+  return Boolean(
+    page &&
+    typeof page.path === "string" &&
+    page.path.startsWith("/") &&
+    !page.path.startsWith("//") &&
+    typeof page.title === "string"
+  );
+}
+
+function refreshRecentPages(now, save = true) {
+  const cutoff = now - PAGE_USAGE_WINDOW_MS;
+  for (const [path, entry] of Object.entries(pageUsage)) {
+    if (
+      !path.startsWith("/") ||
+      path.startsWith("//") ||
+      !entry ||
+      typeof entry !== "object" ||
+      typeof entry.title !== "string" ||
+      !Array.isArray(entry.visits)
+    ) {
+      delete pageUsage[path];
+      continue;
+    }
+    entry.visits = entry.visits.filter((timestamp) =>
+      Number.isFinite(timestamp) && timestamp > cutoff && timestamp <= now
+    );
+    if (!entry.visits.length) delete pageUsage[path];
+  }
+
+  const rankedPaths = Object.entries(pageUsage)
+    .map(([path, entry]) => ({
+      path,
+      count: entry.visits.length,
+      lastVisited: Math.max(...entry.visits),
+    }))
+    .sort((a, b) => b.count - a.count || b.lastVisited - a.lastVisited)
+    .slice(0, MAX_RECENT_PAGES);
+  const eligiblePaths = new Set(rankedPaths.map((page) => page.path));
+  const retainedOrder = recentPageOrder.filter((path) => eligiblePaths.has(path));
+  const entrants = rankedPaths
+    .map((page) => page.path)
+    .filter((path) => !retainedOrder.includes(path));
+  recentPageOrder = [...retainedOrder, ...entrants];
+  recentPages.value = recentPageOrder.map((path) => ({
+    path,
+    title: pageUsage[path].title || path,
+    count: pageUsage[path].visits.length,
+  }));
+
+  if (!save) return;
+  try {
+    localStorage.setItem(pageUsageStorageKey, JSON.stringify({
+      pages: pageUsage,
+      order: recentPageOrder,
+    }));
+    localStorage.setItem(recentPagesStorageKey, JSON.stringify(recentPages.value));
+  } catch (error) {
+    console.warn("Unable to save page usage to local storage.", error);
+  }
+}
+
+function removeRecentPage(path) {
+  delete pageUsage[path];
+  recentPageOrder = recentPageOrder.filter((recentPath) => recentPath !== path);
+  refreshRecentPages(Date.now());
+}
+
+function recordRecentPage() {
+  if (typeof window === "undefined" || isNoIndexRoute.value) return;
+  const path = route.path;
+  if (!path || path.startsWith("//")) return;
+  const now = Date.now();
+  const entry = pageUsage[path] || { title: path, visits: [] };
+  entry.title = document.title.trim() || entry.title || path;
+  entry.visits = Array.isArray(entry.visits) ? entry.visits : [];
+  entry.visits.push(now);
+  pageUsage[path] = entry;
+  refreshRecentPages(now);
+}
+
+watch(
+  () => route.path,
+  async () => {
+    if (typeof window === "undefined") return;
+    await nextTick();
+    window.setTimeout(recordRecentPage, 0);
+  },
+  { flush: "post" }
+);
 
 function submitSearch() {
   const q = navKeyword.value.trim();
@@ -353,16 +773,25 @@ function submitSearch() {
 }
 
 useHead(() => {
-  const canonicalUrl = localeHead.value.link?.find((link) => link.rel === "canonical")?.href;
+  let links = localeHead.value.link || [];
+  if (isAlternativesRoute.value) {
+    // The page's useToolSeo owns the whole canonical/hreflang cluster here.
+    links = [];
+  } else if (isLegalRoute.value) {
+    links = legalLinkCluster(links);
+  }
+  const canonicalUrl = links.find((link) => link.rel === "canonical")?.href;
 
   return {
     htmlAttrs: {
       ...localeHead.value.htmlAttrs,
       dir: isRtl.value ? "rtl" : "ltr",
     },
-    link: localeHead.value.link || [],
+    link: links,
     meta: [
-      ...(localeHead.value.meta || []),
+      // localeHead also emits og:url (self URL); drop it so the canonical-based
+      // og:url below is the only one on legal pages and tool pages.
+      ...(localeHead.value.meta || []).filter((m) => m.property !== "og:url"),
       { property: "og:site_name", content: "OnliTool" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -378,6 +807,12 @@ const themeClass = computed(() => (isDark.value ? "dark" : "light"));
 
 // 在根元素上动态添加主题类
 onMounted(() => {
+  restoreRecentPages();
+  restoreRecentMenuUi();
+  recordRecentPage();
+  recentUsageRefreshTimer = window.setInterval(() => {
+    refreshRecentPages(Date.now());
+  }, 60_000);
   document.documentElement.classList.add(themeClass.value);
 });
 
@@ -463,6 +898,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+  window.clearInterval(recentUsageRefreshTimer);
   window.removeEventListener("resize", checkViewport);
 });
 
@@ -736,6 +1172,29 @@ const HomeIcon = defineComponent({
   },
 });
 
+const RecentIcon = defineComponent({
+  name: "RecentIcon",
+  render() {
+    return h(
+      "svg",
+      {
+        xmlns: "http://www.w3.org/2000/svg",
+        viewBox: "0 0 24 24",
+        fill: "none",
+        stroke: "currentColor",
+        strokeWidth: "2",
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        class: this.$attrs.class,
+      },
+      [
+        h("circle", { cx: "12", cy: "12", r: "9" }),
+        h("path", { d: "M12 7v5l3 2" }),
+      ]
+    );
+  },
+});
+
 // 新增 FontIcon 组件
 const FontIcon = defineComponent({
   name: "FontIcon",
@@ -834,6 +1293,9 @@ const categories = ref([
     expanded: true,
     tools: [
       { name: "menu.ttf", path: "/font-compress", icon: markRaw(FontIcon) },
+      { name: "menu.ttfToWoff2", path: "/ttf-to-woff2", icon: markRaw(FontIcon) },
+      { name: "menu.fontSubsetter", path: "/font-subsetter", icon: markRaw(FontIcon) },
+      { name: "menu.compressWoff2", path: "/compress-woff2", icon: markRaw(FontIcon) },
       { name: "menu.fontInspector", path: "/font-inspector", icon: markRaw(FontIcon) },
       { name: "menu.fontUnicodeChecker", path: "/font-unicode-checker", icon: markRaw(FontIcon) },
       { name: "menu.fontSizeAnalyzer", path: "/font-size-analyzer", icon: markRaw(FontIcon) },
@@ -876,6 +1338,7 @@ const categories = ref([
       { name: "menu.token", path: "/token-generator", icon: markRaw(TokenIcon) },
       { name: "menu.hash", path: "/hash-text", icon: markRaw(HashIcon) },
       { name: "menu.uppercase", path: "/case-converter", icon: markRaw(TokenIcon) },
+      { name: "textDedup.title", path: "/text-dedup", icon: markRaw(TokenIcon) },
     ],
   },
   {

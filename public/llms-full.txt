@@ -61,6 +61,30 @@ PNG is lossless, so the compressor reduces colour depth and strips ancillary chu
 - If quality drops too far, resize the image first and compress afterwards.
 - The target is advisory: the result stays at or below the limit whenever the source has enough detail to remove.
 
+### Compress PNG images to 200 KB
+
+https://onlitools.com/compress-png-to-200kb
+
+This page opens the OnliTool image compressor with a 200 KB target preset for PNG files. This is the right page when a portal, CMS or email template rejects uploads above the stated PNG limit. Everything runs in your browser, so the picture is never uploaded to a server.
+
+PNG is lossless, so the compressor reduces colour depth and strips ancillary chunks rather than throwing away pixels. Screenshots and flat graphics usually shrink the most. After compression the tool shows the original and final size so you can confirm the file really fits the limit before downloading it.
+
+- Works best on photos and screenshots that are only slightly above 200 KB.
+- If quality drops too far, resize the image first and compress afterwards.
+- The target is advisory: the result stays at or below the limit whenever the source has enough detail to remove.
+
+### Compress PNG images to 500 KB
+
+https://onlitools.com/compress-png-to-500kb
+
+This page opens the OnliTool image compressor with a 500 KB target preset for PNG files. This is the right page when a portal, CMS or email template rejects uploads above the stated PNG limit. Everything runs in your browser, so the picture is never uploaded to a server.
+
+PNG is lossless, so the compressor reduces colour depth and strips ancillary chunks rather than throwing away pixels. Screenshots and flat graphics usually shrink the most. After compression the tool shows the original and final size so you can confirm the file really fits the limit before downloading it.
+
+- Works best on photos and screenshots that are only slightly above 500 KB.
+- If quality drops too far, resize the image first and compress afterwards.
+- The target is advisory: the result stays at or below the limit whenever the source has enough detail to remove.
+
 ### Compress JPG images to 100 KB
 
 https://onlitools.com/image-compress-to-100kb

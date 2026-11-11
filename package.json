@@ -3,13 +3,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "se": "switchenv.bat && npx wrangler whoami && switchenvbk.bat",
+    "se": "node scripts/wrangler-refresh.mjs && npx wrangler whoami && node scripts/wrangler-refresh.mjs --archive",
     "build": "node --max-old-space-size=4096 ./node_modules/nuxt/bin/nuxt.mjs build",
+    "login": "npx wrangler login && node scripts/wrangler-refresh.mjs --adopt",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "npm run build && wrangler dev",
     "postinstall": "nuxt prepare",
-    "deploy": "npm run se && npm run build && wrangler deploy",
+    "deploy": "npm run se && npm run build && wrangler deploy && node scripts/wrangler-refresh.mjs --archive",
     "cf-typegen": "wrangler types",
     "llms": "node scripts/generate-llms.mjs"
   },

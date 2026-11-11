@@ -8,6 +8,7 @@
       </div>
 
       <div class="flex flex-wrap gap-2">
+        <button class="btn-primary" @click="loadCurrentDate">{{ $t('dateFormat.insertCurrentTimestamp') }}</button>
         <button class="btn-primary" @click="copyOutput">{{ $t('dateFormat.copyResult') }}</button>
         <button class="btn-secondary" @click="loadSample">{{ $t('dateFormat.loadSample') }}</button>
         <button class="btn-secondary" @click="clearAll">{{ $t('dateFormat.clear') }}</button>
@@ -639,6 +640,10 @@ async function runRemoteDemo() {
 function clearAll() {
   rawInput.value = ''
   selectedFormat.value = 'auto'
+}
+
+function loadCurrentDate() {
+  rawInput.value = String(Date.now())
 }
 
 function loadSample() {

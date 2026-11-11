@@ -120,6 +120,33 @@
           </div>
         </div>
       </div>
+
+      <!-- Related font tools: keeps crawl paths and link equity flowing between
+           the pages of the font cluster. -->
+      <div class="rounded-xl border border-gray-200 p-5 dark:border-slate-700">
+        <h2 class="text-xl font-semibold mb-3 dark:text-slate-100">{{ t('font.section.related_title') }}</h2>
+        <p class="mb-4 leading-7 text-gray-700 dark:text-slate-300">{{ t('font.section.related_desc') }}</p>
+        <div class="flex flex-wrap gap-3">
+          <NuxtLinkLocale to="/ttf-to-woff2" class="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-800 transition hover:border-primary hover:text-primary dark:border-slate-600 dark:text-slate-200">
+            {{ t('menu.ttfToWoff2') }}
+          </NuxtLinkLocale>
+          <NuxtLinkLocale to="/font-subsetter" class="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-800 transition hover:border-primary hover:text-primary dark:border-slate-600 dark:text-slate-200">
+            {{ t('menu.fontSubsetter') }}
+          </NuxtLinkLocale>
+          <NuxtLinkLocale to="/compress-woff2" class="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-800 transition hover:border-primary hover:text-primary dark:border-slate-600 dark:text-slate-200">
+            {{ t('menu.compressWoff2') }}
+          </NuxtLinkLocale>
+          <NuxtLinkLocale to="/font-inspector" class="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-800 transition hover:border-primary hover:text-primary dark:border-slate-600 dark:text-slate-200">
+            {{ t('menu.fontInspector') }}
+          </NuxtLinkLocale>
+          <NuxtLinkLocale to="/font-unicode-checker" class="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-800 transition hover:border-primary hover:text-primary dark:border-slate-600 dark:text-slate-200">
+            {{ t('menu.fontUnicodeChecker') }}
+          </NuxtLinkLocale>
+          <NuxtLinkLocale to="/font-css-generator" class="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-800 transition hover:border-primary hover:text-primary dark:border-slate-600 dark:text-slate-200">
+            {{ t('menu.fontCssGenerator') }}
+          </NuxtLinkLocale>
+        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -167,6 +194,7 @@ useToolSeo({
     q: t(`font.section.faq_${index}_q`),
     a: t(`font.section.faq_${index}_a`)
   }))),
+  dateModified: '2026-11-10',
   schemaProperties: { category: 'Font Tools' }
 })
 

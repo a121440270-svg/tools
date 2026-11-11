@@ -80,11 +80,17 @@ export default defineNuxtConfig({
     // `/uppercase` used to render a 200 page containing only a meta refresh,
     // which Google treats as a soft 404. Make it a real 301 instead.
     '/uppercase': { redirect: { to: '/case-converter', statusCode: 301 } },
+    '/upper-case': { redirect: { to: '/case-converter', statusCode: 301 } },
     '/zh/uppercase': { redirect: { to: '/zh/case-converter', statusCode: 301 } },
+    '/zh/upper-case': { redirect: { to: '/zh/case-converter', statusCode: 301 } },
     '/ja/uppercase': { redirect: { to: '/ja/case-converter', statusCode: 301 } },
+    '/ja/upper-case': { redirect: { to: '/ja/case-converter', statusCode: 301 } },
     '/de/uppercase': { redirect: { to: '/de/case-converter', statusCode: 301 } },
+    '/de/upper-case': { redirect: { to: '/de/case-converter', statusCode: 301 } },
     '/fr/uppercase': { redirect: { to: '/fr/case-converter', statusCode: 301 } },
+    '/fr/upper-case': { redirect: { to: '/fr/case-converter', statusCode: 301 } },
     '/ar/uppercase': { redirect: { to: '/ar/case-converter', statusCode: 301 } },
+    '/ar/upper-case': { redirect: { to: '/ar/case-converter', statusCode: 301 } },
     // These pages are noindex, user specific and heavy (Element Plus), so there
     // is no SEO value in server rendering them.
     '/admin/**': { ssr: false },

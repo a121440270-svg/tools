@@ -16,9 +16,19 @@
     "seo_desc": "Convertissez plusieurs images JPG, JPEG et PNG en WebP en ligne. Sélectionnez vos images et téléchargez le résultat en ZIP. Le traitement est local, sans téléversement.",
     "seo_keywords": "convertisseur d’images en ligne, JPG vers WebP, PNG vers WebP, convertisseur WebP par lots, conversion d’images",
     "batch_message": "Sélectionnez plusieurs images JPG et PNG pour les convertir en WebP en une seule fois.",
-    "local_message": "Les fichiers sont traités localement dans votre navigateur et ne sont jamais téléversés."
+    "local_message": "Les fichiers sont traités localement dans votre navigateur et ne sont jamais téléversés.",
+    "seo_title_f": "Convertisseur {format} vers WebP — gratuit et en lot"
   },
   "menu": {
+    "recent": "Récents",
+    "recentClose": "Fermer le menu des pages récentes",
+    "recentCollapse": "Réduire/agrandir le menu des pages récentes",
+    "recentEdgeHide": "Masquer le menu sur le bord de l’écran",
+    "recentOpen": "Afficher le menu des pages récentes",
+    "recentFrequency": "{count} en 24 h",
+    "recentDelete": "Supprimer du menu des pages récentes",
+    "recentEdit": "Modifier le menu des pages récentes",
+    "recentEditDone": "Terminer la modification du menu des pages récentes",
     "alternatives": "Alternatives",
     "ttf": "Compresser une police",
     "fontInspector": "Inspecteur de polices",
@@ -42,7 +52,10 @@
     "webpToPng": "WebP vers PNG",
     "imageCompress": "Compresser une image",
     "idPhoto": "Créer une photo d’identité",
-    "image": "Outils d'image"
+    "image": "Outils d'image",
+    "ttfToWoff2": "Convertisseur TTF vers WOFF2",
+    "fontSubsetter": "Sous-ensembleur de polices",
+    "compressWoff2": "Compresser WOFF2"
   },
   "about": {
     "meTitle": "À propos de moi",
@@ -63,7 +76,7 @@
   },
   "caseTool": {
     "category": "Outils de texte",
-    "title": "Convertisseur de casse",
+    "title": "Convertisseur de casse — Majuscules et minuscules en ligne",
     "description": "Collez du texte pour le convertir automatiquement et le copier dans le presse-papiers.",
     "copy": "Copier dans le presse-papiers",
     "placeholder": "Collez ou saisissez du texte ici...",
@@ -79,7 +92,17 @@
     "pascalCase": "PascalCase",
     "snakeCase": "snake_case",
     "kebabCase": "kebab-case",
-    "copied": "Copié"
+    "copied": "Copié",
+    "faqTitle": "Questions fréquentes",
+    "faq1_q": "Comment convertir un texte en majuscules ?",
+    "faq1_a": "Collez votre texte et cliquez sur le bouton majuscules. Toutes les lettres sont converties instantanément, directement dans votre navigateur.",
+    "faq2_q": "Comment changer des majuscules en minuscules ?",
+    "faq2_a": "Collez le texte et cliquez sur le bouton minuscules. Vous pouvez basculer entre tous les styles sans recoller le texte.",
+    "faq3_q": "Quelle différence entre title case et sentence case ?",
+    "faq3_a": "Le title case met une majuscule au début de chaque mot. Le sentence case ne met une majuscule qu’au début de chaque phrase.",
+    "faq4_q": "Mon texte est-il envoyé à un serveur ?",
+    "faq4_a": "Non. Toutes les conversions s’exécutent localement dans votre navigateur ; votre texte ne quitte jamais votre appareil.",
+    "copyError": "Échec de la copie"
   },
   "uppercase": {
     "desc": "Collez du texte pour le convertir automatiquement en majuscules et le copier dans le presse-papiers.",
@@ -196,9 +219,51 @@
     "register_success": "Inscription réussie. Veuillez vous connecter.",
     "register_failed": "Échec de l’inscription. Veuillez réessayer.",
     "show_password": "Afficher le mot de passe",
-    "hide_password": "Masquer le mot de passe"
+    "hide_password": "Masquer le mot de passe",
+    "password_mismatch": "Les mots de passe ne correspondent pas"
   },
   "password_mismatch": "Le code de confirmation et le mot de passe ne correspondent pas.",
+  "textDedup": {
+    "category": "Outils de texte",
+    "title": "Suppression des doublons de texte",
+    "seoTitle": "Outil gratuit de déduplication de texte en ligne | OnliTool",
+    "seoDescription": "Supprimez les doublons d’un texte en ligne selon les lignes, espaces, virgules ou points-virgules. Combinez les séparateurs, ignorez la casse et retirez les éléments vides. Le traitement reste dans votre navigateur.",
+    "seoKeywords": "déduplication de texte en ligne, supprimer les lignes en double, outil anti-doublons texte, dédupliquer par séparateur, supprimer éléments dupliqués",
+    "description": "Sépare le texte avec les séparateurs choisis et supprime les doublons. Les retours à la ligne, espaces, virgules et points-virgules sont sélectionnés par défaut ; plusieurs séparateurs peuvent être combinés.",
+    "seoFeatureDelimiters": "Dédupliquer selon les retours à la ligne, espaces, virgules, points-virgules et autres symboles",
+    "seoFeatureCase": "Ignorer la casse en option",
+    "seoFeatureEmpty": "Supprimer les lignes ou éléments vides en option",
+    "seoFeatureLocal": "Traiter le texte localement dans le navigateur, sans envoi",
+    "faqTitle": "Questions fréquentes",
+    "faq1Question": "Comment supprimer les doublons d’un texte ?",
+    "faq1Answer": "Collez votre texte, choisissez les séparateurs adaptés à son format ; l’outil conserve la première occurrence de chaque élément dans le résultat.",
+    "faq2Question": "Puis-je utiliser plusieurs séparateurs à la fois ?",
+    "faq2Answer": "Oui. Les retours à la ligne, espaces, virgules et points-virgules sont sélectionnés par défaut. Vous pouvez aussi choisir d’autres symboles ou rétablir la sélection par défaut.",
+    "faq3Question": "Mon texte est-il envoyé à un serveur ?",
+    "faq3Answer": "Non. La déduplication est effectuée dans la page de votre navigateur et le texte saisi n’est pas envoyé à un serveur.",
+    "inputLabel": "Texte à traiter",
+    "outputLabel": "Résultat dédupliqué",
+    "placeholder": "Saisissez le texte à dédupliquer...",
+    "outputPlaceholder": "Le texte dédupliqué apparaîtra ici...",
+    "delimiterLabel": "Séparateurs (sélection multiple)",
+    "delimiterReset": "Réinitialiser la sélection",
+    "delimiterLine": "Retours à la ligne",
+    "delimiterWhitespace": "Espaces",
+    "delimiterComma": "Virgules",
+    "delimiterSemicolon": "Points-virgules",
+    "delimiterCommon": "Autres symboles (| / :)",
+    "ignoreCase": "Ignorer la casse",
+    "removeEmptyLines": "Supprimer les éléments vides",
+    "totalItems": "Total : {count}",
+    "uniqueItems": "Conservés : {count}",
+    "removedItems": "Supprimés : {count}",
+    "copy": "Copier le résultat",
+    "sample": "Charger un exemple",
+    "clear": "Effacer",
+    "copied": "Copié dans le presse-papiers",
+    "copyFailed": "Échec de la copie. Veuillez copier manuellement.",
+    "sampleText": "pomme\nbanane\npomme\nOrange\norange\nbanane"
+  },
   "home": {
     "title": "Trouvez rapidement le bon outil en ligne",
     "seo_desc": "Collection d’outils en ligne : compression de polices TTF, conversion JSON et CSV, conversion d’images en WebP, génération de jetons, hachage et autres outils pratiques pour les développeurs.",
@@ -296,6 +361,10 @@
         "name": "Hacher du texte",
         "description": "Appliquez les algorithmes MD5, SHA et autres à votre texte."
       },
+      "textDedup": {
+        "name": "Suppression des doublons",
+        "description": "Supprime les lignes en double en conservant la première occurrence."
+      },
       "blog": {
         "name": "Blog",
         "description": "Parcourez les articles et tutoriels du site."
@@ -309,24 +378,24 @@
         "description": "Partagez temporairement des commandes, scripts, configurations et textes techniques."
       },
       "fontInspector": {
-        "name": "Font Inspector",
-        "description": "Inspect font metadata, glyph counts, metrics, and Unicode coverage."
+        "name": "Inspecteur de polices",
+        "description": "Inspectez les métadonnées des polices, le nombre de glyphes, les métriques et la couverture Unicode."
       },
       "fontUnicodeChecker": {
-        "name": "Font Unicode Checker",
-        "description": "Check font support for text, Unicode ranges, and language character sets."
+        "name": "Vérificateur Unicode de police",
+        "description": "Vérifiez la prise en charge du texte, des plages Unicode et des jeux de caractères linguistiques par la police."
       },
       "fontSizeAnalyzer": {
-        "name": "Font Size Analyzer",
-        "description": "Analyze font file size, glyph count, character mappings, and OpenType tables."
+        "name": "Analyseur de taille de police",
+        "description": "Analysez la taille du fichier de police, le nombre de glyphes, les mappages de caractères et les tables OpenType."
       },
       "fontValidator": {
-        "name": "Font Validator",
-        "description": "Check font parsing, core tables, glyph outlines, and Unicode mappings."
+        "name": "Validateur de police",
+        "description": "Vérifiez l’analyse de la police, les tables principales, les contours de glyphes et les mappages Unicode."
       },
       "fontCssGenerator": {
-        "name": "Font CSS Generator",
-        "description": "Generate CSS font-face rules and an HTML example for web fonts."
+        "name": "Générateur CSS de police",
+        "description": "Générez des règles CSS font-face et un exemple HTML pour les polices web."
       }
     },
     "seoTitle": "OnliTool - Répertoire d’outils en ligne",
@@ -341,9 +410,9 @@
     "desc": "Saisissez des caractères ou téléversez du texte, extrayez uniquement les glyphes nécessaires du TTF et obtenez un TTF et un WOFF plus compacts."
   },
   "font": {
-    "seo_desc": "Compressez des polices pour le web en ligne : sous-ensemblez des fichiers TTF, OTF, WOFF et WOFF2 dans votre navigateur, supprimez les glyphes inutilisés et téléchargez une police plus légère. Aucun envoi, aucun compte.",
+    "seo_desc": "Compresseur et sous-ensembleur de polices dans votre navigateur : réduisez la taille des fichiers TTF, OTF, WOFF et WOFF2 en ne gardant que les glyphes utilisés — sans upload, sans compte.",
     "seo_keywords": "compresser polices web, compresseur de police, compresser police en ligne, compresser TTF, sous-ensemble de police, réduire la taille d’une police, sous-ensemble WOFF2",
-    "title": "Compresser des polices web en ligne — Compresseur TTF/OTF/WOFF2",
+    "title": "Compresseur de polices — TTF, OTF, WOFF & WOFF2 en ligne",
     "desc": "Importez une police TTF, OTF, WOFF ou WOFF2, choisissez les caractères à conserver et supprimez les glyphes inutilisés pour créer une police web plus légère.",
     "h1": "Compresser des polices pour le web (TTF, OTF, WOFF2)",
     "lead": "Ne gardez que les caractères et glyphes dont votre page a besoin, et allégez les polices TTF, OTF, WOFF et WOFF2 pour le web. Le traitement se fait dans votre navigateur.",
@@ -382,20 +451,22 @@
       "faq_3_q": "Le sous-ensemble de police améliore-t-il les performances web ?",
       "faq_3_a": "Oui. Des fichiers de police plus petits signifient moins de données téléchargées et un chargement plus rapide des pages, tout en conservant les caractères requis.",
       "faq_4_q": "Le WOFF est-il plus petit que le TTF ?",
-      "faq_4_a": "Pour le web, le WOFF est souvent plus adapté car il est optimisé pour le transfert dans les navigateurs. Combiner la sortie WOFF avec le sous-ensemble de police est une stratégie d'optimisation courante."
+      "faq_4_a": "Pour le web, le WOFF est souvent plus adapté car il est optimisé pour le transfert dans les navigateurs. Combiner la sortie WOFF avec le sous-ensemble de police est une stratégie d'optimisation courante.",
+      "related_title": "Outils de polices associés",
+      "related_desc": "Vérifiez les caractères couverts, validez un fichier de police ou générez le CSS {'@'}font-face de votre sous-ensemble."
     },
-    "custom_text": "Custom text",
-    "unicode_range": "Unicode range",
-    "language_preset": "Language preset",
-    "local_processing": "Fonts are processed locally in your browser and are never uploaded.",
-    "original_size": "Original size",
-    "optimized_size": "Optimized size",
-    "saved_size": "Saved size",
+    "custom_text": "Texte personnalisé",
+    "unicode_range": "Plage Unicode",
+    "language_preset": "Préréglage de langue",
+    "local_processing": "Les polices sont traitées localement dans votre navigateur et ne sont jamais téléversées.",
+    "original_size": "Taille d'origine",
+    "optimized_size": "Taille optimisée",
+    "saved_size": "Taille économisée",
     "reduction": "Reduction",
     "glyph_count": "Glyphs",
     "tools": {
-      "inspector": "Font Inspector",
-      "unicodeChecker": "Font Unicode Checker"
+      "inspector": "Inspecteur de polices",
+      "unicodeChecker": "Vérificateur Unicode de police"
     }
   },
   "privacy": {
@@ -437,10 +508,16 @@
     "gotoPage": "Aller à la page",
     "go": "OK",
     "totalItems": "{total} éléments au total",
-    "defaultTitle": "Blog"
+    "defaultTitle": "Blog",
+    "collapseCatalog": "Réduire la table des matières",
+    "expandCatalog": "Développer la table des matières"
   },
   "common": {
-    "loading": "Chargement..."
+    "clear": "Effacer",
+    "loading": "Chargement...",
+    "copyFailed": "Échec de la copie",
+    "copy": "Copier",
+    "copySuccess": "Copié avec succès"
   },
   "jsoncsv": {
     "title": "Convertisseur JSON et CSV",
@@ -479,12 +556,15 @@
     "seoTitlePng": "WebP vers PNG en ligne — Convertisseur d’images par lots",
     "seoDescPng": "Convertisseur WebP vers PNG en ligne pour la conversion d’images par lots. Sûr et efficace.",
     "seoTitleJpg": "WebP vers JPG en ligne — Convertisseur d’images par lots",
-    "seoDescJpg": "Convertisseur WebP vers JPG en ligne pour la conversion d’images par lots. Sûr et efficace."
+    "seoDescJpg": "Convertisseur WebP vers JPG en ligne pour la conversion d’images par lots. Sûr et efficace.",
+    "success": "Conversion réussie"
   },
   "prompts": {
     "title": "Prompts",
     "name": "Bibliothèque de prompts",
-    "write": "AJOUTER"
+    "write": "AJOUTER",
+    "fetchError": "Échec du chargement des prompts. Veuillez réessayer plus tard.",
+    "needLogin": "Veuillez d'abord vous connecter"
   },
   "compress": {
     "title": "Compresseur d’images en ligne gratuit"
@@ -493,6 +573,7 @@
     "badge": "Décodeur de temps",
     "title": "Décodeur de formats temporels",
     "description": "Collez une chaîne horaire ou un horodatage, détectez automatiquement le format et convertissez-le dans le format de sortie fixe souhaité.",
+    "insertCurrentTimestamp": "Insérer l’horodatage actuel",
     "copyResult": "Copier le résultat",
     "loadSample": "Données d’exemple",
     "clear": "Effacer",
@@ -528,9 +609,9 @@
       "chineseDate": "Date chinoise",
       "mixedInput": "Saisie de dates mixtes"
     },
-    "seoTitle": "Décodeur de format de temps – détectez automatiquement les horodatages et formats de date",
-    "seoDescription": "Détectez automatiquement les secondes/millisecondes Unix, ISO 8601, dates chinoises et d’autres formats de temps, puis convertissez-les dans des formats fixes comme yyyy-MM-dd.",
-    "seoKeywords": "décodeur de format de temps, reconnaissance d’horodatage, horodatage Unix, ISO 8601, conversion de format de date, analyse de chaîne horaire, format yyyy-MM-dd",
+    "seoTitle": "Décodeur de format de date et horodatage actuel",
+    "seoDescription": "Insérez l’horodatage Unix actuel dans le champ de saisie en un clic. Détectez et convertissez également les horodatages Unix, ISO 8601 et d’autres formats de date.",
+    "seoKeywords": "horodatage actuel, insérer l’horodatage actuel, décodeur de format de date, reconnaissance d’horodatage, horodatage Unix, ISO 8601, conversion de date",
     "messages": {
       "noScript": "Il n'y a aucun script à copier",
       "scriptCopied": "Script copié dans le presse-papiers",
@@ -539,7 +620,8 @@
       "outputCopied": "Format horaire copié dans le presse-papiers",
       "noUtcData": "Il n'y a aucun contenu horaire à convertir",
       "utcCopied": "Heure UTC copiée"
-    }
+    },
+    "faqTitle": "Questions fréquentes"
   },
   "webpTo": {
     "batch_message": "Sélectionnez plusieurs images WebP et téléchargez les résultats en lot sous forme de ZIP.",
@@ -596,7 +678,7 @@
     "eyebrow": "Transmission de scripts à distance",
     "title": "Envoyez un script à un utilisateur distant en quelques secondes",
     "description": "Partagez des scripts, commandes et configurations avec un lien de partage.",
-    "expiryNotice": "Choisissez la durée de disponibilité du lien. Par défaut, il n’expire jamais.",
+    "expiryNotice": "Choisissez la durée de disponibilité du lien. Après expiration, il ne fonctionnera plus et les autres ne pourront plus consulter son contenu. Par défaut, il n’expire jamais.",
     "loading": "Chargement du contenu partagé...",
     "visitorMode": "Mode visiteur · contenu partagé en lecture seule",
     "createOwn": "Créer votre propre partage",
@@ -605,6 +687,13 @@
     "save": "Enregistrer",
     "saving": "Enregistrement...",
     "saveTitle": "Enregistrer le lien et son contenu",
+    "delete": "Supprimer",
+    "deleting": "Suppression...",
+    "deleteTitle": "Supprimer cette note et désactiver son lien",
+    "deleteConfirm": "Supprimer cette note ? Son lien enregistré ne fonctionnera plus et son contenu sera effacé.",
+    "cancel": "Annuler",
+    "deleted": "La note a été supprimée et son lien n’est plus disponible.",
+    "deleteFailed": "Impossible de supprimer la note. Veuillez réessayer.",
     "copy": "Copier",
     "copyTitle": "Enregistrer et copier le lien",
     "qr": "Code QR",
@@ -623,6 +712,8 @@
     "contentFormat": "Format du contenu",
     "plainText": "Texte brut",
     "commands": "Commandes, scripts, configurations",
+    "download": "Télécharger",
+    "downloadTitle": "Télécharger le contenu actuel",
     "refresh": "Actualiser",
     "refreshTitle": "Recharger le contenu partagé",
     "fullscreen": "Plein écran",
@@ -759,7 +850,10 @@
     "placeholder": "Votre texte à hacher...",
     "encoding": "Encodage du condensat",
     "hex": "Hexadécimal (base 16)",
-    "copyTitle": "Copier dans le presse-papiers"
+    "copyTitle": "Copier dans le presse-papiers",
+    "category": "Outils de texte",
+    "copied": "Copié",
+    "seoTitle": "Générateur de hash de texte — MD5, SHA-1, SHA-256 en ligne"
   },
   "tokenTool": {
     "category": "Sécurité",
@@ -774,7 +868,8 @@
     "alphanumeric": "Alphanumérique (A-Z, a-z, 0-9)",
     "hex": "Hexadécimal (0-9, a-f)",
     "base64": "Base64 (A-Z, a-z, 0-9, +, /, =)",
-    "copied": "Copié dans le presse-papiers"
+    "copied": "Copié dans le presse-papiers",
+    "seoTitle": "Générateur de jetons aléatoires — sécurisé, en ligne, gratuit"
   },
   "jsonFormatter": {
     "category": "Outil JSON",
@@ -973,16 +1068,16 @@
       "seoTitle": "Convertisseur d’images - Outil gratuit — OnliTool",
       "seoDescription": "Convertissez vos images en JPG, PNG, WebP ou AVIF dans le navigateur. Traitement local par lots, téléchargement individuel ou ZIP.",
       "seoKeywords": "convertisseur d’images, convertir image en ligne, convertisseur JPG PNG, convertisseur WebP",
-      "inputAccepted": "JPG, PNG, WebP, AVIF, GIF, BMP, SVG and HEIC",
+      "inputAccepted": "JPG, PNG, WebP, AVIF, GIF, BMP, SVG et HEIC",
       "convertTo": "Convert to",
-      "convertButton": "Convert images",
+      "convertButton": "Convertir les images",
       "converting": "Processing {current}/{total}...",
       "failed": "Failed",
-      "noFiles": "No supported image files were selected.",
-      "decodeError": "Could not decode image {name} in this browser.",
-      "outputUnsupported": "This browser cannot encode {format}. Choose another output format.",
-      "imageTooLarge": "This image exceeds the 100-megapixel processing limit.",
-      "convertError": "Could not convert this image."
+      "noFiles": "Aucun fichier image pris en charge n'a été sélectionné.",
+      "decodeError": "Impossible de décoder l’image {name} dans ce navigateur.",
+      "outputUnsupported": "Ce navigateur ne peut pas encoder {format}. Choisissez un autre format de sortie.",
+      "imageTooLarge": "Cette image dépasse la limite de traitement de 100 mégapixels.",
+      "convertError": "Impossible de convertir cette image."
     },
     "heic": {
       "title": "Convertisseur HEIC en JPG",
@@ -990,7 +1085,7 @@
       "seoTitle": "Convertisseur HEIC en JPG - Outil gratuit — OnliTool",
       "seoDescription": "Convertissez les photos HEIC et HEIF en JPG, PNG ou WebP localement. Conversion par lots sans téléversement.",
       "seoKeywords": "HEIC en JPG, convertir HEIC en ligne, convertisseur HEIF, convertir photos iPhone",
-      "acceptedFormats": "Select one or more HEIC / HEIF photos"
+      "acceptedFormats": "Sélectionnez une ou plusieurs photos HEIC / HEIF"
     },
     "resizer": {
       "title": "Redimensionneur d’images",
@@ -998,18 +1093,18 @@
       "seoTitle": "Redimensionneur d’images - Redimensionner en ligne — OnliTool",
       "seoDescription": "Redimensionnez les images JPG, PNG et WebP par dimensions, pourcentage ou taille maximale. Traitement local et privé par lots.",
       "seoKeywords": "redimensionner image en ligne, redimensionneur d’images, modifier taille image, redimensionner images par lots",
-      "mode": "Resize mode",
+      "mode": "Mode de redimensionnement",
       "dimensionsMode": "Dimensions",
       "percentageMode": "Percentage",
-      "maxMode": "Maximum edge",
-      "keepRatio": "Keep aspect ratio",
+      "maxMode": "Arête maximale",
+      "keepRatio": "Conserver les proportions",
       "scale": "Scale",
-      "maxDimension": "Longest edge",
-      "outputFormat": "Output format",
-      "resizeButton": "Resize images",
-      "imageTooLarge": "{name} exceeds the 100-megapixel processing limit.",
-      "invalidDimensions": "Enter valid dimensions under the 100-megapixel processing limit.",
-      "resizeError": "Could not resize this image."
+      "maxDimension": "Côté le plus long",
+      "outputFormat": "Format de sortie",
+      "resizeButton": "Redimensionner les images",
+      "imageTooLarge": "{name} dépasse la limite de traitement de 100 mégapixels.",
+      "invalidDimensions": "Saisissez des dimensions valides inférieures à la limite de 100 mégapixels.",
+      "resizeError": "Impossible de redimensionner cette image."
     },
     "cropper": {
       "title": "Recadrer une image",
@@ -1017,17 +1112,17 @@
       "seoTitle": "Recadrer une image en ligne — OnliTool",
       "seoDescription": "Recadrez des images JPG, PNG et WebP librement ou avec un format prédéfini, directement dans le navigateur.",
       "seoKeywords": "recadrer image, outil de recadrage photo, recadrage image en ligne",
-      "aspectRatio": "Aspect ratio",
+      "aspectRatio": "Proportions",
       "free": "Free",
       "square": "1:1",
       "landscape43": "4:3",
       "wide169": "16:9",
       "portrait916": "9:16",
-      "chooseAnother": "Choose another image",
-      "cropButton": "Crop image",
-      "loadError": "Could not load this image.",
-      "invalidSelection": "Select an area larger than zero pixels.",
-      "cropError": "Could not crop this image."
+      "chooseAnother": "Choisir une autre image",
+      "cropButton": "Recadrer l'image",
+      "loadError": "Impossible de charger cette image.",
+      "invalidSelection": "Sélectionnez une zone de plus de zéro pixel.",
+      "cropError": "Impossible de recadrer cette image."
     },
     "base64": {
       "toTitle": "Image vers Base64",
@@ -1040,21 +1135,21 @@
       "fromSeoDescription": "Décodez une image Base64 dans le navigateur et téléchargez-la en PNG, JPG ou WebP.",
       "toSeoKeywords": "image en Base64, image Data URL, convertisseur Base64 image",
       "fromSeoKeywords": "Base64 en image, Data URL en image, décoder image Base64",
-      "changeImage": "Choose another image",
-      "outputType": "Output type",
-      "dataUrl": "Data URL",
+      "changeImage": "Choisir une autre image",
+      "outputType": "Type de sortie",
+      "dataUrl": "URL de données",
       "output": "Output",
       "copy": "Copy",
       "copied": "Copied",
-      "copyError": "Clipboard access failed. Select and copy the text manually.",
-      "readError": "Could not read this image file.",
-      "pasteLabel": "Paste Base64 or a Data URL",
+      "copyError": "Échec de l'accès au presse-papiers. Sélectionnez et copiez le texte manuellement.",
+      "readError": "Impossible de lire ce fichier image.",
+      "pasteLabel": "Collez du Base64 ou une URL de données",
       "placeholder": "data:image/png;base64,...",
-      "previewButton": "Decode image",
-      "previewAlt": "Decoded image preview",
-      "invalidInput": "Enter a valid Base64 string or image Data URL.",
-      "tooLarge": "The decoded image exceeds the 50 MB limit.",
-      "decodeError": "Could not decode this image. Check the Base64 input and format."
+      "previewButton": "Décoder l'image",
+      "previewAlt": "Aperçu de l’image décodée",
+      "invalidInput": "Saisissez une chaîne Base64 valide ou une URL de données d'image.",
+      "tooLarge": "L’image décodée dépasse la limite de 50 Mo.",
+      "decodeError": "Impossible de décoder cette image. Vérifiez l’entrée Base64 et le format."
     },
     "info": {
       "title": "Informations sur l’image",
@@ -1086,20 +1181,20 @@
       "seoTitle": "Informations et métadonnées d’image — OnliTool",
       "seoDescription": "Affichez les dimensions, la taille, le format et les métadonnées EXIF/GPS dans votre navigateur.",
       "seoKeywords": "informations image, métadonnées image, lecteur EXIF, dimensions photo",
-      "fileName": "File name",
-      "fileSize": "File size",
-      "aspectRatio": "Aspect ratio",
-      "colorMode": "Color mode",
-      "decodedMode": "Browser-decoded RGBA data",
+      "fileName": "Nom du fichier",
+      "fileSize": "Taille du fichier",
+      "aspectRatio": "Proportions",
+      "colorMode": "Mode colorimétrique",
+      "decodedMode": "Données RGBA décodées par le navigateur",
       "metadata": "Metadata",
-      "noMetadata": "No readable EXIF metadata found.",
-      "cameraMake": "Camera make",
-      "cameraModel": "Camera model",
-      "dateTaken": "Date taken",
+      "noMetadata": "Aucune métadonnée EXIF lisible trouvée.",
+      "cameraMake": "Marque de l'appareil",
+      "cameraModel": "Modèle de l'appareil",
+      "dateTaken": "Date de prise de vue",
       "software": "Software",
-      "latitude": "GPS latitude",
-      "longitude": "GPS longitude",
-      "readError": "Could not read {name}."
+      "latitude": "Latitude GPS",
+      "longitude": "Longitude GPS",
+      "readError": "Impossible de lire {name}."
     },
     "exif": {
       "title": "Supprimer les métadonnées EXIF",
@@ -1108,10 +1203,10 @@
       "seoTitle": "Supprimer les métadonnées EXIF d’une image — OnliTool",
       "seoDescription": "Supprimez la localisation GPS, les détails de l’appareil et les métadonnées EXIF sans téléversement.",
       "seoKeywords": "supprimer EXIF, supprimer métadonnées image, retirer GPS photo",
-      "outputFormat": "Clean output format",
-      "removeButton": "Remove metadata",
-      "privacyNote": "The output is re-encoded locally and does not retain the source file's EXIF metadata.",
-      "processError": "Could not remove metadata from this image."
+      "outputFormat": "Format de sortie nettoyé",
+      "removeButton": "Supprimer les métadonnées",
+      "privacyNote": "La sortie est ré-encodée localement et ne conserve pas les métadonnées EXIF du fichier source.",
+      "processError": "Impossible de supprimer les métadonnées de cette image."
     },
     "exifEditor": {
       "eyebrow": "Éditeur de métadonnées JPEG",
@@ -1217,10 +1312,10 @@
       "seoTitle": "Pipette de couleur d’image - HEX, RGB, HSL — OnliTool",
       "seoDescription": "Prélevez des couleurs d’une image et explorez sa palette localement dans le navigateur.",
       "seoKeywords": "pipette couleur image, extraire palette image, couleur HEX RGB HSL",
-      "changeImage": "Choose another image",
-      "clickHint": "Click the image to sample a pixel color.",
-      "dominantColors": "Common colors",
-      "readError": "Could not read pixel colors from this image."
+      "changeImage": "Choisir une autre image",
+      "clickHint": "Cliquez sur l’image pour échantillonner la couleur d’un pixel.",
+      "dominantColors": "Couleurs fréquentes",
+      "readError": "Impossible de lire les couleurs des pixels de cette image."
     },
     "svg": {
       "title": "Convertisseur SVG",
@@ -1228,13 +1323,14 @@
       "seoTitle": "Convertisseur SVG vers PNG ou WebP — OnliTool",
       "seoDescription": "Convertissez localement des graphiques SVG en PNG ou WebP et choisissez les dimensions de sortie.",
       "seoKeywords": "convertisseur SVG, SVG en PNG, SVG en WebP",
-      "chooseAnother": "Choose another SVG",
-      "convertButton": "Convert SVG",
-      "invalidFile": "This is not a valid SVG file.",
-      "fileTooLarge": "SVG files must be smaller than 10 MB.",
-      "invalidDimensions": "Enter valid dimensions within the 100-megapixel limit.",
-      "convertError": "Could not convert this SVG."
-    }
+      "chooseAnother": "Choisir un autre SVG",
+      "convertButton": "Convertir le SVG",
+      "invalidFile": "Ce n'est pas un fichier SVG valide.",
+      "fileTooLarge": "Les fichiers SVG doivent être inférieurs à 10 Mo.",
+      "invalidDimensions": "Saisissez des dimensions valides dans la limite de 100 mégapixels.",
+      "convertError": "Impossible de convertir ce SVG."
+    },
+    "processing": "Traitement…"
   },
   "footer": {
     "about": "À propos",
@@ -1246,5 +1342,91 @@
     "navLabel": "Navigation de pied de page",
     "tagline": "Des outils gratuits et respectueux de la vie privée pour les développeurs, les designers et tous ceux qui veulent traiter un fichier ou un texte rapidement.",
     "localFirst": "Local d'abord · Sans inscription"
+  },
+  "reduceImage": {
+    "eyebrow": "Réduire la taille d’une image",
+    "title": "Réduire la taille d’une image à {size} en ligne",
+    "description": "Réduisez vos photos et graphiques à {size} sans téléverser de fichiers. Conservez la meilleure qualité possible tout en restant sous la taille cible.",
+    "compressNow": "Réduire l’image maintenant",
+    "whyTitle": "Pourquoi réduire à {size} ?",
+    "whyDescription": "Cette cible garde les images légères pour les sites Web, formulaires, pièces jointes et autres limites de téléversement, en préservant un maximum de détails visuels.",
+    "faqTitle": "Questions fréquentes",
+    "question1": "Puis-je réduire une image à {size} ?",
+    "answer1": "Oui. Ajustez les dimensions et la qualité de sortie directement dans votre navigateur pour atteindre la cible, sans aucun téléversement.",
+    "question2": "La qualité sera-t-elle préservée ?",
+    "answer2": "Cela dépend de l’image d’origine. Le compresseur baisse la qualité par petites étapes et s’arrête dès que le fichier respecte la cible.",
+    "question3": "Quels formats d’image sont pris en charge ?",
+    "answer3": "JPG, PNG, WebP et autres formats courants. La sortie conserve le format d’origine sauf choix contraire.",
+    "seoTitle": "Réduire la taille d’une image à {size} en ligne — OnliTool",
+    "seoDescription": "Réduisez en ligne la taille d’une image à {size} dans votre navigateur. Rendez vos photos plus légères sans téléversement, avec la meilleure qualité possible.",
+    "seoKeywords": "réduire taille image à {size}, réduire image, réduire poids photo, photo à {size}, réduire image en ligne"
+  },
+  "compressFontTarget": {
+    "eyebrow": "Compression {format}",
+    "title": "Compresser {format} en ligne",
+    "description": "Réduisez la taille des fichiers {format} en supprimant les glyphes inutilisés et en exportant un format Web efficace. Tout s’exécute localement dans votre navigateur.",
+    "compressNow": "Compresser {format} maintenant",
+    "whyTitle": "Pourquoi compresser {format} ?",
+    "whyDescription": "Des polices plus légères accélèrent le chargement des pages et améliorent les Core Web Vitals. Un sous-ensemble limité aux caractères réellement utilisés ne pèse qu’une fraction de l’original.",
+    "faqTitle": "Questions fréquentes",
+    "question1": "Comment compresser un fichier {format} ?",
+    "answer1": "Ouvrez le compresseur de polices, téléversez votre fichier {format}, conservez les caractères nécessaires et téléchargez une police Web plus légère. Aucun fichier n’est envoyé à un serveur.",
+    "question2": "La compression {format} est-elle sans perte ?",
+    "answer2": "Les glyphes conservés restent intacts. Le gain de taille vient de la suppression des glyphes, ligatures et fonctionnalités OpenType que votre texte n’utilise jamais.",
+    "question3": "Quel format de sortie choisir ?",
+    "answer3": "WOFF2 est le meilleur choix par défaut pour les navigateurs modernes ; WOFF couvre les plus anciens. Conservez toujours le fichier d’origine pour les modifications futures.",
+    "seoTitle": "Compresser {format} en ligne — compresseur {format} gratuit",
+    "seoDescription": "Compressez vos fichiers {format} en ligne en sous-ensembleant les glyphes inutilisés. Réduisez la taille des polices Web sans téléversement — exécution locale dans le navigateur.",
+    "seoKeywords": "compresser {format}, compresseur {format}, réduire taille {format}, compresser {format} en ligne, compression police web"
+  },
+  "fontSubset": {
+    "eyebrow": "Sous-ensemble de police",
+    "title": "Font Subsetter — sous-ensembles de polices en ligne",
+    "description": "Créez un sous-ensemble de toute police TTF, OTF, WOFF ou WOFF2 en ne gardant que les caractères utiles à votre projet. Tout s’exécute localement dans votre navigateur.",
+    "compressNow": "Créer un sous-ensemble",
+    "whyTitle": "Pourquoi créer un sous-ensemble ?",
+    "whyDescription": "Une police CJK ou d’icônes complète peut peser plusieurs Mo ; un sous-ensemble limité aux glyphes réellement utilisés descend souvent à quelques dizaines de Ko.",
+    "faqTitle": "Questions fréquentes",
+    "question1": "Comment créer un sous-ensemble de police ?",
+    "answer1": "Collez le texte affiché par votre page (ou choisissez un préréglage de langue), téléversez la police et téléchargez le sous-ensemble. Tout se passe dans le navigateur.",
+    "question2": "Quels formats sont pris en charge ?",
+    "answer2": "Entrées TTF, OTF, WOFF et WOFF2 ; sorties TTF, WOFF ou WOFF2.",
+    "question3": "Un sous-ensemble peut-il retrouver des glyphes supprimés ?",
+    "answer3": "Non. Conservez le fichier de police d’origine — les sous-ensembles suppriment définitivement les caractères non sélectionnés.",
+    "seoTitle": "Font Subsetter — réduire la taille des polices en ligne",
+    "seoDescription": "Créez des sous-ensembles de polices TTF, OTF, WOFF et WOFF2 en ligne. Ne gardez que les glyphes utiles et réduisez la taille de 90 % ou plus — sans téléversement, dans votre navigateur.",
+    "seoKeywords": "font subsetter, sous-ensemble police, sous-ensemble de police en ligne, réduire taille police, sous-ensemble police web"
+  },
+  "fontConvert": {
+    "title": "Convertisseur TTF vers WOFF2",
+    "lead": "Convertissez les polices TTF, OTF et WOFF en WOFF2 — ou WOFF2 en TTF — directement dans votre navigateur. Sans téléversement, sans compte.",
+    "upload": "Téléverser une police",
+    "selected": "Sélectionnée : {name}",
+    "direction": "Convertir en",
+    "toWoff2": "WOFF2 (Web)",
+    "toTtf": "TTF (bureau)",
+    "start": "Convertir",
+    "clear": "Effacer",
+    "success": "Conversion réussie",
+    "download": "Télécharger la police convertie",
+    "original": "Taille d’origine",
+    "converted": "Taille convertie",
+    "saving": "Écart de taille",
+    "error": "Échec de la conversion. La police utilise peut-être des tables non prises en charge ou contient des données invalides.",
+    "noFile": "Choisissez d’abord un fichier de police TTF, OTF, WOFF ou WOFF2.",
+    "localProcessing": "La police ne quitte jamais votre navigateur — la conversion s’exécute localement via WebAssembly.",
+    "faqTitle": "Questions fréquentes",
+    "q1": "Comment convertir un TTF en WOFF2 ?",
+    "a1": "Téléversez le fichier TTF, choisissez WOFF2 en sortie et cliquez sur Convertir. Le téléchargement démarre immédiatement et rien n’est envoyé à un serveur.",
+    "q2": "Puis-je reconvertir un WOFF2 en TTF ?",
+    "a2": "Oui. Choisissez TTF comme format de sortie — l’outil décompresse le WOFF2 et reconstruit une police TrueType standard.",
+    "q3": "Pourquoi WOFF2 est-il plus petit que TTF ?",
+    "a3": "WOFF2 applique la compression Brotli et un encodage des glyphes plus efficace, réduisant généralement la taille de 30 à 50 % de plus que WOFF.",
+    "q4": "Tous les navigateurs prennent-ils en charge WOFF2 ?",
+    "a4": "Tous les navigateurs modernes depuis 2016. Ne proposez le TTF en repli que pour les très vieux appareils.",
+    "seoTitle": "Convertisseur TTF vers WOFF2 — gratuit et en ligne (WOFF2 vers TTF)",
+    "seoDescription": "Convertissez en ligne vos polices TTF, OTF ou WOFF en WOFF2, ou WOFF2 en TTF. Gratuit, sans téléversement, sans inscription — conversion locale dans le navigateur.",
+    "seoKeywords": "ttf vers woff2, convertisseur ttf woff2, woff2 vers ttf, otf vers woff2, convertir police en woff2, convertisseur de polices en ligne",
+    "related": "Outils de polices associés"
   }
 }

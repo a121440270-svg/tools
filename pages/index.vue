@@ -208,6 +208,22 @@
           {{ t('home.all') }}
         </button>
       </div>
+
+      <!-- footer -->
+      <footer class="pb-8" :dir="isRtl ? 'rtl' : 'ltr'">
+        <nav
+          class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-2xl border border-slate-200 bg-white/95 px-4 py-4 text-xs font-medium shadow-sm dark:border-slate-800 dark:bg-slate-900/95"
+          :aria-label="t('footer.navLabel')"
+        >
+          <NuxtLink :to="localePath('/about')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ t('footer.about') }}</NuxtLink>
+          <NuxtLink :to="localePath('/blog')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ t('footer.blog') }}</NuxtLink>
+          <NuxtLink :to="localePath('/alternatives')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ t('menu.alternatives') }}</NuxtLink>
+          <NuxtLink :to="localePath('/privacy')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ t('footer.privacy') }}</NuxtLink>
+          <NuxtLink :to="localePath('/terms')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ t('footer.terms') }}</NuxtLink>
+          <NuxtLink :to="localePath('/contact')" class="text-slate-600 transition hover:text-[#ff5a2d] dark:text-slate-300 dark:hover:text-[#ff7a52]">{{ t('footer.contact') }}</NuxtLink>
+        </nav>
+        <p class="mt-3 text-center text-[11px] text-slate-400 dark:text-slate-500">© {{ currentYear }} OnliTool. {{ t('footer.rights') }}</p>
+      </footer>
     </div>
   </div>
 </template>
@@ -222,6 +238,9 @@ import { computed, defineComponent, h, onBeforeUnmount, onMounted, ref } from 'v
 const { t, locales, locale, setLocale } = useI18n()
 const localePath = useLocalePath()
 const { toggleTheme, isDark } = useTheme()
+
+const isRtl = computed(() => locale.value === 'ar')
+const currentYear = new Date().getFullYear()
 
 function changeLanguage(event) {
   setLocale(event.target.value)
@@ -590,6 +609,12 @@ const toolGroups = computed(() => [
         path: '/hash-text',
         description: t('home.tools.hash.description'),
         icon: HashIcon
+      },
+      {
+        name: t('home.tools.textDedup.name'),
+        path: '/text-dedup',
+        description: t('home.tools.textDedup.description'),
+        icon: TextIcon
       }
     ]
   },
@@ -657,6 +682,8 @@ function toggleGroup(groupKey) {
   }
 }
 
+const siteUrl = useRuntimeConfig().public?.siteUrl || 'https://onlitools.com'
+
 useToolSeo({
   title: computed(() => t('home.seoTitle')),
   description: computed(() => t('home.seoDescription')),
@@ -665,7 +692,8 @@ useToolSeo({
   schemaProperties: computed(() => ({
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://onlitools.com/?q={search_term_string}',
+      // Point sitelinks search at the localized home, which reads `?q=`.
+      target: `${siteUrl}${localePath('/')}?q={search_term_string}`,
       'query-input': 'required name=search_term_string'
     }
   }))
