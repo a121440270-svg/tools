@@ -11,12 +11,12 @@
         </div>
         <div class="hero-foot">
           <span class="pulse" aria-hidden="true" />
-          <span>No upload · No signup · Runs in your browser</span>
+          <span>{{ heroFoot }}</span>
         </div>
       </div>
 
       <aside class="meta-card reveal" style="--rd: 160ms">
-        <span class="meta-label">What you can do</span>
+        <span class="meta-label">{{ metaLabel }}</span>
         <ul>
           <li v-for="item in points" :key="item">{{ item }}</li>
         </ul>
@@ -39,8 +39,8 @@
     <div id="tool" class="tool-shell reveal" style="--rd: 340ms">
       <div class="tool-bar">
         <span class="tool-bar-dot" aria-hidden="true" />
-        <span>Tool — runs locally in your browser</span>
-        <span class="tool-bar-hint">↓ scroll &amp; try it</span>
+        <span>{{ toolBarText }}</span>
+        <span class="tool-bar-hint">{{ toolBarHint }}</span>
       </div>
       <slot />
     </div>
@@ -64,7 +64,13 @@ const props = defineProps({
   seoTitle: { type: String, default: '' },
   /** Optional meta description override; falls back to `description`. */
   seoDescription: { type: String, default: '' },
-  seoKeywords: { type: String, default: '' }
+  seoKeywords: { type: String, default: '' },
+  /** Optional FAQ pairs used for both the visible list and FAQPage schema. */
+  faqItems: { type: Array, default: () => [] },
+  heroFoot: { type: String, default: 'No upload · No signup · Runs in your browser' },
+  metaLabel: { type: String, default: 'What you can do' },
+  toolBarText: { type: String, default: 'Tool — runs locally in your browser' },
+  toolBarHint: { type: String, default: '↓ scroll & try it' }
 })
 
 const resolvedSeoTitle = computed(() => {
@@ -77,7 +83,8 @@ useToolSeo({
   title: resolvedSeoTitle,
   description: computed(() => props.seoDescription || props.description),
   keywords: computed(() => props.seoKeywords),
-  featureList: computed(() => props.points)
+  featureList: computed(() => props.points),
+  faqItems: computed(() => props.faqItems)
 })
 </script>
 

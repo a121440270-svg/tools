@@ -56,7 +56,7 @@ const GROUPS = [
     match: (path) => [
       '/base64-to-image', '/heic-to-jpg', '/id-photo', '/image-aspect-ratio',
       '/image-color-picker', '/image-converter', '/image-cropper', '/image-resizer',
-      '/image-to-base64', '/image-to-webp', '/increase-image-size', '/svg-converter',
+      '/image-to-base64', '/image-to-webp', '/increase-image-size', '/merge-images', '/svg-converter',
       '/webp-to-jpg', '/webp-to-png'
     ].includes(path)
   },

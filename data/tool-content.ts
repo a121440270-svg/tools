@@ -446,6 +446,21 @@ const toolContent: Record<string, ToolContent> = {
       'Check the final size against the portal requirement.',
     ],
   },
+  '/merge-images': {
+    heading: 'Merge images into one picture',
+    paragraphs: [
+      'This tool joins two or more images edge to edge into a single file. Stack screenshots vertically, place photos side by side or arrange everything in a grid, then set the spacing, outer margin, background colour and alignment to the exact pixel you need.',
+      'Merging is different from a collage and different from a PDF merge. A collage arranges images in a decorative template with overlaps and captions; a PDF merge produces a multi-page document. This page produces one continuous raster image, which is what long screenshots, chat histories, receipts and comparison charts actually require.',
+      'For screenshots, use the vertical layout with the “keep original pixels” strategy. Every image is drawn at its native resolution with no resampling, so text and UI edges stay sharp. The tool shows the exact output dimensions and the real encoded file size, and if the result is too heavy you can send it straight to the image compressor with a target in kilobytes.',
+      'All rendering happens in your browser through the Canvas API. Files are never uploaded, there is no account and the output carries no watermark. HEIC and HEIF photos need to be converted to JPG first, and very large canvases are scaled down automatically within browser limits.',
+    ],
+    bullets: [
+      'Vertical, side-by-side and grid layouts with 2–4 columns.',
+      'Four sizing strategies: shrink, enlarge, crop to a common edge, or keep original pixels.',
+      'PNG for lossless screenshots, JPG or WebP when file size matters more.',
+      'Up to 20 images, 50 MP per image and 200 MP in total.',
+    ],
+  },
   '/json-compare': {
     heading: 'Compare two JSON documents',
     paragraphs: [

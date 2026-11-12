@@ -435,6 +435,12 @@ const toolGroups = computed(() => [
         icon: ImageIcon
       },
       {
+        name: t('mergeTool.navTitle'),
+        path: '/merge-images',
+        description: t('mergeTool.homeDescription'),
+        icon: ImageIcon
+      },
+      {
         name: t('imageTools.base64.toTitle'),
         path: '/image-to-base64',
         description: t('imageTools.base64.toDescription'),

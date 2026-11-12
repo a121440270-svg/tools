@@ -164,6 +164,12 @@
         </div>
       </div>
     </div>
+
+    <nav class="mt-6 flex flex-wrap gap-x-6 gap-y-2 border-t border-slate-200 pt-6 text-sm dark:border-slate-700" :aria-label="t('imageTools.relatedTitle')">
+      <NuxtLinkLocale to="/merge-images" class="text-primary transition hover:underline">{{ t('mergeTool.navTitle') }}</NuxtLinkLocale>
+      <NuxtLinkLocale to="/image-resizer" class="text-primary transition hover:underline">{{ t('imageTools.resizer.title') }}</NuxtLinkLocale>
+      <NuxtLinkLocale to="/image-converter" class="text-primary transition hover:underline">{{ t('imageTools.converter.title') }}</NuxtLinkLocale>
+    </nav>
   </div>
 </template>
 

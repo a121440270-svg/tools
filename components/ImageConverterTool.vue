@@ -62,6 +62,7 @@
       <NuxtLinkLocale v-if="!isHeicOnly" to="/heic-to-jpg" class="text-primary transition hover:underline">{{ t('imageTools.heic.title') }}</NuxtLinkLocale>
       <NuxtLinkLocale v-else to="/image-converter" class="text-primary transition hover:underline">{{ t('imageTools.converter.title') }}</NuxtLinkLocale>
       <NuxtLinkLocale to="/image-compress" class="text-primary transition hover:underline">{{ t('imageTools.related.compress') }}</NuxtLinkLocale>
+      <NuxtLinkLocale to="/merge-images" class="text-primary transition hover:underline">{{ t('mergeTool.navTitle') }}</NuxtLinkLocale>
     </nav>
   </main>
 </template>

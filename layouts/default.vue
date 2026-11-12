@@ -1317,6 +1317,7 @@ const categories = ref([
       { name: "imageTools.heic.title", path: "/heic-to-jpg", icon: markRaw(WebpIcon) },
       { name: "imageTools.resizer.title", path: "/image-resizer", icon: markRaw(WebpIcon) },
       { name: "imageTools.cropper.title", path: "/image-cropper", icon: markRaw(WebpIcon) },
+      { name: "mergeTool.navTitle", path: "/merge-images", icon: markRaw(WebpIcon) },
       { name: "imageTools.base64.toTitle", path: "/image-to-base64", icon: markRaw(WebpIcon) },
       { name: "imageTools.base64.fromTitle", path: "/base64-to-image", icon: markRaw(WebpIcon) },
       { name: "imageTools.info.title", path: "/image-info", icon: markRaw(WebpIcon) },
