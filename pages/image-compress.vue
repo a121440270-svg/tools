@@ -169,6 +169,9 @@
       <NuxtLinkLocale to="/merge-images" class="text-primary transition hover:underline">{{ t('mergeTool.navTitle') }}</NuxtLinkLocale>
       <NuxtLinkLocale to="/image-resizer" class="text-primary transition hover:underline">{{ t('imageTools.resizer.title') }}</NuxtLinkLocale>
       <NuxtLinkLocale to="/image-converter" class="text-primary transition hover:underline">{{ t('imageTools.converter.title') }}</NuxtLinkLocale>
+      <NuxtLinkLocale to="/compress-png-to-200kb" class="text-primary transition hover:underline">PNG 200 KB</NuxtLinkLocale>
+      <NuxtLinkLocale to="/compress-jpg-to-200kb" class="text-primary transition hover:underline">JPG 200 KB</NuxtLinkLocale>
+      <NuxtLinkLocale to="/image-compress-to-100kb" class="text-primary transition hover:underline">Image 100 KB</NuxtLinkLocale>
     </nav>
   </div>
 </template>

@@ -198,7 +198,7 @@
       <div class="related-grid">
         <NuxtLinkLocale to="/image-compress">{{ $t('imageTools.related.compress') }}</NuxtLinkLocale>
         <NuxtLinkLocale to="/increase-image-size">{{ $t('imageTools.related.increaseSize') }}</NuxtLinkLocale>
-        <NuxtLinkLocale to="/image-to-webp">{{ $t('imageTools.related.toWebp') }}</NuxtLinkLocale>
+        <NuxtLinkLocale to="/png-to-webp">{{ $t('imageTools.related.toWebp') }}</NuxtLinkLocale>
         <NuxtLinkLocale to="/webp-to-png">{{ $t('imageTools.related.webpToPng') }}</NuxtLinkLocale>
         <NuxtLinkLocale to="/merge-images">{{ $t('mergeTool.navTitle') }}</NuxtLinkLocale>
       </div>

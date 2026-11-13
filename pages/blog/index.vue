@@ -167,7 +167,11 @@ watch(currentPage, (page) => { jumpPage.value = page })
 // `useAsyncData` requires a plain string key (Nuxt 3.16 throws on a getter), so
 // the key is resolved once and the `watch` option refetches on query/locale
 // changes.
-const blogKey = `blog-list:${locale.value}:${currentPage.value}:${sortBy.value}`
+// Articles are authored only in en/zh. Asking the API for `lang=de` returns an
+// empty list, which made `/de/blog` (and fr/ja/ar) an empty listing with zero
+// article links — thin content for crawlers. Fall back to English instead.
+const contentLang = computed(() => (locale.value === 'zh' ? 'zh' : 'en'))
+const blogKey = `blog-list:${contentLang.value}:${currentPage.value}:${sortBy.value}`
 const { data, pending, error } = await useAsyncData(
   blogKey,
   () => $fetch('/api/articlepage', {
@@ -175,7 +179,7 @@ const { data, pending, error } = await useAsyncData(
       page: currentPage.value,
       pageSize: PAGE_SIZE,
       sort: sortBy.value,
-      lang: locale.value,
+      lang: contentLang.value,
       excerpt: 1
     }
   }),
@@ -215,7 +219,11 @@ function pageLink(page) {
 
 function articleLink(article) {
   const slug = String(article.slug || '').trim().replace(/^\/+|\/+$/g, '')
-  return localePath(slug ? `/blog/${slug}-${article.id}` : `/blog/${article.id}`)
+  const suffix = slug ? `${slug}-${article.id}` : `${article.id}`
+  // Articles only exist in en/zh. In the other locales link straight at the
+  // English URL instead of emitting a `/{locale}/blog/...` link that would 301.
+  const code = locale.value === 'zh' ? 'zh' : 'en'
+  return `${code === 'zh' ? '/zh' : ''}/blog/${encodeURI(suffix)}`
 }
 
 function handleSort(value) {
@@ -275,11 +283,16 @@ useToolSeo({
   type: 'WebPage',
   // Paginated listings self-canonicalise so each page can be indexed on its
   // own, while the `?sort=` view points back at the unsorted page to avoid a
-  // duplicate listing.
+  // duplicate listing. Only en/zh actually author the listing, so de/fr/ja/ar
+  // fold their canonical onto the English URL (they render the same posts).
   canonical: () => {
+    const contentLocale = locale.value === 'zh' ? 'zh' : 'en'
     const query = []
     if (currentPage.value > 1) query.push(`page=${currentPage.value}`)
-    return `${localePath('/blog')}${query.length ? `?${query.join('&')}` : ''}`
-  }
+    return `${contentLocale === 'zh' ? '/zh' : ''}/blog${query.length ? `?${query.join('&')}` : ''}`
+  },
+  // The article list is only authored for en/zh; the other locales show the same
+  // English posts, so they must not claim a de/fr/ja/ar translation.
+  translatedLocales: ['en', 'zh']
 })
 </script>

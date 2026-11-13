@@ -491,6 +491,12 @@ const isLegalRoute = computed(() =>
 const isAlternativesRoute = computed(() =>
   /^\/alternatives(\/|$)/.test(normalizeLocalePath(route.path))
 );
+// Blog listings and articles own their canonical/hreflang cluster in
+// `useToolSeo`: the i18n cluster would advertise ja/de/fr/ar translations that
+// do not exist (and, before the slug fix, pointed zh at the English slug).
+const isBlogRoute = computed(() =>
+  /^\/blog(\/|$)/.test(normalizeLocalePath(route.path))
+);
 // Fold the legal-page link cluster onto the EN canonical and keep hreflang only
 // for the languages the copy actually exists in (EN + ZH).
 const legalLinkCluster = (links) => {
@@ -774,7 +780,7 @@ function submitSearch() {
 
 useHead(() => {
   let links = localeHead.value.link || [];
-  if (isAlternativesRoute.value) {
+  if (isAlternativesRoute.value || isBlogRoute.value) {
     // The page's useToolSeo owns the whole canonical/hreflang cluster here.
     links = [];
   } else if (isLegalRoute.value) {
@@ -1312,7 +1318,7 @@ const categories = ref([
     expanded: true,
     icon: markRaw(WebpIcon),
     tools: [
-      { name: "menu.webp", path: "/image-to-webp", icon: markRaw(WebpIcon) },
+      { name: "menu.webp", path: "/png-to-webp", icon: markRaw(WebpIcon) },
       { name: "imageTools.converter.title", path: "/image-converter", icon: markRaw(WebpIcon) },
       { name: "imageTools.heic.title", path: "/heic-to-jpg", icon: markRaw(WebpIcon) },
       { name: "imageTools.resizer.title", path: "/image-resizer", icon: markRaw(WebpIcon) },

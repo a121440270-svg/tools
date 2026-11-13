@@ -7,6 +7,7 @@
       <div class="cta-row">
         <NuxtLinkLocale :to="{ path: '/image-compress', query: { size: 100 } }" class="primary-btn">{{ $t('imageTarget.compressNow') }}</NuxtLinkLocale>
         <NuxtLinkLocale to="/compress-jpg-to-200kb" class="secondary-btn">200KB</NuxtLinkLocale>
+        <NuxtLinkLocale to="/compress-jpg-to-50kb" class="secondary-btn">50KB</NuxtLinkLocale>
       </div>
       <div class="info-box">
         <h2>{{ $t('imageTarget.whyTitle', { size }) }}</h2>

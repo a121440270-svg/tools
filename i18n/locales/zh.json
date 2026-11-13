@@ -399,7 +399,12 @@
     "title": "字体压缩工具 — 在线压缩 TTF/OTF/WOFF2 网页字体",
     "desc": "上传 TTF、OTF、WOFF 或 WOFF2 字体，选择要保留的字符并移除未使用字形，生成更小的网页字体。",
     "h1": "在线压缩网页字体（TTF、OTF、WOFF2）",
-    "lead": "只保留页面真正需要的字符与字形，压缩用于网页的 TTF、OTF、WOFF、WOFF2 字体。文件在浏览器本地生成。",
+    "lead": "免费在线字体压缩工具：只保留页面真正需要的字符与字形，压缩用于网页的 TTF、OTF、WOFF、WOFF2 字体。文件在浏览器本地生成。",
+    "trust": {
+      "local": "全程在浏览器本地运行，字体不会上传",
+      "compare": "显示原始体积与子集体积及节省比例",
+      "formats": "输入 TTF / OTF / WOFF / WOFF2 → 输出 TTF / WOFF / WOFF2"
+    },
     "upload": "上传字体",
     "selected": "已选择: {name}",
     "origin_size": "原始大小: {size}",
@@ -543,7 +548,13 @@
     "index": "json与CSV格式相互转化工具",
     "seo_title": "JSON与CSV转换工具",
     "seo_description": "轻松实现 JSON 转 CSV 和 CSV 转 JSON 在线转换。免费、安全、快速，完全在浏览器中完成，无需上传文件。",
-    "seo_keywords": "JSON 转 CSV, CSV 转 JSON,在线转换工具,免费JSON转CSV,JSON转换器,CSV转换器,批量转换,前端工具"
+    "seo_keywords": "JSON 转 CSV, CSV 转 JSON,在线转换工具,免费JSON转CSV,JSON转换器,CSV转换器,批量转换,前端工具",
+    "howto_title": "如何把 JSON 转成 CSV（以及反向转换）",
+    "howto_p1": "粘贴一个 JSON 对象数组，转换器会为每个对象生成一行 CSV，并用第一个对象的键作为表头。粘贴带表头的 CSV 则会还原成 JSON 对象。",
+    "howto_csv2json_title": "CSV 转 JSON",
+    "howto_csv2json_p": "CSV 是扁平的，因此每一列都会变成字符串字段。数字、布尔值和 null 都会以文本形式返回，如果你的代码依赖类型，请在导入后重新转换类型。",
+    "howto_nested_title": "嵌套对象与大文件",
+    "howto_nested_p": "嵌套对象不会被自动展平：如果接收方无法处理 CSV 里的 JSON，请先把嵌套对象序列化成单列。转换在浏览器中进行，因此几 MB 的文件取决于可用内存，而不是服务器限制。"
   },
   "imageConvert": {
     "webpToPngTitle": "WebP转PNG",
@@ -850,9 +861,14 @@
   },
   "hashTool": {
     "title": "文本哈希",
-    "description": "使用 MD5、SHA1、SHA256、SHA224、SHA512、SHA384、SHA3 或 RIPEMD160 对文本进行哈希处理。",
+    "description": "使用 MD5、SHA1、SHA256、SHA224、SHA512、SHA384、SHA3 或 RIPEMD160 对文本或文件进行哈希处理。",
     "inputLabel": "要哈希的文本：",
     "placeholder": "输入要哈希的字符串...",
+    "textTab": "文本",
+    "fileTab": "文件",
+    "fileLabel": "选择要哈希的文件：",
+    "fileHint": "文件在浏览器本地读取，不会上传。超大文件（100 MB 以上）建议改用命令行（sha256sum / certutil）。",
+    "fileError": "无法读取该文件",
     "encoding": "摘要编码",
     "hex": "十六进制（基数 16）",
     "copyTitle": "复制到剪贴板",

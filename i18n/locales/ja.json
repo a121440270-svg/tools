@@ -839,7 +839,12 @@
     "title": "フォント圧縮ツール — TTF/OTF/WOFF2 をオンラインで圧縮",
     "desc": "TTF、OTF、WOFF、WOFF2フォントをアップロードし、必要な文字を選択して未使用グリフを削除。Web向けの小さなフォントを作成できます。",
     "h1": "Webフォントを圧縮（TTF・OTF・WOFF2）",
-    "lead": "ページに必要な文字と字形だけを残して、Web用の TTF、OTF、WOFF、WOFF2 フォントを軽量化します。処理はブラウザ内で完結します。",
+    "lead": "無料のオンラインフォント圧縮ツールです。ページに必要な文字と字形だけを残して、Web用の TTF、OTF、WOFF、WOFF2 フォントを軽量化します。処理はブラウザ内で完結します。",
+    "trust": {
+      "local": "ブラウザ内で実行され、フォントはアップロードされません",
+      "compare": "元のサイズとサブセット後のサイズ・削減率を表示",
+      "formats": "入力 TTF / OTF / WOFF / WOFF2 → 出力 TTF / WOFF / WOFF2"
+    },
     "upload": "TTFフォントをアップロード",
     "selected": "選択中: {name}",
     "origin_size": "元のサイズ: {size}",
@@ -956,9 +961,14 @@
   },
   "hashTool": {
     "title": "テキストのハッシュ化",
-    "description": "MD5、SHA1、SHA256、SHA224、SHA512、SHA384、SHA3、RIPEMD160を使ってテキストをハッシュ化します。",
+    "description": "MD5、SHA1、SHA256、SHA224、SHA512、SHA384、SHA3、RIPEMD160 を使ってテキストまたはファイルをハッシュ化します。",
     "inputLabel": "ハッシュ化するテキスト:",
     "placeholder": "ハッシュ化する文字列を入力...",
+    "textTab": "テキスト",
+    "fileTab": "ファイル",
+    "fileLabel": "ハッシュ化するファイルを選択:",
+    "fileHint": "ファイルはブラウザ内で読み込まれ、アップロードされません。非常に大きなファイル（100 MB 以上）はコマンドライン（sha256sum / certutil）の使用をおすすめします。",
+    "fileError": "ファイルを読み込めませんでした",
     "encoding": "ダイジェストの形式",
     "hex": "16進数",
     "copyTitle": "クリップボードにコピー",
@@ -1238,7 +1248,13 @@
     "index": "JSONとCSVの形式変換ツール",
     "seo_title": "無料オンラインJSON⇄CSV変換ツール",
     "seo_description": "JSONからCSV、CSVからJSONへの変換をオンラインで簡単に行えます。無料・高速・安全な変換ツールがブラウザ内で直接動作し、ファイルのアップロードは不要です。",
-    "seo_keywords": "JSONからCSV, CSVからJSON, オンライン変換, 無料JSON CSVツール, JSON変換, CSV変換, JSONコンバーター, CSVコンバーター, 一括変換"
+    "seo_keywords": "JSONからCSV, CSVからJSON, オンライン変換, 無料JSON CSVツール, JSON変換, CSV変換, JSONコンバーター, CSVコンバーター, 一括変換",
+    "howto_title": "JSONをCSVに変換する方法（逆変換も）",
+    "howto_p1": "オブジェクトの JSON 配列を貼り付けると、各オブジェクトを 1 行の CSV として出力し、最初のオブジェクトのキーを見出し行にします。見出し行のある CSV を貼り付けると、JSON オブジェクトに戻せます。",
+    "howto_csv2json_title": "CSVからJSON",
+    "howto_csv2json_p": "CSV はフラットな形式なので、各列は文字列フィールドになります。数値・真偽値・null もテキストとして返るため、型が必要な場合は取り込み後に変換してください。",
+    "howto_nested_title": "ネストしたオブジェクトと大きなファイル",
+    "howto_nested_p": "ネストしたオブジェクトは自動では展開されません。CSV 内の JSON を扱えない場合は、先に 1 列に文字列化してください。変換はブラウザ内で行われるため、数 MB のファイルはサーバー制限ではなく利用可能なメモリに依存します。"
   },
   "imageConvert": {
     "webpToPngTitle": "WebPからPNGへ",

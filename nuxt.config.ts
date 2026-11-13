@@ -29,7 +29,14 @@ function collectStaticRoutes(dir = 'pages', prefix = ''): string[] {
 const isExcluded = (route: string) =>
   PRERENDER_EXCLUDE.some((prefix) => route === prefix || route.startsWith(`${prefix}/`))
 
-const staticRoutes = collectStaticRoutes().filter((route) => !isExcluded(route))
+// `collectStaticRoutes()` skips any file with a `[param]` segment, so the WebP
+// converter pages rendered by `[format]-to-webp.vue` and `webp-to-[target].vue`
+// were missing from both the prerender list and the sitemap. List the real URLs
+// explicitly so they get prerendered HTML and a sitemap entry per locale.
+const EXTRA_PRERENDER_ROUTES = ['/png-to-webp', '/jpg-to-webp', '/webp-to-png', '/webp-to-jpg']
+
+const staticRoutes = [...collectStaticRoutes(), ...EXTRA_PRERENDER_ROUTES]
+  .filter((route) => !isExcluded(route))
 
 // Prerendered HTML is uploaded as a static asset and served by Cloudflare
 // without invoking the Worker, which is what keeps us inside the free plan
@@ -91,6 +98,33 @@ export default defineNuxtConfig({
     '/fr/upper-case': { redirect: { to: '/fr/case-converter', statusCode: 301 } },
     '/ar/uppercase': { redirect: { to: '/ar/case-converter', statusCode: 301 } },
     '/ar/upper-case': { redirect: { to: '/ar/case-converter', statusCode: 301 } },
+    // `/image-to-webp` is rendered by the [format]-to-webp template with
+    // format="image", so its H1/title degrade to "JPG/PNG to WebP" and it
+    // competes with the two exact-match pages. Keep /png-to-webp and
+    // /jpg-to-webp and fold the generic URL onto /png-to-webp.
+    '/image-to-webp': { redirect: { to: '/png-to-webp', statusCode: 301 } },
+    '/zh/image-to-webp': { redirect: { to: '/zh/png-to-webp', statusCode: 301 } },
+    '/ja/image-to-webp': { redirect: { to: '/ja/png-to-webp', statusCode: 301 } },
+    '/de/image-to-webp': { redirect: { to: '/de/png-to-webp', statusCode: 301 } },
+    '/fr/image-to-webp': { redirect: { to: '/fr/png-to-webp', statusCode: 301 } },
+    '/ar/image-to-webp': { redirect: { to: '/ar/png-to-webp', statusCode: 301 } },
+    // `/metadata-analyzer` and `/image-metadata-remover` render exactly the same
+    // component as `/image-info` and `/remove-exif` (only the i18n copy differs),
+    // so they were thin duplicates splitting the same cluster. Fold them onto
+    // the surviving pages. `/exif-editor` is kept: it is the only tool that can
+    // actually edit EXIF/GPS, so it is not a duplicate.
+    '/metadata-analyzer': { redirect: { to: '/image-info', statusCode: 301 } },
+    '/zh/metadata-analyzer': { redirect: { to: '/zh/image-info', statusCode: 301 } },
+    '/ja/metadata-analyzer': { redirect: { to: '/ja/image-info', statusCode: 301 } },
+    '/de/metadata-analyzer': { redirect: { to: '/de/image-info', statusCode: 301 } },
+    '/fr/metadata-analyzer': { redirect: { to: '/fr/image-info', statusCode: 301 } },
+    '/ar/metadata-analyzer': { redirect: { to: '/ar/image-info', statusCode: 301 } },
+    '/image-metadata-remover': { redirect: { to: '/remove-exif', statusCode: 301 } },
+    '/zh/image-metadata-remover': { redirect: { to: '/zh/remove-exif', statusCode: 301 } },
+    '/ja/image-metadata-remover': { redirect: { to: '/ja/remove-exif', statusCode: 301 } },
+    '/de/image-metadata-remover': { redirect: { to: '/de/remove-exif', statusCode: 301 } },
+    '/fr/image-metadata-remover': { redirect: { to: '/fr/remove-exif', statusCode: 301 } },
+    '/ar/image-metadata-remover': { redirect: { to: '/ar/remove-exif', statusCode: 301 } },
     // These pages are noindex, user specific and heavy (Element Plus), so there
     // is no SEO value in server rendering them.
     '/admin/**': { ssr: false },

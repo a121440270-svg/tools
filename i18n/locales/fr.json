@@ -415,7 +415,12 @@
     "title": "Compresseur de polices — TTF, OTF, WOFF & WOFF2 en ligne",
     "desc": "Importez une police TTF, OTF, WOFF ou WOFF2, choisissez les caractères à conserver et supprimez les glyphes inutilisés pour créer une police web plus légère.",
     "h1": "Compresser des polices pour le web (TTF, OTF, WOFF2)",
-    "lead": "Ne gardez que les caractères et glyphes dont votre page a besoin, et allégez les polices TTF, OTF, WOFF et WOFF2 pour le web. Le traitement se fait dans votre navigateur.",
+    "lead": "Compresseur de polices en ligne gratuit : ne gardez que les caractères et glyphes dont votre page a besoin, et allégez les polices TTF, OTF, WOFF et WOFF2 pour le web. Le traitement se fait dans votre navigateur.",
+    "trust": {
+      "local": "Fonctionne dans votre navigateur — la police n’est jamais téléversée",
+      "compare": "Affiche la taille d’origine et du sous-ensemble, et le % économisé",
+      "formats": "Entrée TTF / OTF / WOFF / WOFF2 → sortie TTF / OTF / WOFF / WOFF2"
+    },
     "upload": "Importer une police TTF",
     "selected": "Sélectionné : {name}",
     "origin_size": "Taille d’origine : {size}",
@@ -539,7 +544,13 @@
     "index": "Outil de conversion de formats JSON et CSV",
     "seo_title": "Convertisseur JSON vers CSV en ligne — CSV vers JSON",
     "seo_description": "Convertissez facilement JSON en CSV et CSV en JSON en ligne. Un outil gratuit, rapide et sécurisé, sans téléversement.",
-    "seo_keywords": "JSON vers CSV, CSV vers JSON, convertisseur en ligne, convertisseur JSON CSV gratuit, convertir JSON, convertir CSV"
+    "seo_keywords": "JSON vers CSV, CSV vers JSON, convertisseur en ligne, convertisseur JSON CSV gratuit, convertir JSON, convertir CSV",
+    "howto_title": "Comment convertir du JSON en CSV (et inversement)",
+    "howto_p1": "Collez un tableau JSON d’objets : le convertisseur écrit une ligne CSV par objet, en utilisant les clés du premier objet comme en-tête. Collez un CSV avec une ligne d’en-tête pour retrouver des objets JSON.",
+    "howto_csv2json_title": "CSV vers JSON",
+    "howto_csv2json_p": "Le CSV est plat : chaque colonne devient un champ texte. Les nombres, booléens et null reviennent sous forme de texte — reconvertissez-les après l’import si votre code dépend des types.",
+    "howto_nested_title": "Objets imbriqués et fichiers volumineux",
+    "howto_nested_p": "Les objets imbriqués ne sont pas aplatis automatiquement : sérialisez-les d’abord dans une seule colonne si le destinataire ne gère pas le JSON dans un CSV. La conversion s’exécute dans le navigateur : pour les fichiers de plusieurs Mo, tout dépend de la mémoire disponible, et non d’une limite serveur."
   },
   "imageConvert": {
     "webpToPngTitle": "WebP vers PNG",
@@ -845,9 +856,14 @@
   },
   "hashTool": {
     "title": "Hacher du texte",
-    "description": "Calculez le hachage d’un texte avec MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3 ou RIPEMD160.",
+    "description": "Calculez le hachage d’un texte ou d’un fichier avec MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3 ou RIPEMD160.",
     "inputLabel": "Texte à hacher :",
     "placeholder": "Votre texte à hacher...",
+    "textTab": "Texte",
+    "fileTab": "Fichier",
+    "fileLabel": "Choisissez un fichier à hacher :",
+    "fileHint": "Le fichier est lu localement et n’est jamais téléversé. Pour les très gros fichiers (100 Mo et plus), préférez la ligne de commande (sha256sum / certutil).",
+    "fileError": "Impossible de lire le fichier",
     "encoding": "Encodage du condensat",
     "hex": "Hexadécimal (base 16)",
     "copyTitle": "Copier dans le presse-papiers",

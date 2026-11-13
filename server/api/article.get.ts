@@ -37,9 +37,8 @@ export default defineEventHandler(async (event) => {
     }
   }
   lang = lang || 'en'
-  console.log('查询条件:', { ...query, id, lang })
+  // No payload logging: the response includes the full markdown body and
+  // serialising it costs more CPU than the Workers free plan allows per request.
   const tools = await findArticleByIdAndLang(id, lang); // 传入 id 和 lang 两个参数
-  // return tools;
-  console.log( '结果:', tools)
   return tools || []
 });

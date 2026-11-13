@@ -24,7 +24,26 @@
       </div>
 
       <div class="space-y-6 p-4 sm:p-6">
-        <div>
+        <div class="inline-flex rounded-xl border border-slate-200 bg-slate-100 p-1 text-sm dark:border-slate-700 dark:bg-slate-800">
+          <button
+            type="button"
+            class="rounded-lg px-4 py-1.5 font-medium transition"
+            :class="mode === 'text' ? 'bg-white text-slate-900 shadow-sm dark:bg-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'"
+            @click="setMode('text')"
+          >
+            {{ $t('hashTool.textTab') }}
+          </button>
+          <button
+            type="button"
+            class="rounded-lg px-4 py-1.5 font-medium transition"
+            :class="mode === 'file' ? 'bg-white text-slate-900 shadow-sm dark:bg-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'"
+            @click="setMode('file')"
+          >
+            {{ $t('hashTool.fileTab') }}
+          </button>
+        </div>
+
+        <div v-if="mode === 'text'">
           <label class="mb-2 block text-sm font-medium text-slate-700 dark:text-white">{{ $t('hashTool.inputLabel') }}</label>
           <textarea
             v-model="textToHash"
@@ -32,6 +51,18 @@
             :placeholder="$t('hashTool.placeholder')"
             @input="generateHashes"
           />
+        </div>
+
+        <div v-else>
+          <label class="mb-2 block text-sm font-medium text-slate-700 dark:text-white">{{ $t('hashTool.fileLabel') }}</label>
+          <input
+            ref="fileInput"
+            type="file"
+            class="block w-full cursor-pointer rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-600 file:mr-3 file:rounded-lg file:border-0 file:bg-primary file:px-3 file:py-1.5 file:text-sm file:font-medium file:text-white dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300"
+            @change="onFileChange"
+          />
+          <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">{{ $t('hashTool.fileHint') }}</p>
+          <p v-if="fileName" class="mt-1 text-xs font-medium text-green-600">{{ fileName }} · {{ prettySize(fileSize) }}</p>
         </div>
 
         <div>
@@ -91,8 +122,15 @@ useToolSeo({
   description: () => t('hashTool.description'),
   applicationCategory: 'DeveloperApplication'
 })
+const mode = ref('text')
 const textToHash = ref('')
 const encoding = ref('hex')
+const fileName = ref('')
+const fileSize = ref(0)
+const fileInput = ref(null)
+// WordArray of the loaded file, kept so switching hex/base64 can recompute the
+// digests without re-reading the file.
+const fileWordArray = ref(null)
 
 const hashes = reactive({
   MD5: '',
@@ -103,20 +141,69 @@ const hashes = reactive({
   SHA384: '',
 })
 
+const clearHashes = () => {
+  Object.keys(hashes).forEach((algorithm) => {
+    hashes[algorithm] = ''
+  })
+}
+
+const applyHashes = (wordArray) => {
+  hashes.MD5 = CryptoJS.MD5(wordArray).toString(CryptoJS[encoding.value])
+  hashes.SHA1 = CryptoJS.SHA1(wordArray).toString(CryptoJS[encoding.value])
+  hashes.SHA256 = CryptoJS.SHA256(wordArray).toString(CryptoJS[encoding.value])
+  hashes.SHA224 = CryptoJS.SHA224(wordArray).toString(CryptoJS[encoding.value])
+  hashes.SHA512 = CryptoJS.SHA512(wordArray).toString(CryptoJS[encoding.value])
+  hashes.SHA384 = CryptoJS.SHA384(wordArray).toString(CryptoJS[encoding.value])
+}
+
 const generateHashes = () => {
-  if (!textToHash.value) {
-    Object.keys(hashes).forEach((algorithm) => {
-      hashes[algorithm] = ''
-    })
+  if (mode.value === 'file') {
+    if (fileWordArray.value) applyHashes(fileWordArray.value)
+    else clearHashes()
     return
   }
 
-  hashes.MD5 = CryptoJS.MD5(textToHash.value).toString(CryptoJS[encoding.value])
-  hashes.SHA1 = CryptoJS.SHA1(textToHash.value).toString(CryptoJS[encoding.value])
-  hashes.SHA256 = CryptoJS.SHA256(textToHash.value).toString(CryptoJS[encoding.value])
-  hashes.SHA224 = CryptoJS.SHA224(textToHash.value).toString(CryptoJS[encoding.value])
-  hashes.SHA512 = CryptoJS.SHA512(textToHash.value).toString(CryptoJS[encoding.value])
-  hashes.SHA384 = CryptoJS.SHA384(textToHash.value).toString(CryptoJS[encoding.value])
+  if (!textToHash.value) {
+    clearHashes()
+    return
+  }
+
+  applyHashes(textToHash.value)
+}
+
+const setMode = (next) => {
+  mode.value = next
+  generateHashes()
+}
+
+const onFileChange = (event) => {
+  const file = event.target.files && event.target.files[0]
+  if (!file) {
+    fileName.value = ''
+    fileSize.value = 0
+    fileWordArray.value = null
+    clearHashes()
+    return
+  }
+
+  fileName.value = file.name
+  fileSize.value = file.size
+  file.arrayBuffer()
+    .then((buffer) => {
+      fileWordArray.value = CryptoJS.lib.WordArray.create(buffer)
+      generateHashes()
+    })
+    .catch((err) => {
+      console.error('Could not read file: ', err)
+      ElMessage.error(t('hashTool.fileError') || 'Could not read the file')
+    })
+}
+
+const prettySize = (size) => {
+  if (!size) return '0 B'
+  if (size < 1024) return size + ' B'
+  if (size < 1024 * 1024) return (size / 1024).toFixed(2) + ' KB'
+  return (size / 1024 / 1024).toFixed(2) + ' MB'
 }
 
 const copyHash = async (hash) => {
@@ -132,7 +219,11 @@ const copyHash = async (hash) => {
 
 const clearAll = () => {
   textToHash.value = ''
-  generateHashes()
+  fileName.value = ''
+  fileSize.value = 0
+  fileWordArray.value = null
+  if (fileInput.value) fileInput.value.value = ''
+  clearHashes()
 }
 
 onMounted(() => {

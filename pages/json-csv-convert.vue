@@ -40,6 +40,20 @@
         <div v-if="errorMsg" class="mt-4 text-red-600">{{ errorMsg }}</div>
       </div>
     </div>
+
+    <section class="mt-10 space-y-4">
+      <h2 class="text-xl font-semibold">{{ t('jsoncsv.howto_title') }}</h2>
+      <p class="leading-7 text-gray-700 dark:text-slate-300">{{ t('jsoncsv.howto_p1') }}</p>
+      <h3 class="text-lg font-semibold">{{ t('jsoncsv.howto_csv2json_title') }}</h3>
+      <p class="leading-7 text-gray-700 dark:text-slate-300">{{ t('jsoncsv.howto_csv2json_p') }}</p>
+      <h3 class="text-lg font-semibold">{{ t('jsoncsv.howto_nested_title') }}</h3>
+      <p class="leading-7 text-gray-700 dark:text-slate-300">{{ t('jsoncsv.howto_nested_p') }}</p>
+    </section>
+    <nav class="mt-6 flex flex-wrap gap-x-6 gap-y-2 border-t border-gray-200 pt-6 text-sm dark:border-slate-700">
+      <NuxtLinkLocale to="/json-formatter" class="text-primary underline">{{ t('jsonFormatter.title') }}</NuxtLinkLocale>
+      <NuxtLinkLocale to="/json-compare" class="text-primary underline">{{ t('jsonCompare.title') }}</NuxtLinkLocale>
+      <NuxtLinkLocale to="/text-dedup" class="text-primary underline">{{ t('textDedup.title') }}</NuxtLinkLocale>
+    </nav>
   </div>
 </template>
 

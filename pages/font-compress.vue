@@ -4,6 +4,11 @@
     <p class="mb-4 text-gray-600 text-base leading-7">
       {{ t('font.lead') }}
     </p>
+    <ul class="mb-6 grid gap-2 text-sm text-gray-600 sm:grid-cols-3 dark:text-slate-300">
+      <li class="rounded-lg border border-gray-200 px-3 py-2 dark:border-slate-700">✓ {{ t('font.trust.local') }}</li>
+      <li class="rounded-lg border border-gray-200 px-3 py-2 dark:border-slate-700">✓ {{ t('font.trust.compare') }}</li>
+      <li class="rounded-lg border border-gray-200 px-3 py-2 dark:border-slate-700">✓ {{ t('font.trust.formats') }}</li>
+    </ul>
     <el-form :label-width="'100px'" class="mb-6">
       <el-form-item :label="t('font.upload')">
         <input type="file" accept=".ttf,.otf,.woff,.woff2" @change="onFontFileChange" ref="fontInputRef" />
@@ -74,6 +79,9 @@
     <div v-if="errorMsg" class="mt-4 text-red-600">{{ t('font.error', { msg: errorMsg }) }}</div>
 
     <nav class="mt-8 flex flex-wrap gap-x-5 gap-y-2 border-t border-gray-200 pt-4 text-sm">
+      <NuxtLinkLocale to="/ttf-to-woff2" class="text-primary underline">{{ t('menu.ttfToWoff2') }}</NuxtLinkLocale>
+      <NuxtLinkLocale to="/font-subsetter" class="text-primary underline">{{ t('menu.fontSubsetter') }}</NuxtLinkLocale>
+      <NuxtLinkLocale to="/compress-woff2" class="text-primary underline">{{ t('menu.compressWoff2') }}</NuxtLinkLocale>
       <NuxtLinkLocale to="/font-inspector" class="text-primary underline">{{ t('font.tools.inspector') }}</NuxtLinkLocale>
       <NuxtLinkLocale to="/font-unicode-checker" class="text-primary underline">{{ t('font.tools.unicodeChecker') }}</NuxtLinkLocale>
     </nav>

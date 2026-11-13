@@ -79,6 +79,13 @@ export function useToolSeo(options: {
    * Chinese only (legal and alternatives pages).
    */
   translatedLocales?: MaybeRefOrGetter<string[]>
+  /**
+   * Explicit hreflang cluster, as `{ hreflang, href }` pairs. Use when the
+   * localized URL cannot be derived from `switchLocalePath` — e.g. blog
+   * articles whose slug is translated per language — so the alternates point at
+   * the same URLs the sitemap lists. Pass `false` to emit no alternates.
+   */
+  alternates?: MaybeRefOrGetter<Array<{ hreflang: string; href: string }> | false>
 }) {
   const route = useRoute()
   const { locale, locales } = useI18n()
@@ -108,20 +115,31 @@ export function useToolSeo(options: {
     return `${baseUrl}${localizedPath.value}`
   })
   const localePrefix = computed(() => (locale.value === 'en' ? '' : `/${locale.value}`))
-  const alternateLinks = computed(() => [
-    ...localeObjects.value
-      .filter((item) => translatedCodes.value.includes(item.code))
-      .map((item) => ({
+  const alternateLinks = computed(() => {
+    const explicit = options.alternates === undefined ? undefined : toValue(options.alternates)
+    if (explicit === false) return []
+    if (Array.isArray(explicit)) {
+      return explicit.map((item) => ({
         rel: 'alternate',
-        hreflang: item.language || item.code,
-        href: `${baseUrl}${switchLocalePath(item.code) || route.path}`
-      })),
-    {
-      rel: 'alternate',
-      hreflang: 'x-default',
-      href: `${baseUrl}${defaultLocalePath.value}`
+        hreflang: item.hreflang,
+        href: item.href.startsWith('http') ? item.href : `${baseUrl}${item.href}`
+      }))
     }
-  ])
+    return [
+      ...localeObjects.value
+        .filter((item) => translatedCodes.value.includes(item.code))
+        .map((item) => ({
+          rel: 'alternate',
+          hreflang: item.language || item.code,
+          href: `${baseUrl}${switchLocalePath(item.code) || route.path}`
+        })),
+      {
+        rel: 'alternate',
+        hreflang: 'x-default',
+        href: `${baseUrl}${defaultLocalePath.value}`
+      }
+    ]
+  })
 
   const routeBreadcrumbs = computed<ToolBreadcrumbItem[]>(() => {
     const path = route.path.replace(/^\/(zh|ja|de|fr|ar)(?=\/|$)/, '').replace(/\/+$/, '') || '/'

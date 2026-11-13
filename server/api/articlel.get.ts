@@ -11,9 +11,8 @@ export default defineEventHandler(async (event) => {
   }
   // 获取语言优先级：查询参数 -> cookie -> 请求头 -> 默认 'en'
   const lang = (query as any)?.lang ?? getCookie(event, 'lang') ?? getHeader(event, 'accept-language') ?? 'en';
-  console.log('查询条件:', { ...query, id, lang })
+  // No payload logging: the row contains the full markdown body and serialising
+  // it costs more CPU than the Workers free plan allows per request.
   const tools = await findArticlelByIdAndLang(id, lang); // 传入 id 和 lang 两个参数
-  // return tools;
-  console.log( '结果:', tools)
   return tools || []
 });

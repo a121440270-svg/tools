@@ -74,6 +74,18 @@ export async function findArticlelByIdAndLang(id: number,lang: string) {
                 .where('article_id', '=', id)
                 .where('lang_code', '=', lang).one<ArticleL>();
 }
+/**
+ * Every language this article is actually translated into, with its own slug.
+ * The blog only publishes `en` and `zh`, so this is what the hreflang cluster
+ * and the "no translation -> redirect" logic must be built from instead of
+ * assuming all six site locales exist.
+ */
+export async function findArticleTranslationSlugs(id: number) {
+  return await selectCon('article_l')
+                .select(['lang_code', 'slug'])
+                .where('article_id', '=', id)
+                .all<{ lang_code: string; slug: string | null }>();
+}
 export async function createArticle(body: any) {
   // prepare Article and ArticleL instances with sensible defaults
     const now = new Date().toISOString()

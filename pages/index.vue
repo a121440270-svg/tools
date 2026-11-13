@@ -406,7 +406,7 @@ const toolGroups = computed(() => [
     tools: [
       {
         name: t('home.tools.imageToWebp.name'),
-        path: '/image-to-webp',
+        path: '/png-to-webp',
         description: t('home.tools.imageToWebp.description'),
         icon: ImageIcon
       },

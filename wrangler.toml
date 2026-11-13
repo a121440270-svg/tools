@@ -2,7 +2,11 @@ name = "tools"
 account_id = "aed369c9a117167519dad25a5f48439f"
 compatibility_date = "2025-01-09"
 main = "./.output/server/index.mjs"
-assets = { directory = "./.output/public/", binding = "ASSETS", html_handling = "drop-trailing-slash" }
+# `run_worker_first` for the locale roots: Static Assets answers `/de/` with a
+# 307 before the Worker's middleware can run, so Google keeps the slash variant
+# in "Page with redirect". Letting the Worker handle exactly these five paths
+# turns them into 301s without routing every asset request through the Worker.
+assets = { directory = "./.output/public/", binding = "ASSETS", html_handling = "drop-trailing-slash", run_worker_first = ["/de/", "/fr/", "/ja/", "/ar/", "/zh/"] }
 
 [vars]
 AGNES_API_BASE_URL = "https://apihub.agnes-ai.com"

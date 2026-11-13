@@ -220,3 +220,178 @@
    相关词条）；再到 AlternativeTo、Product Hunt、GitHub awesome 列表提交工具。
 10. **每周监控**：GSC 已索引数（136 → 目标 250+）、字体簇点击、`toolmole` 品牌
    词排名（304 曝光 / 第 8.9 位 → 冲前 5）。
+
+---
+
+## 第二轮：302 条未编入索引的根因与修复（2026-11-13）
+
+> 数据快照：GSC 2026-11-09（上次更新日期）；共 302 条未编入索引，8 个原因。
+> 借助 `chrome-gsc` profile（huiqinliu1005）逐组导出全部 302 条 URL 后逐条用
+> curl 复检线上状态，才定位到下面 4 个真实问题（其余为正常衰减或垃圾路径）。
+
+### 诊断结论
+
+| GSC 原因 | 条数 | 真实根因 | 处置 |
+|---|---|---|---|
+| 已抓取-尚未编入索引 | 137 | 其中约 100 条是 de/fr/ja/ar 博客文章页渲染空页（见下） | 301 到英文正文 |
+| 已发现-尚未编入索引 | 105 | de/fr/zh 工具页，sitemap 与内链都已有，等 Google 排期 | 无需改动 |
+| 重复网页（Google 选的规范不同） | 22 | 16 条是 de/fr/ja/ar 博客空页自指 canonical + 6 语言 hreflang | 同上 + hreflang 收紧 |
+| 未找到 404 | 17 | `/api/upload`、`/api/user-info`、`/_nuxt/`、`/sup.ve` 等 | robots 屏蔽 `/api/`，其余保持 404 |
+| 服务器错误 5xx | 9 | Worker CPU 超限（Cloudflare error 1102），不是持续故障 | 删除大对象日志（见下） |
+| 备用网页（有适当的规范标记） | 6 | www/http 首页变体、`/blog/`、`/prompts` 等 | 已被 301 / canonical 覆盖 |
+| 网页会自动重定向 | 5 | `/de/`…`/ar/` 由 Nitro 归一化返回 307 | 中间件改 301 |
+| 被 noindex 排除 | 1 | `/zh/prompts/public`（私有页，正常） | 无需改动 |
+
+### 根因 1：博客只有 en/zh 两种译文，其他语言渲染空白 200 页
+
+`article_l` 表里博客只有 `en` / `zh` 两行（`server/api/__sitemap__/articles.ts`
+也只输出这两种）。但 `pages/blog/[id].vue` 对任意 `/{locale}/blog/{slug}-{id}`
+都返回 **200**：`articlel` 为 `null` → 标题退化成 `Blog`、正文约 900–1500 字符、
+canonical 自指、hreflang 声称 6 种语言。Google 判为软 404 / 重复 / 抓取后不索引。
+
+修复：
+
+- `pages/blog/[id].vue`：取文章时带 `translations=1`；当前语言没有译文时 **301**
+  到英文文章（用英文自己的 slug）；同语言但 URL slug 与库里的 slug 不一致时也 301
+  到规范 URL（消除 `/{locale}/blog/任意slug-{id}` 这类重复）。
+- `composables/useToolSeo.ts` 新增 `alternates` 选项，博客据此按**各自语言的
+  slug** 输出 hreflang（此前 en 页把 zh 指向 `/{en-slug}-96`，与 sitemap 里的
+  `/{zh-slug}-96` 撞成两条 zh URL）。
+- `pages/blog/index.vue`：`translatedLocales: ['en','zh']`，de/fr/ja/ar 的博客列表
+  页 canonical 折回英文 `/blog`，不再自称有翻译。
+- `server/dao/articleDao.ts` + `server/api/articles/[id].ts`：新增
+  `findArticleTranslationSlugs()` 与 `?translations=1` 参数（只回 `lang_code`+`slug`，
+  不额外传正文）。
+
+### 根因 2：博客页随机 503 = Cloudflare Workers CPU 超限（error 1102）
+
+复检时约 1/5 的博客 URL 返回 `503`，响应体只有 `error code: 1102`（CPU 超时）；
+同一 URL 连续请求可复现 `200 → 503 → 200`。免费版 Worker 单请求 CPU 上限 10ms，
+而文章页 SSR 里额外做了这些工作：
+
+- `server/api/articles/[id].ts`、`article.get.ts`、`articlel.get.ts` 里的
+  `console.log('结果:', tools)` —— 把**整篇 markdown（50–80KB）**序列化进
+  Workers Logs，日志成本算在同一个请求的 CPU 预算里；
+- `server/db/orm.ts` 每条 SQL 都 `console.log('SQL:', formatSqlWithParams(...))`，
+  `INSERT` 分支还会把正文整段拼进日志字符串。
+
+修复：删除文章接口里的 payload 日志；`orm.ts` 的 SQL 日志改为 `SQL_DEBUG=1`
+时才输出（且不再无条件调用 `formatSqlWithParams`）。这是对「服务器错误 5xx」
+以及一部分「已抓取-未索引」的直接修复。
+
+### 根因 3：语言根路径 307
+
+`/de/`、`/zh/`、`/ja/`、`/fr/`、`/ar/` 返回 **307**（GSC 归入「网页会自动重定向」）。
+根因是 **Workers Static Assets** 的 `html_handling = "drop-trailing-slash"`：
+命中预渲染文件的尾斜杠请求由资产层直接 307，根本不会进入 Worker。因此分两步修：
+
+1. 新增 `server/middleware/redirect-trailing-slash.ts`：Worker 路由内的尾斜杠一律
+   **301**，并把 `/en/**`（`prefix_except_default` 下不存在的路由）301 到去掉前缀的
+   路径（原 `/en/date-format` 是 404，现 301 到 `/date-format`）。
+2. `wrangler.toml` 的 assets 增加
+   `run_worker_first = ["/de/","/fr/","/ja/","/ar/","/zh/"]`，只把这 5 条路径交给
+   Worker，让第 1 步的中间件能改写成 301；其余静态资源仍由资产层直接返回，不增加
+   Worker CPU 开销。
+
+### 根因 4：robots.txt 未屏蔽 `/api/`
+
+GSC 抓到了 `/api/upload`、`/api/user-info`（404）。`public/robots.txt` 增加
+`Disallow: /api/`，避免继续浪费抓取预算。
+
+### 根因 5：de/fr/ja/ar 的博客列表是空的
+
+`/de/blog` 返回 200，但**一条文章链接都没有**：`/api/articlepage` 的 `total` 统计全部
+文章（245），`list` 却按 `lang_code` 过滤（de 没有译文）→ 直接返回 0 条。页面因此
+渲染成 "Insgesamt 0 Einträge"，既是薄内容，也让 crawler 在该语言下拿不到任何文章内链。
+
+修复：`pages/blog/index.vue` 取列表时使用「内容语言」而不是路由语言（`zh` 用 `zh`，
+其余一律 `en`），de/fr/ja/ar 的列表即复用英文文章；配合 `articleLink()` 直接输出
+`/blog/...`，链接不会再指向会 301 的 `/{locale}/blog/...`。
+
+### 根因 6：博客页同时存在两套 hreflang，其中一套指向不存在的译文
+
+`layouts/default.vue` 会用 `useLocaleHead()` 输出一套「6 语言 + x-default」的
+hreflang，而 `useToolSeo()` 又输出自己那套。结果博客页的 `<head>` 里有 **11 条**
+hreflang：8 条来自 layout（含 `/ja/blog/...`、`/de/blog/...` 以及把 zh 指到**英文
+slug** 的 URL），3 条来自 `useToolSeo`（正确的 en / zh-CN / x-default）。两套互相
+冲突，正是 GSC「重复网页，Google 选择的规范网页与用户指定的不同」与「备用网页」
+两组的一部分来源。
+
+修复：`layouts/default.vue` 里把 `/blog`（列表与文章）和 `/alternatives` 一样处理——
+`links = []`，canonical 与 hreflang 完全交给页面的 `useToolSeo`（它已经输出
+`og:url`，不依赖 layout）。工具页两套 hreflang 的 href 完全一致，属于无害重复，
+本轮不动。
+
+### 部署与验证
+
+已部署并线上复检（2026-11-13）：
+
+- Worker 版本：`e16b887e-9ffe-43d8-b7cf-0f0eac095f14`（首轮修复），
+  `c0b6d4ec-1668-4643-9269-5bb5eeeb31c8`（补齐尾斜杠 301 与博客列表 canonical），
+  `5eb16b35-9b6f-453d-93ad-00bf1b8ecfb7`（博客列表改用内容语言），
+  `a2713f3a-cee2-4d5d-85a3-a0bd66580397`（博客页去掉重复 hreflang）。
+- 复检结果（`curl` 直连，14/14 通过）：
+
+  | 请求 | 结果 |
+  |---|---|
+  | `/de/` `/zh/` `/fr/` `/ja/` `/ar/` | **301** → 去斜杠（原 307） |
+  | `/en/date-format` | **301** → `/date-format`，查询串保留 |
+  | `/blog/` | **301** → `/blog` |
+  | `/de/blog/{slug}-{id}`、`/ar/...`、`/ja/...`、`/fr/blog/133` | **301** → 英文文章规范 URL |
+  | `/de/blog`、`/fr/blog` | canonical 折回 `https://onlitools.com/blog` |
+  | `/de/blog`、`/fr/blog`、`/ja/blog`、`/ar/blog` | 200，列表渲染 **12 条英文文章链接**（原为 "Insgesamt 0 Einträge"） |
+  | `/blog`、`/zh/blog` | 自指 canonical，hreflang 只有 en / zh-CN / x-default |
+  | 英文文章页 | 200，186 KB，canonical 自指，hreflang 由 11 条降为 3 条（en / zh-CN / x-default） |
+  | 中文文章页 | 200，canonical 自指 |
+  | 任意错误 slug（`/blog/wrong-slug-96`） | **301** → 规范 slug |
+  | `/blog/96`（文章的裸 id） | **301** → 规范 slug（slug 非空时） |
+  | 空 slug 文章 `/blog/133`、`/zh/blog/133`、`/blog/7` | 200（canonical 即裸 id） |
+  | `robots.txt` | 已含 `Disallow: /api/` |
+  | 3 篇重文章各连打 6 次（共 18 次） | 18×200，未再出现 1102 |
+
+  补充说明：`/de/` 这类**预渲染静态路由的尾斜杠**由 Workers Static Assets
+  在 Worker 之前返回 307（`html_handling = "drop-trailing-slash"`），中间件根本
+  收不到请求。因此 `wrangler.toml` 加 `run_worker_first = ["/de/","/fr/","/ja/","/ar/","/zh/"]`，
+  只把这 5 条路径交给 Worker，中间件即可返 301，其余静态资源仍不经过 Worker。
+
+- 仍未复核：GSC 侧的「验证修正情况」与批量「请求编入索引」。执行时本地 SOCKS5
+  代理（`127.0.0.1:4080`）对境外 TLS 站点握手失败（境外节点不可用），
+  `search.google.com` 无法访问；站点本身可直连复检。代理恢复后继续提交验证。
+
+### GSC 操作记录（2026-11-13）
+
+用 `chrome-gsc` profile（huiqinliu1005，端口 9333）在「网页索引编制」里执行：
+
+- **「未找到 (404)」17 条**：已点「验证修正情况」，GSC 显示
+  `验证已开始 / 开始日期：2026-11-13`（修复手段是 robots 屏蔽 `/api/` +
+  其余垃圾路径继续 404，不再同时提交 301）。
+- **「服务器错误 (5xx)」9 条**：同上，`验证已开始 / 2026-11-13`。
+- **「请求编入索引」**（URL 检查 → 请求编入索引，配额逐条消耗）：
+
+  | URL | 结果 |
+  |---|---|
+  | `/blog/css-vw-clamp-fluid-layout-responsive-design-23` | 已加入优先抓取队列 |
+  | `/zh/blog/javascript-strict-equality-object-is-65` | 已加入优先抓取队列 |
+  | `/zh/blog/qian-duan-mo-kuai-hua-ji-qiao-215` | 已加入优先抓取队列 |
+  | `/blog/vue-4-vapor-mode-performance-evolution-28` | 已加入优先抓取队列 |
+
+- 抽查时发现一批「已抓取-尚未编入索引」条目其实**已经在索引里**
+  （`/zh/blog/promise-all-vs-promise-allsettled-javascript-async-200`、
+  `/blog/vue3-mixins-to-composition-api-39`、
+  `/zh/blog/huge-json-qian-duan-xing-neng-you-hua-115`、
+  `/blog/indexeddb-vs-localstorage-modern-browser-storage-22`），
+  说明这份 302 条清单含不少滞后数据，不必逐条清理。
+
+- 顺带确认：清单里带旧拼音 slug 的 URL（例如
+  `/blog/promise-all-vs-promise-allsettled-javascript-async-200`、
+  `/zh/blog/8-practical-tips-to-improve-css-code-quality-246`）现在全部
+  **301** 到新英文/中文 slug（库里的 slug 已改过），目标页 200，
+  这正是「重复网页」与「已抓取未索引」两组的一部分来源。
+
+- 未能完成的部分：本地 SOCKS5 代理（`127.0.0.1:4080`）对境外站点 TLS
+  握手间歇性失败（国内站点正常），`search.google.com` 会短时间不可用；
+  剩余几条「请求编入索引」留待代理稳定后补交，不影响已部署的修复。
+
+- 代理恢复后补查两条待提交的中文页（`/zh/blog/css-clamp-liuti-buju-yu-paiban-83`、
+  `/zh/blog/javascript-yi-xing-dai-ma-ji-qiao-212`）：URL 检查结果均为
+  **「网页已编入索引」**，无需再消耗配额，再次印证这份 302 条清单以滞后数据为主。

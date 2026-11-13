@@ -415,7 +415,12 @@
     "title": "Font-Kompressor — TTF, OTF, WOFF & WOFF2 online komprimieren",
     "desc": "Laden Sie eine TTF-, OTF-, WOFF- oder WOFF2-Schrift hoch, wählen Sie die benötigten Zeichen und entfernen Sie ungenutzte Glyphen für eine kleinere Webfont.",
     "h1": "Webfonts komprimieren (TTF, OTF, WOFF2)",
-    "lead": "Behalten Sie nur die Zeichen und Glyphen, die Ihre Seite braucht, und verkleinern Sie TTF-, OTF-, WOFF- und WOFF2-Schriften für das Web. Die Verarbeitung läuft im Browser.",
+    "lead": "Kostenloser Online-Schriftkompressor: Behalten Sie nur die Zeichen und Glyphen, die Ihre Seite braucht, und verkleinern Sie TTF-, OTF-, WOFF- und WOFF2-Schriften für das Web. Die Verarbeitung läuft im Browser.",
+    "trust": {
+      "local": "Läuft in Ihrem Browser — die Schrift wird nie hochgeladen",
+      "compare": "Zeigt Original- vs. Subset-Größe und Ersparnis in %",
+      "formats": "Eingabe TTF / OTF / WOFF / WOFF2 → Ausgabe TTF / OTF / WOFF / WOFF2"
+    },
     "upload": "TTF-Schrift hochladen",
     "selected": "Ausgewählt: {name}",
     "origin_size": "Originalgröße: {size}",
@@ -539,7 +544,13 @@
     "index": "Tool zur Konvertierung von JSON- und CSV-Dateien",
     "seo_title": "JSON zu CSV online konvertieren — CSV-zu-JSON-Konverter",
     "seo_description": "JSON und CSV einfach online umwandeln. Kostenlos, schnell und sicher direkt im Browser, ohne Datei-Upload.",
-    "seo_keywords": "JSON zu CSV, CSV zu JSON, Online-Konverter, kostenloser JSON-CSV-Konverter, JSON konvertieren, CSV konvertieren"
+    "seo_keywords": "JSON zu CSV, CSV zu JSON, Online-Konverter, kostenloser JSON-CSV-Konverter, JSON konvertieren, CSV konvertieren",
+    "howto_title": "JSON in CSV umwandeln (und zurück)",
+    "howto_p1": "Fügen Sie ein JSON-Array aus Objekten ein: Der Konverter schreibt pro Objekt eine CSV-Zeile und verwendet die Schlüssel des ersten Objekts als Kopfzeile. Fügen Sie CSV mit Kopfzeile ein, um wieder JSON-Objekte zu erhalten.",
+    "howto_csv2json_title": "CSV zu JSON",
+    "howto_csv2json_p": "CSV ist flach, daher wird jede Spalte zu einem Textfeld. Zahlen, Booleans und null kommen als Text zurück – wandeln Sie sie nach dem Import erneut um, wenn Ihr Code Typen benötigt.",
+    "howto_nested_title": "Verschachtelte Objekte und große Dateien",
+    "howto_nested_p": "Verschachtelte Objekte werden nicht automatisch abgeflacht: Serialisieren Sie sie zuerst in eine einzelne Spalte, wenn der Empfänger kein JSON in CSV verarbeiten kann. Die Konvertierung läuft im Browser, daher hängen mehrere MB große Dateien vom verfügbaren Speicher ab, nicht von einem Serverlimit."
   },
   "imageConvert": {
     "webpToPngTitle": "WebP zu PNG",
@@ -845,9 +856,14 @@
   },
   "hashTool": {
     "title": "Text hashen",
-    "description": "Hashen Sie einen Text mit MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3 oder RIPEMD160.",
+    "description": "Hashen Sie einen Text oder eine Datei mit MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3 oder RIPEMD160.",
     "inputLabel": "Zu hashender Text:",
     "placeholder": "Zu hashende Zeichenfolge...",
+    "textTab": "Text",
+    "fileTab": "Datei",
+    "fileLabel": "Zu hashende Datei auswählen:",
+    "fileHint": "Die Datei wird lokal gelesen und nie hochgeladen. Bei sehr großen Dateien (100 MB+) verwenden Sie besser die Kommandozeile (sha256sum / certutil).",
+    "fileError": "Die Datei konnte nicht gelesen werden",
     "encoding": "Digest-Kodierung",
     "hex": "Hexadezimal (Basis 16)",
     "copyTitle": "In die Zwischenablage kopieren",

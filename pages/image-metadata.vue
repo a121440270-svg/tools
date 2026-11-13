@@ -2,10 +2,8 @@
 const { t } = useI18n()
 const tools = [
   { path: '/image-info', key: 'imageTools.info' },
-  { path: '/metadata-analyzer', key: 'imageTools.metadataAnalyzer' },
   { path: '/exif-editor', key: 'imageTools.exifEditor' },
   { path: '/remove-exif', key: 'imageTools.exif' },
-  { path: '/image-metadata-remover', key: 'imageTools.metadataRemover' },
   { path: '/gps-remover', key: 'imageTools.gpsRemover' },
   { path: '/image-privacy', key: 'imageTools.privacyCleaner' }
 ]

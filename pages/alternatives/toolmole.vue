@@ -264,7 +264,7 @@ const en = {
       text: 'Keep only the glyphs your page needs and download a smaller font.'
     },
     {
-      path: '/metadata-analyzer',
+      path: '/image-info',
       title: 'Inspect every metadata field',
       text: 'See what a photo reveals before you decide what to remove.'
     }
@@ -399,7 +399,7 @@ const zh = {
       text: '只保留页面需要的字形，下载更小的字体文件。'
     },
     {
-      path: '/metadata-analyzer',
+      path: '/image-info',
       title: '逐项查看元数据',
       text: '先看清照片暴露了什么，再决定删除哪些字段。'
     }

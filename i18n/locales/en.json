@@ -426,7 +426,12 @@
     "title": "Font Compressor — Compress TTF, OTF, WOFF & WOFF2 Online",
     "desc": "Upload a TTF, OTF, WOFF, or WOFF2 font, choose the characters to keep, and create a smaller web-ready font by removing unused glyphs.",
     "h1": "Compress Fonts for Web (TTF, OTF, WOFF2)",
-    "lead": "Compress fonts for the web by keeping only the characters and glyphs your page needs. Smaller TTF, OTF, WOFF and WOFF2 files, generated locally in your browser.",
+    "lead": "Free online font compressor: keep only the characters and glyphs your page needs to get smaller TTF, OTF, WOFF and WOFF2 files, generated locally in your browser.",
+    "trust": {
+      "local": "Runs in your browser — the font is never uploaded",
+      "compare": "Shows original vs. subset size and % saved",
+      "formats": "Input TTF / OTF / WOFF / WOFF2 → output TTF / WOFF / WOFF2"
+    },
     "upload": "Upload Font",
     "selected": "Selected: {name}",
     "origin_size": "Original size: {size}",
@@ -553,7 +558,13 @@
     "index": "JSON and CSV format conversion tool",
     "seo_title": "JSON to CSV Converter — Online & Free (CSV to JSON Too)",
     "seo_description": "Easily convert JSON to CSV and CSV to JSON online. Free, fast, and secure conversion tool that works directly in your browser. No file upload required.",
-    "seo_keywords": "JSON to CSV, CSV to JSON, online converter, free JSON to CSV tool, convert JSON, convert CSV, JSON converter, CSV converter, batch conversion"
+    "seo_keywords": "JSON to CSV, CSV to JSON, online converter, free JSON to CSV tool, convert JSON, convert CSV, JSON converter, CSV converter, batch conversion",
+    "howto_title": "How to convert JSON to CSV (and back)",
+    "howto_p1": "Paste a JSON array of objects and the converter writes one CSV row per object, using the first object's keys as the header row. Paste CSV with a header line to get JSON objects back.",
+    "howto_csv2json_title": "CSV to JSON",
+    "howto_csv2json_p": "CSV is flat, so every column becomes a string field. Numbers, booleans and nulls come back as text — cast them again after import if your code depends on types.",
+    "howto_nested_title": "Nested objects and large files",
+    "howto_nested_p": "Nested objects are not flattened automatically: stringify them into a single column first if the consumer cannot handle JSON inside CSV. Conversion runs in the browser, so multi-megabyte files depend on available memory rather than a server limit."
   },
   "imageConvert": {
     "webpToPngTitle": "WebP to PNG",
@@ -1211,9 +1222,14 @@
   },
   "hashTool": {
     "title": "Hash text",
-    "description": "Hash a text string using MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3, or RIPEMD160.",
+    "description": "Hash a text string or a file using MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3, or RIPEMD160.",
     "inputLabel": "Your text to hash:",
     "placeholder": "Your string to hash...",
+    "textTab": "Text",
+    "fileTab": "File",
+    "fileLabel": "Choose a file to hash:",
+    "fileHint": "The file is read locally and never uploaded. For very large files (100 MB+), prefer the command line (sha256sum / certutil).",
+    "fileError": "Could not read the file",
     "encoding": "Digest encoding",
     "hex": "Hexadecimal (base 16)",
     "copyTitle": "Copy to clipboard",

@@ -1,5 +1,16 @@
 import { Utils } from "~/server/utils";
 
+// Statement logging is handy in `nuxt dev`, but every `console.log` on Workers
+// is serialised into Workers Logs *inside* the request's CPU budget, which the
+// free plan caps at 10 ms. `formatSqlWithParams` also inlines bound values, so a
+// single article INSERT/SELECT can copy tens of KB of markdown per query and
+// push a render over the limit (Cloudflare error 1102 -> HTTP 503). Off unless
+// explicitly enabled with `SQL_DEBUG=1`.
+const SQL_DEBUG = process.env.SQL_DEBUG === '1'
+function debugSql(...args: unknown[]) {
+  if (SQL_DEBUG) console.log(...args)
+}
+
 /**
  * replaceInto: 如果指定属性组合存在则更新，否则插入
  * @param table 表名
@@ -62,8 +73,7 @@ export async function select<T>(table: string, where?: { [key: string]: any }, f
   }
   const whereClause = clauseArr.length > 0 ? 'WHERE ' + clauseArr.join(' AND ') : '';
   const sql = `SELECT ${fields.join(', ')} FROM ${table} ${whereClause}`;
-  const fullSql = Utils.formatSqlWithParams(sql, params);
-  console.log('SQL:', fullSql);
+  if (SQL_DEBUG) debugSql('SQL:', Utils.formatSqlWithParams(sql, params));
   let stmt = db.prepare(sql);
   if (params.length > 0) {
     stmt = stmt.bind(...params);
@@ -77,12 +87,11 @@ export async function insert<T>(table: string, data: Partial<T>) {
   const placeholders = keys.map(() => '?').join(', ');
   const sql = `INSERT INTO ${table} (${keys.join(', ')}) VALUES (${placeholders}) RETURNING id`;
   const params = Object.values(data) as (string | number | boolean | null)[];
-  const fullSql = Utils.formatSqlWithParams(sql, params);
   try {
     const stmt = db.prepare(sql);
-    console.log('SQL:', fullSql);
+    if (SQL_DEBUG) debugSql('SQL:', Utils.formatSqlWithParams(sql, params));
     const result = await stmt.bind(...params).run();
-    console.log('Insert result:', result);
+    debugSql('Insert result:', result);
     return result;
   } catch (err) {
     console.error('Insert error:', err);
@@ -110,7 +119,7 @@ export async function update<T>(table: string, data: Partial<T>, where: { [key: 
 export async function remove(table: string, where: { [key: string]: any }) {
   const db = getDb();
   const whereClause = Object.keys(where).map(k => `${k} = ?`).join(' AND ');
-  console.log(`DELETE FROM ${table} WHERE ${whereClause}`);
+  debugSql(`DELETE FROM ${table} WHERE ${whereClause}`);
   const stmt = db.prepare(`DELETE FROM ${table} WHERE ${whereClause}`);
   await stmt.bind(...Object.values(where)).run();
 }
@@ -284,7 +293,7 @@ export class QueryBuilder {
   async all<T>(): Promise<T[]> {
     const db = getDb();
     const { sql, params } = this.buildQuery();
-    console.log('Full SQL:', Utils.formatSqlWithParams(sql, params));
+    if (SQL_DEBUG) debugSql('Full SQL:', Utils.formatSqlWithParams(sql, params));
     let stmt = db.prepare(sql);
     if (params.length > 0 && typeof stmt.bind === 'function') {
       stmt = stmt.bind(...params);

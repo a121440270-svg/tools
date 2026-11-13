@@ -255,14 +255,15 @@ const toolContent: Record<string, ToolContent> = {
     ],
   },
   '/hash-text': {
-    heading: 'Generate MD5, SHA-1, SHA-256 and SHA-512 hashes',
+    heading: 'Generate MD5, SHA-1, SHA-256 and SHA-512 hashes from text or files',
     paragraphs: [
-      'Hash Text computes cryptographic digests of any text directly in your browser. Paste a password, a token, a file fragment or a sentence and compare the MD5, SHA-1, SHA-256 and SHA-512 results.',
+      'Hash Text computes cryptographic digests of any text or file directly in your browser. Paste a password, a token or a sentence, or drop in a downloaded file, then compare the MD5, SHA-1, SHA-256 and SHA-512 results.',
       'Hashes are useful for verifying data integrity, generating deterministic identifiers and checking that two strings are identical without storing the original. They are not encryption and cannot be reversed.',
     ],
     bullets: [
       'Use SHA-256 or SHA-512 for security-related work; MD5 is legacy.',
       'The same input always produces the same digest.',
+      'Hash a downloaded installer to verify it against the publisher’s checksum.',
       'Never treat a plain hash as password storage without salting and stretching.',
     ],
   },
@@ -372,6 +373,7 @@ const toolContent: Record<string, ToolContent> = {
       'Check dimensions before uploading to print or marketplace portals.',
       'A large file size with small dimensions often means metadata or noise.',
       'Compare formats to pick the smallest acceptable one.',
+      'GPS, owner and serial-number fields deserve the first review before publishing.',
     ],
   },
   '/image-metadata': {
@@ -384,18 +386,6 @@ const toolContent: Record<string, ToolContent> = {
       'GPS and serial numbers are the most sensitive fields.',
       'Editing software often rewrites the Software tag.',
       'Screenshots usually contain very little metadata.',
-    ],
-  },
-  '/image-metadata-remover': {
-    heading: 'Strip metadata from images',
-    paragraphs: [
-      'Remove EXIF, IPTC, XMP and comments from JPG, PNG and WebP files while keeping the visual content unchanged. This is the broadest cleanup option when you want a file with no hidden information at all.',
-      'It is useful before publishing photos, sending documents to clients or uploading images to platforms that display metadata. Processing stays on your device.',
-    ],
-    bullets: [
-      'Keep a private copy if you rely on capture dates for archiving.',
-      'Some formats re-add a minimal header after editing.',
-      'Combine with a visual check to confirm orientation is still correct.',
     ],
   },
   '/image-privacy': {
@@ -474,9 +464,9 @@ const toolContent: Record<string, ToolContent> = {
     ],
   },
   '/json-csv-convert': {
-    heading: 'Convert between JSON and CSV',
+    heading: 'Convert JSON to CSV and CSV to JSON',
     paragraphs: [
-      'Turn a JSON array into a CSV spreadsheet, or import CSV rows as JSON objects. Choose the delimiter, handle nested fields and copy or download the result. This is a common step when moving data between an API and Excel or Google Sheets.',
+      'Convert JSON to CSV or CSV to JSON in one page. Turn a JSON array into a CSV spreadsheet, or import CSV rows as JSON objects, then copy or download the result. This is a common step when moving data between an API and Excel or Google Sheets.',
       'Conversion is local, so customer data does not leave your machine. Check that column names and types survive the round trip before importing into production.',
     ],
     bullets: [
@@ -497,18 +487,6 @@ const toolContent: Record<string, ToolContent> = {
       'Large payloads may be limited by available browser memory.',
     ],
   },
-  '/metadata-analyzer': {
-    heading: 'Analyse image metadata at a glance',
-    paragraphs: [
-      'The metadata analyser groups EXIF, IPTC and XMP fields into categories and flags the ones that carry privacy or compliance risk, such as GPS, owner and serial number. It turns a wall of tags into a short review list.',
-      'Use it before publishing a photo library or sending images to a client. Once you know what is present, the editor or remover tools can act on it.',
-    ],
-    bullets: [
-      'GPS and owner fields deserve the first review.',
-      'Dates help verify that a photo is recent.',
-      'Software tags reveal the editing pipeline.',
-    ],
-  },
   '/remove-exif': {
     heading: 'Remove EXIF data from photos',
     paragraphs: [
@@ -519,6 +497,7 @@ const toolContent: Record<string, ToolContent> = {
       'Keep the original for your own dated archive.',
       'Removing metadata does not reduce the visible quality.',
       'Some platforms strip metadata automatically; many do not.',
+      'The cleanup also drops IPTC, XMP and comment fields, not just EXIF.',
     ],
   },
   '/send-script-to-remote-user': {
@@ -569,18 +548,6 @@ const toolContent: Record<string, ToolContent> = {
       'Generate several variants and pick the best one.',
     ],
   },
-  '/uppercase': {
-    heading: 'Convert text to uppercase',
-    paragraphs: [
-      'Paste text and convert every letter to uppercase instantly. Useful for labels, banners, code constants and legacy systems that expect capitalised input. The original text is not stored.',
-      'For mixed formatting such as title case or camelCase, open the full case converter instead.',
-    ],
-    bullets: [
-      'Uppercase text is harder to read in long paragraphs.',
-      'Use CSS text-transform when the original text should stay editable.',
-      'Switch to the case converter for more styles.',
-    ],
-  },
   '/prompts': {
     heading: 'A curated prompt library for everyday AI work',
     paragraphs: [
@@ -593,8 +560,8 @@ const toolContent: Record<string, ToolContent> = {
       'Report prompts that are unsafe or misleading.',
     ],
   },
-  '/image-to-webp': {
-    heading: 'Convert JPG and PNG images to WebP',
+  '/png-to-webp': {
+    heading: 'Convert PNG and JPG images to WebP',
     paragraphs: [
       'WebP usually produces smaller files than JPG or PNG at comparable quality, which makes pages load faster. This converter accepts one image or a batch and writes WebP files you can upload directly.',
       'Transparency is supported, so WebP can replace PNG for UI assets as well as photos. Check that your target platform accepts WebP; older email clients often do not.',

@@ -1,4 +1,4 @@
-import {findArticleByIdAndLang } from '~/server/dao/articleDao';
+import { findArticleByIdAndLang, findArticleTranslationSlugs } from '~/server/dao/articleDao';
 import { getCookie, getQuery, getHeader } from 'h3'
 
 export default defineEventHandler(async (event) => {
@@ -37,9 +37,15 @@ export default defineEventHandler(async (event) => {
     }
   }
   lang = lang || 'en'
-  console.log('查询条件:', { ...query, id, lang })
-  const tools = await findArticleByIdAndLang(id, lang); // 传入 id 和 lang 两个参数
-  // return tools;
-  console.log( '结果:', tools)
-  return tools || []
+  // NOTE: never log the resolved article here. It carries the full markdown
+  // body (tens of KB), and serialising it into Workers Logs on every request
+  // pushes article renders past the 10 ms CPU limit of the Workers free plan
+  // (Cloudflare error 1102 -> HTTP 503 to Googlebot and users).
+  const wantsTranslations = ['1', 'true', 'yes'].includes(String((query as any)?.translations || ''))
+  const [tools, translations] = await Promise.all([
+    findArticleByIdAndLang(id, lang), // 传入 id 和 lang 两个参数
+    wantsTranslations ? findArticleTranslationSlugs(id) : Promise.resolve([])
+  ])
+  if (!tools) return { article: null, articlel: null, translations }
+  return { ...tools, translations }
 });
