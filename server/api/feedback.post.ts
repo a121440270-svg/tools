@@ -1,5 +1,6 @@
 import { createError, defineEventHandler, getHeader, getRequestURL, readBody } from 'h3'
 import { sendEmail } from '../utils/email'
+import { isFeatureRequestNotificationEnabled, sendWechatNotification } from '../utils/wechatNotification'
 
 interface FeedbackBody {
   message?: unknown
@@ -115,6 +116,19 @@ export default defineEventHandler(async (event) => {
         ? 'Feedback email service is not configured'
         : 'Could not deliver the feature request email'
     })
+  }
+
+  if (isFeatureRequestNotificationEnabled(event)) {
+    try {
+      await sendWechatNotification(event, {
+        type: 'feature-request',
+        message,
+        email,
+        pageUrl: pageUrl.toString()
+      })
+    } catch (error) {
+      console.error('[feedback] WeChat notification failed:', error)
+    }
   }
 
   return { success: true }
