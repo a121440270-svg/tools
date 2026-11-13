@@ -155,7 +155,7 @@
       <div class="related-grid">
         <NuxtLinkLocale to="/image-compress">{{ $t('imageTools.related.compress') }}</NuxtLinkLocale>
         <NuxtLinkLocale to="/image-aspect-ratio">{{ $t('imageTools.related.aspectRatio') }}</NuxtLinkLocale>
-        <NuxtLinkLocale to="/image-to-webp">{{ $t('imageTools.related.toWebp') }}</NuxtLinkLocale>
+        <NuxtLinkLocale to="/png-to-webp">{{ $t('imageTools.related.toWebp') }}</NuxtLinkLocale>
         <NuxtLinkLocale to="/webp-to-png">{{ $t('imageTools.related.webpToPng') }}</NuxtLinkLocale>
       </div>
     </div>
