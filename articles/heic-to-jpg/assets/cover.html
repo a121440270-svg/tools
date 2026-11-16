@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 900px; height: 383px; overflow: hidden; position: relative;
+    font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+    background: #0b1020; color: #fff;
+  }
+  .glow { position: absolute; width: 520px; height: 520px; border-radius: 50%; filter: blur(90px); }
+  .g1 { right: -80px; top: -180px; background: rgba(56,189,248,.22); }
+  .g2 { left: -120px; bottom: -200px; background: rgba(168,85,247,.22); }
+  .grid {
+    position: absolute; inset: 0; opacity: .25;
+    background-image: linear-gradient(rgba(148,163,184,.18) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(148,163,184,.18) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(120% 100% at 20% 0%, #000 25%, transparent 80%);
+    -webkit-mask-image: radial-gradient(120% 100% at 20% 0%, #000 25%, transparent 80%);
+  }
+  .left { position: absolute; left: 48px; top: 46px; width: 470px; }
+  .tag { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 2px; color: #7dd3fc; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: #38bdf8; box-shadow: 0 0 10px #38bdf8; }
+  h1 { margin-top: 16px; font-size: 40px; line-height: 1.18; letter-spacing: -.5px; font-weight: 700; }
+  h1 em { font-style: normal; color: #7dd3fc; }
+  .sub { margin-top: 14px; font-size: 15px; color: #94a3b8; line-height: 1.5; }
+  .right { position: absolute; right: 44px; top: 42px; width: 320px; }
+  .file { display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+    background: rgba(15,23,42,.8); border: 1px solid rgba(148,163,184,.22); border-radius: 12px; padding: 12px 14px; }
+  .ext { font-family: Consolas, monospace; font-size: 11px; font-weight: 700; letter-spacing: .5px;
+    padding: 4px 7px; border-radius: 6px; }
+  .heic { background: rgba(248,113,113,.16); color: #fca5a5; border: 1px solid rgba(248,113,113,.35); }
+  .jpg { background: rgba(52,211,153,.14); color: #6ee7b7; border: 1px solid rgba(52,211,153,.35); }
+  .name { font-size: 12.5px; color: #e2e8f0; font-family: Consolas, monospace; }
+  .meta { font-size: 11px; color: #64748b; margin-top: 3px; }
+  .arrow { text-align: center; color: #475569; font-size: 16px; margin: 6px 0 14px; letter-spacing: 4px; }
+  .bar { position: absolute; left: 48px; bottom: 34px; font-size: 12px; color: #64748b; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="grid"></div>
+
+  <div class="left">
+    <div class="tag"><span class="dot"></span> 格式兼容</div>
+    <h1>iPhone 拍的照片，<br />为什么别人<em>打不开</em></h1>
+    <div class="sub">报名系统只收 JPG、老版 Office 导入报错、Windows 双击没反应——问题不在照片，而在 HEIC。</div>
+  </div>
+
+  <div class="right">
+    <div class="file">
+      <span class="ext heic">HEIC</span>
+      <div><div class="name">IMG_4821.HEIC</div><div class="meta">4032 × 3024 · 2.9 MB</div></div>
+    </div>
+    <div class="arrow">↓ 转换 ↓</div>
+    <div class="file">
+      <span class="ext jpg">JPG</span>
+      <div><div class="name">IMG_4821.jpg</div><div class="meta">4032 × 3024 · 1.1 MB</div></div>
+    </div>
+    <div class="file" style="margin-top:14px;border-style:dashed;background:rgba(15,23,42,.5)">
+      <span class="ext jpg" style="background:rgba(56,189,248,.14);color:#7dd3fc;border-color:rgba(56,189,248,.35)">本地</span>
+      <div><div class="name" style="color:#94a3b8">浏览器内解码</div><div class="meta">不上传服务器</div></div>
+    </div>
+  </div>
+
+  <div class="bar">onlitools.com/heic-to-jpg</div>
+</body>
+</html>
