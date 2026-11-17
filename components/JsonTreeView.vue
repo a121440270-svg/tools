@@ -9,11 +9,22 @@
       <span v-if="tree" class="json-tree-count">{{ t('jsonFormatter.treeNodes', { count: nodeCount }) }}</span>
 
       <div class="ml-auto flex items-center gap-0.5">
-        <button type="button" class="json-tree-tool" :title="t('jsonFormatter.expandAll')" :aria-label="t('jsonFormatter.expandAll')" @click="setAll(true)">
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 4.5 7 8l-3.5 3.5M8.5 4.5 12 8l-3.5 3.5" /></svg>
-        </button>
-        <button type="button" class="json-tree-tool" :title="t('jsonFormatter.collapseAll')" :aria-label="t('jsonFormatter.collapseAll')" @click="setAll(false)">
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 11.5 7 8 3.5 4.5M8.5 11.5 12 8 8.5 4.5" /></svg>
+        <button
+          type="button"
+          class="json-tree-tool"
+          :title="allExpanded ? t('jsonFormatter.collapseAll') : t('jsonFormatter.expandAll')"
+          :aria-label="allExpanded ? t('jsonFormatter.collapseAll') : t('jsonFormatter.expandAll')"
+          :aria-pressed="allExpanded"
+          @click="toggleAll"
+        >
+          <svg v-if="allExpanded" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M2 4.5h7M2 8h7M2 11.5h7" />
+            <path d="M9 8h6" />
+          </svg>
+          <svg v-else viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M2 4.5h7M2 8h7M2 11.5h7" />
+            <path d="M12 5v6M9 8h6" />
+          </svg>
         </button>
         <button type="button" class="json-tree-tool" :title="t('jsonFormatter.copyAll')" :aria-label="t('jsonFormatter.copyAll')" @click="copyAll">
           <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="4.5" width="7" height="9" rx="1.5" /><path d="M6.5 4.5V3h4v1.5" /></svg>
@@ -159,6 +170,12 @@ const setAll = (open) => {
   }
 }
 
+const allExpanded = computed(() => {
+  const containers = tree.value?.nodes.filter(n => n.container) ?? []
+  return containers.length > 0 && containers.every(n => isExpanded(n.path, n.depth))
+})
+const toggleAll = () => setAll(!allExpanded.value)
+
 const copyText = async (text) => {
   try {
     await navigator.clipboard.writeText(text)
@@ -190,8 +207,8 @@ provide('jsonTreeState', { isExpanded, toggle, copyValue })
   .json-tree-pane { width: var(--tree-width, 360px); }
 }
 
-.json-tree-header { background: linear-gradient(180deg, #fff, transparent); }
-:global(.dark) .json-tree-header { background: linear-gradient(180deg, #202e27, transparent); }
+.json-tree-header { background: #f0f4f1; }
+:global(.dark) .json-tree-header { background: #1f2d25; }
 
 .json-tree-live {
   width: 6px;
