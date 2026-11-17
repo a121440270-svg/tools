@@ -28,7 +28,7 @@
               :title="$t('jsonFormatter.toggleTree')"
               :aria-label="$t('jsonFormatter.toggleTree')"
               :aria-pressed="showTree"
-              @click="showTree = !showTree"
+              @click="toggleTree"
             >
               <svg viewBox="0 0 16 16" aria-hidden="true">
                 <rect x="1.8" y="2.2" width="4.2" height="4.2" rx="1" />
@@ -48,7 +48,7 @@
         </div>
         <div class="editor-fullscreen overflow-hidden rounded-xl border border-slate-200 bg-slate-950 dark:border-slate-700">
           <div class="flex h-full flex-col-reverse md:flex-row">
-            <JsonTreeView v-if="showTree" :text="jsonText" @hide="showTree = false" />
+            <JsonTreeView v-if="showTree" ref="treeRef" :text="jsonText" @hide="showTree = false" />
             <div class="min-w-0 flex-1">
               <div class="share-note-editor"><CodeMirrorEditor v-model="jsonText" language="json" :theme="editorTheme" :line-wrapping="true" :aria-label="$t('jsonFormatter.input')" /></div>
             </div>
@@ -83,6 +83,11 @@ const storageKey = 'opsdrop-json-formatter-draft'
 const treeStorageKey = 'opsdrop-json-formatter-tree-visible'
 const jsonText = ref('')
 const showTree = ref(false)
+const treeRef = ref(null)
+const toggleTree = () => {
+  if (showTree.value) treeRef.value?.closeWithAnimation()
+  else showTree.value = true
+}
 const errorMessage = ref('')
 const editorTheme = ref('light')
 let themeObserver

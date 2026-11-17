@@ -1,6 +1,7 @@
 <template>
   <aside
     class="json-tree-pane relative flex w-full shrink-0 flex-col border-b border-[#dde5e0] bg-[#f6f8f5] md:border-b-0 md:border-r dark:border-[#2e3d35] dark:bg-[#18211d]"
+    :class="{ 'is-closing': closing, 'is-opening': opening }"
     :style="{ '--tree-width': `${paneWidth}px` }"
   >
     <header class="json-tree-header flex items-center gap-2 border-b border-[#dde5e0] px-3 py-2 dark:border-[#2e3d35]">
@@ -18,20 +19,15 @@
           @click="toggleAll"
         >
           <svg v-if="allExpanded" viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M2 4.5h7M2 8h7M2 11.5h7" />
-            <path d="M9 8h6" />
+            <path d="M4.5 8h7" />
           </svg>
           <svg v-else viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M2 4.5h7M2 8h7M2 11.5h7" />
-            <path d="M12 5v6M9 8h6" />
+            <path d="M4.5 8h7M8 4.5v7" />
           </svg>
         </button>
-        <button type="button" class="json-tree-tool" :title="t('jsonFormatter.copyAll')" :aria-label="t('jsonFormatter.copyAll')" @click="copyAll">
-          <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="4.5" width="7" height="9" rx="1.5" /><path d="M6.5 4.5V3h4v1.5" /></svg>
-        </button>
         <span class="json-tree-divider" aria-hidden="true"></span>
-        <button type="button" class="json-tree-tool json-tree-tool--close" :title="t('jsonFormatter.hideTree')" :aria-label="t('jsonFormatter.hideTree')" @click="emit('hide')">
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" /></svg>
+        <button type="button" class="json-tree-tool json-tree-tool--close" :title="t('jsonFormatter.hideTree')" :aria-label="t('jsonFormatter.hideTree')" @click="closeWithAnimation">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 3.5 5 8l4.5 4.5M5 8h8" /></svg>
         </button>
       </div>
     </header>
@@ -70,12 +66,32 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, reactive, provide, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, reactive, provide, ref, watch } from 'vue'
 import { ElMessage } from 'element-plus'
 
 const props = defineProps<{ text: string }>()
 const emit = defineEmits<{ hide: []; 'update:width': [value: number] }>()
 const { t } = useI18n()
+
+const ANIM_MS = 380
+
+const closing = ref(false)
+const opening = ref(true)
+let closeTimer: ReturnType<typeof setTimeout> | undefined
+let openTimer: ReturnType<typeof setTimeout> | undefined
+// 挂载后稍等再去掉 opening，让浏览器先绘制收起态，才能过渡展开
+onMounted(() => {
+  openTimer = setTimeout(() => { opening.value = false }, 30)
+})
+const closeWithAnimation = () => {
+  if (closing.value) return
+  closing.value = true
+  closeTimer = setTimeout(() => emit('hide'), ANIM_MS)
+}
+onBeforeUnmount(() => {
+  if (closeTimer) clearTimeout(closeTimer)
+  if (openTimer) clearTimeout(openTimer)
+})
 
 const widthKey = 'opsdrop-json-formatter-tree-width'
 const MIN_WIDTH = 240
@@ -191,20 +207,28 @@ const copyValue = (value) => {
   return copyText(text)
 }
 
-const copyAll = () => {
-  if (!parsed.value.ok) return
-  return copyText(JSON.stringify(parsed.value.value, null, 2))
-}
-
 provide('jsonTreeState', { isExpanded, toggle, copyValue })
+
+defineExpose({ closeWithAnimation })
 </script>
 
 <style scoped>
-.json-tree-pane { animation: tree-in .22s ease both; }
-@keyframes tree-in { from { opacity: 0; } to { opacity: 1; } }
+.json-tree-pane {
+  transition: width .38s cubic-bezier(.4, 0, .2, 1),
+              max-height .38s cubic-bezier(.4, 0, .2, 1),
+              opacity .3s ease;
+}
 
 @media (min-width: 768px) {
   .json-tree-pane { width: var(--tree-width, 360px); }
+  .json-tree-pane.is-opening { width: 0; opacity: 0; overflow: hidden; }
+  .json-tree-pane.is-closing { width: 0; opacity: 0; overflow: hidden; }
+}
+
+@media (max-width: 767px) {
+  .json-tree-pane { max-height: 400px; overflow: hidden; }
+  .json-tree-pane.is-opening { max-height: 0; opacity: 0; }
+  .json-tree-pane.is-closing { max-height: 0; opacity: 0; }
 }
 
 .json-tree-header { background: #f0f4f1; }
