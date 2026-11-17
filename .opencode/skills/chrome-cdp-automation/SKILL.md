@@ -49,9 +49,11 @@ const evalJs = async (expression, timeoutMs = 60000) => {
 | `el.click()` 没反应 | 导航/菜单是自定义元素（Material/Angular `span`），只监听真实鼠标事件 | 优先找原生 `input` / `button`；不行就 `dispatchEvent` 完整序列（pointerdown/mousedown/mouseup/click），或改用键盘（Enter/ArrowDown） |
 | 输入框填了值但页面没反应（值为空/被重置） | React/Vue 受控组件只认原生 setter | `Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(el, v)` + `input` + `change` 事件 |
 | 表格/面板读出来是空数组 | SPA 先渲染骨架，数据异步到达 | **轮询**（`for` + `sleep(2000~3000)`，上限 15~25 次），不要固定 `sleep(5s)` 后读一次 |
+| 分页写着"共 2 行"，但 DOM 里只有表头、找不到任何数据行 | 页面 `document.visibilityState === 'hidden'`（窗口最小化/标签在后台），**虚拟滚动表格在不可见时不渲染行** | 先 `Emulation.setFocusEmulationEnabled {enabled:true}` + `Page.setWebLifecycleState {state:'active'}` + `Page.bringToFront`，再 navigate；之后读 `visibilityState` 确认已是 `visible` |
+| 想知道后台真实状态，但 UI 文案不可靠/渲染报错 | — | 直接读它自己调的 RPC：`Network.enable` 后抓 `Network.responseReceived` 里目标接口（如 `.../services/_/rpc/XxxService/Method`），用 `Network.getResponseBody` 取原始 JSON（常带 `)]}'` 前缀，需剥掉）。注意 **`getResponseBody` 只在请求后短时间内可用**，要在导航后立刻取，别等跑完多个页面 |
 | 用整页 `body.innerText` 正则判断操作是否成功，经常误判 | 页面别处本来就有"已提交/无法抓取"等字样 | 判断**具体控件状态**（行数据、`[role=alert]`、按钮文案）而不是整页文本 |
 | 想删东西，点了行内菜单发现没有该项 | 点到的是"展开"箭头而不是 `⋮` | 先 **dump 菜单完整 `outerHTML`** 确认条目，再做破坏性操作 |
-| 代理挂了（curl 返回 000 / schannel 握手失败），但浏览器能上网 | Chrome 有自己的网络/系统代理 | 用 CDP `Network.enable` + `Page.navigate` 读 `Network.responseReceived` 拿**真实状态码、mime、重定向链** |
+| 代理挂了/不稳定（curl 返回 000 / schannel 握手失败；或页面 `chrome-error://chromewebdata/`、`ERR_CONNECTION_CLOSED`/`net::ERR_CONNECTION_CLOSED`，但偶尔可达） | 走 SOCKS5 的链路抖动，或 Chrome 启动参数/会话与目标站点握手不稳；浏览器网络栈与命令行代理表现可能不同 | **多次重试**：对同一 URL 循环 `Page.navigate` + 轮询（每次间隔逐步加大，如 7–12s，尝试 5–10 次），每次用 `location.href`/`body.innerText` 判定是否仍是 error 页；同时 `Network.enable` 记录 `loadingFailed`/`responseReceived` 观察失败原因。若持续失败，先确认代理 `127.0.0.1:4080` 可连、让用户在该 Chrome 中手动刷新确认可达，再继续自动化；不要在失败页上误判业务内容。 |
 | 脚本里 `newTab` 失败 | Chrome 新版要求 `PUT /json/new` | `fetch('http://127.0.0.1:9222/json/new?' + params, { method: 'PUT' })` |
 | PowerShell 输出中文乱码 | 控制台代码页 ≠ UTF-8 | 把响应写文件后 `[System.IO.File]::ReadAllText($f, [Text.Encoding]::UTF8)` 再正则；或直接看 title/canonical 等 ASCII 字段 |
 

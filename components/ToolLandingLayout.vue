@@ -364,8 +364,11 @@ useToolSeo({
 }
 
 /* ---- tool workspace ---- */
+/* `clip` (not `hidden`) keeps the rounded corners without creating a scroll
+   container, so sticky previews inside tools still pin to the viewport. */
 .tool-shell {
   overflow: hidden;
+  overflow: clip;
   border: 1.5px solid rgb(var(--foreground) / 0.85);
   border-radius: 22px;
   background: rgb(var(--card));

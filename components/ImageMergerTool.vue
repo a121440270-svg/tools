@@ -61,147 +61,171 @@
       </section>
 
       <section class="panel settings-panel">
-        <div class="field">
-          <span class="field-label">{{ t('mergeTool.layout') }}</span>
-          <div class="segmented" role="group" :aria-label="t('mergeTool.layout')">
-            <button
-              v-for="option in layoutOptions"
-              :key="option.value"
-              type="button"
-              :class="{ active: layout === option.value }"
-              :aria-pressed="layout === option.value"
-              @click="layout = option.value"
-            >{{ option.label }}</button>
-          </div>
-        </div>
+        <div class="stage">
+          <header class="stage-head">
+            <span class="live-dot" aria-hidden="true" />
+            <span class="stage-title">{{ t('mergeTool.previewTitle') }}</span>
+            <span class="stage-chips">
+              <span class="chip" :title="t('mergeTool.outputSize')">{{ outputLabel }}</span>
+              <span v-if="result" class="chip chip-accent" :title="t('mergeTool.fileSize')">{{ formatFileSize(result.bytes) }}</span>
+            </span>
+          </header>
 
-        <div v-if="layout === 'grid'" class="field">
-          <span class="field-label">{{ t('mergeTool.columns') }}</span>
-          <div class="segmented segmented-sm" role="group" :aria-label="t('mergeTool.columns')">
-            <button
-              v-for="column in [2, 3, 4]"
-              :key="column"
-              type="button"
-              :class="{ active: gridColumns === column }"
-              :aria-pressed="gridColumns === column"
-              @click="gridColumns = column"
-            >{{ column }}</button>
+          <div class="stage-mat" :class="{ checkerboard: background === 'transparent' }">
+            <canvas ref="previewCanvas" :aria-label="t('mergeTool.resultTitle')" />
           </div>
-        </div>
 
-        <div class="field">
-          <label class="field-label" for="merger-strategy">{{ t('mergeTool.sizeStrategy') }}</label>
-          <select id="merger-strategy" v-model="sizeStrategy" class="control">
-            <option value="reduce">{{ t('mergeTool.strategyReduce') }}</option>
-            <option value="magnify">{{ t('mergeTool.strategyMagnify') }}</option>
-            <option value="crop">{{ t('mergeTool.strategyCrop') }}</option>
-            <option value="none">{{ t('mergeTool.strategyNone') }}</option>
-          </select>
-          <p class="hint">{{ strategyHint }}</p>
-        </div>
-
-        <div class="field-row">
-          <div class="field">
-            <label class="field-label" for="merger-gap">{{ t('mergeTool.gap') }}</label>
-            <input id="merger-gap" v-model.number="gap" class="control" type="number" min="0" max="400" step="1" />
-          </div>
-          <div class="field">
-            <label class="field-label" for="merger-padding">{{ t('mergeTool.padding') }}</label>
-            <input id="merger-padding" v-model.number="padding" class="control" type="number" min="0" max="400" step="1" />
-          </div>
-        </div>
-
-        <div class="field">
-          <span class="field-label">{{ t('mergeTool.background') }}</span>
-          <div class="color-row">
-            <button
-              v-for="option in backgroundOptions"
-              :key="option.value"
-              type="button"
-              class="color-btn"
-              :class="{ active: background === option.value }"
-              :aria-pressed="background === option.value"
-              @click="background = option.value"
-            >
-              <span class="swatch" :class="option.swatch" />
-              {{ option.label }}
+          <div class="stage-actions">
+            <button type="button" class="btn-primary" :disabled="busy || !plan" @click="merge">
+              {{ busy ? t('mergeTool.merging') : t('mergeTool.mergeButton') }}
             </button>
-            <label class="color-picker" :title="t('mergeTool.bgCustom')">
-              <input v-model="customColor" type="color" @input="background = customColor" />
-              <span>{{ t('mergeTool.bgCustom') }}</span>
-            </label>
+            <a v-if="result" class="btn-secondary" :href="result.url" :download="result.name">{{ t('mergeTool.download') }}</a>
           </div>
+
+          <p v-if="scaledNote" class="notice">{{ scaledNote }}</p>
+          <p v-if="errorMessage" class="error" role="alert">{{ errorMessage }}</p>
         </div>
 
-        <div class="field">
-          <span class="field-label">{{ t('mergeTool.align') }}</span>
-          <div class="segmented segmented-sm" role="group" :aria-label="t('mergeTool.align')">
-            <button
-              v-for="option in alignOptions"
-              :key="option.value"
-              type="button"
-              :class="{ active: align === option.value }"
-              :aria-pressed="align === option.value"
-              @click="align = option.value"
-            >{{ option.label }}</button>
-          </div>
-        </div>
-
-        <div class="field-row">
+        <div class="controls">
           <div class="field">
-            <label class="field-label" for="merger-format">{{ t('mergeTool.outputFormat') }}</label>
-            <select id="merger-format" v-model="outputFormat" class="control">
-              <option value="image/png">PNG</option>
-              <option value="image/jpeg">JPG</option>
-              <option value="image/webp">WebP</option>
+            <span class="field-label">{{ t('mergeTool.layout') }}</span>
+            <div class="segmented" role="group" :aria-label="t('mergeTool.layout')">
+              <button
+                v-for="option in layoutOptions"
+                :key="option.value"
+                type="button"
+                :class="{ active: layout === option.value }"
+                :aria-pressed="layout === option.value"
+                @click="layout = option.value"
+              >{{ option.label }}</button>
+            </div>
+          </div>
+
+          <div v-if="layout === 'grid'" class="field">
+            <span class="field-label">{{ t('mergeTool.columns') }}</span>
+            <div class="segmented segmented-sm" role="group" :aria-label="t('mergeTool.columns')">
+              <button
+                v-for="column in [2, 3, 4]"
+                :key="column"
+                type="button"
+                :class="{ active: gridColumns === column }"
+                :aria-pressed="gridColumns === column"
+                @click="gridColumns = column"
+              >{{ column }}</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="merger-strategy">{{ t('mergeTool.sizeStrategy') }}</label>
+            <select id="merger-strategy" v-model="sizeStrategy" class="control">
+              <option value="reduce">{{ t('mergeTool.strategyReduce') }}</option>
+              <option value="magnify">{{ t('mergeTool.strategyMagnify') }}</option>
+              <option value="crop">{{ t('mergeTool.strategyCrop') }}</option>
+              <option value="none">{{ t('mergeTool.strategyNone') }}</option>
             </select>
+            <p class="hint">{{ strategyHint }}</p>
           </div>
-          <div v-if="outputFormat !== 'image/png'" class="field">
-            <label class="field-label" for="merger-quality">{{ t('mergeTool.quality') }} — {{ Math.round(quality * 100) }}%</label>
-            <input id="merger-quality" v-model.number="quality" class="range" type="range" min="0.5" max="1" step="0.01" />
+
+          <div class="field-row">
+            <div class="field">
+              <label class="field-label" for="merger-gap">{{ t('mergeTool.gap') }}</label>
+              <div class="num-row">
+                <input
+                  v-model.number="gap"
+                  class="range"
+                  type="range"
+                  min="0"
+                  max="400"
+                  step="1"
+                  :aria-label="t('mergeTool.gap')"
+                />
+                <input id="merger-gap" v-model.number="gap" class="control control-compact" type="number" min="0" max="400" step="1" />
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label" for="merger-padding">{{ t('mergeTool.padding') }}</label>
+              <div class="num-row">
+                <input
+                  v-model.number="padding"
+                  class="range"
+                  type="range"
+                  min="0"
+                  max="400"
+                  step="1"
+                  :aria-label="t('mergeTool.padding')"
+                />
+                <input id="merger-padding" v-model.number="padding" class="control control-compact" type="number" min="0" max="400" step="1" />
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="field">
-          <label class="field-label" for="merger-target">{{ t('mergeTool.compressTarget') }}</label>
-          <div class="target-row">
-            <input id="merger-target" v-model.number="targetKb" class="control" type="number" min="10" max="5000" step="10" />
-            <span class="target-unit">KB</span>
+          <div class="field">
+            <span class="field-label">{{ t('mergeTool.background') }}</span>
+            <div class="color-row">
+              <button
+                v-for="option in backgroundOptions"
+                :key="option.value"
+                type="button"
+                class="color-btn"
+                :class="{ active: background === option.value }"
+                :aria-pressed="background === option.value"
+                @click="background = option.value"
+              >
+                <span class="swatch" :class="option.swatch" />
+                {{ option.label }}
+              </button>
+              <label class="color-picker" :title="t('mergeTool.bgCustom')">
+                <input v-model="customColor" type="color" @input="background = customColor" />
+                <span>{{ t('mergeTool.bgCustom') }}</span>
+              </label>
+            </div>
           </div>
-        </div>
 
-        <button type="button" class="preset-btn" @click="applyScreenshotPreset">
-          <span aria-hidden="true">▤</span> {{ t('mergeTool.screenshotPreset') }}
-        </button>
-
-        <div class="summary">
-          <div class="summary-row">
-            <span>{{ t('mergeTool.outputSize') }}</span>
-            <strong>{{ outputLabel }}</strong>
+          <div class="field">
+            <span class="field-label">{{ t('mergeTool.align') }}</span>
+            <div class="segmented segmented-sm" role="group" :aria-label="t('mergeTool.align')">
+              <button
+                v-for="option in alignOptions"
+                :key="option.value"
+                type="button"
+                :class="{ active: align === option.value }"
+                :aria-pressed="align === option.value"
+                @click="align = option.value"
+              >{{ option.label }}</button>
+            </div>
           </div>
-          <div v-if="result" class="summary-row">
-            <span>{{ t('mergeTool.fileSize') }}</span>
-            <strong>{{ formatFileSize(result.bytes) }}</strong>
+
+          <div class="field-row">
+            <div class="field">
+              <label class="field-label" for="merger-format">{{ t('mergeTool.outputFormat') }}</label>
+              <select id="merger-format" v-model="outputFormat" class="control">
+                <option value="image/png">PNG</option>
+                <option value="image/jpeg">JPG</option>
+                <option value="image/webp">WebP</option>
+              </select>
+            </div>
+            <div v-if="outputFormat !== 'image/png'" class="field">
+              <label class="field-label" for="merger-quality">{{ t('mergeTool.quality') }} — {{ Math.round(quality * 100) }}%</label>
+              <input id="merger-quality" v-model.number="quality" class="range" type="range" min="0.5" max="1" step="0.01" />
+            </div>
           </div>
-        </div>
 
-        <p v-if="scaledNote" class="notice">{{ scaledNote }}</p>
-        <p v-if="errorMessage" class="error" role="alert">{{ errorMessage }}</p>
+          <div class="field">
+            <label class="field-label" for="merger-target">{{ t('mergeTool.compressTarget') }}</label>
+            <div class="target-row">
+              <input id="merger-target" v-model.number="targetKb" class="control" type="number" min="10" max="5000" step="10" />
+              <span class="target-unit">KB</span>
+            </div>
+          </div>
 
-        <div class="action-row">
-          <button type="button" class="btn-primary" :disabled="busy || !plan" @click="merge">
-            {{ busy ? t('mergeTool.merging') : t('mergeTool.mergeButton') }}
+          <button type="button" class="preset-btn" @click="applyScreenshotPreset">
+            <span aria-hidden="true">▤</span> {{ t('mergeTool.screenshotPreset') }}
           </button>
-          <a v-if="result" class="btn-secondary" :href="result.url" :download="result.name">{{ t('mergeTool.download') }}</a>
-        </div>
 
-        <div class="preview" :class="{ checkerboard: background === 'transparent' }">
-          <canvas ref="previewCanvas" :aria-label="t('mergeTool.resultTitle')" />
+          <p v-if="layout === 'vertical' && sizeStrategy === 'none'" class="no-resample">
+            <span aria-hidden="true">✓</span> {{ t('mergeTool.noResample') }}
+          </p>
         </div>
-
-        <p v-if="layout === 'vertical' && sizeStrategy === 'none'" class="no-resample">
-          <span aria-hidden="true">✓</span> {{ t('mergeTool.noResample') }}
-        </p>
       </section>
     </div>
 
@@ -755,7 +779,7 @@ onBeforeUnmount(() => {
 
 .merger-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
   gap: 18px;
   align-items: start;
 }
@@ -771,6 +795,31 @@ onBeforeUnmount(() => {
   border-radius: 18px;
   background: rgb(var(--card));
   padding: 16px;
+}
+
+.image-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.image-panel .panel-head,
+.image-panel .add-more {
+  margin: 0;
+}
+
+@media (min-width: 901px) {
+  .image-panel {
+    position: sticky;
+    top: 14px;
+    max-height: calc(100vh - 28px);
+  }
+
+  .image-panel .image-list {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+  }
 }
 
 .panel-head {
@@ -967,6 +1016,34 @@ onBeforeUnmount(() => {
   outline-offset: 1px;
 }
 
+.num-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.num-row .range {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.control-compact {
+  flex: 0 0 58px;
+  width: 58px;
+  padding: 0 4px;
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.control-compact::-webkit-outer-spin-button,
+.control-compact::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
 .hint {
   margin: 0;
   color: rgb(var(--foreground) / 0.5);
@@ -1098,93 +1175,179 @@ onBeforeUnmount(() => {
   border-color: rgb(var(--accent));
 }
 
-.summary {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 22px;
-  padding: 11px 13px;
-  border: 1px solid rgb(var(--border));
-  border-radius: 11px;
-  background: rgb(var(--secondary) / 0.55);
-}
-
-.summary-row {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  font-size: 0.8rem;
-}
-
-.summary-row span {
-  color: rgb(var(--foreground) / 0.55);
-}
-
-.summary-row strong {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.82rem;
-}
-
 .notice {
-  margin: 10px 0 0;
-  padding: 9px 11px;
+  margin: 0;
+  padding: 8px 10px;
   border-radius: 9px;
-  background: rgb(var(--primary) / 0.08);
+  background: rgb(var(--primary) / 0.1);
   color: rgb(var(--primary));
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   line-height: 1.5;
 }
 
 .error {
-  margin: 10px 0 0;
-  padding: 9px 11px;
+  margin: 0;
+  padding: 8px 10px;
   border-radius: 9px;
-  background: rgb(var(--accent) / 0.1);
+  background: rgb(var(--accent) / 0.12);
   color: rgb(var(--accent));
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   line-height: 1.5;
 }
 
-.action-row {
+/* ---- live preview stage ---- */
+.settings-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px;
+}
+
+.stage {
+  position: sticky;
+  top: 10px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border: 1.5px solid rgb(var(--border));
+  border-radius: 14px;
+  background: rgb(var(--card));
+  box-shadow: 0 24px 36px -34px rgb(0 0 0 / 0.9);
+}
+
+.stage-head {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
+  align-items: center;
+  gap: 6px 8px;
+  min-width: 0;
 }
 
-.action-row .btn-primary,
-.action-row .btn-secondary {
-  flex: 1;
-  min-width: 140px;
+.live-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+  background: rgb(var(--primary));
+  animation: live-pulse 2.4s ease-out infinite;
 }
 
-.preview {
-  display: grid;
-  place-items: center;
-  margin-top: 14px;
+@keyframes live-pulse {
+  0% { box-shadow: 0 0 0 0 rgb(var(--primary) / 0.5); }
+  70% { box-shadow: 0 0 0 7px rgb(var(--primary) / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(var(--primary) / 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot {
+    animation: none;
+    box-shadow: 0 0 0 3px rgb(var(--primary) / 0.16);
+  }
+}
+
+.stage-title {
+  color: rgb(var(--foreground) / 0.55);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.stage-chips {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-inline-start: auto;
+  min-width: 0;
+}
+
+.chip {
+  padding: 3px 8px;
+  border: 1px solid rgb(var(--border));
+  border-radius: 999px;
+  background: rgb(var(--secondary) / 0.8);
+  color: rgb(var(--foreground) / 0.72);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chip-accent {
+  border-color: rgb(var(--primary) / 0.45);
+  background: rgb(var(--primary) / 0.12);
+  color: rgb(var(--primary));
+  font-weight: 600;
+}
+
+.stage-mat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(150px, 28vh, 290px);
   padding: 10px;
   border: 1px solid rgb(var(--border));
-  border-radius: 12px;
-  background: rgb(var(--secondary) / 0.5);
-  min-height: 120px;
+  border-radius: 10px;
+  background: rgb(var(--secondary) / 0.55);
   overflow: hidden;
 }
 
-.preview.checkerboard {
+.stage-mat.checkerboard {
   background: repeating-conic-gradient(rgb(var(--foreground) / 0.07) 0% 25%, transparent 0% 50%) 50% / 16px 16px;
 }
 
-.preview canvas {
-  max-width: 100%;
-  height: auto;
+.stage-mat canvas {
   display: block;
-  box-shadow: 0 6px 20px -12px rgb(0 0 0 / 0.6);
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 3px;
+  box-shadow: 0 10px 24px -18px rgb(0 0 0 / 0.85);
+}
+
+.stage-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stage-actions .btn-primary,
+.stage-actions .btn-secondary {
+  flex: 1 1 150px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+}
+
+/* keep keyboard focus clear of the pinned preview stage */
+.controls input,
+.controls select,
+.controls button {
+  scroll-margin-top: clamp(200px, 42vh, 400px);
+}
+
+@media (max-width: 900px) {
+  .stage {
+    top: 8px;
+  }
+
+  .stage-mat {
+    height: clamp(120px, 22vh, 200px);
+  }
 }
 
 .no-resample {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin: 10px 0 0;
+  margin: 2px 0 0;
   color: rgb(var(--primary));
   font-size: 0.78rem;
   font-weight: 600;

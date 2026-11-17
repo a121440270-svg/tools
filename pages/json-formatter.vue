@@ -21,6 +21,22 @@
         <div class="mb-2 flex items-center justify-between px-1">
           <div class="flex items-center gap-2">
             <label class="text-sm font-medium text-slate-700 dark:text-slate-200">{{ $t('jsonFormatter.input') }}</label>
+            <button
+              type="button"
+              class="tree-toggle"
+              :class="{ 'is-active': showTree }"
+              :title="$t('jsonFormatter.toggleTree')"
+              :aria-label="$t('jsonFormatter.toggleTree')"
+              :aria-pressed="showTree"
+              @click="showTree = !showTree"
+            >
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <rect x="1.8" y="2.2" width="4.2" height="4.2" rx="1" />
+                <rect x="10" y="2.2" width="4.2" height="4.2" rx="1" />
+                <rect x="10" y="9.6" width="4.2" height="4.2" rx="1" />
+                <path d="M3.9 6.4v4.4a2 2 0 0 0 2 2h4.1" />
+              </svg>
+            </button>
             <span class="rounded-full border border-slate-200 bg-slate-100 px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.14em] text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">{{ $t('jsonFormatter.localOnly') }}</span>
           </div>
           <div v-if="errorMessage" class="min-w-0 flex-1 px-3 text-center text-sm text-red-600 dark:text-red-300">
@@ -31,7 +47,12 @@
           </div>
         </div>
         <div class="editor-fullscreen overflow-hidden rounded-xl border border-slate-200 bg-slate-950 dark:border-slate-700">
-          <div class="share-note-editor"><CodeMirrorEditor v-model="jsonText" language="json" :theme="editorTheme" :line-wrapping="true" :aria-label="$t('jsonFormatter.input')" /></div>
+          <div class="flex h-full flex-col-reverse md:flex-row">
+            <JsonTreeView v-if="showTree" :text="jsonText" @hide="showTree = false" />
+            <div class="min-w-0 flex-1">
+              <div class="share-note-editor"><CodeMirrorEditor v-model="jsonText" language="json" :theme="editorTheme" :line-wrapping="true" :aria-label="$t('jsonFormatter.input')" /></div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -59,7 +80,9 @@ import { ElMessage } from 'element-plus'
 const { t, tm, rt } = useI18n()
 
 const storageKey = 'opsdrop-json-formatter-draft'
+const treeStorageKey = 'opsdrop-json-formatter-tree-visible'
 const jsonText = ref('')
+const showTree = ref(false)
 const errorMessage = ref('')
 const editorTheme = ref('light')
 let themeObserver
@@ -67,6 +90,7 @@ let themeObserver
 onMounted(() => {
   const savedText = localStorage.getItem(storageKey)
   if (savedText !== null) jsonText.value = savedText
+  showTree.value = localStorage.getItem(treeStorageKey) === '1'
 
   const syncEditorTheme = () => {
     editorTheme.value = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
@@ -84,6 +108,11 @@ watch(jsonText, (value) => {
   } else {
     localStorage.removeItem(storageKey)
   }
+})
+
+watch(showTree, (value) => {
+  if (typeof window === 'undefined') return
+  localStorage.setItem(treeStorageKey, value ? '1' : '0')
 })
 
 onBeforeUnmount(() => {
@@ -212,6 +241,24 @@ useToolSeo({
 
 .btn-secondary {
   @apply border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700;
+}
+
+.tree-toggle {
+  @apply inline-grid h-6 w-6 place-items-center rounded-md border border-slate-200 bg-white text-slate-500 transition hover:border-blue-300 hover:bg-blue-50 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400 dark:hover:border-blue-500/60 dark:hover:bg-blue-500/10 dark:hover:text-blue-300;
+}
+
+.tree-toggle svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tree-toggle.is-active {
+  @apply border-blue-500/60 bg-blue-50 text-blue-600 dark:border-blue-400/60 dark:bg-blue-500/15 dark:text-blue-300;
 }
 
 </style>

@@ -55,6 +55,14 @@ export default defineNuxtConfig({
   features: {
     inlineStyles: false
   },
+  // Production sourcemaps are not uploaded anywhere. Generating one .map per
+  // server/client chunk is pure build-time memory pressure — this repo has
+  // 462 prerendered routes and a large client bundle, so it is the main reason
+  // `npm run build` runs the machine out of memory.
+  sourcemap: {
+    client: false,
+    server: false
+  },
   experimental: {
     // Nitro writes `_payload.json` under the raw route key when prerendering.
     // For the root route that key is "/", which unstorage rejects, so the whole
