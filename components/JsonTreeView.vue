@@ -232,7 +232,7 @@ defineExpose({ closeWithAnimation })
 }
 
 .json-tree-header { background: #f0f4f1; }
-:global(.dark) .json-tree-header { background: #1f2d25; }
+.dark .json-tree-header { background: #1f2d25; }
 
 .json-tree-live {
   width: 6px;
@@ -241,7 +241,7 @@ defineExpose({ closeWithAnimation })
   background: #65a30d;
   box-shadow: 0 0 0 3px rgb(101 163 13 / .16);
 }
-:global(.dark) .json-tree-live { background: #d6f25f; box-shadow: 0 0 0 3px rgb(214 242 95 / .16), 0 0 8px rgb(214 242 95 / .5); }
+.dark .json-tree-live { background: #d6f25f; box-shadow: 0 0 0 3px rgb(214 242 95 / .16), 0 0 8px rgb(214 242 95 / .5); }
 
 .json-tree-count {
   border: 1px solid #dfe6e2;
@@ -252,10 +252,10 @@ defineExpose({ closeWithAnimation })
   font: 9px 'DM Mono', monospace;
   letter-spacing: .04em;
 }
-:global(.dark) .json-tree-count { border-color: #3d4f45; background: #202d27; color: #9fb0a6; }
+.dark .json-tree-count { border-color: #3d4f45; background: #202d27; color: #9fb0a6; }
 
 .json-tree-divider { width: 1px; height: 14px; margin: 0 4px; background: #dde5e0; }
-:global(.dark) .json-tree-divider { background: #3d4f45; }
+.dark .json-tree-divider { background: #3d4f45; }
 
 .json-tree-tool {
   display: grid;
@@ -270,21 +270,21 @@ defineExpose({ closeWithAnimation })
   transition: background-color .15s ease, color .15s ease;
 }
 .json-tree-tool:hover { background: #e6ece8; color: #0f766e; }
-:global(.dark) .json-tree-tool { color: #93a69b; }
-:global(.dark) .json-tree-tool:hover { background: #2a3a32; color: #d6f25f; }
+.dark .json-tree-tool { color: #93a69b; }
+.dark .json-tree-tool:hover { background: #2a3a32; color: #d6f25f; }
 .json-tree-tool svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .json-tree-tool--close:hover { background: rgb(225 29 72 / .12); color: #be123c; }
-:global(.dark) .json-tree-tool--close:hover { background: rgb(248 113 113 / .14); color: #f78ba4; }
+.dark .json-tree-tool--close:hover { background: rgb(248 113 113 / .14); color: #f78ba4; }
 
 .json-tree-body { scrollbar-width: thin; scrollbar-color: #cbd5d0 transparent; }
-:global(.dark) .json-tree-body { scrollbar-color: #3d4f45 transparent; }
+.dark .json-tree-body { scrollbar-color: #3d4f45 transparent; }
 
 .json-tree-state { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; min-height: 180px; padding: 24px 16px; text-align: center; color: #94a3b8; }
-:global(.dark) .json-tree-state { color: #8a9d93; }
+.dark .json-tree-state { color: #8a9d93; }
 .json-tree-state svg { width: 34px; height: 34px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; opacity: .7; }
 .json-tree-state p { font-family: 'DM Mono', monospace; font-size: 11px; line-height: 1.6; }
 .json-tree-state--invalid { color: #e11d48; }
-:global(.dark) .json-tree-state--invalid { color: #f78ba4; }
+.dark .json-tree-state--invalid { color: #f78ba4; }
 
 /* ---- draggable width handle ---- */
 .tree-resizer {
@@ -308,9 +308,9 @@ defineExpose({ closeWithAnimation })
 .tree-resizer:hover::before,
 .tree-resizer:focus-visible::before,
 .tree-resizer.is-resizing::before { background: rgb(15 118 110 / .45); }
-:global(.dark) .tree-resizer:hover::before,
-:global(.dark) .tree-resizer:focus-visible::before,
-:global(.dark) .tree-resizer.is-resizing::before { background: rgb(214 242 95 / .5); }
+.dark .tree-resizer:hover::before,
+.dark .tree-resizer:focus-visible::before,
+.dark .tree-resizer.is-resizing::before { background: rgb(214 242 95 / .5); }
 
 .tree-resizer-grip {
   position: absolute;
@@ -325,7 +325,7 @@ defineExpose({ closeWithAnimation })
 }
 .tree-resizer:hover .tree-resizer-grip,
 .tree-resizer:focus-visible .tree-resizer-grip { height: 40px; background: #0f766e; }
-:global(.dark) .tree-resizer-grip { background: #465b4f; }
-:global(.dark) .tree-resizer:hover .tree-resizer-grip,
-:global(.dark) .tree-resizer:focus-visible .tree-resizer-grip { background: #d6f25f; }
+.dark .tree-resizer-grip { background: #465b4f; }
+.dark .tree-resizer:hover .tree-resizer-grip,
+.dark .tree-resizer:focus-visible .tree-resizer-grip { background: #d6f25f; }
 </style>

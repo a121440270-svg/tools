@@ -77,7 +77,7 @@ const valueLabel = computed(() => {
   transition: background-color .14s ease;
 }
 .json-node-row:hover { background: rgb(226 232 228 / .7); }
-:global(.dark) .json-node-row:hover { background: #29382f; }
+.dark .json-node-row:hover { background: #29382f; }
 
 /* ---- fold / unfold buttons: deliberately different glyphs ---- */
 .json-toggle,
@@ -95,20 +95,20 @@ const valueLabel = computed(() => {
 .json-toggle:hover { background: #dfe9e4; border-color: #0f766e; color: #0f766e; transform: translateY(-1px); }
 .json-toggle.is-open { background: rgb(15 118 110 / .12); border-color: rgb(15 118 110 / .4); color: #0f766e; }
 .json-toggle svg { width: 11px; height: 11px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; }
-:global(.dark) .json-toggle { border-color: #3d4f45; background: #25342c; color: #93a69b; }
-:global(.dark) .json-toggle:hover { border-color: #c2e65c; background: #2d4033; color: #d6f25f; }
-:global(.dark) .json-toggle.is-open { border-color: rgb(194 230 92 / .5); background: rgb(194 230 92 / .13); color: #d6f25f; }
+.dark .json-toggle { border-color: #3d4f45; background: #25342c; color: #93a69b; }
+.dark .json-toggle:hover { border-color: #c2e65c; background: #2d4033; color: #d6f25f; }
+.dark .json-toggle.is-open { border-color: rgb(194 230 92 / .5); background: rgb(194 230 92 / .13); color: #d6f25f; }
 
 /* ---- keys and values ---- */
 .json-key { overflow: hidden; max-width: 150px; text-overflow: ellipsis; color: #0f766e; font-weight: 500; }
 .json-key--index { color: #94a3b8; font-weight: 400; }
-:global(.dark) .json-key { color: #c2e65c; }
-:global(.dark) .json-key--index { color: #7f938a; }
+.dark .json-key { color: #c2e65c; }
+.dark .json-key--index { color: #7f938a; }
 
 .json-colon { color: #94a3b8; }
-:global(.dark) .json-colon { color: #6f8177; }
+.dark .json-colon { color: #6f8177; }
 .json-brace { color: #64748b; }
-:global(.dark) .json-brace { color: #8a9d93; }
+.dark .json-brace { color: #8a9d93; }
 
 .json-shape {
   border: 1px solid #d8e0dc;
@@ -119,17 +119,17 @@ const valueLabel = computed(() => {
   font-size: 9px;
   letter-spacing: .02em;
 }
-:global(.dark) .json-shape { border-color: #3d4f45; background: #202d27; color: #9fb0a6; }
+.dark .json-shape { border-color: #3d4f45; background: #202d27; color: #9fb0a6; }
 
 .json-value { overflow: hidden; max-width: 180px; text-overflow: ellipsis; }
 .json-value--string { color: #b45309; }
 .json-value--number { color: #7c3aed; }
 .json-value--boolean { color: #be123c; }
 .json-value--null { color: #94a3b8; font-style: italic; }
-:global(.dark) .json-value--string { color: #f5c96b; }
-:global(.dark) .json-value--number { color: #b7a3f5; }
-:global(.dark) .json-value--boolean { color: #f78ba4; }
-:global(.dark) .json-value--null { color: #7f938a; }
+.dark .json-value--string { color: #f5c96b; }
+.dark .json-value--number { color: #b7a3f5; }
+.dark .json-value--boolean { color: #f78ba4; }
+.dark .json-value--null { color: #7f938a; }
 
 /* ---- per-node copy ---- */
 .json-copy {
@@ -151,16 +151,31 @@ const valueLabel = computed(() => {
 .json-node-row:hover .json-copy,
 .json-copy:focus-visible { opacity: 1; }
 .json-copy:hover { background: rgb(15 118 110 / .12); color: #0f766e; }
-:global(.dark) .json-copy { color: #93a69b; }
-:global(.dark) .json-copy:hover { background: rgb(194 230 92 / .14); color: #d6f25f; }
+.dark .json-copy { color: #93a69b; }
+.dark .json-copy:hover { background: rgb(194 230 92 / .14); color: #d6f25f; }
 
-/* ---- level guides ---- */
+/* ---- level guides: rounded capsule dashes with a subtle fade ---- */
 .json-children {
+  --guide: #aab9ae;
+  position: relative;
   margin-left: 8px;
   padding-left: 12px;
-  border-left: 1px solid #dfe6e2;
 }
-:global(.dark) .json-children { border-left-color: #34463b; }
+.dark .json-children { --guide: #43584a; }
+.json-children::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1px;
+  bottom: 3px;
+  width: 2px;
+  pointer-events: none;
+  background-image: radial-gradient(ellipse 1px 3px at 1px 3px, var(--guide) 0 98%, transparent 100%);
+  background-size: 2px 10px;
+  background-repeat: repeat-y;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgb(0 0 0 / .35) 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgb(0 0 0 / .35) 100%);
+}
 
 @media (hover: none) {
   .json-copy { opacity: .7; }
