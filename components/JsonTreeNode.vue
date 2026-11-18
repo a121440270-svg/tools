@@ -102,7 +102,7 @@ const valueLabel = computed(() => {
 /* ---- keys and values ---- */
 .json-key { overflow: hidden; max-width: 150px; text-overflow: ellipsis; color: #0f766e; font-weight: 500; }
 .json-key--index { color: #94a3b8; font-weight: 400; }
-.dark .json-key { color: #c2e65c; }
+.dark .json-key { color: #5ec9bd; }
 .dark .json-key--index { color: #7f938a; }
 
 .json-colon { color: #94a3b8; }
