@@ -16,7 +16,7 @@
       </button>
       <span v-else class="json-toggle-space" aria-hidden="true"></span>
 
-      <span class="json-key" :class="{ 'json-key--index': node.isIndex || node.key === undefined }">{{ keyLabel }}</span>
+      <span class="json-key" :class="{ 'json-key--index': node.isIndex || node.key === undefined }" :title="keyLabel">{{ keyLabel }}</span>
       <span v-if="node.key !== undefined" class="json-colon">:</span>
 
       <template v-if="node.container">
@@ -100,7 +100,7 @@ const valueLabel = computed(() => {
 .dark .json-toggle.is-open { border-color: rgb(194 230 92 / .5); background: rgb(194 230 92 / .13); color: #d6f25f; }
 
 /* ---- keys and values ---- */
-.json-key { overflow: hidden; max-width: 150px; text-overflow: ellipsis; color: #0f766e; font-weight: 500; }
+.json-key { overflow: hidden; max-width: 45%; text-overflow: ellipsis; color: #0f766e; font-weight: 500; }
 .json-key--index { color: #94a3b8; font-weight: 400; }
 .dark .json-key { color: #5ec9bd; }
 .dark .json-key--index { color: #7f938a; }
@@ -121,7 +121,7 @@ const valueLabel = computed(() => {
 }
 .dark .json-shape { border-color: #3d4f45; background: #202d27; color: #9fb0a6; }
 
-.json-value { overflow: hidden; max-width: 180px; text-overflow: ellipsis; }
+.json-value { overflow: hidden; max-width: 52%; text-overflow: ellipsis; }
 .json-value--string { color: #b45309; }
 .json-value--number { color: #7c3aed; }
 .json-value--boolean { color: #be123c; }
