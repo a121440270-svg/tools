@@ -98,14 +98,20 @@ export function useToolSeo(options: {
   const languageCode = computed(
     () => localeObjects.value.find((item) => item.code === locale.value)?.language || locale.value
   )
-  const localizedPath = computed(() => switchLocalePath(locale.value) || route.path)
+  // `switchLocalePath()` preserves the current query string. Copying it into
+  // the canonical/hreflang cluster made every `?size=`, `?share=`, `?q=` usage
+  // URL its own canonical, which GSC reports as 104 "duplicate — Google chose
+  // a different canonical" pages. Tool state belongs in the query, never in a
+  // canonical or an alternate. Explicit `canonical`/`alternates` are untouched.
+  const stripQuery = (value: string) => value.replace(/[?#].*$/, '')
+  const localizedPath = computed(() => stripQuery(switchLocalePath(locale.value) || route.path))
   // Locales the page body copy is actually authored in. Anything outside this
   // set canonicalises onto the default (English) URL instead of itself.
   const translatedCodes = computed(() => {
     if (options.translatedLocales === undefined) return localeObjects.value.map((item) => item.code)
     return toValue(options.translatedLocales)
   })
-  const defaultLocalePath = computed(() => switchLocalePath('en') || route.path)
+  const defaultLocalePath = computed(() => stripQuery(switchLocalePath('en') || route.path))
   const canonicalUrl = computed(() => {
     const explicit = options.canonical ? toValue(options.canonical) : ''
     if (explicit) return explicit.startsWith('http') ? explicit : `${baseUrl}${explicit}`
@@ -131,7 +137,7 @@ export function useToolSeo(options: {
         .map((item) => ({
           rel: 'alternate',
           hreflang: item.language || item.code,
-          href: `${baseUrl}${switchLocalePath(item.code) || route.path}`
+          href: `${baseUrl}${stripQuery(switchLocalePath(item.code) || route.path)}`
         })),
       {
         rel: 'alternate',
