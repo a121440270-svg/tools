@@ -611,6 +611,36 @@ const toolGroups = computed(() => [
         icon: KeyIcon
       },
       {
+        name: t('home.tools.wheel.name'),
+        path: '/spin-the-wheel',
+        description: t('home.tools.wheel.description'),
+        icon: KeyIcon
+      },
+      {
+        name: t('home.tools.wheelRaffle.name'),
+        path: '/raffle-wheel',
+        description: t('home.tools.wheelRaffle.description'),
+        icon: KeyIcon
+      },
+      {
+        name: t('home.tools.wheelYesNo.name'),
+        path: '/yes-or-no-wheel',
+        description: t('home.tools.wheelYesNo.description'),
+        icon: KeyIcon
+      },
+      {
+        name: t('home.tools.wheelNoRepeats.name'),
+        path: '/random-name-picker-no-repeats',
+        description: t('home.tools.wheelNoRepeats.description'),
+        icon: KeyIcon
+      },
+      {
+        name: t('home.tools.wheelGiveaway.name'),
+        path: '/random-giveaway-picker',
+        description: t('home.tools.wheelGiveaway.description'),
+        icon: KeyIcon
+      },
+      {
         name: t('home.tools.hash.name'),
         path: '/hash-text',
         description: t('home.tools.hash.description'),

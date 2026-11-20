@@ -39,6 +39,23 @@
             <span class="transition group-hover:translate-x-1" aria-hidden="true">→</span>
           </span>
         </NuxtLinkLocale>
+
+        <NuxtLinkLocale
+          to="/alternatives/wheel-of-names"
+          class="lift group flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white/95 p-5 transition hover:border-primary/40 dark:border-slate-800 dark:bg-slate-900/95 sm:flex-row sm:items-start sm:justify-between sm:p-6"
+        >
+          <span class="max-w-2xl">
+            <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-[#ff5a2d]">{{ copy.wheelTag }}</span>
+            <span class="mt-2 block font-display text-xl font-bold text-slate-900 dark:text-white">
+              {{ copy.wheelTitle }}
+            </span>
+            <span class="mt-2 block text-sm leading-7 text-slate-600 dark:text-slate-300">{{ copy.wheelText }}</span>
+          </span>
+          <span class="mt-1 inline-flex shrink-0 items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-slate-400 transition group-hover:text-primary dark:text-slate-500">
+            {{ copy.readLabel }}
+            <span class="transition group-hover:translate-x-1" aria-hidden="true">→</span>
+          </span>
+        </NuxtLinkLocale>
       </div>
       <p class="mt-3 text-[13px] leading-6 text-slate-500 dark:text-slate-400">{{ copy.moreNote }}</p>
     </section>
@@ -97,6 +114,9 @@ const en = {
   moleTag: 'Comparison · Updated November 2026',
   moleTitle: 'ToolMole (toolmole.com) alternative',
   moleText: 'Which ToolMole is being compared, where each site processes files, and when OnliTool is the better fit for exact-size compression, EXIF/GPS removal or font subsetting.',
+  wheelTag: 'Comparison · Updated November 2026',
+  wheelTitle: 'Wheel of Names alternative',
+  wheelText: 'A free spin-the-wheel compared with Wheel of Names: where each runs, ads, per-spin audit notes, entry limits and import options, plus which tool fits classroom draws and live giveaways.',
   readLabel: 'Read comparison',
   moreNote: 'More comparisons are added only when there is enough public information to be accurate.',
   methodTitle: 'How these pages are written',
@@ -137,6 +157,9 @@ const zh = {
   moleTag: '对比 · 2026 年 11 月更新',
   moleTitle: 'ToolMole（toolmole.com）替代方案',
   moleText: '先确认对比的是哪个 ToolMole，再看两个站点如何处理文件，以及 OnliTool 在精确尺寸压缩、EXIF/GPS 移除和字体子集化上适合哪些场景。',
+  wheelTag: '对比 · 2026 年 11 月更新',
+  wheelTitle: 'Wheel of Names 替代方案',
+  wheelText: '免费转盘与 Wheel of Names 的对比：运行方式、广告、每次旋转的审计记录、名单上限与导入方式，以及哪款更适合课堂点名和直播抽奖。',
   readLabel: '阅读对比',
   moreNote: '只有在公开信息足够准确时，才会增加新的对比页面。',
   methodTitle: '这些页面是怎么写的',

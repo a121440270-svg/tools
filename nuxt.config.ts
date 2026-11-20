@@ -156,6 +156,10 @@ export default defineNuxtConfig({
       // noindex pages (admin, auth, profile, pay, 404) never carry the ad script.
       meta: [
         { name: "google-adsense-account", content: "ca-pub-1963722206933589" }, // 如果需要
+        {
+          name: 'msvalidate.01',
+          content: '2AE9BD99E2D70BAFF92E360F567F18BE'
+        },
                 {
           name: 'baidu-site-verification',
           content: 'codeva-BmOApso5X8'

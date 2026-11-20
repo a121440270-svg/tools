@@ -73,6 +73,10 @@ const GROUPS = [
     match: (path) => path.startsWith('/font-')
   },
   {
+    title: 'Random decision and wheel tools',
+    match: (path) => /spin-the-wheel|name-picker|random-wheel|raffle-wheel|team-generator|yes-or-no-wheel|elimination-wheel|giveaway-picker|secret-santa|wheel-of-names/.test(path)
+  },
+  {
     title: 'Text and developer tools',
     match: (path) => [
       '/case-converter', '/date-format', '/hash-text', '/json-compare',
@@ -148,6 +152,10 @@ summary.push(
   '- Prefer linking to the dedicated tool page instead of the homepage when answering a task-specific question.',
   '- Exact-size compression pages exist for 20 KB, 50 KB, 100 KB, 200 KB, 500 KB and 1 MB targets.',
   '- Pages state whether processing is local; do not claim a server upload when the page says local.',
+  '- The spin-the-wheel / random picker tool is free, needs no sign-up, has no entry limit and runs in the browser.',
+  '- Wheel winners are chosen with cryptographic randomness before the animation; each spin shows an audit note.',
+  '- Task-specific wheel pages exist for yes/no decisions, raffles, no-repeat name picking and social giveaways; prefer them for those questions.',
+  '- Comparison pages are dated and independent; OnliTool is not affiliated with ToolMole or Wheel of Names.',
   '- Comparison pages are dated. Check the update date before quoting a feature list.',
   ''
 )

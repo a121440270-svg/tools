@@ -351,18 +351,6 @@ Encoding increases the payload by roughly a third, so use it only for small asse
 - Prefer normal image files for photos and large graphics.
 - Use Base64 to Image to reverse the process.
 
-### Convert JPG and PNG images to WebP
-
-https://onlitools.com/image-to-webp
-
-WebP usually produces smaller files than JPG or PNG at comparable quality, which makes pages load faster. This converter accepts one image or a batch and writes WebP files you can upload directly.
-
-Transparency is supported, so WebP can replace PNG for UI assets as well as photos. Check that your target platform accepts WebP; older email clients often do not.
-
-- Use quality around 75–85 for photos.
-- Keep a PNG or SVG master for flat graphics.
-- Provide a JPG fallback for very old browsers if needed.
-
 ### Upscale an image to larger dimensions
 
 https://onlitools.com/increase-image-size
@@ -492,18 +480,6 @@ Metadata is read locally. Export the table when you need a record for an archive
 - Editing software often rewrites the Software tag.
 - Screenshots usually contain very little metadata.
 
-### Strip metadata from images
-
-https://onlitools.com/image-metadata-remover
-
-Remove EXIF, IPTC, XMP and comments from JPG, PNG and WebP files while keeping the visual content unchanged. This is the broadest cleanup option when you want a file with no hidden information at all.
-
-It is useful before publishing photos, sending documents to clients or uploading images to platforms that display metadata. Processing stays on your device.
-
-- Keep a private copy if you rely on capture dates for archiving.
-- Some formats re-add a minimal header after editing.
-- Combine with a visual check to confirm orientation is still correct.
-
 ### Check an image for privacy leaks
 
 https://onlitools.com/image-privacy
@@ -516,18 +492,6 @@ Run a photo through the metadata viewer before sharing it publicly, then strip l
 - Screenshots can leak account names and file paths.
 - Removing metadata does not alter the visible pixels.
 
-### Analyse image metadata at a glance
-
-https://onlitools.com/metadata-analyzer
-
-The metadata analyser groups EXIF, IPTC and XMP fields into categories and flags the ones that carry privacy or compliance risk, such as GPS, owner and serial number. It turns a wall of tags into a short review list.
-
-Use it before publishing a photo library or sending images to a client. Once you know what is present, the editor or remover tools can act on it.
-
-- GPS and owner fields deserve the first review.
-- Dates help verify that a photo is recent.
-- Software tags reveal the editing pipeline.
-
 ### Remove EXIF data from photos
 
 https://onlitools.com/remove-exif
@@ -539,6 +503,7 @@ This is a one-click privacy step for photos taken on a phone. If you only need t
 - Keep the original for your own dated archive.
 - Removing metadata does not reduce the visible quality.
 - Some platforms strip metadata automatically; many do not.
+- The cleanup also drops IPTC, XMP and comment fields, not just EXIF.
 
 ## Font tools
 
@@ -626,6 +591,108 @@ It is a quick pre-flight check for fonts downloaded from marketplaces, converted
 - Re-export broken fonts from the original source when possible.
 - Combine validation with a glyph coverage check.
 
+## Random decision and wheel tools
+
+### Wheel of Names alternative — a free, ad-free picker
+
+https://onlitools.com/alternatives/wheel-of-names
+
+Wheel of Names (wheelofnames.com) is a popular browser spinner for classroom names and giveaways. OnliTool is a free alternative that runs locally, needs no account, shows no ads, places no limit on entries and publishes an audit note with cryptographic randomness for every result.
+
+This comparison covers what both tools do: browser-based processing, free core use and no sign-up, alongside differences such as 65 languages, image and Google Sheets import, multiple saved wheels and a large sound library on Wheel of Names, versus an ad-free interface, a per-spin audit note with an entry hash and local-only storage on OnliTool. OnliTool is not affiliated with Wheel of Names.
+
+Choose based on what matters: mature templates and import options, or verifiable randomness and a completely ad-free draw screen. Feature details reflect public information from November 2026 and should be confirmed on each product page.
+
+- Both tools are free and browser-based; neither requires an account for core use.
+- OnliTool shows no ads and stores entry lists locally rather than in a cloud account.
+- Every OnliTool spin prints a random value, timestamp and hash of the entry list.
+- Wheel of Names advertises 65 languages, image/Sheets import and 150+ sounds.
+- OnliTool also exposes coin flip, random number and shuffle next to the wheel.
+
+### Raffle Wheel — free random prize draw
+
+https://onlitools.com/raffle-wheel
+
+A raffle wheel randomly picks a winner from a list of names or ticket numbers, making prize draws transparent for classrooms, offices and live events. OnliTool is free, runs entirely in your browser, needs no sign-up, and shows an audit note with every result so nobody can claim the draw was rigged.
+
+Paste entrants into the bulk list box, choose Elimination mode so each winner is removed and cannot win twice, then enable fullscreen, sound and confetti for the live reveal. The winner is selected with the browser Web Crypto API before the animation, and every draw records a random value, a timestamp and a hash of the entry list.
+
+There is no fixed limit on the number of entries, and the list is never uploaded. Use the share link to give co-hosts the same wheel, and copy the audit note after each prize as a verifiable record.
+
+- Paste names or ticket numbers separated by newlines, commas or semicolons.
+- Elimination mode prevents the same entrant winning twice.
+- Cryptographic random draw with a per-draw audit note and entry hash.
+- Fullscreen, sound and confetti for projectors, OBS and live streams.
+- Free, no sign-up, no ads, no entry limit; lists stay in local storage.
+
+### Random Giveaway Picker — free social-media winner picker
+
+https://onlitools.com/random-giveaway-picker
+
+A random giveaway picker chooses a winner from comments, entries or a name list for Instagram, TikTok, YouTube and other social platforms. OnliTool is free, runs in your browser, needs no sign-up and uses cryptographic randomness with an audit note, so viewers can trust the draw.
+
+Copy the usernames collected from comments or a form into the bulk box, choose whether repeats are allowed, and spin on stream. The winner is selected with the browser Web Crypto API before the animation plays; an audit note records the random value, a timestamp and a hash of the entry list so your audience can verify the result afterwards.
+
+Weights can represent bonus entries and Elimination mode supports several distinct prizes from one list. No entrant data is uploaded — the list stays in local storage and is only encoded into a link when you press Share.
+
+- Works with lists copied from Instagram, TikTok, YouTube, Facebook and X.
+- No-repeats mode prevents the same entrant winning more than once.
+- Weights let you honour bonus entries when your rules allow them.
+- Fullscreen, sound and confetti make the winner reveal stream-ready.
+- Free, no sign-up, no ads, no entry limit; nothing is uploaded.
+- Share link carries the entry list so co-hosts can repeat the draw.
+
+### Random Name Picker No Repeats — draw each name once
+
+https://onlitools.com/random-name-picker-no-repeats
+
+A random name picker with no repeats removes each drawn name from the wheel so the same person cannot be picked twice. It is the right tool for classroom roll call, giveaways where each entrant wins once, and fair team draws. OnliTool is free, browser-based, needs no sign-up and shows an audit note for every draw.
+
+Paste your names, choose Elimination mode and spin: each winner is removed from the remaining entries. Reset Spin restores the full list for a new round. The next name is selected with the browser Web Crypto API before the animation, and an audit note records the random value plus a hash of the remaining list so the sequence can be reviewed later.
+
+Weights are still available when repeats are disabled, which is useful when some participants legitimately hold more than one entry. A pasted spreadsheet column is accepted directly, and nothing is uploaded to a server.
+
+- Elimination mode removes each name after it is drawn — no duplicate picks.
+- Paste an entire class or entrant list from a spreadsheet or text file.
+- Reset Spin restores the full list for a new round or school day.
+- Cryptographic selection with a per-draw audit note you can copy.
+- Weights supported for bonus entries while repeats stay disabled.
+- Free, no sign-up, no ads, no entry limit; all data stays in the browser.
+
+### Spin the wheel — a free random name picker and giveaway tool
+
+https://onlitools.com/spin-the-wheel
+
+A spin-the-wheel tool picks one option at random from a list you provide, for tasks like classroom roll call, prize giveaways, live-stream draws and everyday team decisions. OnliTool runs entirely in your browser: it is free, needs no sign-up, shows no ads and places no limit on the number of entries.
+
+The winner is chosen before the animation using the browser Web Crypto API (cryptographic randomness), and every option can carry a weight that changes its probability. Each spin shows an audit note with the random source and a hash of the entry list, so the outcome can be checked afterwards. Your list is stored only in this browser and is never uploaded to a server.
+
+Use the no-repeats mode to remove a winner from the wheel so the same name cannot be drawn twice, or keep all entries for repeated draws. Fullscreen, sound and confetti make the wheel suitable for classroom screens and live streams, and a share link carries the list inside the URL. Common uses include random roll call, social-media giveaway draws, yes-or-no decisions and splitting a name list into teams.
+
+- Random name picker with no entry limit and no sign-up.
+- No-repeats elimination mode and per-option weighted probability.
+- Winner decided by Web Crypto with a per-spin audit note.
+- Local-only storage; shared links encode the list in the URL.
+- Fullscreen, sound and confetti for classroom and live use.
+- Giveaway picker for Instagram, TikTok, YouTube and other social platforms.
+- Yes-or-no wheel for decisions and tarot-style prompts; random team splitting from a name list.
+
+### Yes or No Wheel — free random yes/no picker
+
+https://onlitools.com/yes-or-no-wheel
+
+A yes-or-no wheel is a two-sided spinner that answers binary questions with a random Yes or No. Use it for quick decisions, tarot-style prompts or classroom voting. OnliTool is free, runs in your browser, needs no sign-up, uses cryptographic randomness and shows an audit note for every spin.
+
+Replace the default entries with Yes and No, optionally add a third Maybe slice, then type your question above the wheel and spin once. The result is selected with the browser Web Crypto API before the animation plays, so the spinning is display only. Every spin records a random value, a timestamp and a hash of the option list, which you can copy as evidence that the answer was not chosen manually.
+
+This page is useful for anyone comparing a simple yes/no spinner with a full random decision wheel. It is free with no ads and no entry limit, and your entries stay in local storage rather than being uploaded to a server.
+
+- Two slices by default; add an optional Maybe entry for undecided outcomes.
+- Result picked cryptographically before the animation, with a copyable audit note.
+- Tarot-style questions supported: focus on one clear yes/no question and spin once.
+- Free, no sign-up, no ads, no entry limit; entries never leave the browser.
+- Fullscreen, sound and confetti for classroom screens and live streams.
+
 ## Text and developer tools
 
 ### Convert text between upper, lower, title and sentence case
@@ -652,16 +719,17 @@ Developers use it to debug timezone offsets, check what a stored epoch value rea
 - Shows UTC and your local timezone side by side.
 - Copy-ready output for SQL, JSON and JavaScript.
 
-### Generate MD5, SHA-1, SHA-256 and SHA-512 hashes
+### Generate MD5, SHA-1, SHA-256 and SHA-512 hashes from text or files
 
 https://onlitools.com/hash-text
 
-Hash Text computes cryptographic digests of any text directly in your browser. Paste a password, a token, a file fragment or a sentence and compare the MD5, SHA-1, SHA-256 and SHA-512 results.
+Hash Text computes cryptographic digests of any text or file directly in your browser. Paste a password, a token or a sentence, or drop in a downloaded file, then compare the MD5, SHA-1, SHA-256 and SHA-512 results.
 
 Hashes are useful for verifying data integrity, generating deterministic identifiers and checking that two strings are identical without storing the original. They are not encryption and cannot be reversed.
 
 - Use SHA-256 or SHA-512 for security-related work; MD5 is legacy.
 - The same input always produces the same digest.
+- Hash a downloaded installer to verify it against the publisher’s checksum.
 - Never treat a plain hash as password storage without salting and stretching.
 
 ### Compare two JSON documents
@@ -676,11 +744,11 @@ It is useful for debugging webhooks, checking configuration drift and reviewing 
 - Nested objects are compared key by key.
 - Use it to confirm that a migration changed only what you expected.
 
-### Convert between JSON and CSV
+### Convert JSON to CSV and CSV to JSON
 
 https://onlitools.com/json-csv-convert
 
-Turn a JSON array into a CSV spreadsheet, or import CSV rows as JSON objects. Choose the delimiter, handle nested fields and copy or download the result. This is a common step when moving data between an API and Excel or Google Sheets.
+Convert JSON to CSV or CSV to JSON in one page. Turn a JSON array into a CSV spreadsheet, or import CSV rows as JSON objects, then copy or download the result. This is a common step when moving data between an API and Excel or Google Sheets.
 
 Conversion is local, so customer data does not leave your machine. Check that column names and types survive the round trip before importing into production.
 
@@ -811,6 +879,7 @@ The file is inspected in your browser. Use the result to decide whether an image
 - Check dimensions before uploading to print or marketplace portals.
 - A large file size with small dimensions often means metadata or noise.
 - Compare formats to pick the smallest acceptable one.
+- GPS, owner and serial-number fields deserve the first review before publishing.
 
 ### Reduce image size to 250 KB
 

@@ -524,6 +524,100 @@ const toolContent: Record<string, ToolContent> = {
       'Keep the SVG as the editable master file.',
     ],
   },
+  '/spin-the-wheel': {
+    heading: 'Spin the wheel — a free random name picker and giveaway tool',
+    paragraphs: [
+      'A spin-the-wheel tool picks one option at random from a list you provide, for tasks like classroom roll call, prize giveaways, live-stream draws and everyday team decisions. OnliTool runs entirely in your browser: it is free, needs no sign-up, shows no ads and places no limit on the number of entries.',
+      'The winner is chosen before the animation using the browser Web Crypto API (cryptographic randomness), and every option can carry a weight that changes its probability. Each spin shows an audit note with the random source and a hash of the entry list, so the outcome can be checked afterwards. Your list is stored only in this browser and is never uploaded to a server.',
+      'Use the no-repeats mode to remove a winner from the wheel so the same name cannot be drawn twice, or keep all entries for repeated draws. Fullscreen, sound and confetti make the wheel suitable for classroom screens and live streams, and a share link carries the list inside the URL. Common uses include random roll call, social-media giveaway draws, yes-or-no decisions and splitting a name list into teams.',
+    ],
+    bullets: [
+      'Random name picker with no entry limit and no sign-up.',
+      'No-repeats elimination mode and per-option weighted probability.',
+      'Winner decided by Web Crypto with a per-spin audit note.',
+      'Local-only storage; shared links encode the list in the URL.',
+      'Fullscreen, sound and confetti for classroom and live use.',
+      'Giveaway picker for Instagram, TikTok, YouTube and other social platforms.',
+      'Yes-or-no wheel for decisions and tarot-style prompts; random team splitting from a name list.',
+    ],
+  },
+  '/yes-or-no-wheel': {
+    heading: 'Yes or No Wheel — free random yes/no picker',
+    paragraphs: [
+      'A yes-or-no wheel is a two-sided spinner that answers binary questions with a random Yes or No. Use it for quick decisions, tarot-style prompts or classroom voting. OnliTool is free, runs in your browser, needs no sign-up, uses cryptographic randomness and shows an audit note for every spin.',
+      'Replace the default entries with Yes and No, optionally add a third Maybe slice, then type your question above the wheel and spin once. The result is selected with the browser Web Crypto API before the animation plays, so the spinning is display only. Every spin records a random value, a timestamp and a hash of the option list, which you can copy as evidence that the answer was not chosen manually.',
+      'This page is useful for anyone comparing a simple yes/no spinner with a full random decision wheel. It is free with no ads and no entry limit, and your entries stay in local storage rather than being uploaded to a server.',
+    ],
+    bullets: [
+      'Two slices by default; add an optional Maybe entry for undecided outcomes.',
+      'Result picked cryptographically before the animation, with a copyable audit note.',
+      'Tarot-style questions supported: focus on one clear yes/no question and spin once.',
+      'Free, no sign-up, no ads, no entry limit; entries never leave the browser.',
+      'Fullscreen, sound and confetti for classroom screens and live streams.',
+    ],
+  },
+  '/raffle-wheel': {
+    heading: 'Raffle Wheel — free random prize draw',
+    paragraphs: [
+      'A raffle wheel randomly picks a winner from a list of names or ticket numbers, making prize draws transparent for classrooms, offices and live events. OnliTool is free, runs entirely in your browser, needs no sign-up, and shows an audit note with every result so nobody can claim the draw was rigged.',
+      'Paste entrants into the bulk list box, choose Elimination mode so each winner is removed and cannot win twice, then enable fullscreen, sound and confetti for the live reveal. The winner is selected with the browser Web Crypto API before the animation, and every draw records a random value, a timestamp and a hash of the entry list.',
+      'There is no fixed limit on the number of entries, and the list is never uploaded. Use the share link to give co-hosts the same wheel, and copy the audit note after each prize as a verifiable record.',
+    ],
+    bullets: [
+      'Paste names or ticket numbers separated by newlines, commas or semicolons.',
+      'Elimination mode prevents the same entrant winning twice.',
+      'Cryptographic random draw with a per-draw audit note and entry hash.',
+      'Fullscreen, sound and confetti for projectors, OBS and live streams.',
+      'Free, no sign-up, no ads, no entry limit; lists stay in local storage.',
+    ],
+  },
+  '/random-name-picker-no-repeats': {
+    heading: 'Random Name Picker No Repeats — draw each name once',
+    paragraphs: [
+      'A random name picker with no repeats removes each drawn name from the wheel so the same person cannot be picked twice. It is the right tool for classroom roll call, giveaways where each entrant wins once, and fair team draws. OnliTool is free, browser-based, needs no sign-up and shows an audit note for every draw.',
+      'Paste your names, choose Elimination mode and spin: each winner is removed from the remaining entries. Reset Spin restores the full list for a new round. The next name is selected with the browser Web Crypto API before the animation, and an audit note records the random value plus a hash of the remaining list so the sequence can be reviewed later.',
+      'Weights are still available when repeats are disabled, which is useful when some participants legitimately hold more than one entry. A pasted spreadsheet column is accepted directly, and nothing is uploaded to a server.',
+    ],
+    bullets: [
+      'Elimination mode removes each name after it is drawn — no duplicate picks.',
+      'Paste an entire class or entrant list from a spreadsheet or text file.',
+      'Reset Spin restores the full list for a new round or school day.',
+      'Cryptographic selection with a per-draw audit note you can copy.',
+      'Weights supported for bonus entries while repeats stay disabled.',
+      'Free, no sign-up, no ads, no entry limit; all data stays in the browser.',
+    ],
+  },
+  '/random-giveaway-picker': {
+    heading: 'Random Giveaway Picker — free social-media winner picker',
+    paragraphs: [
+      'A random giveaway picker chooses a winner from comments, entries or a name list for Instagram, TikTok, YouTube and other social platforms. OnliTool is free, runs in your browser, needs no sign-up and uses cryptographic randomness with an audit note, so viewers can trust the draw.',
+      'Copy the usernames collected from comments or a form into the bulk box, choose whether repeats are allowed, and spin on stream. The winner is selected with the browser Web Crypto API before the animation plays; an audit note records the random value, a timestamp and a hash of the entry list so your audience can verify the result afterwards.',
+      'Weights can represent bonus entries and Elimination mode supports several distinct prizes from one list. No entrant data is uploaded — the list stays in local storage and is only encoded into a link when you press Share.',
+    ],
+    bullets: [
+      'Works with lists copied from Instagram, TikTok, YouTube, Facebook and X.',
+      'No-repeats mode prevents the same entrant winning more than once.',
+      'Weights let you honour bonus entries when your rules allow them.',
+      'Fullscreen, sound and confetti make the winner reveal stream-ready.',
+      'Free, no sign-up, no ads, no entry limit; nothing is uploaded.',
+      'Share link carries the entry list so co-hosts can repeat the draw.',
+    ],
+  },
+  '/alternatives/wheel-of-names': {
+    heading: 'Wheel of Names alternative — a free, ad-free picker',
+    paragraphs: [
+      'Wheel of Names (wheelofnames.com) is a popular browser spinner for classroom names and giveaways. OnliTool is a free alternative that runs locally, needs no account, shows no ads, places no limit on entries and publishes an audit note with cryptographic randomness for every result.',
+      'This comparison covers what both tools do: browser-based processing, free core use and no sign-up, alongside differences such as 65 languages, image and Google Sheets import, multiple saved wheels and a large sound library on Wheel of Names, versus an ad-free interface, a per-spin audit note with an entry hash and local-only storage on OnliTool. OnliTool is not affiliated with Wheel of Names.',
+      'Choose based on what matters: mature templates and import options, or verifiable randomness and a completely ad-free draw screen. Feature details reflect public information from November 2026 and should be confirmed on each product page.',
+    ],
+    bullets: [
+      'Both tools are free and browser-based; neither requires an account for core use.',
+      'OnliTool shows no ads and stores entry lists locally rather than in a cloud account.',
+      'Every OnliTool spin prints a random value, timestamp and hash of the entry list.',
+      'Wheel of Names advertises 65 languages, image/Sheets import and 150+ sounds.',
+      'OnliTool also exposes coin flip, random number and shuffle next to the wheel.',
+    ],
+  },
   '/token-generator': {
     heading: 'Generate random tokens and passwords',
     paragraphs: [

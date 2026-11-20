@@ -491,6 +491,17 @@ const isLegalRoute = computed(() =>
 const isAlternativesRoute = computed(() =>
   /^\/alternatives(\/|$)/.test(normalizeLocalePath(route.path))
 );
+// Wheel decision landing pages are authored inline in English and Chinese only.
+// Their useToolSeo call owns the canonical/hreflang cluster; the i18n cluster
+// would advertise ja/de/fr/ar translations that do not exist.
+const isWheelLandingRoute = computed(() =>
+  [
+    '/raffle-wheel',
+    '/yes-or-no-wheel',
+    '/random-name-picker-no-repeats',
+    '/random-giveaway-picker',
+  ].includes(normalizeLocalePath(route.path))
+);
 // Blog listings and articles own their canonical/hreflang cluster in
 // `useToolSeo`: the i18n cluster would advertise ja/de/fr/ar translations that
 // do not exist (and, before the slug fix, pointed zh at the English slug).
@@ -780,7 +791,7 @@ function submitSearch() {
 
 useHead(() => {
   let links = localeHead.value.link || [];
-  if (isAlternativesRoute.value || isBlogRoute.value) {
+  if (isAlternativesRoute.value || isBlogRoute.value || isWheelLandingRoute.value) {
     // The page's useToolSeo owns the whole canonical/hreflang cluster here.
     links = [];
   } else if (isLegalRoute.value) {
@@ -1343,6 +1354,11 @@ const categories = ref([
     expanded: true,
     tools: [
       { name: "menu.token", path: "/token-generator", icon: markRaw(TokenIcon) },
+      { name: "home.tools.wheel.name", path: "/spin-the-wheel", icon: markRaw(TokenIcon) },
+      { name: "home.tools.wheelRaffle.name", path: "/raffle-wheel", icon: markRaw(TokenIcon) },
+      { name: "home.tools.wheelYesNo.name", path: "/yes-or-no-wheel", icon: markRaw(TokenIcon) },
+      { name: "home.tools.wheelNoRepeats.name", path: "/random-name-picker-no-repeats", icon: markRaw(TokenIcon) },
+      { name: "home.tools.wheelGiveaway.name", path: "/random-giveaway-picker", icon: markRaw(TokenIcon) },
       { name: "menu.hash", path: "/hash-text", icon: markRaw(HashIcon) },
       { name: "menu.uppercase", path: "/case-converter", icon: markRaw(TokenIcon) },
       { name: "textDedup.title", path: "/text-dedup", icon: markRaw(TokenIcon) },
