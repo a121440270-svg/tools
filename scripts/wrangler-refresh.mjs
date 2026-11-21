@@ -41,8 +41,10 @@
 // - Console output is ASCII-only on purpose (Windows console codepage is GBK).
 // - Exits non-zero on failure so && chains stop loudly.
 
+import { execFile } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
+import { promisify } from "node:util";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -63,6 +65,39 @@ const fail = (msg) => {
   console.error(`${TAG} ERROR: ${msg}`);
   process.exit(1);
 };
+
+// Node's built-in fetch (undici) cannot use a SOCKS5 proxy and times out on
+// these Cloudflare endpoints from this machine. curl honours the project-wide
+// SOCKS5 proxy, so route the two Cloudflare API calls through it.
+const execFileAsync = promisify(execFile);
+const PROXY_URL = process.env.HTTPS_PROXY || "socks5h://127.0.0.1:4080";
+
+async function curlJson(url, { method = "GET", body, headers = [], timeout = 25000 } = {}) {
+  const args = [
+    "--proxy", PROXY_URL,
+    "--max-time", String(Math.ceil(timeout / 1000) + 5),
+    "-sS",
+    "-w", "\n%{http_code}",
+  ];
+  for (const h of headers) args.push("-H", h);
+  if (method === "POST") args.push("-X", "POST", "--data", body);
+  args.push(url);
+
+  let stdout = "";
+  try {
+    ({ stdout } = await execFileAsync("curl.exe", args, {
+      timeout, maxBuffer: 1 << 20, windowsHide: true,
+    }));
+  } catch (err) {
+    throw new Error(`cannot reach ${url}: ${err.message}`);
+  }
+  const nl = stdout.lastIndexOf("\n");
+  const status = Number(nl >= 0 ? stdout.slice(nl + 1) : 0);
+  const text = nl >= 0 ? stdout.slice(0, nl) : stdout;
+  let json = null;
+  try { json = JSON.parse(text); } catch { /* keep raw text for error reporting */ }
+  return { ok: status >= 200 && status < 300, status, text, json };
+}
 
 function parseArgs() {
   const args = process.argv.slice(2);
@@ -144,43 +179,24 @@ async function refreshAccessToken(refreshToken, clientId) {
     refresh_token: refreshToken,
     client_id: clientId,
   }).toString();
-  let res;
-  try {
-    res = await fetch(TOKEN_URL, {
-      method: "POST",
-      headers: { "content-type": "application/x-www-form-urlencoded", accept: "application/json" },
-      body,
-      signal: AbortSignal.timeout(25000),
-    });
-  } catch (err) {
-    throw new Error(`cannot reach ${TOKEN_URL}: ${err.message}`);
-  }
-  const text = await res.text();
-  if (!res.ok) throw new Error(`HTTP ${res.status} ${text.slice(0, 180).replace(/\s+/g, " ")}`);
-  let json;
-  try {
-    json = JSON.parse(text);
-  } catch {
-    throw new Error(`non-JSON response: ${text.slice(0, 180)}`);
-  }
-  if (!json.access_token || !json.refresh_token || !json.expires_in) {
+  const { ok, status, text, json } = await curlJson(TOKEN_URL, {
+    method: "POST",
+    headers: ["content-type: application/x-www-form-urlencoded", "accept: application/json"],
+    body,
+  });
+  if (!ok) throw new Error(`HTTP ${status} ${text.slice(0, 180).replace(/\s+/g, " ")}`);
+  if (!json?.access_token || !json?.refresh_token || !json?.expires_in) {
     throw new Error(`response missing access_token/refresh_token/expires_in: ${text.slice(0, 180)}`);
   }
   return json;
 }
 
 async function apiUserEmail(accessToken) {
-  let res;
-  try {
-    res = await fetch(USER_URL, {
-      headers: { authorization: `Bearer ${accessToken}`, accept: "application/json" },
-      signal: AbortSignal.timeout(15000),
-    });
-  } catch (err) {
-    throw new Error(`cannot reach ${USER_URL}: ${err.message}`);
-  }
-  const json = await res.json().catch(() => null);
-  if (!res.ok) throw new Error(`GET /user HTTP ${res.status} code ${json?.errors?.[0]?.code ?? "?"}`);
+  const { ok, status, json } = await curlJson(USER_URL, {
+    headers: [`authorization: Bearer ${accessToken}`, "accept: application/json"],
+    timeout: 15000,
+  });
+  if (!ok) throw new Error(`GET /user HTTP ${status} code ${json?.errors?.[0]?.code ?? "?"}`);
   const email = json?.result?.email;
   if (!email) throw new Error("no email in /user response");
   return email;
