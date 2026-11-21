@@ -1,5 +1,6 @@
 import {
   getEdgeCache,
+  getEdgeCacheKey,
   isEdgeCacheablePath
 } from '../utils/edgeHtmlCache'
 
@@ -10,7 +11,7 @@ export default defineEventHandler(async (event) => {
   const url = getRequestURL(event)
   if (!isEdgeCacheablePath(url.pathname)) return
 
-  const hit = await store.match(url.toString()).catch(() => undefined)
+  const hit = await store.match(getEdgeCacheKey(url)).catch(() => undefined)
   if (!hit) return
 
   const body = await hit.text()

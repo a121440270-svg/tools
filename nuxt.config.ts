@@ -171,9 +171,11 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   nitro: {
     preset: "cloudflare_module",
-    renderer: process.env.NITRO_PRESET === 'cloudflare_module'
-      ? 'node' // 让它走 Node SSR 渲染模式（非流式）
-      : undefined,
+    // Do NOT force Nitro's `node` renderer here. On Workers it emulates a Node
+    // SSR pipeline and turns every non-prerendered request (blog, sitemap,
+    // 404s) into a >10 ms CPU render, which trips the free-plan CPU limit.
+    // The cloudflare_module preset's native renderer is both cheaper and
+    // streaming-capable.
     prerender: {
       routes: prerenderRoutes,
       crawlLinks: false,
@@ -208,7 +210,10 @@ export default defineNuxtConfig({
       alwaysRedirect: false,
       fallbackLocale: 'en'
     },
-    lazy: false,
+    // Load only the active locale's messages during SSR. With `lazy: false`
+    // all six JSON files are parsed into every render, which is pure CPU on
+    // the Worker for the handful of routes that are not prerendered.
+    lazy: true,
     langDir: 'locales/',
     strategy: 'prefix_except_default',
     locales: [

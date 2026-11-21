@@ -10,13 +10,20 @@ type ArticleRow = {
 
 const SITE_URL = 'https://onlitools.com'
 
-function articlePath(slug: string | null | undefined, id: number) {
-  const clean = (slug || '').trim().replace(/^\/+|\/+$/g, '')
-  return clean ? `/blog/${clean}-${id}` : `/blog/${id}`
-}
+// Crawlers re-fetch sitemaps far more often than articles change. Cache the
+// D1 result for a few minutes at module scope (which survives across requests
+// handled by the same Worker isolate) so a sitemap crawl no longer pays for a
+// full query + URL build on every hit.
+const ROWS_TTL_MS = 5 * 60 * 1000
+let cachedRows: { at: number; rows: ArticleRow[] } | null = null
+let pendingRows: Promise<ArticleRow[]> | null = null
 
-export default defineSitemapEventHandler(async () => {
-  try {
+async function loadArticleRows(): Promise<ArticleRow[]> {
+  const now = Date.now()
+  if (cachedRows && now - cachedRows.at < ROWS_TTL_MS) return cachedRows.rows
+  if (pendingRows) return pendingRows
+
+  pendingRows = (async () => {
     const rows = await selectCon('article')
       .select([
         't.id',
@@ -32,7 +39,26 @@ export default defineSitemapEventHandler(async () => {
       .orderBy('t.last_mod_time', 'DESC')
       .all<ArticleRow>()
 
-    if (!Array.isArray(rows)) return []
+    const list = Array.isArray(rows) ? rows : []
+    cachedRows = { at: Date.now(), rows: list }
+    return list
+  })()
+
+  try {
+    return await pendingRows
+  } finally {
+    pendingRows = null
+  }
+}
+
+function articlePath(slug: string | null | undefined, id: number) {
+  const clean = (slug || '').trim().replace(/^\/+|\/+$/g, '')
+  return clean ? `/blog/${clean}-${id}` : `/blog/${id}`
+}
+
+export default defineSitemapEventHandler(async () => {
+  try {
+    const rows = await loadArticleRows()
 
     // Group by article so both language versions can share hreflang alternatives.
     const byArticle = new Map<number, Partial<Record<'en' | 'zh', ArticleRow>>>()
