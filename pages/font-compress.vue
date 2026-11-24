@@ -98,6 +98,7 @@
           </label>
           <label class="text-sm"><span class="mb-1 block text-gray-600 dark:text-slate-300">{{ t('font.sample_text') }}</span><input v-model="exportSample" class="w-full rounded border border-gray-300 bg-white px-3 py-2 dark:border-slate-600 dark:bg-slate-900" /></label>
         </div>
+                <p class="mt-3 text-xs text-emerald-700 dark:text-emerald-300">{{ t('font.export_ready') }}</p>
         <div class="mt-4 flex flex-wrap gap-2">
           <a :href="downloadUrl" :download="downloadName" class="rounded bg-primary px-3 py-2 text-sm text-white">{{ t('font.download') }}</a>
           <button type="button" class="rounded border border-gray-300 px-3 py-2 text-sm dark:border-slate-600" @click="copyCss">{{ t('font.copy_css') }}</button>
