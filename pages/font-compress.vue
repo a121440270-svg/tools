@@ -1,19 +1,25 @@
 <template>
   <div class="max-w-3xl mx-auto py-10">
-    <h1 class="text-3xl font-bold mb-4">{{ t('font.h1') }}</h1>
+        <h1 class="text-3xl font-bold mb-4">{{ t('font.h1') }}</h1>
     <p class="mb-4 text-gray-600 text-base leading-7">
       {{ t('font.lead') }}
     </p>
     <ul class="mb-6 grid gap-2 text-sm text-gray-600 sm:grid-cols-3 dark:text-slate-300">
-      <li class="rounded-lg border border-gray-200 px-3 py-2 dark:border-slate-700">✓ {{ t('font.trust.local') }}</li>
-      <li class="rounded-lg border border-gray-200 px-3 py-2 dark:border-slate-700">✓ {{ t('font.trust.compare') }}</li>
-      <li class="rounded-lg border border-gray-200 px-3 py-2 dark:border-slate-700">✓ {{ t('font.trust.formats') }}</li>
+      <li class="rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-emerald-800 dark:border-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-200">🔒 {{ t('font.trust.local') }}</li>
+      <li class="rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 text-blue-800 dark:border-blue-800 dark:bg-blue-950/30 dark:text-blue-200">📊 {{ t('font.trust.compare') }}</li>
+      <li class="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 dark:border-slate-700 dark:bg-slate-900/40">⚡ {{ t('font.trust.formats') }}</li>
     </ul>
     <el-form :label-width="'100px'" class="mb-6">
       <el-form-item :label="t('font.upload')">
-        <input type="file" accept=".ttf,.otf,.woff,.woff2" @change="onFontFileChange" ref="fontInputRef" />
-        <span v-if="fontName" class="ml-2 text-green-600">{{ t('font.selected', { name: fontName }) }}</span>
-        <span v-if="originSize" class="ml-4 text-xs text-gray-500">{{ t('font.origin_size', { size: prettySize(originSize) }) }}</span>
+        <div class="w-full">
+          <div class="flex flex-wrap items-center gap-2">
+            <input type="file" accept=".ttf,.otf,.woff,.woff2" @change="onFontFileChange" ref="fontInputRef" />
+            <button type="button" class="text-sm text-primary underline" :disabled="sampleLoading" @click="loadSampleFont">{{ sampleLoading ? '...' : t('font.sample_load') }}</button>
+          </div>
+          <p class="mt-1 text-xs text-gray-500">{{ t('font.upload_hint') }}</p>
+          <p class="mt-1 text-xs text-gray-500">{{ t('font.sample_hint') }}</p>
+          <div v-if="fontName" class="mt-1 text-sm text-green-600">{{ t('font.selected', { name: fontName }) }} <span v-if="originSize" class="ml-2 text-xs text-gray-500">{{ t('font.origin_size', { size: prettySize(originSize) }) }}</span></div>
+        </div>
       </el-form-item>
       <el-form-item :label="t('font.input_chars')">
         <el-radio-group v-model="inputMode" class="mb-3">
@@ -70,15 +76,32 @@
         <template #default>
           <a :href="downloadUrl" :download="downloadName" class="text-primary underline">{{ t('font.download') }}</a>
           <span class="ml-2 text-xs text-gray-400">{{ t('font.only_glyphs') }}</span>
-          <span v-if="compressedSize" class="ml-4 text-xs text-gray-500">{{ t('font.compressed_size', { size: prettySize(compressedSize) }) }}</span>
         </template>
       </el-alert>
-      <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <div class="border-l-2 border-gray-300 pl-3"><div class="text-xs text-gray-500">{{ t('font.original_size') }}</div><strong>{{ prettySize(originSize) }}</strong></div>
-        <div class="border-l-2 border-green-600 pl-3"><div class="text-xs text-gray-500">{{ t('font.optimized_size') }}</div><strong>{{ prettySize(compressedSize) }}</strong></div>
-        <div class="border-l-2 border-blue-600 pl-3"><div class="text-xs text-gray-500">{{ t('font.saved_size') }}</div><strong>{{ prettySize(originSize - compressedSize) }}</strong></div>
-        <div class="border-l-2 border-amber-500 pl-3"><div class="text-xs text-gray-500">{{ t('font.reduction') }}</div><strong>{{ reductionPercentage }}%</strong></div>
+
+      <div class="rounded-xl border border-gray-200 p-4 dark:border-slate-700">
+        <div class="mb-3 flex items-center justify-between gap-3">
+          <h2 class="text-lg font-semibold">{{ t('font.before_after') }}</h2>
+          <span class="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-semibold text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-200">{{ t('font.saved_label') }} {{ reductionPercentage }}%</span>
+        </div>
+        <div class="space-y-3">
+          <div>
+            <div class="mb-1 flex justify-between text-xs text-gray-500"><span>{{ t('font.before_label') }}</span><span>{{ prettySize(originSize) }}</span></div>
+            <div class="h-3 rounded-full bg-gray-200 dark:bg-slate-700"><div class="h-3 rounded-full bg-slate-400" style="width:100%"></div></div>
+          </div>
+          <div>
+            <div class="mb-1 flex justify-between text-xs text-gray-500"><span>{{ t('font.after_label') }}</span><span class="font-medium text-green-700 dark:text-green-300">{{ prettySize(compressedSize) }}</span></div>
+            <div class="h-3 rounded-full bg-gray-200 dark:bg-slate-700"><div class="h-3 rounded-full bg-emerald-500 transition-all" :style="{ width: Math.max(4, Math.min(100, (compressedSize / Math.max(originSize, 1)) * 100)) + '%' }"></div></div>
+          </div>
+        </div>
+        <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div class="border-l-2 border-gray-300 pl-3"><div class="text-xs text-gray-500">{{ t('font.original_size') }}</div><strong>{{ prettySize(originSize) }}</strong></div>
+          <div class="border-l-2 border-green-600 pl-3"><div class="text-xs text-gray-500">{{ t('font.optimized_size') }}</div><strong>{{ prettySize(compressedSize) }}</strong></div>
+          <div class="border-l-2 border-blue-600 pl-3"><div class="text-xs text-gray-500">{{ t('font.saved_size') }}</div><strong>{{ prettySize(Math.max(0, originSize - compressedSize)) }}</strong></div>
+          <div class="border-l-2 border-amber-500 pl-3"><div class="text-xs text-gray-500">{{ t('font.coverage') }}</div><strong>{{ coveragePercent }}%</strong></div>
+        </div>
       </div>
+
       <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 text-sm">
         <div class="rounded border border-gray-200 p-3 dark:border-slate-700"><div class="text-xs text-gray-500">{{ t('font.glyph_count') }}</div><strong>{{ originalGlyphCount.toLocaleString() }} → {{ remainingGlyphCount.toLocaleString() }}</strong></div>
         <div class="rounded border border-gray-200 p-3 dark:border-slate-700"><div class="text-xs text-gray-500">{{ t('font.requested_chars') }}</div><strong>{{ subsetAnalysis.requested.length }}</strong></div>
@@ -393,6 +416,28 @@ watch(charInput, (value) => {
 
 function applyPreset() {
   inputMode.value = 'preset'
+}
+
+async function loadSampleFont() {
+  sampleLoading.value = true
+  errorMsg.value = ''
+  try {
+    const res = await fetch('/fonts/sample-font.woff2')
+    if (!res.ok) throw new Error('sample')
+    const blob = await res.blob()
+    const file = new File([blob], 'sample-font.woff2', { type: 'font/woff2' })
+    loadFontFile(file)
+    if (!charInput.value) {
+      charInput.value = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+      inputMode.value = 'text'
+    }
+    copyCssMessage.value = t('font.sample_loaded')
+    setTimeout(() => { if (copyCssMessage.value === t('font.sample_loaded')) copyCssMessage.value = '' }, 1500)
+  } catch {
+    errorMsg.value = 'Could not load the sample font.'
+  } finally {
+    sampleLoading.value = false
+  }
 }
 
 async function copyMissingChars() {
