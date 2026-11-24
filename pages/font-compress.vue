@@ -264,6 +264,7 @@ const copyCssMessage = ref('')
 const zipLoading = ref(false)
 const zipError = ref('')
 const queryApplied = ref(false)
+const sampleLoading = ref(false)
 
 const fontInputRef = ref(null)
 const textInputRef = ref(null)
