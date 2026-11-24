@@ -518,7 +518,8 @@
     "before_label": "压缩前",
     "after_label": "压缩后",
     "saved_label": "节省",
-    "export_ready": "可直接部署"
+    "export_ready": "可直接部署",
+    "download_zip": "下载 ZIP"
   },
   "privacy": {
     "title": "我们关心您的隐私",

@@ -358,7 +358,8 @@
     "before_label": "Before",
     "after_label": "After",
     "saved_label": "Saved",
-    "export_ready": "Ready to deploy"
+    "export_ready": "Ready to deploy",
+    "download_zip": "تنزيل ZIP"
   },
   "blog": {
     "title": "مقالات المدونة",

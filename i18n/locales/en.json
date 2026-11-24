@@ -545,7 +545,8 @@
     "before_label": "Before",
     "after_label": "After",
     "saved_label": "Saved",
-    "export_ready": "Ready to deploy"
+    "export_ready": "Ready to deploy",
+    "download_zip": "Download ZIP"
   },
   "privacy": {
     "title": "We Care About Your Privacy",

@@ -958,7 +958,8 @@
     "before_label": "Before",
     "after_label": "After",
     "saved_label": "Saved",
-    "export_ready": "Ready to deploy"
+    "export_ready": "Ready to deploy",
+    "download_zip": "ZIPをダウンロード"
   },
   "imageTarget": {
     "formatImages": "画像",

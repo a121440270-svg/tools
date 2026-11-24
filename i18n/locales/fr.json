@@ -534,7 +534,8 @@
     "before_label": "Before",
     "after_label": "After",
     "saved_label": "Saved",
-    "export_ready": "Ready to deploy"
+    "export_ready": "Ready to deploy",
+    "download_zip": "Télécharger le ZIP"
   },
   "privacy": {
     "title": "Nous respectons votre vie privée",
