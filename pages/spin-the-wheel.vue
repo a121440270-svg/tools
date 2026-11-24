@@ -317,6 +317,7 @@ import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { ElMessage } from 'element-plus'
 
 const { t, locale } = useI18n()
+const { trackStart, trackSuccess } = useToolAnalytics('spin-the-wheel')
 
 // ---------- state ----------
 const STORAGE_KEY = 'onlitool-wheel-v1'
@@ -565,6 +566,7 @@ async function spin() {
   if (spinning.value) return
   const list = activeEntries.value.slice()
   if (!list.length) return
+  trackStart({ entry_count: list.length, mode: mode.value })
   spinning.value = true
   winner.value = ''
   winnerIndex.value = null
@@ -625,6 +627,13 @@ async function spin() {
       history.value.unshift({ label: chosen.label, at: Date.now() })
       if (confettiOn.value) fireConfetti()
       winner.value = chosen.label
+      trackSuccess({
+        action: 'spin',
+        entry_count: list.length,
+        mode: mode.value,
+        winner_index: idx,
+        history_size: history.value.length
+      })
       if (compactNotify.value) {
         // compact mode: a centred toast that fades away by itself
         clearTimeout(notifyTimer)

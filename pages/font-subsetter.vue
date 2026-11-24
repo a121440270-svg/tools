@@ -5,7 +5,7 @@
       <h1>{{ t('fontSubset.title') }}</h1>
       <p class="lead">{{ t('fontSubset.description') }}</p>
       <div class="cta-row">
-        <NuxtLinkLocale to="/font-compress" class="primary-btn">{{ t('fontSubset.compressNow') }}</NuxtLinkLocale>
+        <NuxtLinkLocale :to="{ path: '/font-compress', query: { mode: 'preset', preset: 'basic-latin', output: 'woff2' } }" class="primary-btn">{{ t('fontSubset.compressNow') }}</NuxtLinkLocale>
         <NuxtLinkLocale to="/ttf-to-woff2" class="secondary-btn">{{ t('menu.ttfToWoff2') }}</NuxtLinkLocale>
       </div>
       <div class="info-box">

@@ -5,7 +5,7 @@
       <h1>{{ t('compressFontTarget.title', { format }) }}</h1>
       <p class="lead">{{ t('compressFontTarget.description', { format }) }}</p>
       <div class="cta-row">
-        <NuxtLinkLocale to="/font-compress" class="primary-btn">{{ t('compressFontTarget.compressNow', { format }) }}</NuxtLinkLocale>
+        <NuxtLinkLocale :to="{ path: '/font-compress', query: { output: 'woff2' } }" class="primary-btn">{{ t('compressFontTarget.compressNow', { format }) }}</NuxtLinkLocale>
         <NuxtLinkLocale to="/compress-woff" class="secondary-btn">WOFF</NuxtLinkLocale>
       </div>
       <div class="info-box">

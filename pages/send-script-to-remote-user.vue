@@ -23,7 +23,7 @@
             <input v-model="slug" :readonly="isViewingSharedContent" class="min-w-0 flex-1 border-0 bg-transparent px-1 py-1.5 text-sm text-slate-800 outline-none dark:text-slate-100" type="text" maxlength="48" pattern="[a-z0-9][a-z0-9-]{2,47}" :aria-label="t('remoteShare.shareCodeLabel')" />
           </div>
           <div v-if="!isViewingSharedContent" class="flex flex-wrap gap-2">
-            <button class="share-action-button share-action-primary" type="submit" :disabled="creating || deleting" :title="t('remoteShare.saveTitle')">{{ creating ? t('remoteShare.saving') : t('remoteShare.save') }}</button>
+            <button class="share-action-button share-action-primary" type="submit" :disabled="creating || deleting" :title="saveButtonTitle">{{ creating ? t('remoteShare.saving') : t('remoteShare.save') }}</button>
             <button class="share-action-button" type="button" :disabled="creating || deleting" :title="t('remoteShare.copyTitle')" @click="copyShareLink">{{ t('remoteShare.copy') }}</button>
             <button class="share-action-button" type="button" :disabled="creating || deleting" :title="t('remoteShare.qrTitle')" @click="generateQrCode">{{ t('remoteShare.qr') }}</button>
             <button class="share-action-button text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300" type="button" :disabled="creating || deleting" :title="t('remoteShare.deleteTitle')" @click="deleteCurrentNote">{{ deleting ? t('remoteShare.deleting') : t('remoteShare.delete') }}</button>
@@ -115,6 +115,8 @@ const saved = ref(false)
 const expiresIn = ref<ShareExpiry>('never')
 const sharedExpiresAt = ref<number | null>(null)
 const qrDataUrl = ref('')
+const saveShortcut = ref('Ctrl+S')
+const saveButtonTitle = computed(() => `${t('remoteShare.saveTitle')} (${saveShortcut.value})`)
 const editorTheme = ref<'dark' | 'light'>('light')
 const editorFullscreen = ref(true)
 let themeObserver: MutationObserver | null = null
@@ -500,10 +502,21 @@ async function deleteCurrentNote() {
   }
 }
 
+function onSaveShortcut(event: KeyboardEvent) {
+  if (!(event.ctrlKey || event.metaKey) || event.key?.toLowerCase() !== 's') return
+  // Stop the browser "Save page as" dialog, including in read-only visitor mode.
+  event.preventDefault()
+  if (event.repeat || isViewingSharedContent.value || creating.value || deleting.value) return
+  void createShare()
+}
+
 onMounted(async () => {
+  // Keep SSR output stable; refine the shortcut label once we're on the client.
+  if (/Mac|iPhone|iPad|iPod/i.test(navigator.userAgent)) saveShortcut.value = '⌘S'
   restoreDraft()
   const shareId = typeof route.query.share === 'string' ? route.query.share : ''
   isOwnerMode.value = !shareId || hasOwnLink(shareId)
+  window.addEventListener('keydown', onSaveShortcut)
   const syncEditorTheme = () => { editorTheme.value = document.documentElement.classList.contains('dark') ? 'dark' : 'light' }
   syncEditorTheme()
   themeObserver = new MutationObserver(syncEditorTheme)
@@ -513,7 +526,10 @@ onMounted(async () => {
   }
 })
 
-onBeforeUnmount(() => { themeObserver?.disconnect() })
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', onSaveShortcut)
+  themeObserver?.disconnect()
+})
 
 watch(slug, (value: string) => {
   const normalized = value.toLowerCase()

@@ -62,6 +62,7 @@ import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
+const { trackSuccess } = useToolAnalytics('json-csv-convert')
 
 // 粘贴剪贴板内容到输入框
 function pasteInput() {
@@ -118,6 +119,12 @@ function jsonToCsv() {
       csvRows.push(row.join(','))
     }
     outputText.value = csvRows.join('\n')
+    trackSuccess({
+      action: 'json_to_csv',
+      input_chars: inputText.value.length,
+      output_chars: outputText.value.length,
+      row_count: json.length
+    })
   } catch (e) {
     errorMsg.value = t('jsoncsv.json_to_csv_error') + (e.message || e)
   }
@@ -141,6 +148,12 @@ function csvToJson() {
       result.push(obj)
     }
     outputText.value = JSON.stringify(result, null, 2)
+    trackSuccess({
+      action: 'csv_to_json',
+      input_chars: inputText.value.length,
+      output_chars: outputText.value.length,
+      row_count: result.length
+    })
   } catch (e) {
     errorMsg.value = t('jsoncsv.csv_to_json_error') + (e.message || e)
   }

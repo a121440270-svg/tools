@@ -71,6 +71,7 @@
 import { ref, computed } from 'vue'
 import { ensureWoff2Support, getFontFormat, parseFontBuffer } from '~/composables/useFontTools'
 const { t } = useI18n()
+const { trackStart, trackSuccess, trackError } = useToolAnalytics('ttf-to-woff2')
 
 const fontBuffer = ref(null)
 const fontName = ref('')
@@ -138,6 +139,7 @@ function loadFontFile(file) {
       await parseFontBuffer(buffer, format)
       fontBuffer.value = buffer
       sourceFormat.value = format
+      trackStart({ input_format: format, input_size: file.size })
       // Smart default: converting FROM woff2 usually means going back to ttf.
       outputType.value = format === 'woff2' ? 'ttf' : 'woff2'
     } catch {
@@ -184,7 +186,14 @@ async function convertFont() {
     downloadUrl.value = URL.createObjectURL(blob)
     convertedSize.value = blob.size
     progress.value = 100
+    trackSuccess({
+      input_format: sourceFormat.value,
+      output_format: outputType.value,
+      input_size: originSize.value,
+      output_size: blob.size
+    })
   } catch (e) {
+    trackError({ reason: 'convert_failed' })
     errorMsg.value = t('fontConvert.error')
   } finally {
     setTimeout(() => { loading.value = false }, 300)

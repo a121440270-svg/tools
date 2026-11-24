@@ -74,6 +74,7 @@ import JSZip from 'jszip'
 const props = defineProps({ heicOnly: { type: Boolean, default: false } })
 const { t } = useI18n()
 const isHeicOnly = computed(() => props.heicOnly)
+const { trackSuccess } = useToolAnalytics(isHeicOnly.value ? 'heic-to-jpg' : 'image-converter')
 const accept = computed(() => isHeicOnly.value ? '.heic,.heif,image/heic,image/heif' : 'image/*,.heic,.heif,.avif')
 const formats = computed(() => isHeicOnly.value
   ? [{ value: 'image/jpeg', label: 'JPG' }, { value: 'image/png', label: 'PNG' }, { value: 'image/webp', label: 'WebP' }]
@@ -255,6 +256,15 @@ async function convertAll() {
         }
       }
       processedCount.value++
+    }
+    const succeeded = images.value.filter(image => image.resultBlob).length
+    if (succeeded) {
+      trackSuccess({
+        count: succeeded,
+        error_count: images.value.length - succeeded,
+        output_format: outputFormat.value,
+        input_formats: [...new Set(images.value.map(i => i.file.name.split('.').pop()?.toLowerCase()))].join(',')
+      })
     }
   } finally {
     processing.value = false

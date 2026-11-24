@@ -117,6 +117,7 @@ import CryptoJS from 'crypto-js'
 import { ElMessage } from 'element-plus'
 
 const { t } = useI18n()
+const { trackSuccess } = useToolAnalytics('hash-text')
 useToolSeo({
   title: () => t('hashTool.seoTitle'),
   description: () => t('hashTool.description'),
@@ -211,6 +212,12 @@ const copyHash = async (hash) => {
   try {
     await navigator.clipboard.writeText(hash)
     ElMessage.success(t('hashTool.copied') || 'Copied')
+    trackSuccess({
+      action: 'copy_hash',
+      mode: mode.value,
+      encoding: encoding.value,
+      input_size: mode.value === 'file' ? fileSize.value : textToHash.value.length
+    })
   } catch (err) {
     console.error('Could not copy text: ', err)
     ElMessage.error(t('common.copyFailed') || 'Copy failed')

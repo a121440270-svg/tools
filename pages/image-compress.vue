@@ -181,6 +181,7 @@ import { ref, computed, watch } from 'vue'
 import JSZip from 'jszip'
 const { t } = useI18n()
 const route = useRoute()
+const { trackStart, trackSuccess } = useToolAnalytics('image-compress')
 
 function normalizeTargetSize(value, fallback = 500) {
   const num = Number(value)
@@ -234,12 +235,16 @@ const totalSaved = computed(() => Math.max(0, totalOriginal.value - totalCompres
 const savingsRate = computed(() => totalOriginal.value > 0 ? ((totalOriginal.value - totalCompressed.value) / totalOriginal.value) * 100 : 0)
 
 function onFileChange(e) {
+  trackStart({ file_count: e.target.files.length, target_size_kb: targetSizeKb.value })
   Array.from(e.target.files).forEach(addImage)
   if (fileInput.value) fileInput.value.value = ''
 }
 
 function onDrop(e) {
-  Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/')).forEach(addImage)
+  const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'))
+  if (!files.length) return
+  trackStart({ file_count: files.length, target_size_kb: targetSizeKb.value })
+  files.forEach(addImage)
 }
 
 function addImage(file) {
@@ -369,6 +374,15 @@ async function startCompress() {
     }
   }
   processing.value = false
+  trackSuccess({
+    count: images.value.length,
+    total_original: totalOriginal.value,
+    total_compressed: totalCompressed.value,
+    total_saved: totalSaved.value,
+    savings_rate: Math.round(savingsRate.value),
+    target_size_kb: targetSizeKb.value,
+    output_format: outputFormat.value
+  })
 }
 
 function downloadSingle(idx) {

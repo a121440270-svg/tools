@@ -78,6 +78,7 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { ElMessage } from 'element-plus'
 const { t, tm, rt } = useI18n()
+const { trackSuccess } = useToolAnalytics('json-formatter')
 
 const storageKey = 'opsdrop-json-formatter-draft'
 const treeStorageKey = 'opsdrop-json-formatter-tree-visible'
@@ -130,6 +131,7 @@ const formatJson = () => {
     const parsed = JSON.parse(jsonText.value)
     jsonText.value = JSON.stringify(parsed, null, 2)
     ElMessage.success(t('jsonFormatter.messages.formatted'))
+    trackSuccess({ action: 'format', input_chars: jsonText.value.length })
   } catch (err) {
     errorMessage.value = t('jsonFormatter.invalidJson', { message: err.message })
   }
@@ -141,6 +143,7 @@ const minifyJson = () => {
     const parsed = JSON.parse(jsonText.value)
     jsonText.value = JSON.stringify(parsed)
     ElMessage.success(t('jsonFormatter.messages.minified'))
+    trackSuccess({ action: 'minify', input_chars: jsonText.value.length })
   } catch (err) {
     errorMessage.value = t('jsonFormatter.invalidJson', { message: err.message })
   }
@@ -155,6 +158,7 @@ const copyJson = async () => {
   try {
     await navigator.clipboard.writeText(jsonText.value)
     ElMessage.success(t('jsonFormatter.messages.copied'))
+    trackSuccess({ action: 'copy', output_chars: jsonText.value.length })
   } catch {
     ElMessage.error(t('jsonFormatter.messages.copyFailed'))
   }

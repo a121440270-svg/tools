@@ -6,9 +6,18 @@ async function loadFontEditor() {
   return import('fonteditor-core')
 }
 
+export type SubsetSelection = {
+  requested: number[]
+  selected: number[]
+  missing: number[]
+  coverage: number
+}
+
 export const FONT_LANGUAGE_PRESETS = [
+  { value: 'basic-latin', label: 'Basic Latin', range: 'U+0020-007E' },
   { value: 'latin', label: 'Latin', range: 'U+0000-024F, U+1E00-1EFF' },
   { value: 'english', label: 'English', range: 'U+0020-007E, U+00A0-00FF' },
+  { value: 'digits-punctuation', label: 'Digits & punctuation', range: 'U+0020-0040, U+005B-0060, U+007B-007E' },
   { value: 'simplified-chinese', label: 'Simplified Chinese', range: 'U+3000-303F, U+4E00-9FFF' },
   { value: 'traditional-chinese', label: 'Traditional Chinese', range: 'U+3000-303F, U+4E00-9FFF' },
   { value: 'japanese', label: 'Japanese', range: 'U+3000-30FF, U+31F0-31FF, U+4E00-9FFF' },
@@ -114,4 +123,40 @@ export function getCodePointsInRanges(value: string, maximum = 100000) {
     for (let codePoint = start; codePoint <= end; codePoint++) codePoints.push(codePoint)
   }
   return Array.from(new Set(codePoints)).sort((left, right) => left - right)
+}
+
+export function getRequestedCodePointsFromText(text: string) {
+  return Array.from(new Set(Array.from(text, character => character.codePointAt(0))))
+    .filter((codePoint): codePoint is number => codePoint !== undefined)
+    .sort((left, right) => left - right)
+}
+
+export function getRequestedCodePointsFromRanges(value: string, maximum = 100000):
+  { codePoints: number[]; error?: 'invalid' | 'too_large' } {
+  const ranges = parseUnicodeRanges(value)
+  if (!ranges) return { codePoints: [], error: 'invalid' }
+
+  const codePoints: number[] = []
+  for (const [start, end] of ranges) {
+    if (end - start + 1 + codePoints.length > maximum) return { codePoints: [], error: 'too_large' }
+    for (let codePoint = start; codePoint <= end; codePoint++) codePoints.push(codePoint)
+  }
+  return { codePoints: Array.from(new Set(codePoints)).sort((left, right) => left - right) }
+}
+
+export function analyzeSubsetSelection(requested: number[], available: number[]): SubsetSelection {
+  const requestedSet = new Set(requested)
+  const availableSet = new Set(available)
+  const selected = requested.filter(codePoint => availableSet.has(codePoint))
+  const missing = requested.filter(codePoint => !availableSet.has(codePoint))
+  const coverage = requestedSet.size ? selected.length / requestedSet.size : 1
+  return { requested, selected, missing, coverage }
+}
+
+export function formatCodePoint(codePoint: number) {
+  return `U+${codePoint.toString(16).toUpperCase().padStart(4, '0')}`
+}
+
+export function codePointsToText(codePoints: number[]) {
+  return codePoints.map(codePoint => String.fromCodePoint(codePoint)).join('')
 }
