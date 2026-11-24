@@ -72,6 +72,13 @@ const fail = (msg) => {
 const execFileAsync = promisify(execFile);
 const PROXY_URL = process.env.HTTPS_PROXY || "socks5h://127.0.0.1:4080";
 
+// The local SOCKS5 proxy intermittently fails the TLS handshake (curl 35/56/7)
+// before any HTTP request is sent. Retry only those transport failures: once a
+// real HTTP status is returned we must NOT repeat a POST, because a refresh
+// token is single-use and replaying it revokes the whole token lineage.
+const TRANSIENT_CURL_ERROR = /\bcurl: \((?:7|35|56)\)/;
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 async function curlJson(url, { method = "GET", body, headers = [], timeout = 25000 } = {}) {
   const args = [
     "--proxy", PROXY_URL,
@@ -84,12 +91,19 @@ async function curlJson(url, { method = "GET", body, headers = [], timeout = 250
   args.push(url);
 
   let stdout = "";
-  try {
-    ({ stdout } = await execFileAsync("curl.exe", args, {
-      timeout, maxBuffer: 1 << 20, windowsHide: true,
-    }));
-  } catch (err) {
-    throw new Error(`cannot reach ${url}: ${err.message}`);
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      ({ stdout } = await execFileAsync("curl.exe", args, {
+        timeout, maxBuffer: 1 << 20, windowsHide: true,
+      }));
+      break;
+    } catch (err) {
+      if (attempt === 3 || !TRANSIENT_CURL_ERROR.test(err.message || "")) {
+        throw new Error(`cannot reach ${url}: ${err.message}`);
+      }
+      log(`transient proxy/TLS error on ${url}, retry ${attempt}/3`);
+      await sleep(400 * attempt);
+    }
   }
   const nl = stdout.lastIndexOf("\n");
   const status = Number(nl >= 0 ? stdout.slice(nl + 1) : 0);
